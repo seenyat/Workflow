@@ -1,7 +1,11 @@
+import middleware from './middleware/index.js'
 import express from "express";
-import morgan from "morgan";
-
+import ansRouter from './routes/answers'
+import questRouter from './routes/questions' 
 const app = express();
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(morgan("dev"));
+middleware(app);
+
+app.use('/',ansRouter)
+app.use('/',questRouter)
+
+export default app
