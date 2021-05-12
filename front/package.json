@@ -22,6 +22,8 @@
     "redux-saga": "^1.1.3",
     "web-vitals": "^1.0.1"
   },
+  "proxy": "http://localhost:4000/",
+
   "scripts": {
     "start": "craco start",
     "build": "craco build",

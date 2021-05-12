@@ -7,7 +7,7 @@ import Sagas from "./sagas";
 
 const preloadedState =
   window.localStorage.getItem("state") ||
-  '{"Auth": false, "User":{"Username": "Anton", "email": "anton@mail.ru", "role": "admin" }, "loading": false, "Questions": [] }';
+  '{"Auth": false, "User":{"Username": "Anton", "email": "anton@mail.ru", "role": "admin" }, "loading": false, "questions": [] }';
 
 const sagaMiddleware = createSagaMiddleware();
 

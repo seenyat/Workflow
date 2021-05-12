@@ -1,4 +1,7 @@
 import "./App.css";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { sagaLoadQuestions } from "./Redux/actions/actionCreator";
 import { Provider } from "react-redux";
 import store from "./Redux/store";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
@@ -30,6 +33,12 @@ const userNavigation = [
   { name: "Sign out", href: "#" },
 ];
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(sagaLoadQuestions("/allquestions"));
+  }, [dispatch]);
+
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   function classNames(...classes) {
@@ -37,7 +46,6 @@ function App() {
   }
 
   return (
-    <Provider store={store}>
       <BrowserRouter>
         <div className="h-screen bg-gray-50 flex overflow-hidden">
           <Navigation
@@ -55,7 +63,6 @@ function App() {
           />
         </div>
       </BrowserRouter>
-    </Provider>
   );
 }
 
