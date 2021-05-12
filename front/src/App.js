@@ -15,6 +15,7 @@ import {
   XIcon,
 } from "@heroicons/react/outline";
 import Navigation from "./Views/Navigation";
+
 import Content from "./Views/Content";
 import { useState } from "react";
 const sidebarNavigation = [
@@ -23,6 +24,7 @@ const sidebarNavigation = [
   { name: "Profile", href: "profile", icon: UserIcon, current: true },
   { name: "About Us", href: "about", icon: PlayIcon, current: false },
 ];
+
 
 const userNavigation = [
   { name: "Your Profile", href: "#" },
@@ -38,6 +40,7 @@ function App() {
   return (
     <Provider store={store}>
       <BrowserRouter>
+
         <div className="h-screen bg-gray-50 flex overflow-hidden">
           <Navigation
             mobileMenuOpen={mobileMenuOpen}
@@ -54,6 +57,7 @@ function App() {
           />
           <Switch></Switch>
         </div>
+
       </BrowserRouter>
     </Provider>
   );
