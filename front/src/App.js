@@ -25,7 +25,6 @@ const sidebarNavigation = [
   { name: "About Us", href: "about", icon: PlayIcon, current: false },
 ];
 
-
 const userNavigation = [
   { name: "Your Profile", href: "#" },
   { name: "Sign out", href: "#" },
@@ -40,7 +39,6 @@ function App() {
   return (
     <Provider store={store}>
       <BrowserRouter>
-
         <div className="h-screen bg-gray-50 flex overflow-hidden">
           <Navigation
             mobileMenuOpen={mobileMenuOpen}
@@ -55,9 +53,7 @@ function App() {
             mobileMenuOpen
             setMobileMenuOpen
           />
-          <Switch></Switch>
         </div>
-
       </BrowserRouter>
     </Provider>
   );

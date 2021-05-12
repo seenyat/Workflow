@@ -13,8 +13,9 @@ import {
   XIcon,
 } from "@heroicons/react/outline";
 import { SearchIcon } from "@heroicons/react/solid";
-import { Link } from "react-router-dom";
+import { Link, Route, Switch } from "react-router-dom";
 import React from "react";
+import UserProfile from "./UserProfile";
 
 export default function Content({
   setMobileMenuOpen,
@@ -130,7 +131,11 @@ export default function Content({
             <h1 id="primary-heading" className="sr-only">
               Photos
             </h1>
-            {/* Your content */}
+            <Switch>
+              <Route path="/">
+                <UserProfile />
+              </Route>
+            </Switch>
           </section>
         </main>
 
