@@ -1,8 +1,22 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { sagaPostQuestion } from "../Redux/actions/actionCreator";
+import fetchCreator from "../Redux/fetchCreator";
 
 export default function UserProfile() {
+  const dispatch = useDispatch();
+
+  const postNewQuestion = (e) => {
+    e.preventDefault();
+    const title = e.target.questionTitle.value;
+    const body = e.target.questionBody.value;
+    dispatch(
+      sagaPostQuestion(fetchCreator("/postQuestion", "POST", { title, body }))
+    );
+  };
+
   return (
-    <form className=" flex flex-col w-96 m-10 ">
+    <form className=" flex flex-col w-96 m-10 " onSubmit={postNewQuestion}>
       <label className="block text-base font-medium text-gray-700">
         Заголовок
       </label>
@@ -32,7 +46,7 @@ export default function UserProfile() {
         />
       </div>
       <button
-        type="button"
+        type="submit"
         className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 outline-none w-min "
       >
         Отправить
