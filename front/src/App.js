@@ -1,30 +1,21 @@
 import "./App.css";
-import { Provider } from 'react-redux'
-import store from './Redux/store'
-import {BrowserRouter, Switch, Route} from 'react-router-dom'
+import { Provider } from "react-redux";
+import store from "./Redux/store";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Navigation from "./Views/Navigation";
-
-
 
 function App() {
   return (
-  
-  <Provider store={store}>
+    <Provider store={store}>
+      <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
 
-  <BrowserRouter>
+      <BrowserRouter>
+        <Navigation />
 
-    <Navigation />
-
-    <Switch>
-      
-    </Switch>
-
-  </BrowserRouter>
-
-  </Provider>
-
-
-)
+        <Switch></Switch>
+      </BrowserRouter>
+    </Provider>
+  );
 }
 
 export default App;
