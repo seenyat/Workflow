@@ -9,7 +9,7 @@ import {
   UserIcon,
 } from "@heroicons/react/solid";
 import {useSelector} from "react-redux"
-import {useEffect} from "react"
+import {useEffect, useState} from "react"
 const eventTypes = {
   applied: { icon: UserIcon, bgColorClass: "bg-gray-400" },
   advanced: { icon: ThumbUpIcon, bgColorClass: "bg-blue-500" },
@@ -88,7 +88,7 @@ const comments = [
 
 export default function UserProfile() {
 const user=useSelector(state=>state.user)
-
+const [answer,setAnswer]=useState([])
 console.log(user);
 useEffect(() => {
   fetch(`http://localhost:4000/profile/609d3bd25b04e824c45be357`, {
@@ -96,8 +96,9 @@ useEffect(() => {
     credentials: "include",
   }).then((data) =>
     data.json().then((profile) => {
-      console.log(profile);
+      // setAnswer(profile)
       
+      setAnswer(profile)
     })
   );
 }, []);
@@ -184,8 +185,8 @@ useEffect(() => {
                   </div>
                   <div className="px-4 py-6 sm:px-6">
                     <ul className="space-y-8">
-                      {comments.map((comment) => (
-                        <li key={comment.id}>
+                      {answer?.answers.map((comment) => (
+                        <li key={comment._id}>
                           <div className="flex space-x-3">
                             <div className="flex-shrink-0"></div>
                             <div>
@@ -194,15 +195,15 @@ useEffect(() => {
                                   href="#"
                                   className="font-medium text-gray-900"
                                 >
-                                  {comment.name}
+                                  {comment.comment}
                                 </a>
                               </div>
                               <div className="mt-1 text-sm text-gray-700">
-                                <p>{comment.body}</p>
+                                <p>{comment.comment}</p>
                               </div>
                               <div className="mt-2 text-sm space-x-2">
                                 <span className="text-gray-500 font-medium">
-                                  {comment.date}
+                                 date
                                 </span>{" "}
                                 <span className="text-gray-500 font-medium">
                                   &middot;
