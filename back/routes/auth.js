@@ -11,11 +11,21 @@ const github = GitHubStrategy.Strategy;
 const router = express.Router();
 
 passport.serializeUser(function (user, cb) {
+  // console.log(user);
   cb(null, user.id);
 });
 
-passport.deserializeUser(function (id, cb) {
-  cb(null, id);
+passport.deserializeUser(function (id, done) {
+  console.log(id);
+  User.findOne({ githubID: id })
+    .then((user) => {
+      console.log(user);
+      done(null, user);
+    })
+    .catch((e) => {
+      console.log(e);
+      done(new Error("Failed to deserialize an user"));
+    });
 });
 
 passport.use(
@@ -25,14 +35,41 @@ passport.use(
       clientSecret: process.env.GITHUB_CLIENT_SECRET,
       callbackURL: "http://localhost:4000/login/auth/github/callback",
     },
-    function (accessToken, refreshToken, profile, cb) {
+    async function (accessToken, refreshToken, profile, cb) {
+      const { name, avatar_url, login, email, id } = profile._json;
+      let user = await User.findOne({ login: login });
+      if (!user) {
+        user = await User.create({
+          githubID: id,
+          name,
+          avatar_url,
+          login,
+          email,
+        });
+      }
       return cb(null, profile);
     }
   )
 );
 
-router.get("/", async (req, res) => {
-  res.send("main");
+const authCheck = (req, res, next) => {
+  if (!req.user) {
+    res.status(401).json({
+      authenticated: false,
+      message: "user has not been authenticated",
+    });
+  } else {
+    next();
+  }
+};
+router.get("/", authCheck, (req, res) => {
+  console.log(req.user);
+  res.status(200).json({
+    authenticated: true,
+    message: "user successfully authenticated",
+    user: req.user,
+    cookies: req.cookies,
+  });
 });
 
 router.get("/login", async (req, res) => {
@@ -46,20 +83,7 @@ router.get(
   passport.authenticate("github", {
     failureRedirect: "/",
     successRedirect: "http://localhost:3000/",
-  }),
-  async function (req, res) {
-    const { name, avatar_url, login, email } = req.user._json;
-    let user = await User.findOne({ login: login });
-    if (!user) {
-      user = await User.create({
-        name,
-        avatar_url,
-        login,
-        email,
-      });
-    }
-    res.status(200).json(req.user._json);
-  }
+  })
 );
 
 router.get("/logout", (req, res) => {
