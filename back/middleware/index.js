@@ -8,7 +8,6 @@ import answerRouter from "../routes/answers.js";
 import authRouter from "../routes/auth.js";
 import passport from "passport";
 import session from "express-session";
-import cookieParser from "cookie-parser";
 
 const config = (app) => {
   mongoose.connect("mongodb://localhost:27017/Workflow", {
@@ -17,7 +16,6 @@ const config = (app) => {
   });
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
-  app.use(cookieParser());
   app.use(morgan("dev"));
   app.use(
     cors({
