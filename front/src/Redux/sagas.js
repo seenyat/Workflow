@@ -9,7 +9,7 @@ const fetchForAll = async (payload) => {
 
 const fetchForGet = async (payload) => {
   const feedBack = await fetch(payload);
-  return feedBack.json();
+  return await feedBack.json();
 };
 
 function* postQuestionWorker(action) {
@@ -19,6 +19,7 @@ function* postQuestionWorker(action) {
 
 function* loadQuestionsWorker(action) {
   const questionsList = yield call(fetchForGet, action.payload);
+  yield console.log(questionsList);
   yield put(loadQuestions(questionsList));
 }
 

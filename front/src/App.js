@@ -28,11 +28,7 @@ const userNavigation = [
   { name: "Sign out", href: "#" },
 ];
 function App() {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(sagaLoadQuestions("/allquestions"));
-  }, [dispatch]);
+  
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 

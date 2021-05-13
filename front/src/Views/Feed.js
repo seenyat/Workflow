@@ -1,11 +1,24 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import OneCardInFeed from "../Components/OneCardInFeed";
+import FormQuestion from "../Components/Question/FormQuestion";
+import { sagaLoadQuestions } from "../Redux/actions/actionCreator";
 
 export default function Feed() {
   const { questions } = useSelector((state) => state);
 
-  return questions.map((question) => (
-    <OneCardInFeed key={question._id} question={question} />
-  ));
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(sagaLoadQuestions("http://localhost:4000/allquestions"));
+  }, [dispatch]);
+
+  return (
+    <>
+      <FormQuestion />
+      {questions.map((question) => (
+        <OneCardInFeed key={question._id} question={question} />
+      ))}
+      ;
+    </>
+  );
 }
