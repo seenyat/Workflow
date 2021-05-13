@@ -6,6 +6,7 @@ import {
   PlayIcon,
   ViewGridIcon,
   XIcon,
+  LoginIcon,
 } from "@heroicons/react/outline";
 import { Link } from "react-router-dom";
 
@@ -17,9 +18,10 @@ export default function Example({
 }) {
   const [sidebarNavigation, setSidebarNavigation] = useState([
     { name: "Feed", href: "/", icon: CollectionIcon, current: false },
-    { name: "Latest", href: "latest", icon: ViewGridIcon, current: false },
-    { name: "Profile", href: "profile", icon: UserIcon, current: true },
-    { name: "About Us", href: "about", icon: PlayIcon, current: false },
+    { name: "Latest", href: "/latest", icon: ViewGridIcon, current: false },
+    { name: "Profile", href: "/profile", icon: UserIcon, current: true },
+    { name: "About Us", href: "/about", icon: PlayIcon, current: false },
+    { name: "Login", href: "/login", icon: LoginIcon, current: false },
   ]);
   return (
     <>

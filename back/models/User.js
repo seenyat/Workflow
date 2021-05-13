@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
   name: String,
+  githubID: Number,
   avatar_url: String,
   login: String,
   email: String,

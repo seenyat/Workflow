@@ -14,7 +14,10 @@ export default function QuestionSingle() {
   const [questionObj, setQuestion] = useState(false);
 
   useEffect(() => {
-    fetch(`http://localhost:4000/question/${id}`).then((data) =>
+    fetch(`http://localhost:4000/question/${id}`, {
+      method: "GET",
+      credentials: "include",
+    }).then((data) =>
       data.json().then((question) => {
         console.log(question);
         setQuestion(question);
