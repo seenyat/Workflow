@@ -1,6 +1,6 @@
-import express from "express"
-const router = express.Router()
-import Answer from '../models/Answer'
+import express from "express";
+const router = express.Router();
+import Answer from "../models/Answer.js";
 
 router.post("/", async (req, res) => {
   const { workflows, comment } = req.body;
@@ -11,4 +11,4 @@ router.post("/", async (req, res) => {
   res.json(answer);
 });
 
-export default router
+export default router;
