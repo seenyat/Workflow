@@ -13,12 +13,11 @@ export default function Feed() {
   }, [dispatch]);
 
   return (
-    <>
+    <div className=" overflow-scroll flex flex-col m-3 items-center ">
       <FormQuestion />
       {questions.map((question) => (
         <OneCardInFeed key={question._id} question={question} />
       ))}
-      ;
-    </>
+    </div>
   );
 }
