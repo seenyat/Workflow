@@ -8,7 +8,6 @@ import answerRouter from "../routes/answers.js";
 import authRouter from "../routes/auth.js";
 import passport from "passport";
 import session from "express-session";
-import cookieParser from "cookie-parser";
 import profileRouter from '../routes/user.js'
 
 
@@ -19,7 +18,6 @@ const config = (app) => {
   });
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
-  app.use(cookieParser());
   app.use(morgan("dev"));
   app.use(
     cors({

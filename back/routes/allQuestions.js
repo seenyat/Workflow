@@ -5,9 +5,8 @@ const router = express.Router();
 router.get("/", async (req, res) => {
 
   const questionsList = await Question.find({});
-  // console.log(req.user);
 
-  res.json({ questionsList, user: req.user, cookies: req.cookies });
+  res.json({ questionsList, cookies: req.cookies });
 
 });
 

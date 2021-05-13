@@ -63,7 +63,7 @@ const authCheck = (req, res, next) => {
   }
 };
 router.get("/", authCheck, (req, res) => {
-  console.log(req.user);
+  // console.log(req.user);
   res.status(200).json({
     authenticated: true,
     message: "user successfully authenticated",
