@@ -1,8 +1,10 @@
 import {
+  AUTH,
   CHANGE_FEED_MODAL_STATUS,
   CHANGE_HEADER_MODAL_STATUS,
   LOAD_QUESTIONS,
   POST_QUESTION,
+  SAGA_AUTH,
   SAGA_LOAD_QUESTIONS,
   SAGA_POST_QUESTION,
 } from "./actionTypes";
@@ -34,5 +36,15 @@ export const changeFeedModalStatus = (payload) => ({
 
 export const changeHeaderModalStatus = (payload) => ({
   type: CHANGE_HEADER_MODAL_STATUS,
+  payload,
+});
+
+export const sagaAuthCheck = (payload) => ({
+  type: SAGA_AUTH,
+  payload,
+});
+
+export const AuthCheck = (payload) => ({
+  type: AUTH,
   payload,
 });

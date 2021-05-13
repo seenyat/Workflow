@@ -1,4 +1,5 @@
 import {
+  AUTH,
   CHANGE_FEED_MODAL_STATUS,
   CHANGE_HEADER_MODAL_STATUS,
   LOAD_QUESTIONS,
@@ -13,10 +14,17 @@ const reducer = (state, action) => {
         questions: [...state.questions, action.payload],
       };
 
+    case AUTH:
+      return {
+        ...state,
+        auth: action.payload.authenticated,
+        user: action.payload.authenticated ? action.payload.user : null,
+      };
+
     case LOAD_QUESTIONS:
       return {
         ...state,
-        questions: action.payload,
+        questions: action.payload.questionsList,
       };
 
     case CHANGE_FEED_MODAL_STATUS:
