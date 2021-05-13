@@ -110,100 +110,99 @@ export default function ModalForm() {
               </div>
               <div className="sm:flex sm:items-start">
                 <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                  <Dialog.Title
-                    as="h3"
-                    className="text-lg leading-6 font-medium text-gray-900"
-                  >
-                    Добавление нового вопроса
-                  </Dialog.Title>
                   <div className="mt-2">
-                    <Listbox value={selected} onChange={setSelected}>
-                      {({ open }) => (
-                        <>
-                          <Listbox.Label className="block text-sm font-medium text-gray-700">
-                            Выберите тему:
-                          </Listbox.Label>
-                          <div className="mt-1 relative">
-                            <Listbox.Button className="relative w-full bg-white border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                              <span className="block truncate">
-                                {selected.name}
-                              </span>
-                              <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-                                <SelectorIcon
-                                  className="h-5 w-5 text-gray-400"
-                                  aria-hidden="true"
-                                />
-                              </span>
-                            </Listbox.Button>
-
-                            <Transition
-                              show={open}
-                              as={Fragment}
-                              leave="transition ease-in duration-100"
-                              leaveFrom="opacity-100"
-                              leaveTo="opacity-0"
-                            >
-                              <Listbox.Options
-                                static
-                                className="absolute z-10 mt-1 h-20 w-96 bg-white shadow-lg max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm"
-                              >
-                                {themes.map((person) => (
-                                  <Listbox.Option
-                                    key={person.id}
-                                    className={({ active }) =>
-                                      classNames(
-                                        active
-                                          ? "text-white bg-indigo-600"
-                                          : "text-gray-900",
-                                        "cursor-default w-96 select-none relative py-2 pl-8 pr-4"
-                                      )
-                                    }
-                                    value={person}
-                                  >
-                                    {({ selected, active }) => (
-                                      <>
-                                        <span
-                                          className={classNames(
-                                            selected
-                                              ? "font-semibold"
-                                              : "font-normal",
-                                            "block truncate"
-                                          )}
-                                        >
-                                          {person.name}
-                                        </span>
-
-                                        {selected ? (
-                                          <span
-                                            className={classNames(
-                                              active
-                                                ? "text-white"
-                                                : "text-indigo-600",
-                                              "absolute inset-y-0 left-0 flex items-center pl-1.5"
-                                            )}
-                                          >
-                                            <CheckIcon
-                                              className="h-5 w-5"
-                                              aria-hidden="true"
-                                            />
-                                          </span>
-                                        ) : null}
-                                      </>
-                                    )}
-                                  </Listbox.Option>
-                                ))}
-                              </Listbox.Options>
-                            </Transition>
-                          </div>
-                        </>
-                      )}
-                    </Listbox>
-
                     <form
-                      className=" flex flex-col w-96 m-10 "
+                      className=" flex flex-col w-full mx-auto my-2"
                       onSubmit={postNewQuestion}
                     >
-                      <label className="block text-base font-medium text-gray-700">
+                      <Dialog.Title
+                        as="h3"
+                        className="font-bold my-5 text-2xl leading-6  text-gray-900"
+                      >
+                        Добавление нового вопроса
+                      </Dialog.Title>
+                      <Listbox value={selected} onChange={setSelected}>
+                        {({ open }) => (
+                          <>
+                            <Listbox.Label className="block font-medium text-gray-700">
+                              Выберите тему:
+                            </Listbox.Label>
+                            <div className="mt-1 relative">
+                              <Listbox.Button className="relative w-full h-10 bg-white border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                <span className="block truncate">
+                                  {selected.name}
+                                </span>
+                                <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                                  <SelectorIcon
+                                    className="h-5 w-5 text-gray-400"
+                                    aria-hidden="true"
+                                  />
+                                </span>
+                              </Listbox.Button>
+
+                              <Transition
+                                show={open}
+                                as={Fragment}
+                                leave="transition ease-in duration-100"
+                                leaveFrom="opacity-100"
+                                leaveTo="opacity-0"
+                              >
+                                <Listbox.Options
+                                  static
+                                  className="absolute z-10 mt-1 h-20 bg-white shadow-lg max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm"
+                                >
+                                  {themes.map((person) => (
+                                    <Listbox.Option
+                                      key={person.id}
+                                      className={({ active }) =>
+                                        classNames(
+                                          active
+                                            ? "text-white bg-indigo-600"
+                                            : "text-gray-900",
+                                          "cursor-default w-96 select-none relative py-2 pl-8 pr-4"
+                                        )
+                                      }
+                                      value={person}
+                                    >
+                                      {({ selected, active }) => (
+                                        <>
+                                          <span
+                                            className={classNames(
+                                              selected
+                                                ? "font-semibold"
+                                                : "font-normal",
+                                              "block truncate"
+                                            )}
+                                          >
+                                            {person.name}
+                                          </span>
+
+                                          {selected ? (
+                                            <span
+                                              className={classNames(
+                                                active
+                                                  ? "text-white"
+                                                  : "text-indigo-600",
+                                                "absolute inset-y-0 left-0 flex items-center pl-1.5"
+                                              )}
+                                            >
+                                              <CheckIcon
+                                                className="h-5 w-5"
+                                                aria-hidden="true"
+                                              />
+                                            </span>
+                                          ) : null}
+                                        </>
+                                      )}
+                                    </Listbox.Option>
+                                  ))}
+                                </Listbox.Options>
+                              </Transition>
+                            </div>
+                          </>
+                        )}
+                      </Listbox>
+                      <label className="mt-2 block text-base font-medium text-gray-700">
                         Заголовок
                       </label>
                       <div className="mt-1">
