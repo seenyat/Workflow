@@ -19,6 +19,7 @@ const config = (app) => {
 
   app.use(
     session({
+      key: "Workflow",
       secret: "secretKeyWorkflow",
       resave: false,
       saveUninitialized: false,
