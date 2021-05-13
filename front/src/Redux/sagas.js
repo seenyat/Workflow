@@ -8,6 +8,7 @@ const fetchForAll = async (payload) => {
 };
 
 const fetchForGet = async (payload) => {
+
   const feedBack = await fetch(payload, {
     method: "GET",
     credentials: "include",

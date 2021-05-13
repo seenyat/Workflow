@@ -1,4 +1,6 @@
 import {
+  CHANGE_FEED_MODAL_STATUS,
+  CHANGE_HEADER_MODAL_STATUS,
   LOAD_QUESTIONS,
   POST_QUESTION,
   SAGA_LOAD_QUESTIONS,
@@ -22,5 +24,15 @@ export const sagaLoadQuestions = (payload) => ({
 
 export const loadQuestions = (payload) => ({
   type: LOAD_QUESTIONS,
+  payload,
+});
+
+export const changeFeedModalStatus = (payload) => ({
+  type: CHANGE_FEED_MODAL_STATUS,
+  payload,
+});
+
+export const changeHeaderModalStatus = (payload) => ({
+  type: CHANGE_HEADER_MODAL_STATUS,
   payload,
 });
