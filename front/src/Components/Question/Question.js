@@ -11,8 +11,8 @@
 //   const question = useSelector((state) =>
 //     state.questions.find((que) => que._id === id)
 //   );
-import React from "react";
+// import React from "react";
 
-export default function Question() {
-  return <div></div>;
-}
+// export default function Question() {
+//   return <div></div>;
+// }
