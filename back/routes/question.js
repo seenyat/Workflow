@@ -1,6 +1,21 @@
 import express from "express";
 import Question from "../models/Question.js";
+import routerAnswer from "./answers.js";
 const router = express.Router();
+import Answer from '../models/Answer'
+
+
+router.get('/:id', async (req,res)=>{
+  const { id } = req.params; 
+  const question =  await Question.findById(id)
+  
+  
+  const answers = await Answer.find({answers:question._id}).populate("question")
+  res.status(200).json({question,answers})
+})
+
+
+
 
 router.post("/", async (req, res) => {
   const { title, body } = req.body;
@@ -11,4 +26,30 @@ router.post("/", async (req, res) => {
   res.json(newPost);
 });
 
+
+
+router.put('/:id', async (req, res) => {
+  console.log(req.body);
+  let x = await Question.findOneAndUpdate(
+     { _id: req.params.id },
+     {$set: { title: req.body.title,
+               body: req.body.body,
+               answers:req.body.answers,
+               } } )
+ 
+ res.json(x)
+ })
+
+router.delete('/:id',(req,res) => {
+  const { id } = req.params;
+  await Question.findByIdAndDelete(id, (error, questionToDelete) => {
+    if (error) {
+      res.status(400).json({ delete: false, error });
+    } else if (!questionToDelete) {
+      res.status(404).json({ delete: false });
+    } else {
+      res.status(200).json({ delete: true, id });
+    }
+  });
+})
 export default router;
