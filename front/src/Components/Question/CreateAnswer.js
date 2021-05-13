@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import WorkflowAdd from "./WorkflowAdd";
 
 export default function CreateAnswer({ id, edit, count }) {
+  const state = useSelector((state) => state.user);
   const [todo, setTodo] = useState([{ title: "Этап 1", todos: [""] }]);
   function addAnswer(e) {
     e.preventDefault();
@@ -11,9 +13,10 @@ export default function CreateAnswer({ id, edit, count }) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        workflows: e.target.todo.value,
+        workflows: (e.target.todo && e.target.todo.value) || "123",
         comment: e.target.title.value,
         id: id,
+        authorId: state._id,
       }),
     });
     edit(count + 1);
