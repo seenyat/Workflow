@@ -4,6 +4,7 @@ import UserProfile from "./UserProfile";
 import Feed from "./Feed";
 import About from "./About";
 import ContentHeader from "./ContentHeader";
+import QuestionSingle from "./QuestionSingle";
 
 export default function Content({
   setMobileMenuOpen,
@@ -40,6 +41,9 @@ export default function Content({
               </Route>
               <Route path="/about">
                 <About />
+              </Route>
+              <Route path="/question/:id">
+                <QuestionSingle />
               </Route>
             </Switch>
           </section>
