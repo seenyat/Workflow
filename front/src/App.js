@@ -21,6 +21,7 @@ import Navigation from "./Views/Navigation";
 
 import Content from "./Views/Content";
 import { useState } from "react";
+import Question from "./Components/Question/Question";
 const sidebarNavigation = [
   { name: "Feed", href: "feed", icon: CollectionIcon, current: false },
   { name: "Latest", href: "latest", icon: ViewGridIcon, current: false },
@@ -46,23 +47,27 @@ function App() {
   }
 
   return (
-      <BrowserRouter>
-        <div className="h-screen bg-gray-50 flex overflow-hidden">
-          <Navigation
-            mobileMenuOpen={mobileMenuOpen}
-            setMobileMenuOpen={setMobileMenuOpen}
-            sidebarNavigation={sidebarNavigation}
-            userNavigation={userNavigation}
-            classNames={classNames}
-          />
-          <Content
-            classNames
-            userNavigation={userNavigation}
-            mobileMenuOpen
-            setMobileMenuOpen
-          />
-        </div>
-      </BrowserRouter>
+    <BrowserRouter>
+      <div className="h-screen bg-gray-50 flex overflow-hidden">
+        <Navigation
+          mobileMenuOpen={mobileMenuOpen}
+          setMobileMenuOpen={setMobileMenuOpen}
+          sidebarNavigation={sidebarNavigation}
+          userNavigation={userNavigation}
+          classNames={classNames}
+        />
+        <Content
+          classNames
+          userNavigation={userNavigation}
+          mobileMenuOpen
+          setMobileMenuOpen
+        />
+      </div>
+
+      <Route path="/questiontest">
+        <Question />
+      </Route>
+    </BrowserRouter>
   );
 }
 
