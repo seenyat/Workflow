@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { sagaLoadQuestions } from "./Redux/actions/actionCreator";
 import { Provider } from "react-redux";
-import store from "./Redux/store";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import {
   CogIcon,
@@ -56,10 +55,6 @@ function App() {
           setMobileMenuOpen
         />
       </div>
-
-      <Route path="/questiontest">
-        <Question />
-      </Route>
     </BrowserRouter>
   );
 }
