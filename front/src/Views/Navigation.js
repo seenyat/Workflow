@@ -18,10 +18,15 @@ import { Link } from "react-router-dom";
 export default function Example({
   mobileMenuOpen,
   setMobileMenuOpen,
-  sidebarNavigation,
   userNavigation,
   classNames,
 }) {
+  const [sidebarNavigation, setSidebarNavigation] = useState([
+    { name: "Feed", href: "/", icon: CollectionIcon, current: false },
+    { name: "Latest", href: "latest", icon: ViewGridIcon, current: false },
+    { name: "Profile", href: "profile", icon: UserIcon, current: true },
+    { name: "About Us", href: "about", icon: PlayIcon, current: false },
+  ]);
   return (
     <>
       {/* Narrow sidebar */}
@@ -41,6 +46,16 @@ export default function Example({
                     : "text-indigo-100 hover:bg-gray-800 hover:text-white",
                   "group w-full p-3 rounded-md flex flex-col items-center text-xs font-medium"
                 )}
+                onClick={(e) => {
+                  setSidebarNavigation(
+                    sidebarNavigation.map((el) => {
+                      return {
+                        ...el,
+                        current: el.name === item.name ? true : false,
+                      };
+                    })
+                  );
+                }}
                 aria-current={item.current ? "page" : undefined}
               >
                 <item.icon
