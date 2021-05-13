@@ -3,6 +3,7 @@ import Question from "../models/Question.js";
 import routerAnswer from "./answers.js";
 const router = express.Router();
 import Answer from "../models/Answer.js";
+import mongoose from "mongoose";
 
 router.get("/:id", async (req, res) => {
   const { id } = req.params;
@@ -14,10 +15,11 @@ router.get("/:id", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  const { title, body } = req.body;
+  const { title, body, authorid } = req.body;
   const newPost = await Question.create({
     title,
     body,
+    author:mongoose.Types.ObjectId(authorid)
   });
   res.json(newPost);
 });
