@@ -87,7 +87,7 @@ const comments = [
 ];
 
 export default function UserProfile() {
-const user=useSelector(state=>state)
+const user=useSelector(state=>state.user)
 
 console.log(user);
 useEffect(() => {
@@ -124,7 +124,7 @@ useEffect(() => {
               </div>
             </div>
             <div>
-  <h1 className="text-2xl font-bold text-gray-900">{user.Username}</h1>
+  <h1 className="text-2xl font-bold text-gray-900">{user.login}</h1>
               <p className="text-sm font-medium text-gray-500">
                 Status:{" "}
                 <a href="#" className="text-gray-900">
