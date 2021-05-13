@@ -8,8 +8,8 @@ router.get("/:id", async (req, res) => {
   const { id } = req.params;
   const question = await Question.findById(id);
 
-  const answers = await Answer.find({ answers: question._id }).populate(
-    "question"
+  const answers = await Answer.find({question: question._id }).populate(
+    "questions"
   );
   res.status(200).json({ question, answers });
 });
@@ -31,7 +31,7 @@ router.put("/:id", async (req, res) => {
       $set: {
         title: req.body.title,
         body: req.body.body,
-        answers: req.body.answers,
+        
       },
     }
   );
