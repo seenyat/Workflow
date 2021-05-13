@@ -5,13 +5,14 @@ import Answer from "../models/Answer.js";
 import Question from "../models/Question.js";
 
 router.post("/", async (req, res) => {
-  const { workflows, comment, id ,author} = req.body;
-  console.log(id);
+console.log(req.body);
+  const { workflows, comment, id ,authorId} = req.body;
+
   const answer = await Answer.create({
     workflows,
     comment,
     question: mongoose.Types.ObjectId(id),
-    author
+    author:mongoose.Types.ObjectId(authorId)
   });
 
   res.json(answer);
