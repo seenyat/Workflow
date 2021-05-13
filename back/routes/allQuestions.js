@@ -4,6 +4,7 @@ const router = express.Router();
 
 router.get("/", async (req, res) => {
   const questionsList = await Question.find({});
+  console.log(questionsList);
   res.json(questionsList);
 });
 

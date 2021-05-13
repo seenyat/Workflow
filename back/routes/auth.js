@@ -43,7 +43,10 @@ router.get("/login/auth/github", passport.authenticate("github"));
 
 router.get(
   "/login/auth/github/callback",
-  passport.authenticate("github", { failureRedirect: "/" }),
+  passport.authenticate("github", {
+    failureRedirect: "/",
+    successRedirect: "http://localhost:3000/",
+  }),
   async function (req, res) {
     const { name, avatar_url, login, email } = req.user._json;
     let user = await User.findOne({ login: login });
