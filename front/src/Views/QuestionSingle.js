@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router";
 import { useState } from "react";
 import { useSelector } from "react-redux";
@@ -8,14 +8,35 @@ export default function QuestionSingle() {
   const { id } = useParams();
 
   const [editStatus, setEditStatus] = useState(false);
+  const [question, setQuestion] = useState({});
 
-  const question = useSelector((state) =>
-    state.questions.find((que) => que._id === id)
-  );
+  useEffect(() => {
+    fetch(`http://localhost:4000/question/${id}`).then((data) =>
+      data.json().then((question) => {
+        console.log(question);
+        setQuestion(question);
+      })
+    );
+  }, [id]);
+
+  async function addAnswer(e) {
+    e.preventDefault();
+    fetch("http://localhost:4000/answer", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        workflows: e.target.todo.value,
+        comment: e.target.title.value,
+        id: id,
+      }),
+    });
+  }
 
   return question ? (
-    <div>
-      <QuestionBody info={question} />
+    <div className="container py-2 mx-auto px-4 sm:px-6 lg:px-8">
+      <QuestionBody question={question} />
       {!editStatus && (
         <button
           onClick={() => setEditStatus(true)}
@@ -25,17 +46,15 @@ export default function QuestionSingle() {
         </button>
       )}
 
-      {editStatus && (
-        <div>
-          <p>TODOSHKA POLETELA SUDAAAAA</p>
-          <button
-            className="bg-indigo-600"
-            onClick={() => setEditStatus(false)}
-          >
-            SAVE TODOSHKU
-          </button>
-        </div>
-      )}
+      <form
+        onSubmit={addAnswer}
+        className="flex flex-col space-y-3 m-5"
+        action=""
+      >
+        <input type="text" placeholder="title" name="title" />
+        <input type="text" placeholder="todo" name="todo" />
+        <button>Submit </button>
+      </form>
     </div>
   ) : null;
 }
