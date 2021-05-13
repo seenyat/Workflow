@@ -1,18 +1,12 @@
 import { Fragment, useState } from "react";
-import { Dialog, Menu, Transition } from "@headlessui/react";
+import { Dialog, Transition } from "@headlessui/react";
 import {
-  CogIcon,
   CollectionIcon,
-  HomeIcon,
-  MenuAlt2Icon,
-  PhotographIcon,
-  PlusIcon,
   UserIcon,
   PlayIcon,
   ViewGridIcon,
   XIcon,
 } from "@heroicons/react/outline";
-import { SearchIcon } from "@heroicons/react/solid";
 import { Link } from "react-router-dom";
 
 export default function Example({

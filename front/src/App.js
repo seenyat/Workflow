@@ -22,6 +22,7 @@ import Navigation from "./Views/Navigation";
 import Content from "./Views/Content";
 import { useState } from "react";
 import Question from "./Components/Question/Question";
+import classNames from "./Utils/classNames";
 
 const userNavigation = [
   { name: "Your Profile", href: "#" },
@@ -35,10 +36,6 @@ function App() {
   }, [dispatch]);
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  function classNames(...classes) {
-    return classes.filter(Boolean).join(" ");
-  }
 
   return (
     <BrowserRouter>
