@@ -6,6 +6,8 @@ import About from "./About";
 import ContentHeader from "./ContentHeader";
 import QuestionSingle from "./QuestionSingle";
 import Login from "./Login";
+import PrivateRoute from "../Components/Routes/PrivateRoute";
+import Logout from "./Logout";
 
 export default function Content({
   setMobileMenuOpen,
@@ -48,6 +50,9 @@ export default function Content({
               </Route>
               <Route path="/login">
                 <Login />
+              </Route>
+              <Route path="/logout">
+                <Logout />
               </Route>
             </Switch>
           </section>
