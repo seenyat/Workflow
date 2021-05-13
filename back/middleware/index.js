@@ -9,6 +9,8 @@ import authRouter from "../routes/auth.js";
 import passport from "passport";
 import session from "express-session";
 import cookieParser from "cookie-parser";
+import profileRouter from '../routes/user.js'
+
 
 const config = (app) => {
   mongoose.connect("mongodb://localhost:27017/Workflow", {
@@ -47,6 +49,7 @@ const config = (app) => {
   app.use("/question", questionRouter);
   app.use("/allquestions", allQuestionsRouter);
   app.use("/answer", answerRouter);
+  app.use("/profile",profileRouter)
 };
 
 export default config;

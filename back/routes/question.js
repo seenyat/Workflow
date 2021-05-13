@@ -7,7 +7,7 @@ import Answer from "../models/Answer.js";
 router.get("/:id", async (req, res) => {
   const { id } = req.params;
   const question = await Question.findById(id);
-
+  
   const answers = await Answer.find({ question: question._id });
   // console.log(answers);
   res.status(200).json({ question, answers });
