@@ -4,11 +4,13 @@ import { useDispatch } from "react-redux";
 import {
   changeFeedModalStatus,
   changeHeaderModalStatus,
+  sagaPostQuestion,
 } from "../../Redux/actions/actionCreator";
 import { Dialog, Transition } from "@headlessui/react";
 import { XIcon } from "@heroicons/react/outline";
 import { Listbox } from "@headlessui/react";
 import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
+import fetchCreator from "../../Redux/fetchCreator";
 
 const themes = [
   { id: 1, theme: "Wade Cooper" },
@@ -39,12 +41,12 @@ export default function ModalForm() {
     const title = e.target.questionTitle.value;
     const body = e.target.questionBody.value;
     const theme = selected;
-    // dispatch(
-    //   sagaPostQuestion(
-    //     fetchCreator("http://localhost:4000/question", "POST", { title, body })
-    //   )
-    // );
-    console.log(title, body, theme);
+    dispatch(
+      sagaPostQuestion(
+        fetchCreator("http://localhost:4000/question", "POST", { title, body })
+      )
+    );
+    dispatch(changeHeaderModalStatus(false));
   };
 
   return (
