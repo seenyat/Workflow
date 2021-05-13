@@ -3,9 +3,11 @@ import {
   CHANGE_FEED_MODAL_STATUS,
   CHANGE_HEADER_MODAL_STATUS,
   LOAD_QUESTIONS,
+  LOGOUT,
   POST_QUESTION,
   SAGA_AUTH,
   SAGA_LOAD_QUESTIONS,
+  SAGA_LOGOUT,
   SAGA_POST_QUESTION,
 } from "./actionTypes";
 
@@ -47,4 +49,12 @@ export const sagaAuthCheck = (payload) => ({
 export const AuthCheck = (payload) => ({
   type: AUTH,
   payload,
+});
+
+export const sagaLogout = (payload) => ({
+  type: SAGA_LOGOUT,
+});
+
+export const logout = () => ({
+  type: LOGOUT,
 });

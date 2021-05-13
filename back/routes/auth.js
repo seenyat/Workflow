@@ -63,17 +63,12 @@ const authCheck = (req, res, next) => {
   }
 };
 router.get("/", authCheck, (req, res) => {
-  // console.log(req.user);
   res.status(200).json({
     authenticated: true,
     message: "user successfully authenticated",
     user: req.user,
     cookies: req.cookies,
   });
-});
-
-router.get("/login", async (req, res) => {
-  res.send("login");
 });
 
 router.get("/login/auth/github", passport.authenticate("github"));
@@ -87,8 +82,9 @@ router.get(
 );
 
 router.get("/logout", (req, res) => {
+  req.logout();
   res.clearCookie("Workflow");
-  res.redirect("/");
+  res.redirect("http://localhost:3000/");
 });
 
 export default router;

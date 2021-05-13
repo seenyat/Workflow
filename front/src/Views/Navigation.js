@@ -10,6 +10,7 @@ import {
 } from "@heroicons/react/outline";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { LogoutIcon } from "@heroicons/react/solid";
 
 export default function Example({
   mobileMenuOpen,
@@ -23,6 +24,7 @@ export default function Example({
     { name: "Profile", href: "/profile", icon: UserIcon, current: true },
     { name: "About Us", href: "/about", icon: PlayIcon, current: false },
     { name: "Login", href: "/login", icon: LoginIcon, current: false },
+    { name: "Logout", href: "/logout", icon: LogoutIcon, current: false },
   ]);
 
   const auth = useSelector((state) => state.auth);

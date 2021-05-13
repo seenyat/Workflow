@@ -3,6 +3,7 @@ import {
   CHANGE_FEED_MODAL_STATUS,
   CHANGE_HEADER_MODAL_STATUS,
   LOAD_QUESTIONS,
+  LOGOUT,
   POST_QUESTION,
 } from "./actions/actionTypes";
 
@@ -12,6 +13,13 @@ const reducer = (state, action) => {
       return {
         ...state,
         questions: [...state.questions, action.payload],
+      };
+
+    case LOGOUT:
+      return {
+        ...state,
+        auth: false,
+        user: null,
       };
 
     case AUTH:
