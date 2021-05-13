@@ -6,6 +6,7 @@ import Question from "../models/Question.js";
 
 router.post("/", async (req, res) => {
   const { workflows, comment, id } = req.body;
+  console.log(id);
   const answer = await Answer.create({
     workflows,
     comment,
