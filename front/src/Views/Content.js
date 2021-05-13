@@ -16,6 +16,8 @@ import { SearchIcon } from "@heroicons/react/solid";
 import { Link, Route, Switch } from "react-router-dom";
 import React from "react";
 import UserProfile from "./UserProfile";
+import Feed from "./Feed";
+import About from "./About";
 
 export default function Content({
   setMobileMenuOpen,
@@ -132,8 +134,17 @@ export default function Content({
               Photos
             </h1>
             <Switch>
-              <Route path="/">
+              <Route exact path="/">
+                <Feed />
+              </Route>
+              <Route path="/new">
+                <Feed />
+              </Route>
+              <Route path="/Profile">
                 <UserProfile />
+              </Route>
+              <Route path="/about">
+                <About />
               </Route>
             </Switch>
           </section>

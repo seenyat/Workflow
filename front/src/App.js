@@ -22,12 +22,6 @@ import Navigation from "./Views/Navigation";
 import Content from "./Views/Content";
 import { useState } from "react";
 import Question from "./Components/Question/Question";
-const sidebarNavigation = [
-  { name: "Feed", href: "feed", icon: CollectionIcon, current: false },
-  { name: "Latest", href: "latest", icon: ViewGridIcon, current: false },
-  { name: "Profile", href: "profile", icon: UserIcon, current: true },
-  { name: "About Us", href: "about", icon: PlayIcon, current: false },
-];
 
 const userNavigation = [
   { name: "Your Profile", href: "#" },
@@ -52,7 +46,6 @@ function App() {
         <Navigation
           mobileMenuOpen={mobileMenuOpen}
           setMobileMenuOpen={setMobileMenuOpen}
-          sidebarNavigation={sidebarNavigation}
           userNavigation={userNavigation}
           classNames={classNames}
         />
