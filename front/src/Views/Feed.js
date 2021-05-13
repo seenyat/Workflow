@@ -5,7 +5,7 @@ import FormQuestion from "../Components/Question/FormQuestion";
 import { sagaLoadQuestions } from "../Redux/actions/actionCreator";
 
 export default function Feed() {
-  const { questions } = useSelector((state) => state);
+  const { questions } = useSelector((state) => state);  
 
   const dispatch = useDispatch();
   useEffect(() => {

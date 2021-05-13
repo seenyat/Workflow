@@ -8,6 +8,7 @@ const fetchForAll = async (payload) => {
 };
 
 const fetchForGet = async (payload) => {
+  console.log(payload);
   const feedBack = await fetch(payload);
   return await feedBack.json();
 };
