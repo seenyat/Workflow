@@ -8,12 +8,15 @@ import {
   ThumbUpIcon,
   UserIcon,
 } from "@heroicons/react/solid";
-
+import {useSelector} from "react-redux"
+import {useEffect} from "react"
 const eventTypes = {
   applied: { icon: UserIcon, bgColorClass: "bg-gray-400" },
   advanced: { icon: ThumbUpIcon, bgColorClass: "bg-blue-500" },
   completed: { icon: CheckIcon, bgColorClass: "bg-green-500" },
 };
+
+
 const timeline = [
   {
     id: 1,
@@ -84,6 +87,23 @@ const comments = [
 ];
 
 export default function UserProfile() {
+const user=useSelector(state=>state)
+
+console.log(user);
+useEffect(() => {
+  fetch(`http://localhost:4000/profile/609d3bd25b04e824c45be357`, {
+    method: "GET",
+    credentials: "include",
+  }).then((data) =>
+    data.json().then((profile) => {
+      console.log(profile);
+      
+    })
+  );
+}, []);
+
+
+
   return (
     <div className="min-h-screen bg-gray-100">
       <main className="py-10">
@@ -104,11 +124,11 @@ export default function UserProfile() {
               </div>
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-gray-900">Anton Pudge</h1>
+  <h1 className="text-2xl font-bold text-gray-900">{user.Username}</h1>
               <p className="text-sm font-medium text-gray-500">
                 Status:{" "}
                 <a href="#" className="text-gray-900">
-                  Пользователь
+                 {user.role}
                 </a>{" "}
               </p>
             </div>
@@ -135,7 +155,7 @@ export default function UserProfile() {
                         Email address
                       </dt>
                       <dd className="mt-1 text-sm text-gray-900">
-                        Anton@anton.com
+                       {user.email}
                       </dd>
                     </div>
 
