@@ -11,7 +11,9 @@ export default function UserProfile() {
     const title = e.target.questionTitle.value;
     const body = e.target.questionBody.value;
     dispatch(
-      sagaPostQuestion(fetchCreator("/postQuestion", "POST", { title, body }))
+      sagaPostQuestion(
+        fetchCreator("http://localhost:4000/question", "POST", { title, body })
+      )
     );
   };
 
