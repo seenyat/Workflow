@@ -6,3 +6,9 @@ export const LOAD_QUESTIONS = "LOAD_QUESTIONS";
 
 export const CHANGE_FEED_MODAL_STATUS = "CHANGE_FEED_MODAL_STATUS";
 export const CHANGE_HEADER_MODAL_STATUS = "CHANGE_HEADER_MODAL_STATUS";
+
+export const SAGA_AUTH = "SAGA_AUTH";
+export const AUTH = "AUTH";
+
+export const SAGA_LOGOUT = "SAGA_LOGOUT";
+export const LOGOUT = "LOGOUT";

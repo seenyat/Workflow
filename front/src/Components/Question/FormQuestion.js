@@ -1,18 +1,15 @@
-import { useState, Fragment } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { changeFeedModalStatus } from "../../Redux/actions/actionCreator";
-import fetchCreator from "../../Redux/fetchCreator";
-import { Dialog, Transition } from "@headlessui/react";
-import { ExclamationIcon, XIcon } from "@heroicons/react/outline";
 import ModalForm from "./ModalForm";
 
 export default function FormQuestion() {
   const dispatch = useDispatch();
 
   const modalStatus = useSelector((state) => state.modals[0].status);
-  console.log(modalStatus);
+  // console.log(modalStatus);
 
-  const [formStatus, editFormStatus] = useState(false);
+  // const [formStatus, editFormStatus] = useState(false);
   // const [open, setOpen] = useState(true);
 
   // const postNewQuestion = (e) => {

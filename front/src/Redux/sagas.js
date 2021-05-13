@@ -1,6 +1,14 @@
 import { call, put, takeEvery } from "redux-saga/effects";
-import { loadQuestions, postQuestion } from "./actions/actionCreator";
-import { SAGA_LOAD_QUESTIONS, SAGA_POST_QUESTION } from "./actions/actionTypes";
+import {
+  AuthCheck,
+  loadQuestions,
+  postQuestion,
+} from "./actions/actionCreator";
+import {
+  SAGA_AUTH,
+  SAGA_LOAD_QUESTIONS,
+  SAGA_POST_QUESTION,
+} from "./actions/actionTypes";
 
 const fetchForAll = async (payload) => {
   const feedBack = await fetch(payload.url, payload.constructor);
@@ -8,7 +16,6 @@ const fetchForAll = async (payload) => {
 };
 
 const fetchForGet = async (payload) => {
-
   const feedBack = await fetch(payload, {
     method: "GET",
     credentials: "include",
@@ -22,12 +29,18 @@ function* postQuestionWorker(action) {
 }
 
 function* loadQuestionsWorker(action) {
-  const questionsList = yield call(fetchForGet, action.payload);
-  yield console.log(questionsList);
-  yield put(loadQuestions(questionsList.questionsList));
+  const newInfo = yield call(fetchForGet, action.payload);
+  yield put(loadQuestions(newInfo));
+}
+
+function* authWorker(action) {
+  const result = yield call(fetchForGet, action.payload);
+  yield console.log(result);
+  yield put(AuthCheck(result));
 }
 
 export default function* watcher() {
   yield takeEvery(SAGA_POST_QUESTION, postQuestionWorker);
   yield takeEvery(SAGA_LOAD_QUESTIONS, loadQuestionsWorker);
+  yield takeEvery(SAGA_AUTH, authWorker);
 }
