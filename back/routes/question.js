@@ -40,7 +40,7 @@ router.put('/:id', async (req, res) => {
  res.json(x)
  })
 
-router.delete('/:id',(req,res) => {
+router.delete('/:id',async(req,res) => {
   const { id } = req.params;
   await Question.findByIdAndDelete(id, (error, questionToDelete) => {
     if (error) {
