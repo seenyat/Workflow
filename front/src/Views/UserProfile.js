@@ -1,10 +1,6 @@
-import {
-  CheckIcon,
-  ThumbUpIcon,
-  UserIcon,
-} from "@heroicons/react/solid";
-import { useSelector,useDispatch } from "react-redux";
-import { useEffect, useState } from "react";
+import { CheckIcon, ThumbUpIcon, UserIcon } from "@heroicons/react/solid";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect, useState, useRef } from "react";
 import { changeHeaderModalStatus } from "../Redux/actions/actionCreator";
 const eventTypes = {
   applied: { icon: UserIcon, bgColorClass: "bg-gray-400" },
@@ -17,18 +13,34 @@ export default function UserProfile() {
   const state = useSelector((state) => state.questions);
   const dispatch = useDispatch();
   const [prof, setProf] = useState();
+  const [edit, setEdit] = useState(false);
   useEffect(() => {
     fetch(`http://localhost:4000/profile/${user._id}`, {
       method: "GET",
       credentials: "include",
     }).then((data) =>
       data.json().then((profile) => {
-        // setAnswer(profile)
-console.log(profile)
         setProf(profile);
       })
     );
   }, [state]);
+
+  const handleEdit = (e) => {
+    setEdit(true);
+  };
+  const nameInput = useRef();
+  const handle = (e) => {
+    const login = nameInput.current.value;
+   
+    fetch(`http://localhost:4000/profile/${user._id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ login }),
+    })
+      .then((data) => data.json())
+      .then((profile) => console.log(profile))
+      .then(setEdit(false));
+  };
 
   return user ? (
     <div className="min-h-screen bg-gray-100">
@@ -50,7 +62,21 @@ console.log(profile)
               </div>
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-gray-900">{user.login}</h1>
+              {edit ? (
+                <>
+                  {" "}
+                  <h1 className="text-2xl font-bold text-gray-900">
+                    {user.login}
+                  </h1>
+                  <input ref={nameInput} placeholder="введите имя" />
+                  <button onClick={handle}> отправить</button>
+                </>
+              ) : (
+                <h1 className="text-2xl font-bold text-gray-900">
+                  {user.login}
+                </h1>
+              )}
+
               <p className="text-sm font-medium text-gray-500">
                 Status:{" "}
                 <a href="#" className="text-gray-900">
@@ -73,6 +99,12 @@ console.log(profile)
                   >
                     Profile
                   </h2>
+                  <button
+                    onClick={handleEdit}
+                    className="text-sm font-medium text-gray-500"
+                  >
+                    Редактировать
+                  </button>
                 </div>
                 <div className="border-t border-gray-200 px-4 py-5 sm:px-6">
                   <dl className="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
@@ -167,7 +199,7 @@ console.log(profile)
                           <div className="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4">
                             <div>
                               <p className="text-sm text-gray-500">
-                                {item.title}: {" "}
+                                {item.title}:{" "}
                                 <a
                                   href="#"
                                   className="font-medium text-gray-900"
