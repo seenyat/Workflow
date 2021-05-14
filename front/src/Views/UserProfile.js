@@ -12,52 +12,9 @@ const eventTypes = {
   completed: { icon: CheckIcon, bgColorClass: "bg-green-500" },
 };
 
-const timeline = [
-  {
-    id: 1,
-    type: eventTypes.applied,
-    content: "Applied to",
-    target: "Front End Developer",
-    date: "Sep 20",
-    datetime: "2020-09-20",
-  },
-  {
-    id: 2,
-    type: eventTypes.advanced,
-    content: "Advanced to phone screening by",
-    target: "Bethany Blake",
-    date: "Sep 22",
-    datetime: "2020-09-22",
-  },
-  {
-    id: 3,
-    type: eventTypes.completed,
-    content: "Completed phone screening with",
-    target: "Martha Gardner",
-    date: "Sep 28",
-    datetime: "2020-09-28",
-  },
-  {
-    id: 4,
-    type: eventTypes.advanced,
-    content: "Advanced to interview by",
-    target: "Bethany Blake",
-    date: "Sep 30",
-    datetime: "2020-09-30",
-  },
-  {
-    id: 5,
-    type: eventTypes.completed,
-    content: "Completed interview with",
-    target: "Katherine Snyder",
-    date: "Oct 4",
-    datetime: "2020-10-04",
-  },
-];
-
-
 export default function UserProfile() {
   const user = useSelector((state) => state.user);
+  const state = useSelector((state) => state.questions);
   const dispatch = useDispatch();
   const [prof, setProf] = useState();
   useEffect(() => {
@@ -71,7 +28,7 @@ console.log(profile)
         setProf(profile);
       })
     );
-  }, []);
+  }, [state]);
 
   return user ? (
     <div className="min-h-screen bg-gray-100">
@@ -203,19 +160,19 @@ console.log(profile)
               {/* Questions */}
               <div className="mt-6 flow-root">
                 <ul className="-mb-8">
-                  {timeline.map((item) => (
-                    <li key={item.id}>
+                  {prof?.questions.map((item) => (
+                    <li key={item._id}>
                       <div className="relative pb-8">
                         <div className="relative flex space-x-3">
                           <div className="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4">
                             <div>
                               <p className="text-sm text-gray-500">
-                                {item.content}{" "}
+                                {item.title}: {" "}
                                 <a
                                   href="#"
                                   className="font-medium text-gray-900"
                                 >
-                                  {item.target}
+                                  {item.body}
                                 </a>
                               </p>
                             </div>
