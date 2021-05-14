@@ -8,6 +8,7 @@ import QuestionSingle from "./QuestionSingle";
 import Login from "./Login";
 import PrivateRoute from "../Components/Routes/PrivateRoute";
 import Logout from "./Logout";
+import Latest from "./Latest";
 
 export default function Content({
   setMobileMenuOpen,
@@ -41,6 +42,9 @@ export default function Content({
               </Route>
               <Route path="/profile">
                 <UserProfile />
+              </Route>
+              <Route path="/latest">
+                <Latest />
               </Route>
               <Route path="/about">
                 <About />
