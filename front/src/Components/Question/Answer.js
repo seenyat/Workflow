@@ -1,18 +1,18 @@
 import { HeartIcon } from "@heroicons/react/outline";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Workflow from "./Workflow";
 
 export default function Answer({ item }) {
   const [author, setAuthor] = useState({});
 
-  function getAuthorName() {
+  useEffect(() => {
     fetch(`http://localhost:4000/profile/${item.author}`).then((data) => {
       data.json().then((user) => {
         setAuthor(user);
       });
     });
-  }
-  getAuthorName();
+  }, []);
+
   return (
     <li
       key={item._id}
