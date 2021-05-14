@@ -3,30 +3,17 @@ import { useSelector } from "react-redux";
 import OneCardInFeed from "../Components/OneCardInFeed";
 import FormQuestion from "../Components/Question/FormQuestion";
 
-// import {
-//   sagaAuthCheck,
-//   sagaLoadQuestions,
-// } from "../Redux/actions/actionCreator";
-
 export default function Feed() {
   const { questions } = useSelector((state) => state);
-
   const [questionsList, setQuestionsList] = useState(questions);
 
   useEffect(() => {
     setQuestionsList(questions);
   }, [questions]);
 
-  const themes = {
-    1: "",
-    2: "",
-    3: "",
-    4: "",
-    5: "",
-  };
-
   const sortByTheme = (theme) => {
-    console.log(theme);
+    const newList = questions.filter((que) => que.theme === theme);
+    setQuestionsList(newList);
   };
 
   return (
