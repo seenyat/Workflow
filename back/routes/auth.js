@@ -17,7 +17,6 @@ passport.serializeUser(function (user, cb) {
 passport.deserializeUser(function (id, done) {
   User.findOne({ githubID: id })
     .then((user) => {
-      console.log(user);
       done(null, user);
     })
     .catch((e) => {
