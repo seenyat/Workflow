@@ -5,19 +5,11 @@ import fetchCreator from "../../Redux/fetchCreator";
 
 import AuthorCard from "../Partials/AuthorCard";
 import Like from "../Partials/Like";
-
-import useTimeAgo from "@dh-react-hooks/use-timeago";
-
+import Time from "../../Utils/Time";
 
 export default function QuestionBody({ question }) {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
-
-  const localDate = new Date(questions.date);
-
-  const timeAgo = useTimeAgo(localDate, {
-    interval: 60000,
-  });
 
   const likeQuestion = () => {
     if (user) {
@@ -46,7 +38,7 @@ export default function QuestionBody({ question }) {
         <AuthorCard author={question.author} />
       </div>
       <div className="px-4 relative text-sm sm:p-6 w-max text-gray-400 right-2 top-2">
-        {timeAgo}
+        <Time time={question.date} />
       </div>
     </div>
   );
