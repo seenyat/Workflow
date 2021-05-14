@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 export default function Workflow({ todo }) {
   const user = useSelector((state) => state.user);
   function addWorkflow() {
-    fetch("http://locaclhost:4000/profile/addworkflow", {
+    fetch("http://localhost:4000/profile/addworkflow", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -24,7 +24,10 @@ export default function Workflow({ todo }) {
           План действий
         </div>
         {user && (
-          <div className="text-indigo-400 cursor-pointer font-bold hover:text-indigo-600 select-none ml-1 font-mono text-sm">
+          <div
+            onClick={addWorkflow}
+            className="text-indigo-400 cursor-pointer font-bold hover:text-indigo-600 select-none ml-1 font-mono text-sm"
+          >
             добавить себе
           </div>
         )}

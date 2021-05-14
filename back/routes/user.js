@@ -13,13 +13,14 @@ router.get("/:id", async (req, res) => {
   res.status(200).json({ user, answers, questions });
 });
 
+router.post("/addworkflow", async (req, res) => {
+  const { todo, userID } = req.body;
+  console.log(userID);
 
-router.post('/addworkflow', async(req,res)=>{
- const {todo,userID}=req.body
-
- const user = await User.findById({id:userID})
- user.workflows.push(todo)
- await user.save()
-res.json(user)
-})
+  const user = await User.findById(userID);
+  console.log(user);
+  user.workflows.push(todo);
+  await user.save();
+  res.json(user);
+});
 export default router;
