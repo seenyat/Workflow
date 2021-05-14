@@ -1,9 +1,9 @@
 import express from "express";
 import Question from "../models/Question.js";
-import routerAnswer from "./answers.js";
-const router = express.Router();
 import Answer from "../models/Answer.js";
 import mongoose from "mongoose";
+
+const router = express.Router();
 
 router.get("/:id", async (req, res) => {
   const { id } = req.params;
@@ -19,7 +19,8 @@ router.post("/", async (req, res) => {
   const newPost = await Question.create({
     title,
     body,
-    author:mongoose.Types.ObjectId(authorid)
+    author:mongoose.Types.ObjectId(authorid),
+    date: new Date(),
   });
   res.json(newPost);
 });

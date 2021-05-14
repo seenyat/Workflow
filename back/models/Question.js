@@ -7,6 +7,7 @@ const questionSchema = new mongoose.Schema({
   author: { type: mongoose.SchemaTypes.ObjectId, ref: "users" },
   likes: [{ type: mongoose.SchemaTypes.ObjectId, ref: "users" }],
   answers: [{ type: mongoose.SchemaTypes.ObjectId, ref: "questions" }],
+  date: Date,
 });
 
 const Question = mongoose.model("Questions", questionSchema);

@@ -6,6 +6,7 @@ const answerSchema = new mongoose.Schema({
   question:{ type: mongoose.SchemaTypes.ObjectId,ref: "questions"},
   workflows: [],
   comment: String,
+  date: Date,
 });
 
 const Answer = mongoose.model("Answers", answerSchema);

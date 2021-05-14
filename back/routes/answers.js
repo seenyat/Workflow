@@ -1,8 +1,8 @@
 import express from "express";
 import mongoose from "mongoose";
-const router = express.Router();
 import Answer from "../models/Answer.js";
-import Question from "../models/Question.js";
+
+const router = express.Router();
 
 router.post("/", async (req, res) => {
 console.log(req.body);
@@ -12,7 +12,8 @@ console.log(req.body);
     workflows,
     comment,
     question: mongoose.Types.ObjectId(id),
-    author:mongoose.Types.ObjectId(authorId)
+    author:mongoose.Types.ObjectId(authorId),
+    date: new Date(),
   });
 
   res.json(answer);
