@@ -2,7 +2,7 @@
 import { CheckIcon, ThumbUpIcon, UserIcon } from "@heroicons/react/solid";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState, useRef } from "react";
-
+import {EDIT_PROFILE} from '../Redux/actions/actionTypes'
 import { changeHeaderModalStatus } from "../Redux/actions/actionCreator";
 
 export default function UserProfile() {
@@ -36,7 +36,7 @@ export default function UserProfile() {
       body: JSON.stringify({ login }),
     })
       .then((data) => data.json())
-      .then((profile) => console.log(profile))
+      .then((profile) => dispatch({type:EDIT_PROFILE,payload:profile}))
       .then(setEdit(false));
   };
 

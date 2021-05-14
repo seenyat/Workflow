@@ -5,6 +5,7 @@ import {
   LOAD_QUESTIONS,
   LOGOUT,
   POST_QUESTION,
+  EDIT_PROFILE
 } from "./actions/actionTypes";
 
 const reducer = (state, action) => {
@@ -66,7 +67,13 @@ const reducer = (state, action) => {
               }
         ),
       };
-
+   case EDIT_PROFILE:
+    
+     return{
+       ...state,
+       user:{...state.user, login: action.payload.login}
+       
+     }
     default:
       return state;
   }
