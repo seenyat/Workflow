@@ -10,7 +10,6 @@ router.get("/:id", async (req, res) => {
   const question = await Question.findById(id);
 
   const answers = await Answer.find({ question: question._id });
-  // console.log(answers);
   res.status(200).json({ question, answers });
 });
 
@@ -52,5 +51,22 @@ router.delete("/:id", async (req, res) => {
       res.status(200).json({ delete: true, id });
     }
   });
+});
+
+router.post("/like", async (req, res) => {
+  let { userID, questionID } = req.body;
+  questionID = mongoose.Types.ObjectId(questionID);
+  let question = await Question.findById(questionID);
+  if (question.likes.includes(userID)) {
+    question.likes = question.likes.filter((el) => {
+      return el === userID;
+    });
+    await question.save();
+    res.status(200).json(question);
+  } else {
+    question.likes.push(userID);
+    await question.save();
+    res.status(200).json(question);
+  }
 });
 export default router;

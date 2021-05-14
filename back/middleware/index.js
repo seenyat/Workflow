@@ -9,6 +9,12 @@ import authRouter from "../routes/auth.js";
 import passport from "passport";
 import session from "express-session";
 import profileRouter from "../routes/user.js";
+<<<<<<< HEAD
+=======
+import fileStore from "session-file-store";
+
+const FileStore = fileStore(session)
+>>>>>>> 9d4741391cb8bd2c0dd0343e4d70cf75dab54e9e
 
 const config = (app) => {
   mongoose.connect("mongodb://localhost:27017/Workflow", {
@@ -20,14 +26,15 @@ const config = (app) => {
   app.use(morgan("dev"));
   app.use(
     cors({
-      origin: "http://localhost:3000", // allow to server to accept request from different origin
+      origin: "http://localhost:3000",
       methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-      credentials: true, // allow session cookie from browser to pass through
+      credentials: true,
     })
   );
 
   app.use(
     session({
+      store: new FileStore(),
       key: "Workflow",
       secret: "secretKeyWorkflow",
       resave: false,
