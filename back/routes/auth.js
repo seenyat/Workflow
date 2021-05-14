@@ -82,9 +82,10 @@ router.get(
 );
 
 router.get("/logout", (req, res) => {
-  req.logout();
   res.clearCookie("Workflow");
-  res.redirect("http://localhost:3000/");
+  req.session.destroy(function (err) {
+    res.redirect("http://localhost:3000/");
+  });
 });
 
 export default router;
