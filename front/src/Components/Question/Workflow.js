@@ -1,8 +1,3 @@
-import {
-  CheckCircleIcon,
-  DotsCircleHorizontalIcon,
-  HeartIcon,
-} from "@heroicons/react/outline";
 import React from "react";
 import { useSelector } from "react-redux";
 

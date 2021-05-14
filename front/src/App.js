@@ -1,26 +1,8 @@
 import "./App.css";
-// import { useEffect } from "react";
-// import { useDispatch } from "react-redux";
-// import { sagaLoadQuestions } from "./Redux/actions/actionCreator";
-// import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
-// import {
-//   CogIcon,
-//   CollectionIcon,
-//   HomeIcon,
-//   MenuAlt2Icon,
-//   PhotographIcon,
-//   PlusIcon,
-//   UserIcon,
-//   PlayIcon,
-//   ViewGridIcon,
-//   XIcon,
-// } from "@heroicons/react/outline";
 import Navigation from "./Views/Navigation";
-
 import Content from "./Views/Content";
 import { useEffect, useState } from "react";
-// import Question from "./Components/Question/Question";
 import classNames from "./Utils/classNames";
 import "./App.css";
 import { useDispatch } from "react-redux";
