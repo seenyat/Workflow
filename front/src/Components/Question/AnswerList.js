@@ -1,4 +1,3 @@
-import { HeartIcon } from "@heroicons/react/outline";
 import React from "react";
 import Answer from "./Answer";
 

@@ -33,12 +33,12 @@ export default function QuestionBody({ question }) {
         <p className="font-bold my-4 text-3xl">{question.title}</p>
         <p>{question.body}</p>
       </div>
-      <div className="px-4 relative flex items-center space-x-3 py-5 text-gray-600 text-sm sm:p-6">
+      <div className="px-4 relative flex items-center space-x-3  text-gray-600 text-sm sm:px-6">
         <Like like={likeQuestion} likeCount={question.likes.length} />
         <AuthorCard author={question.author} />
-      </div>
-      <div className="px-4 relative text-sm sm:p-6 w-max text-gray-400 right-2 top-2">
-        <Time time={question.date} />
+        <div className="px-4 text-sm sm:p-6 w-max text-gray-400 ">
+          <Time time={question.date} />
+        </div>
       </div>
     </div>
   );

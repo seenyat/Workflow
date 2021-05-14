@@ -48,7 +48,10 @@ const seconds = formatNum.bind(
   months = formatNum.bind(null, "месяц", "%s месяц", "%s месяца", "%s месяцев"),
   years = formatNum.bind(null, "год", "%s год", "%s года", "%s лет");
 
-export default function (number: number, index: number): [string, string] {
+export default function ruTime(
+  number: number,
+  index: number
+): [string, string] {
   switch (index) {
     case 0:
       return ["только что", "через несколько секунд"];
