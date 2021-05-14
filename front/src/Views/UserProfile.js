@@ -3,7 +3,7 @@ import { useEffect, useState, useRef } from "react";
 import { EDIT_PROFILE } from "../Redux/actions/actionTypes";
 import { changeHeaderModalStatus } from "../Redux/actions/actionCreator";
 import Time from "../Utils/Time";
-
+import { Link } from "react-router-dom"
 export default function UserProfile() {
   const user = useSelector((state) => state.user);
   const state = useSelector((state) => state.questions);
@@ -146,12 +146,12 @@ export default function UserProfile() {
                             <div className="flex-shrink-0"></div>
                             <div>
                               <div className="text-sm">
-                                <a
-                                  href="#"
+                                <Link
+                                  to={`/question/${answer.question}`}
                                   className="font-medium text-gray-900"
                                 >
                                   {answer.comment}
-                                </a>
+                                </Link>
                               </div>
                               <div className="mt-1 text-sm text-gray-700">
                                 <p>{answer.comment}</p>
