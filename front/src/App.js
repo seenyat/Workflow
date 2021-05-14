@@ -19,10 +19,15 @@ import { BrowserRouter } from "react-router-dom";
 import Navigation from "./Views/Navigation";
 
 import Content from "./Views/Content";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 // import Question from "./Components/Question/Question";
 import classNames from "./Utils/classNames";
 import "./App.css";
+import { useDispatch } from "react-redux";
+import {
+  sagaAuthCheck,
+  sagaLoadQuestions,
+} from "./Redux/actions/actionCreator";
 
 const userNavigation = [
   { name: "Your Profile", href: "#" },
@@ -30,6 +35,15 @@ const userNavigation = [
 ];
 function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(sagaLoadQuestions("http://localhost:4000/allquestions"));
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(sagaAuthCheck("http://localhost:4000/"));
+  }, [dispatch]);
 
   return (
     <BrowserRouter>

@@ -2,22 +2,45 @@
 @tailwind components;
 @tailwind utilities;
 
-.addQueDiv {
+/* .addQueDiv {
   width: 100%;
   display: flex;
   justify-content: flex-end;
   padding: 10px;
   margin: 10px;
-}
+} */
 
-.cardForCss {
-  background-color: white;
+/* .cardForCss { */
+  /* background-color: white;
   min-width: 300px;
   max-width: 50%;
   box-shadow: 1px 1px 5px black;
   border-radius: 5px;
-}
+} */
 
-.cardtitle {
+/* .cardtitle {
   box-shadow: 1px 1px 3px grey inset;
-}
+} */
+
+/* .buttonsPanel {
+  border: 1px solid black;
+  width: 100%;
+  display: flex;
+  margin: 10px;
+  padding: 10px;
+  min-height: 200px;
+} */
+
+/* .filterButtons {
+  outline: none;
+  width: 150px;
+  height: 150px;
+} */
+
+/* .filterButtons:hover {
+} */
+
+/* .filterButtons i {
+  width: 150px;
+  height: 150px;
+} */
