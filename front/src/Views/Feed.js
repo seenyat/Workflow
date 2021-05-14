@@ -21,7 +21,9 @@ export default function Feed() {
 
   return questions ? (
     <div className=" overflow-scroll flex flex-col m-3 items-center ">
+      <div className="addQueDiv" >
       <FormQuestion />
+      </div>
       {questions.map((question) => (
         <OneCardInFeed key={question._id} question={question} />
       ))}

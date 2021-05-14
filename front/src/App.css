@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.addQueDiv {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px;
+  margin: 10px;
+}
+
+.cardForCss {
+  background-color: white;
+  min-width: 300px;
+  max-width: 50%;
+  box-shadow: 1px 1px 5px black;
+  border-radius: 5px;
+}
+
+.cardtitle {
+  box-shadow: 1px 1px 3px grey inset;
+}

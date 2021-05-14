@@ -39,7 +39,7 @@ export default function Content({
               <Route path="/new">
                 <Feed />
               </Route>
-              <Route path="/Profile">
+              <Route path="/profile">
                 <UserProfile />
               </Route>
               <Route path="/about">

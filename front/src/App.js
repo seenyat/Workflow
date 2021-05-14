@@ -22,14 +22,13 @@ import Content from "./Views/Content";
 import { useState } from "react";
 import Question from "./Components/Question/Question";
 import classNames from "./Utils/classNames";
+import "./App.css";
 
 const userNavigation = [
   { name: "Your Profile", href: "#" },
   { name: "Sign out", href: "#" },
 ];
 function App() {
-  
-
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
