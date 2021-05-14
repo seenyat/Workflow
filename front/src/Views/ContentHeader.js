@@ -1,6 +1,5 @@
 import { Menu, Transition } from "@headlessui/react";
 import { MenuAlt2Icon, PlusIcon, SearchIcon } from "@heroicons/react/outline";
-import React from "react";
 import { Fragment, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // import FormQuestion from "../Components/Question/FormQuestion";
@@ -12,6 +11,7 @@ import { Link } from "react-router-dom";
 export default function ContentHeader({ setMobileMenuOpen }) {
   const modalStatus = useSelector((state) => state.modals[1].status);
   const auth = useSelector((state) => state.auth);
+  const user = useSelector((state) => state.user);
   const [userNavigation] = useState([
     { name: "Profile", href: "/profile" },
     { name: "Logout", href: "/logout" },
@@ -66,7 +66,11 @@ export default function ContentHeader({ setMobileMenuOpen }) {
                             <span className="sr-only">Open user menu</span>
                             <img
                               className="h-8 w-8 rounded-full"
-                              src="https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=256&h=256&q=80"
+                              src={
+                                user
+                                  ? user.avatar_url
+                                  : "http://media.fatalgame.com/hero/0k/59/ver_ico.jpg"
+                              }
                               alt=""
                             />
                           </Menu.Button>
