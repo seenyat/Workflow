@@ -18,14 +18,15 @@ export default function Answer({ item }) {
         setAuthor(user);
       });
     });
-  }, []);
+  }, [item.author]);
 
   const likeAnswer = () => {
     if (user) {
       dispatch(
         sagaLikeAnswerAC(
           fetchCreator("http://localhost:4000/answer/like", "POST", {
-            userID: user._id, answerID: item._id
+            userID: user._id,
+            answerID: item._id,
           })
         )
       );
@@ -51,6 +52,7 @@ export default function Answer({ item }) {
         onClick={likeAnswer}
         className="hover:text-red-500 cursor-pointer absolute w-6 text-gray-300 h-6 right-2 top-2"
       />
+      <div>{item.likes.length > 0 && item.likes.length}</div>
       <h1 className="font-bold text-2xl">{item.comment}</h1>
       <Workflow todo={item.workflows} />
     </li>

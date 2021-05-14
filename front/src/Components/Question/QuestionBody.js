@@ -39,6 +39,7 @@ export default function QuestionBody({ questions }) {
           onClick={likeQuestion}
           className="hover:text-red-500 cursor-pointer absolute w-6 text-gray-300 h-6 right-2 top-2"
         />
+        <div>{questions.likes.length > 0 && questions.likes.length}</div>
       </div>
     </div>
   );
