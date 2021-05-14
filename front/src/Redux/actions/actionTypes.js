@@ -18,3 +18,5 @@ export const SAGA_LIKE_ANSWER = "SAGA_LIKE_ANSWER";
 
 export const LIKE_QUESTION = "LIKE_QUESTION";
 export const SAGA_LIKE_QUESTION = "LIKE_QUESTION";
+
+export const EDIT_PROFILE ="EDIT_PROFILE"
