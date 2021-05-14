@@ -8,8 +8,10 @@ import answerRouter from "../routes/answers.js";
 import authRouter from "../routes/auth.js";
 import passport from "passport";
 import session from "express-session";
-import profileRouter from '../routes/user.js'
+import profileRouter from "../routes/user.js";
+import fileStore from "session-file-store";
 
+const FileStore = fileStore(session)
 
 const config = (app) => {
   mongoose.connect("mongodb://localhost:27017/Workflow", {
@@ -21,14 +23,15 @@ const config = (app) => {
   app.use(morgan("dev"));
   app.use(
     cors({
-      origin: "http://localhost:3000", // allow to server to accept request from different origin
+      origin: "http://localhost:3000",
       methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-      credentials: true, // allow session cookie from browser to pass through
+      credentials: true,
     })
   );
 
   app.use(
     session({
+      store: new FileStore(),
       key: "Workflow",
       secret: "secretKeyWorkflow",
       resave: false,
@@ -47,7 +50,7 @@ const config = (app) => {
   app.use("/question", questionRouter);
   app.use("/allquestions", allQuestionsRouter);
   app.use("/answer", answerRouter);
-  app.use("/profile",profileRouter)
+  app.use("/profile", profileRouter);
 };
 
 export default config;

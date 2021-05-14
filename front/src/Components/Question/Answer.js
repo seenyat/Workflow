@@ -1,9 +1,16 @@
 import { HeartIcon } from "@heroicons/react/outline";
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { sagaLikeAnswerAC } from "../../Redux/actions/actionCreator";
+import fetchCreator from "../../Redux/fetchCreator";
 import Workflow from "./Workflow";
 
 export default function Answer({ item }) {
   const [author, setAuthor] = useState({});
+
+  const dispatch = useDispatch();
+
+  const user = useSelector((state) => state.user);
 
   useEffect(() => {
     fetch(`http://localhost:4000/profile/${item.author}`).then((data) => {
@@ -12,6 +19,18 @@ export default function Answer({ item }) {
       });
     });
   }, []);
+
+  const likeAnswer = () => {
+    if (user) {
+      dispatch(
+        sagaLikeAnswerAC(
+          fetchCreator("http://localhost:4000/answer/like", "POST", {
+            userID: user._id, answerID: item._id
+          })
+        )
+      );
+    }
+  };
 
   return (
     <li
@@ -28,7 +47,10 @@ export default function Answer({ item }) {
           <div className="text-gray-600">{author.user.name}</div>
         </div>
       )}
-      <HeartIcon className="hover:text-red-500 cursor-pointer absolute w-6 text-gray-300 h-6 right-2 top-2" />
+      <HeartIcon
+        onClick={likeAnswer}
+        className="hover:text-red-500 cursor-pointer absolute w-6 text-gray-300 h-6 right-2 top-2"
+      />
       <h1 className="font-bold text-2xl">{item.comment}</h1>
       <Workflow todo={item.workflows} />
     </li>
