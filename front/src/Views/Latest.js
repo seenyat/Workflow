@@ -25,9 +25,11 @@ function Latest(props) {
       <div className="addQueDiv">
         <FormQuestion />
       </div>
+      <div className='w-1/2'>
       {questions.map((question) => (
         <OneCardInFeed key={question._id} question={question} />
       ))}
+      </div>
     </div>
   ) : null;
 }

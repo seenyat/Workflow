@@ -13,16 +13,11 @@ import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
 import fetchCreator from "../../Redux/fetchCreator";
 
 const themes = [
-  { id: 1, theme: "Wade Cooper" },
-  { id: 2, name: "Arlene Mccoy" },
-  { id: 3, name: "Devon Webb" },
-  { id: 4, name: "Tom Cook" },
-  { id: 5, name: "Tanya Fox" },
-  { id: 6, name: "Hellen Schmidt" },
-  { id: 7, name: "Caroline Schultz" },
-  { id: 8, name: "Mason Heaney" },
-  { id: 9, name: "Claudie Smitham" },
-  { id: 10, name: "Emil Schaefer" },
+  { id: 1, theme: "CSS" },
+  { id: 2, theme: "JAVASCRIPT" },
+  { id: 3, theme: "Python" },
+  { id: 4, theme: "React" },
+  { id: 5, theme: "HTML" },
 ];
 
 function classNames(...classes) {
@@ -41,7 +36,8 @@ export default function ModalForm() {
     e.preventDefault();
     const title = e.target.questionTitle.value;
     const body = e.target.questionBody.value;
-    const theme = selected;
+    const theme = selected.theme;
+
     dispatch(
       sagaPostQuestion(
         fetchCreator("http://localhost:4000/question", "POST", {
@@ -136,7 +132,7 @@ export default function ModalForm() {
                             <div className="mt-1 relative">
                               <Listbox.Button className="relative w-full h-10 bg-white border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                 <span className="block truncate">
-                                  {selected.name}
+                                  {selected.theme}
                                 </span>
                                 <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
                                   <SelectorIcon
@@ -155,7 +151,7 @@ export default function ModalForm() {
                               >
                                 <Listbox.Options
                                   static
-                                  className="absolute z-10 mt-1 h-20 bg-white shadow-lg max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm"
+                                  className="absolute z-10 mt-1 h-max bg-white shadow-lg max-h-96 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm"
                                 >
                                   {themes.map((person) => (
                                     <Listbox.Option
@@ -180,7 +176,7 @@ export default function ModalForm() {
                                               "block truncate"
                                             )}
                                           >
-                                            {person.name}
+                                            {person.theme}
                                           </span>
 
                                           {selected ? (

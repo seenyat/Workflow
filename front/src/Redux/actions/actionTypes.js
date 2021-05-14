@@ -12,3 +12,9 @@ export const AUTH = "AUTH";
 
 export const SAGA_LOGOUT = "SAGA_LOGOUT";
 export const LOGOUT = "LOGOUT";
+
+export const LIKE_ANSWER = "LIKE_ANSWER";
+export const SAGA_LIKE_ANSWER = "SAGA_LIKE_ANSWER";
+
+export const LIKE_QUESTION = "LIKE_QUESTION";
+export const SAGA_LIKE_QUESTION = "LIKE_QUESTION";
