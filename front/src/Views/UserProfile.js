@@ -3,8 +3,9 @@ import {
   ThumbUpIcon,
   UserIcon,
 } from "@heroicons/react/solid";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
+import { changeHeaderModalStatus } from "../Redux/actions/actionCreator";
 const eventTypes = {
   applied: { icon: UserIcon, bgColorClass: "bg-gray-400" },
   advanced: { icon: ThumbUpIcon, bgColorClass: "bg-blue-500" },
@@ -57,8 +58,8 @@ const timeline = [
 
 export default function UserProfile() {
   const user = useSelector((state) => state.user);
-  console.log(user);
-  const [answer, setAnswer] = useState();
+  const dispatch = useDispatch();
+  const [prof, setProf] = useState();
   useEffect(() => {
     fetch(`http://localhost:4000/profile/${user._id}`, {
       method: "GET",
@@ -67,7 +68,7 @@ export default function UserProfile() {
       data.json().then((profile) => {
         // setAnswer(profile)
 console.log(profile)
-        setAnswer(profile);
+        setProf(profile);
       })
     );
   }, []);
@@ -152,8 +153,8 @@ console.log(profile)
                   </div>
                   <div className="px-4 py-6 sm:px-6">
                     <ul className="space-y-8">
-                      {answer?.answers.map((comment) => (
-                        <li key={comment._id}>
+                      {prof?.answers.map((answer) => (
+                        <li key={answer._id}>
                           <div className="flex space-x-3">
                             <div className="flex-shrink-0"></div>
                             <div>
@@ -162,15 +163,15 @@ console.log(profile)
                                   href="#"
                                   className="font-medium text-gray-900"
                                 >
-                                  {comment.comment}
+                                  {answer.comment}
                                 </a>
                               </div>
                               <div className="mt-1 text-sm text-gray-700">
-                                <p>{comment.comment}</p>
+                                <p>{answer.comment}</p>
                               </div>
                               <div className="mt-2 text-sm space-x-2">
                                 <span className="text-gray-500 font-medium">
-                                  {comment.date}
+                                  {answer.date}
                                 </span>{" "}
                                 <span className="text-gray-500 font-medium">
                                   &middot;
@@ -231,6 +232,7 @@ console.log(profile)
               <div className="mt-6 flex flex-col justify-stretch">
                 <button
                   type="button"
+                  onClick={() => dispatch(changeHeaderModalStatus(true))}
                   className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                 >
                   Add Question

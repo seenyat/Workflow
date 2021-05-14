@@ -1,17 +1,20 @@
 import { Menu, Transition } from "@headlessui/react";
 import { MenuAlt2Icon, PlusIcon, SearchIcon } from "@heroicons/react/outline";
 import React from "react";
-import { Fragment } from "react";
+import { Fragment ,useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 // import FormQuestion from "../Components/Question/FormQuestion";
 import ModalForm from "../Components/Question/ModalForm";
 import { changeHeaderModalStatus } from "../Redux/actions/actionCreator";
 import classNames from "../Utils/classNames";
-
-export default function ContentHeader({ setMobileMenuOpen, userNavigation }) {
+import {Link} from "react-router-dom"
+export default function ContentHeader({ setMobileMenuOpen }) {
   const modalStatus = useSelector((state) => state.modals[1].status);
   const auth = useSelector((state) => state.auth);
-
+  const [userNavigation, setUserNavigation] = useState([
+    {name:"Profile",href:"/profile"},
+    {name:"Logout",href:"/logout"}
+  ])
   const dispatch = useDispatch();
 
   return (
@@ -84,15 +87,15 @@ export default function ContentHeader({ setMobileMenuOpen, userNavigation }) {
                             {userNavigation.map((item) => (
                               <Menu.Item key={item.name}>
                                 {({ active }) => (
-                                  <a
-                                    href={item.href}
+                                  <Link to={item.href}
+                                    
                                     className={classNames(
                                       active ? "bg-gray-100" : "",
                                       "block px-4 py-2 text-sm text-gray-700"
                                     )}
                                   >
                                     {item.name}
-                                  </a>
+                                  </Link>
                                 )}
                               </Menu.Item>
                             ))}
