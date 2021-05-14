@@ -2,8 +2,11 @@ import { Link } from "react-router-dom";
 
 export default function OneCardInFeed({ question }) {
   return (
-    <Link to={`/question/${question._id}`} className=" cardForCss mb-20  ">
-      <div className="  bg-white p-3 m-3 min-h-12 flex-col mt-12 mb-12 ">
+    <Link
+      to={`/question/${question._id}`}
+      className=" max-w-1/2 cardForCss mb-20 w-full bg-white m-10 shadow-md rounded-md"
+    >
+      <div className="  bg-white m-3 min-h-12 flex-col mt-12 mb-12 ">
         <div className=" cardtitle px-4 py-5 sm:px-6 text-center text-xl font-bold mb-12">
           <p>{question.title}</p>
         </div>
