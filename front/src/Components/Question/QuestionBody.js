@@ -13,7 +13,7 @@ export default function QuestionBody({ question }) {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
 
-  const localDate = new Date(questions.date);
+  const localDate = new Date(question.date);
 
   const timeAgo = useTimeAgo(localDate, {
     interval: 60000,
