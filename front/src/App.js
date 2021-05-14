@@ -39,8 +39,7 @@ function App() {
         <Content
           classNames
           userNavigation={userNavigation}
-          mobileMenuOpen
-          setMobileMenuOpen
+          setMobileMenuOpen={setMobileMenuOpen}
         />
       </div>
     </BrowserRouter>

@@ -21,7 +21,6 @@ export default function CreateAnswer({ id, edit, count }) {
         authorId: state._id,
       }),
     });
-    edit(count + 1);
   }
   return (
     <div className="my-3">

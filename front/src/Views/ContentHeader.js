@@ -9,6 +9,7 @@ import { changeHeaderModalStatus } from "../Redux/actions/actionCreator";
 import FormWindow from "../Components/Question/FormWindow";
 import classNames from "../Utils/classNames";
 import { Link } from "react-router-dom";
+
 export default function ContentHeader({ setMobileMenuOpen }) {
   const modalStatus = useSelector((state) => state.modals[1].status);
   const auth = useSelector((state) => state.auth);
