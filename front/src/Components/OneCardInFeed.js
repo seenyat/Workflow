@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
+import AuthorCard from "./Partials/AuthorCard";
 
 export default function OneCardInFeed({ question }) {
   return (
     <Link
       to={`/question/${question._id}`}
-      className=" max-w-1/2 cardForCss mb-20 w-full bg-white m-10 shadow-md rounded-md"
+      className="max-w-1/2 cardForCss mb-20 w-full bg-white m-10 shadow-md rounded-md"
     >
       <div className="  bg-white m-3 min-h-12 flex-col mt-12 mb-12 ">
         <div className=" cardtitle px-4 py-5 sm:px-6 text-center text-xl font-bold mb-12">
@@ -14,7 +15,7 @@ export default function OneCardInFeed({ question }) {
           <p>{question.body}</p>
         </div>
         <div className=" cardtitle px-4 py-5 sm:p-3 ">
-          <p>Автор: {question.author}</p>
+          <AuthorCard author={question.author} />
         </div>
         <div className=" cardtitle px-4 py-5 sm:p-3 ">
           <p>Тематика: {question.theme}</p>

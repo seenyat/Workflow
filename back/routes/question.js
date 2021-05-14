@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.get("/:id", async (req, res) => {
   const { id } = req.params;
-  const question = await Question.findById(id);
+  const question = await Question.findById(id).populate("author");
 
   const answers = await Answer.find({ question: question._id });
   res.status(200).json({ question, answers });
@@ -21,7 +21,7 @@ router.post("/", async (req, res) => {
     theme,
     author: mongoose.Types.ObjectId(authorid),
     date: new Date(),
-  });
+  }).populate("author");
   res.json(newPost);
 });
 
