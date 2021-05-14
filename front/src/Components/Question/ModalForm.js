@@ -43,7 +43,11 @@ export default function ModalForm() {
     const theme = selected;
     dispatch(
       sagaPostQuestion(
-        fetchCreator("http://localhost:4000/question", "POST", { title, body })
+        fetchCreator("http://localhost:4000/question", "POST", {
+          title,
+          body,
+          theme,
+        })
       )
     );
     dispatch(changeHeaderModalStatus(false));
