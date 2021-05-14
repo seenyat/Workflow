@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 import QuestionBody from "../Components/Question/QuestionBody";
 import CreateAnswer from "../Components/Question/CreateAnswer";
 import AnswerList from "../Components/Question/AnswerList";
-import { UserIcon } from "@heroicons/react/outline";
 import Warning from "../Components/Partials/Warning";
 
 export default function QuestionSingle() {

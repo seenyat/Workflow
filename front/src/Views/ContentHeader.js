@@ -1,7 +1,7 @@
 import { Menu, Transition } from "@headlessui/react";
 import { MenuAlt2Icon, PlusIcon, SearchIcon } from "@heroicons/react/outline";
 import React from "react";
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // import FormQuestion from "../Components/Question/FormQuestion";
 import ModalForm from "../Components/Question/ModalForm";
@@ -12,12 +12,12 @@ export default function ContentHeader({ setMobileMenuOpen }) {
   const modalStatus = useSelector((state) => state.modals[1].status);
   const auth = useSelector((state) => state.auth);
 
-  const state= useSelector((state) =>state.user)
+  const state = useSelector((state) => state.user);
 
-  const userNavigation=[
-    {name:"Profile",href:"/profile"},
-    {name:"Logout",href:"/logout"}
-  ]
+  const userNavigation = [
+    { name: "Profile", href: "/profile" },
+    { name: "Logout", href: "/logout" },
+  ];
 
   const dispatch = useDispatch();
 

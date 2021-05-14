@@ -5,8 +5,6 @@ import AuthorCard from "./Partials/AuthorCard";
 // import useTimeAgo from "@dh-react-hooks/use-timeago";
 
 export default function OneCardInFeed({ question }) {
-  const localDate = new Date(question.date);
-
   // const timeAgo = useTimeAgo(localDate, {
   //   interval: 60000,
   // });

@@ -1,5 +1,3 @@
-
-import { CheckIcon, ThumbUpIcon, UserIcon } from "@heroicons/react/solid";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState, useRef } from "react";
 
@@ -17,11 +15,10 @@ export default function UserProfile() {
       credentials: "include",
     }).then((data) =>
       data.json().then((profile) => {
-
         setProf(profile);
       })
     );
-  }, [state]);
+  }, [state, user._id]);
 
   const handleEdit = (e) => {
     setEdit(true);
@@ -29,7 +26,7 @@ export default function UserProfile() {
   const nameInput = useRef();
   const handle = (e) => {
     const login = nameInput.current.value;
-   
+
     fetch(`http://localhost:4000/profile/${user._id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },

@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { sagaLikeAnswerAC } from "../../Redux/actions/actionCreator";
 import fetchCreator from "../../Redux/fetchCreator";
 import Workflow from "./Workflow";
-import useTimeAgo from "@dh-react-hooks/use-timeago";
 import Time from "../../Utils/Time";
 
 export default function Answer({ item }) {
@@ -13,12 +12,6 @@ export default function Answer({ item }) {
   const dispatch = useDispatch();
 
   const user = useSelector((state) => state.user);
-
-  const localDate = new Date(item.date);
-
-  const timeAgo = useTimeAgo(localDate, {
-    interval: 60000,
-  });
 
   useEffect(() => {
     fetch(`http://localhost:4000/profile/${item.author}`).then((data) => {
