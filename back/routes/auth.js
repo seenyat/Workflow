@@ -11,19 +11,16 @@ const github = GitHubStrategy.Strategy;
 const router = express.Router();
 
 passport.serializeUser(function (user, cb) {
-  // console.log(user);
   cb(null, user.id);
 });
 
 passport.deserializeUser(function (id, done) {
-  console.log(id);
   User.findOne({ githubID: id })
     .then((user) => {
       console.log(user);
       done(null, user);
     })
     .catch((e) => {
-      console.log(e);
       done(new Error("Failed to deserialize an user"));
     });
 });

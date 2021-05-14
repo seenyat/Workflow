@@ -2,12 +2,14 @@ import { call, put, takeEvery } from "redux-saga/effects";
 import {
   AuthCheck,
   likeAnswerAC,
+  likeQuestionAC,
   loadQuestions,
   postQuestion,
 } from "./actions/actionCreator";
 import {
   SAGA_AUTH,
   SAGA_LIKE_ANSWER,
+  SAGA_LIKE_QUESTION,
   SAGA_LOAD_QUESTIONS,
   SAGA_POST_QUESTION,
 } from "./actions/actionTypes";
@@ -41,14 +43,21 @@ function* authWorker(action) {
   yield put(AuthCheck(result));
 }
 
-function* likeAnwerWorker(action) {
+function* likeAnswerWorker(action) {
   const likesArray = yield call(fetchForAll, action.payload);
-  yield put(likeAnswerAC(likesArray));
+  // yield put(likeAnswerAC(likesArray));
+}
+
+function* likeQuestionWorker(action) {
+  const questionArray = yield call(fetchForAll, action.payload);
+  console.log(questionArray);
+  // yield put(likeQuestionAC(questionArray));
 }
 
 export default function* watcher() {
   yield takeEvery(SAGA_POST_QUESTION, postQuestionWorker);
   yield takeEvery(SAGA_LOAD_QUESTIONS, loadQuestionsWorker);
   yield takeEvery(SAGA_AUTH, authWorker);
-  yield takeEvery(SAGA_LIKE_ANSWER, likeAnwerWorker);
+  yield takeEvery(SAGA_LIKE_ANSWER, likeAnswerWorker);
+  yield takeEvery(SAGA_LIKE_QUESTION, likeQuestionWorker);
 }
