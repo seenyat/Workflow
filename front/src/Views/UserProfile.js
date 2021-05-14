@@ -83,7 +83,7 @@ console.log(profile)
               <div className="relative">
                 <img
                   className="h-16 w-16 rounded-full"
-                  src="https://dota2.ru/img/heroes/pudge/portrait.jpg"
+                  src={user?.avatar_url}
                   alt=""
                 />
                 <span
