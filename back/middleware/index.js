@@ -8,8 +8,7 @@ import answerRouter from "../routes/answers.js";
 import authRouter from "../routes/auth.js";
 import passport from "passport";
 import session from "express-session";
-import profileRouter from '../routes/user.js'
-
+import profileRouter from "../routes/user.js";
 
 const config = (app) => {
   mongoose.connect("mongodb://localhost:27017/Workflow", {
@@ -36,7 +35,7 @@ const config = (app) => {
       cookie: {
         httpOnly: true,
         secure: false,
-        expires: 600000,
+        expires: 6000000,
       },
     })
   );
@@ -47,7 +46,7 @@ const config = (app) => {
   app.use("/question", questionRouter);
   app.use("/allquestions", allQuestionsRouter);
   app.use("/answer", answerRouter);
-  app.use("/profile",profileRouter)
+  app.use("/profile", profileRouter);
 };
 
 export default config;
