@@ -10,16 +10,15 @@ router.get("/:id", async (req, res) => {
   const question = await Question.findById(id);
 
   const answers = await Answer.find({ question: question._id });
-  // console.log(answers);
   res.status(200).json({ question, answers });
 });
 
 router.post("/", async (req, res) => {
-  const { title, body, authorid } = req.body;
-  console.log(authorid);
+  const { title, body, authorid, theme } = req.body;
   const newPost = await Question.create({
     title,
     body,
+    theme,
     author: mongoose.Types.ObjectId(authorid),
     date: new Date(),
   });
@@ -27,7 +26,6 @@ router.post("/", async (req, res) => {
 });
 
 router.put("/:id", async (req, res) => {
-  // console.log(req.body);
   let x = await Question.findOneAndUpdate(
     { _id: req.params.id },
     {

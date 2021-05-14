@@ -10,7 +10,7 @@ import FormQuestion from "../Components/Question/FormQuestion";
 
 export default function Feed() {
   const { questions } = useSelector((state) => state);
-  
+
   const [questionsList, setQuestionsList] = useState(questions);
 
   useEffect(() => {
@@ -25,6 +25,10 @@ export default function Feed() {
     5: "",
   };
 
+  const sortByTheme = (theme) => {
+    console.log(theme);
+  };
+
   return (
     <div className=" overflow-scroll flex flex-col m-3 items-center ">
       <div className="flex justify-evenly w-full space-x-10">
@@ -32,23 +36,23 @@ export default function Feed() {
       </div>
       <div className="w-full space-x-10 flex flex-row justify-center h-min">
         <i
-          onClick={() => {}}
+          onClick={() => sortByTheme("CSS")}
           className="fab text-blue-700 fa-6x fa-css3-alt hover:bg-gray-200 transition p-2 rounded-md cursor-pointer"
         ></i>
         <i
-          onClick={() => {}}
+          onClick={() => sortByTheme("JAVASCRIPT")}
           className="fab text-yellow-400 fa-6x fa-js hover:bg-gray-200 transition p-2 rounded-md cursor-pointer"
         ></i>
         <i
-          onClick={() => {}}
+          onClick={() => sortByTheme("Python")}
           className="fab text-blue-800 fa-6x fa-python hover:bg-gray-200 transition p-2 rounded-md cursor-pointer"
         ></i>
         <i
-          onClick={() => {}}
+          onClick={() => sortByTheme("React")}
           className="fab text-blue-400 fa-6x fa-react hover:bg-gray-200 transition p-2 rounded-md cursor-pointer"
         ></i>
         <i
-          onClick={() => {}}
+          onClick={() => sortByTheme("HTML")}
           className="fab text-red-700 fa-6x fa-html5 hover:bg-gray-200 transition p-2 rounded-md cursor-pointer"
         ></i>
       </div>
