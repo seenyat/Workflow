@@ -1,32 +1,63 @@
 import React from "react";
 
-export default function ToDoGroup({ Header, setTodo, todo, todoList }) {
+export default function ToDoGroup({ Header, setTodo, todo, todoList, ind }) {
   function expandTodoGroup(e) {
     if (e.key === "Enter") {
       setTodo(
-        todo.map((el) => {
+        todo.map((el, i) => {
+          if (i !== ind) {
+            return el;
+          }
           console.log(el);
           return el.title === Header
-            ? { ...el, todos: [...el.todos, "1"] }
+            ? { ...el, todos: [...el.todos, { value: "", checked: false }] }
             : el;
         })
       );
     }
   }
   return (
-    <div className="w-full space-y-3">
+    <div className="shadow rounded-xl overflow-hidden my-2 w-full">
       <input
         value={Header}
+        onChange={(e) => {
+          setTodo(
+            todo.map((el, i) => {
+              if (i !== ind) {
+                return el;
+              }
+              return { ...el, title: e.target.value };
+            })
+          );
+        }}
         onKeyPress={expandTodoGroup}
-        className="px-3 border-4 border-gray-300  w-full rounded-lg py-2"
+        className="px-3 focus:bg-gray-50 focus:ring-indigo-500 font-bold text-2xl border-gray-300  w-full  py-2"
       />
-      {todoList.map((el) => (
+      {todoList.map((el, todoInd) => (
         <input
-          placeholder="1."
+          placeholder={todoInd + 1 + "."}
           autoFocus
-          value=""
+          value={el.value}
+          onChange={(e) => {
+            setTodo(
+              todo.map((todoGroup, i) => {
+                if (i !== ind) {
+                  return todoGroup;
+                }
+                return {
+                  ...todoGroup,
+                  todos: todoGroup.todos.map((todoItem, todoGroupInd) => {
+                    if (todoInd !== todoGroupInd) {
+                      return todoItem;
+                    }
+                    return { ...todoItem, value: e.target.value };
+                  }),
+                };
+              })
+            );
+          }}
           onKeyPress={expandTodoGroup}
-          className="border px-3 border-gray-300 w-full rounded-lg py-2"
+          className="outline-none focus:bg-gray-50 px-3 border-t border-gray-100 w-full  py-2"
         />
       ))}
     </div>
