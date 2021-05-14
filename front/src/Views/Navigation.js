@@ -19,14 +19,17 @@ export default function Example({
   classNames,
 }) {
   const [sidebarNavigation, setSidebarNavigation] = useState([
-    { name: "Feed", href: "/", icon: CollectionIcon, current: false },
+    { name: "Feed", href: "/", icon: CollectionIcon, current: true },
     { name: "Latest", href: "/latest", icon: ViewGridIcon, current: false },
-    { name: "Profile", href: "/profile", icon: UserIcon, current: true },
+    { name: "Profile", href: "/profile", icon: UserIcon, current: false },
     { name: "About Us", href: "/about", icon: PlayIcon, current: false },
     { name: "Login", href: "/login", icon: LoginIcon, current: false },
     { name: "Logout", href: "/logout", icon: LogoutIcon, current: false },
   ]);
-
+  // const [userNavigation, setUserNavigation] = userState([
+  //   {name:"Profile",href:"/profile"},
+  //   {name:"Loout",href:"/logout"}
+  // ])
   const auth = useSelector((state) => state.auth);
 
   return (
