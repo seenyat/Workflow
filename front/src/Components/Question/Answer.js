@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { sagaLikeAnswerAC } from "../../Redux/actions/actionCreator";
 import fetchCreator from "../../Redux/fetchCreator";
 import Workflow from "./Workflow";
+import useTimeAgo from "@dh-react-hooks/use-timeago";
 
 export default function Answer({ item }) {
   const [author, setAuthor] = useState({});
@@ -11,6 +12,12 @@ export default function Answer({ item }) {
   const dispatch = useDispatch();
 
   const user = useSelector((state) => state.user);
+
+  const localDate = new Date(item.date);
+
+  const timeAgo = useTimeAgo(localDate, {
+    interavl: 60000,
+  });
 
   useEffect(() => {
     fetch(`http://localhost:4000/profile/${item.author}`).then((data) => {
@@ -55,6 +62,9 @@ export default function Answer({ item }) {
       <div>{item.likes.length > 0 && item.likes.length}</div>
       <h1 className="font-bold text-2xl">{item.comment}</h1>
       <Workflow todo={item.workflows} />
+      <div className="px-4 relative text-sm sm:p-6 w-max text-gray-400 right-2 top-2">
+        {timeAgo}
+      </div>
     </li>
   );
 }
