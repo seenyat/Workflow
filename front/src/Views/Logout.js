@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { logout, sagaLogout } from "../Redux/actions/actionCreator";
+import { logout } from "../Redux/actions/actionCreator";
 
 export default function Logout() {
   const dispatch = useDispatch();

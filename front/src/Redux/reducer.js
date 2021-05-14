@@ -39,7 +39,7 @@ const reducer = (state, action) => {
       return {
         ...state,
         modals: state.modals.map((modal) =>
-          modal.page != "feedmodal"
+          modal.page !== "feedmodal"
             ? {
                 ...modal,
                 status: false,
@@ -55,7 +55,7 @@ const reducer = (state, action) => {
       return {
         ...state,
         modals: state.modals.map((modal) =>
-          modal.page != "headermodal"
+          modal.page !== "headermodal"
             ? {
                 ...modal,
                 status: false,

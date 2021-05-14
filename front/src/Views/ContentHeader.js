@@ -1,14 +1,11 @@
 import { Menu, Transition } from "@headlessui/react";
 import { MenuAlt2Icon, PlusIcon, SearchIcon } from "@heroicons/react/outline";
 import React from "react";
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import FormQuestion from "../Components/Question/FormQuestion";
+// import FormQuestion from "../Components/Question/FormQuestion";
 import ModalForm from "../Components/Question/ModalForm";
-import {
-  changeHeaderModalStatus,
-  changeModalStatus,
-} from "../Redux/actions/actionCreator";
+import { changeHeaderModalStatus } from "../Redux/actions/actionCreator";
 import classNames from "../Utils/classNames";
 
 export default function ContentHeader({ setMobileMenuOpen, userNavigation }) {
