@@ -6,6 +6,7 @@ const userSchema = new mongoose.Schema({
   avatar_url: String,
   login: String,
   email: String,
+  workflows:[]
 });
 
 const User = mongoose.model("User", userSchema);
