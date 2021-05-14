@@ -13,7 +13,7 @@ export default function QuestionBody({ questions }) {
   const localDate = new Date(questions.date);
 
   const timeAgo = useTimeAgo(localDate, {
-    interavl: 60000,
+    interval: 60000,
   });
 
   const likeQuestion = () => {

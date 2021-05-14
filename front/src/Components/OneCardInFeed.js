@@ -5,7 +5,7 @@ export default function OneCardInFeed({ question }) {
   const localDate = new Date(question.date);
 
   const timeAgo = useTimeAgo(localDate, {
-    interavl: 60000,
+    interval: 60000,
   });
 
   return (
