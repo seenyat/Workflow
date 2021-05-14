@@ -1,11 +1,12 @@
 import { Menu, Transition } from "@headlessui/react";
 import { MenuAlt2Icon, PlusIcon, SearchIcon } from "@heroicons/react/outline";
-import React from "react";
+import React, { useState } from "react";
 import { Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // import FormQuestion from "../Components/Question/FormQuestion";
 import ModalForm from "../Components/Question/ModalForm";
 import { changeHeaderModalStatus } from "../Redux/actions/actionCreator";
+import FormWindow from "../Components/Question/FormWindow";
 import classNames from "../Utils/classNames";
 import { Link } from "react-router-dom";
 export default function ContentHeader({ setMobileMenuOpen }) {
@@ -21,9 +22,14 @@ export default function ContentHeader({ setMobileMenuOpen }) {
 
   const dispatch = useDispatch();
 
+  const [trans, setTrans] = useState(false);
+
   return (
     <>
-      {modalStatus && <ModalForm />}
+      {/* {modalStatus && <ModalForm />} */}
+
+      {trans && <FormWindow />}
+
       <header className="w-full">
         <div className="relative z-10 flex-shrink-0 h-16 bg-white border-b border-gray-200 shadow-sm flex">
           <button
@@ -110,7 +116,8 @@ export default function ContentHeader({ setMobileMenuOpen }) {
                   </Menu>
                   <button
                     type="button"
-                    onClick={() => dispatch(changeHeaderModalStatus(true))}
+                    // onClick={() => dispatch(changeHeaderModalStatus(true))}
+                    onClick={() => setTrans(!trans)}
                     className="flex bg-gray-600 p-1 rounded-full items-center justify-center text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                   >
                     <PlusIcon className="h-6 w-6" aria-hidden="true" />

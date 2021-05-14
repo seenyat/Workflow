@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { buttonList } from "../Utils/categories";
 import FormQuestion from "../Components/Question/FormQuestion";
+import FormWIndow from "../Components/Question/FormWindow";
 import QuestionBody from "../Components/Question/QuestionBody";
 
 export default function Feed() {
@@ -10,6 +11,9 @@ export default function Feed() {
   const [questionsList, setQuestionsList] = useState(
     questions.sort((a, b) => b.likes.length - a.likes.length)
   );
+
+  const [trans, setTrans] = useState(false);
+  console.log(trans);
 
   useEffect(() => {
     setQuestionsList(questions);
@@ -39,8 +43,9 @@ export default function Feed() {
     <>
       <div className=" overflow-scroll flex flex-col m-3 items-center ">
         <div className="flex justify-evenly w-full space-x-10">
-          <FormQuestion />
+          <button onClick={() => setTrans(!trans)}>formform</button>
         </div>
+        {trans && <FormWIndow />}
         <div className="w-full space-x-10 flex flex-row justify-center h-min">
           {buttonsState.map((button) => (
             <div className="flex flex-col justify-center text-center ">
