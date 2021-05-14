@@ -50,7 +50,6 @@ function* likeAnswerWorker(action) {
 
 function* likeQuestionWorker(action) {
   const questionArray = yield call(fetchForAll, action.payload);
-  console.log(questionArray);
   // yield put(likeQuestionAC(questionArray));
 }
 

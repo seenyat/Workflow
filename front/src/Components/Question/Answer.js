@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { sagaLikeAnswerAC } from "../../Redux/actions/actionCreator";
 import fetchCreator from "../../Redux/fetchCreator";
 import Workflow from "./Workflow";
+import useTimeAgo from "@dh-react-hooks/use-timeago";
 
 export default function Answer({ item }) {
   const [author, setAuthor] = useState({});
@@ -12,20 +13,27 @@ export default function Answer({ item }) {
 
   const user = useSelector((state) => state.user);
 
+  const localDate = new Date(item.date);
+
+  const timeAgo = useTimeAgo(localDate, {
+    interavl: 60000,
+  });
+
   useEffect(() => {
     fetch(`http://localhost:4000/profile/${item.author}`).then((data) => {
       data.json().then((user) => {
         setAuthor(user);
       });
     });
-  }, []);
+  }, [item.author]);
 
   const likeAnswer = () => {
     if (user) {
       dispatch(
         sagaLikeAnswerAC(
           fetchCreator("http://localhost:4000/answer/like", "POST", {
-            userID: user._id, answerID: item._id
+            userID: user._id,
+            answerID: item._id,
           })
         )
       );
@@ -51,8 +59,12 @@ export default function Answer({ item }) {
         onClick={likeAnswer}
         className="hover:text-red-500 cursor-pointer absolute w-6 text-gray-300 h-6 right-2 top-2"
       />
+      <div>{item.likes.length > 0 && item.likes.length}</div>
       <h1 className="font-bold text-2xl">{item.comment}</h1>
       <Workflow todo={item.workflows} />
+      <div className="px-4 relative text-sm sm:p-6 w-max text-gray-400 right-2 top-2">
+        {timeAgo}
+      </div>
     </li>
   );
 }

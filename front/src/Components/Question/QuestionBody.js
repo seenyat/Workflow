@@ -3,11 +3,18 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { sagaLikeQuestionAC } from "../../Redux/actions/actionCreator";
 import fetchCreator from "../../Redux/fetchCreator";
+import useTimeAgo from "@dh-react-hooks/use-timeago";
 
 export default function QuestionBody({ questions }) {
   const dispatch = useDispatch();
 
   const user = useSelector((state) => state.user);
+
+  const localDate = new Date(questions.date);
+
+  const timeAgo = useTimeAgo(localDate, {
+    interavl: 60000,
+  });
 
   const likeQuestion = () => {
     if (user) {
@@ -39,6 +46,10 @@ export default function QuestionBody({ questions }) {
           onClick={likeQuestion}
           className="hover:text-red-500 cursor-pointer absolute w-6 text-gray-300 h-6 right-2 top-2"
         />
+        <div>{questions.likes.length > 0 && questions.likes.length}</div>
+      </div>
+      <div className="px-4 relative text-sm sm:p-6 w-max text-gray-400 right-2 top-2">
+        {timeAgo}
       </div>
     </div>
   );

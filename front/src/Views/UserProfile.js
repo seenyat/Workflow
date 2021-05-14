@@ -1,12 +1,9 @@
+
 import { CheckIcon, ThumbUpIcon, UserIcon } from "@heroicons/react/solid";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState, useRef } from "react";
+
 import { changeHeaderModalStatus } from "../Redux/actions/actionCreator";
-const eventTypes = {
-  applied: { icon: UserIcon, bgColorClass: "bg-gray-400" },
-  advanced: { icon: ThumbUpIcon, bgColorClass: "bg-blue-500" },
-  completed: { icon: CheckIcon, bgColorClass: "bg-green-500" },
-};
 
 export default function UserProfile() {
   const user = useSelector((state) => state.user);
@@ -20,6 +17,7 @@ export default function UserProfile() {
       credentials: "include",
     }).then((data) =>
       data.json().then((profile) => {
+
         setProf(profile);
       })
     );

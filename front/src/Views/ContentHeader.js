@@ -1,22 +1,24 @@
 import { Menu, Transition } from "@headlessui/react";
 import { MenuAlt2Icon, PlusIcon, SearchIcon } from "@heroicons/react/outline";
 import React from "react";
-import { Fragment ,useState} from "react";
+import { Fragment, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // import FormQuestion from "../Components/Question/FormQuestion";
 import ModalForm from "../Components/Question/ModalForm";
 import { changeHeaderModalStatus } from "../Redux/actions/actionCreator";
 import classNames from "../Utils/classNames";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
 export default function ContentHeader({ setMobileMenuOpen }) {
   const modalStatus = useSelector((state) => state.modals[1].status);
   const auth = useSelector((state) => state.auth);
+
   const state= useSelector((state) =>state.user)
 
   const userNavigation=[
     {name:"Profile",href:"/profile"},
     {name:"Logout",href:"/logout"}
   ]
+
   const dispatch = useDispatch();
 
   return (
@@ -89,8 +91,8 @@ export default function ContentHeader({ setMobileMenuOpen }) {
                             {userNavigation.map((item) => (
                               <Menu.Item key={item.name}>
                                 {({ active }) => (
-                                  <Link to={item.href}
-                                    
+                                  <Link
+                                    to={item.href}
                                     className={classNames(
                                       active ? "bg-gray-100" : "",
                                       "block px-4 py-2 text-sm text-gray-700"
