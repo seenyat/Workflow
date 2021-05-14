@@ -76,7 +76,6 @@ export default function Example({
                   );
                 }
               }
-              return item;
             })}
           </div>
         </div>
