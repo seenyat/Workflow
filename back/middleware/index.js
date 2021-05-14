@@ -9,9 +9,11 @@ import authRouter from "../routes/auth.js";
 import passport from "passport";
 import session from "express-session";
 import profileRouter from "../routes/user.js";
+
 import fileStore from "session-file-store";
 
 const FileStore = fileStore(session)
+
 
 const config = (app) => {
   mongoose.connect("mongodb://localhost:27017/Workflow", {
@@ -39,7 +41,7 @@ const config = (app) => {
       cookie: {
         httpOnly: true,
         secure: false,
-        expires: 600000,
+        expires: 6000000,
       },
     })
   );
