@@ -1,10 +1,5 @@
 import {
-  ArrowNarrowLeftIcon,
   CheckIcon,
-  HomeIcon,
-  PaperClipIcon,
-  QuestionMarkCircleIcon,
-  SearchIcon,
   ThumbUpIcon,
   UserIcon,
 } from "@heroicons/react/solid";
@@ -175,7 +170,7 @@ console.log(profile)
                               </div>
                               <div className="mt-2 text-sm space-x-2">
                                 <span className="text-gray-500 font-medium">
-                                  date
+                                  {comment.date}
                                 </span>{" "}
                                 <span className="text-gray-500 font-medium">
                                   &middot;
