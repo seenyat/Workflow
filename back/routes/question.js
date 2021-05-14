@@ -21,7 +21,7 @@ router.post("/", async (req, res) => {
     theme,
     author: mongoose.Types.ObjectId(authorid),
     date: new Date(),
-  }).populate("author");
+  });
   res.json(newPost);
 });
 
