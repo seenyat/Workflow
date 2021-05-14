@@ -1,7 +1,8 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState, useRef } from "react";
-import {EDIT_PROFILE} from '../Redux/actions/actionTypes'
+import { EDIT_PROFILE } from "../Redux/actions/actionTypes";
 import { changeHeaderModalStatus } from "../Redux/actions/actionCreator";
+import Time from "../Utils/Time";
 
 export default function UserProfile() {
   const user = useSelector((state) => state.user);
@@ -33,7 +34,7 @@ export default function UserProfile() {
       body: JSON.stringify({ login }),
     })
       .then((data) => data.json())
-      .then((profile) => dispatch({type:EDIT_PROFILE,payload:profile}))
+      .then((profile) => dispatch({ type: EDIT_PROFILE, payload: profile }))
       .then(setEdit(false));
   };
 
@@ -103,14 +104,16 @@ export default function UserProfile() {
                 </div>
                 <div className="border-t border-gray-200 px-4 py-5 sm:px-6">
                   <dl className="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
-                    <div className="sm:col-span-1">
-                      <dt className="text-sm font-medium text-gray-500">
-                        Email address
-                      </dt>
-                      <dd className="mt-1 text-sm text-gray-900">
-                        {user.email}
-                      </dd>
-                    </div>
+                    {user.email !== null && (
+                      <div className="sm:col-span-1">
+                        <dt className="text-sm font-medium text-gray-500">
+                          Email address
+                        </dt>
+                        <dd className="mt-1 text-sm text-gray-900">
+                          {user.email}
+                        </dd>
+                      </div>
+                    )}
 
                     <div className="sm:col-span-1">
                       <dt className="text-sm font-medium text-gray-500">
@@ -155,7 +158,7 @@ export default function UserProfile() {
                               </div>
                               <div className="mt-2 text-sm space-x-2">
                                 <span className="text-gray-500 font-medium">
-                                  {answer.date}
+                                  <Time time={answer.date} />
                                 </span>{" "}
                                 <span className="text-gray-500 font-medium">
                                   &middot;
@@ -204,7 +207,7 @@ export default function UserProfile() {
                               </p>
                             </div>
                             <div className="text-right text-sm whitespace-nowrap text-gray-500">
-                              <time dateTime={item.datetime}>{item.date}</time>
+                              <Time time={item.date} />
                             </div>
                           </div>
                         </div>
