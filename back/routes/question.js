@@ -15,14 +15,18 @@ router.get("/:id", async (req, res) => {
 
 router.post("/", async (req, res) => {
   const { title, body, authorid, theme } = req.body;
-  const newPost = await Question.create({
+  console.log(authorid);
+  const newQuestion = await Question.create({
     title,
     body,
     theme,
     author: mongoose.Types.ObjectId(authorid),
     date: new Date(),
   });
-  res.json(newPost);
+  const populatedQuestion = await Question.findOne({
+    _id: newQuestion._id,
+  }).populate("author");
+  res.json(populatedQuestion);
 });
 
 router.put("/:id", async (req, res) => {
