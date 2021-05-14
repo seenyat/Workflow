@@ -5,10 +5,12 @@ import { useSelector } from "react-redux";
 import QuestionBody from "../Components/Question/QuestionBody";
 import CreateAnswer from "../Components/Question/CreateAnswer";
 import AnswerList from "../Components/Question/AnswerList";
+import { UserIcon } from "@heroicons/react/outline";
 
 export default function QuestionSingle() {
   const { id } = useParams();
 
+  const state = useSelector((state) => state.user);
   const [editStatus, setEditStatus] = useState(false);
   const [editCount, setEditCount] = useState(0);
   const [questionObj, setQuestion] = useState(false);
@@ -28,7 +30,14 @@ export default function QuestionSingle() {
   return questionObj ? (
     <div className="overflow-scroll container py-2 mx-auto px-4 sm:px-6 lg:px-8">
       <QuestionBody questions={questionObj.question} />
-      <CreateAnswer count={editCount} edit={setEditCount} id={id} />
+      {state ? (
+        <CreateAnswer count={editCount} edit={setEditCount} id={id} />
+      ) : (
+        <div className="flex items-center bg-red-100 text-gray-700 rounded-md p-5 text-xl my-5">
+          <UserIcon className="h-8 w-8 text-gray-500 opacity-50 mr-3" /> Войди
+          чтобы ответить!
+        </div>
+      )}
       <AnswerList answers={questionObj.answers} />
     </div>
   ) : null;

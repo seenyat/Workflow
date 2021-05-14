@@ -1,4 +1,5 @@
 import React from "react";
+import Workflow from "./Workflow";
 
 export default function AnswerList({ answers }) {
   return (
@@ -9,7 +10,7 @@ export default function AnswerList({ answers }) {
           className="bg-white shadow overflow-hidden rounded-md px-6 py-4"
         >
           <h1 className="font-bold text-2xl">{item.comment}</h1>
-          {item.workflows}
+          <Workflow todo={item.workflows} />
         </li>
       ))}
     </ul>
