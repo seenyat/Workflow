@@ -6,7 +6,6 @@ import About from "./About";
 import ContentHeader from "./ContentHeader";
 import QuestionSingle from "./QuestionSingle";
 import Login from "./Login";
-import PrivateRoute from "../Components/Routes/PrivateRoute";
 import Logout from "./Logout";
 import Latest from "./Latest";
 

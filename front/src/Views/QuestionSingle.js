@@ -11,7 +11,6 @@ export default function QuestionSingle() {
   const { id } = useParams();
 
   const state = useSelector((state) => state.user);
-  const [editStatus, setEditStatus] = useState(false);
   const [editCount, setEditCount] = useState(0);
   const [questionObj, setQuestion] = useState(false);
 
@@ -21,7 +20,6 @@ export default function QuestionSingle() {
       credentials: "include",
     }).then((data) =>
       data.json().then((question) => {
-        console.log(question);
         setQuestion(question);
       })
     );

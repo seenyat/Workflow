@@ -26,10 +26,6 @@ export default function Example({
     { name: "Login", href: "/login", icon: LoginIcon, current: false },
     { name: "Logout", href: "/logout", icon: LogoutIcon, current: false },
   ]);
-  // const [userNavigation, setUserNavigation] = userState([
-  //   {name:"Profile",href:"/profile"},
-  //   {name:"Loout",href:"/logout"}
-  // ])
   const auth = useSelector((state) => state.auth);
 
   return (

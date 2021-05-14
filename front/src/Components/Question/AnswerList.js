@@ -1,7 +1,6 @@
 import { HeartIcon } from "@heroicons/react/outline";
-import React, { useState } from "react";
+import React from "react";
 import Answer from "./Answer";
-import Workflow from "./Workflow";
 
 export default function AnswerList({ answers }) {
   return (

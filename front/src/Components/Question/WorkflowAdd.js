@@ -1,4 +1,4 @@
-import { PlusCircleIcon, PlusIcon } from "@heroicons/react/outline";
+import { PlusIcon } from "@heroicons/react/outline";
 import React from "react";
 import ToDoGroup from "./ToDoGroup";
 
@@ -28,7 +28,7 @@ export default function WorkflowAdd({ todo, setTodo }) {
       <button
         type="button"
         onClick={addToDoGroup}
-        className="mx-auto mb-2 shadow p-1 text-white hover:text-gray-200 flex border-2 border-white border-opacity-30 transition bg-green-400 hover:bg-green-600 items-center justify-center w-24 h-10 rounded-full"
+        className="mx-auto mb-2 shadow p-1 text-white hover:text-gray-200 flex border-2 border-white border-opacity-30 transition bg-green-4→→00 hover:bg-green-600 items-center justify-center w-24 h-10 rounded-full"
       >
         <PlusIcon className="w-10" />
       </button>

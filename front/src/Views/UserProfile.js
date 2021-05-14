@@ -1,16 +1,6 @@
-import {
-  CheckIcon,
-  ThumbUpIcon,
-  UserIcon,
-} from "@heroicons/react/solid";
-import { useSelector,useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { changeHeaderModalStatus } from "../Redux/actions/actionCreator";
-const eventTypes = {
-  applied: { icon: UserIcon, bgColorClass: "bg-gray-400" },
-  advanced: { icon: ThumbUpIcon, bgColorClass: "bg-blue-500" },
-  completed: { icon: CheckIcon, bgColorClass: "bg-green-500" },
-};
 
 export default function UserProfile() {
   const user = useSelector((state) => state.user);
@@ -24,7 +14,7 @@ export default function UserProfile() {
     }).then((data) =>
       data.json().then((profile) => {
         // setAnswer(profile)
-console.log(profile)
+        console.log(profile);
         setProf(profile);
       })
     );
@@ -167,7 +157,7 @@ console.log(profile)
                           <div className="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4">
                             <div>
                               <p className="text-sm text-gray-500">
-                                {item.title}: {" "}
+                                {item.title}:{" "}
                                 <a
                                   href="#"
                                   className="font-medium text-gray-900"
