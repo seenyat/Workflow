@@ -16,6 +16,9 @@ export default function OneCardInFeed({ question }) {
         <div className=" cardtitle px-4 py-5 sm:p-3 ">
           <p>Автор: {question.author}</p>
         </div>
+        <div className=" cardtitle px-4 py-5 sm:p-3 ">
+          <p>Тематика: {question.theme}</p>
+        </div>
       </div>
     </Link>
   );
