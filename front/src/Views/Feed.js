@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import OneCardInFeed from "../Components/OneCardInFeed";
+import { Link } from "react-router-dom";
+import { buttonList } from "../Utils/categories";
 import FormQuestion from "../Components/Question/FormQuestion";
 import FormWIndow from "../Components/Question/FormWindow";
+import QuestionBody from "../Components/Question/QuestionBody";
 
 export default function Feed() {
   const { questions } = useSelector((state) => state);
@@ -17,35 +19,7 @@ export default function Feed() {
     setQuestionsList(questions);
   }, [questions]);
 
-  const buttonsList = [
-    {
-      className: "fab text-blue-700 fa-6x fa-css3-alt",
-      theme: "CSS",
-      status: false,
-    },
-    {
-      className: "fab text-yellow-400 fa-6x fa-js",
-      theme: "JAVASCRIPT",
-      status: false,
-    },
-    {
-      className: "fab text-blue-800 fa-6x fa-python",
-      theme: "Python",
-      status: false,
-    },
-    {
-      className: "fab text-blue-400 fa-6x fa-react",
-      theme: "React",
-      status: false,
-    },
-    {
-      className: "fab text-red-700 fa-6x fa-html5",
-      theme: "HTML",
-      status: false,
-    },
-  ];
-
-  const [buttonsState, setButtonsState] = useState(buttonsList);
+  const [buttonsState, setButtonsState] = useState(buttonList);
 
   const sortByTheme = (theme) => {
     const newList = questions.filter((que) => que.theme === theme);
@@ -89,9 +63,11 @@ export default function Feed() {
           ))}
         </div>
 
-        <div className=" w-1/2 ">
+        <div className="w-full md:max-w-4xl flex flex-col space-y-5">
           {questionsList.map((question) => (
-            <OneCardInFeed key={question._id} question={question} />
+            <Link to={`/question/${question._id}`}>
+              <QuestionBody question={question} />
+            </Link>
           ))}
         </div>
       </div>
