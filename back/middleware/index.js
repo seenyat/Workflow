@@ -14,10 +14,6 @@ import fileStore from "session-file-store";
 
 const FileStore = fileStore(session);
 
-import fileStore from "session-file-store";
-
-const FileStore = fileStore(session);
-
 const config = (app) => {
   mongoose.connect("mongodb://localhost:27017/Workflow", {
     useNewUrlParser: true,
