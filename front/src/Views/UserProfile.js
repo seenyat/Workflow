@@ -8,14 +8,13 @@ import {
   ThumbUpIcon,
   UserIcon,
 } from "@heroicons/react/solid";
-import {useSelector} from "react-redux"
-import {useEffect, useState} from "react"
+import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 const eventTypes = {
   applied: { icon: UserIcon, bgColorClass: "bg-gray-400" },
   advanced: { icon: ThumbUpIcon, bgColorClass: "bg-blue-500" },
   completed: { icon: CheckIcon, bgColorClass: "bg-green-500" },
 };
-
 
 const timeline = [
   {
@@ -65,47 +64,41 @@ const comments = [
     name: "Leslie Alexander",
     date: "4d ago",
     imageId: "1494790108377-be9c29b29330",
-    body:
-      "Ducimus quas delectus ad maxime totam doloribus reiciendis ex. Tempore dolorem maiores. Similique voluptatibus tempore non ut.",
+    body: "Ducimus quas delectus ad maxime totam doloribus reiciendis ex. Tempore dolorem maiores. Similique voluptatibus tempore non ut.",
   },
   {
     id: 2,
     name: "Michael Foster",
     date: "4d ago",
     imageId: "1519244703995-f4e0f30006d5",
-    body:
-      "Et ut autem. Voluptatem eum dolores sint necessitatibus quos. Quis eum qui dolorem accusantium voluptas voluptatem ipsum. Quo facere iusto quia accusamus veniam id explicabo et aut.",
+    body: "Et ut autem. Voluptatem eum dolores sint necessitatibus quos. Quis eum qui dolorem accusantium voluptas voluptatem ipsum. Quo facere iusto quia accusamus veniam id explicabo et aut.",
   },
   {
     id: 3,
     name: "Dries Vincent",
     date: "4d ago",
     imageId: "1506794778202-cad84cf45f1d",
-    body:
-      "Expedita consequatur sit ea voluptas quo ipsam recusandae. Ab sint et voluptatem repudiandae voluptatem et eveniet. Nihil quas consequatur autem. Perferendis rerum et.",
+    body: "Expedita consequatur sit ea voluptas quo ipsam recusandae. Ab sint et voluptatem repudiandae voluptatem et eveniet. Nihil quas consequatur autem. Perferendis rerum et.",
   },
 ];
 
 export default function UserProfile() {
-const user=useSelector(state=>state.user)
-const [answer,setAnswer]=useState([])
-console.log(user);
-useEffect(() => {
-  fetch(`http://localhost:4000/profile/609d3bd25b04e824c45be357`, {
-    method: "GET",
-    credentials: "include",
-  }).then((data) =>
-    data.json().then((profile) => {
-      // setAnswer(profile)
-      
-      setAnswer(profile)
-    })
-  );
-}, []);
+  const user = useSelector((state) => state.user);
+  const [answer, setAnswer] = useState();
+  useEffect(() => {
+    fetch(`http://localhost:4000/profile/609d3bd25b04e824c45be357`, {
+      method: "GET",
+      credentials: "include",
+    }).then((data) =>
+      data.json().then((profile) => {
+        // setAnswer(profile)
 
+        setAnswer(profile);
+      })
+    );
+  }, []);
 
-
-  return (
+  return user ? (
     <div className="min-h-screen bg-gray-100">
       <main className="py-10">
         {/* Page header */}
@@ -125,11 +118,11 @@ useEffect(() => {
               </div>
             </div>
             <div>
-  <h1 className="text-2xl font-bold text-gray-900">{user.login}</h1>
+              <h1 className="text-2xl font-bold text-gray-900">{user.login}</h1>
               <p className="text-sm font-medium text-gray-500">
                 Status:{" "}
                 <a href="#" className="text-gray-900">
-                 {user.role}
+                  {user.role}
                 </a>{" "}
               </p>
             </div>
@@ -156,7 +149,7 @@ useEffect(() => {
                         Email address
                       </dt>
                       <dd className="mt-1 text-sm text-gray-900">
-                       {user.email}
+                        {user.email}
                       </dd>
                     </div>
 
@@ -203,7 +196,7 @@ useEffect(() => {
                               </div>
                               <div className="mt-2 text-sm space-x-2">
                                 <span className="text-gray-500 font-medium">
-                                 date
+                                  date
                                 </span>{" "}
                                 <span className="text-gray-500 font-medium">
                                   &middot;
@@ -274,5 +267,5 @@ useEffect(() => {
         </div>
       </main>
     </div>
-  );
+  ) : null;
 }
