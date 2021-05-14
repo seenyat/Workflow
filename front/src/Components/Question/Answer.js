@@ -16,7 +16,7 @@ export default function Answer({ item }) {
   const localDate = new Date(item.date);
 
   const timeAgo = useTimeAgo(localDate, {
-    interavl: 60000,
+    interval: 60000,
   });
 
   useEffect(() => {
