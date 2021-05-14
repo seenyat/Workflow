@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, Fragment } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   changeFeedModalStatus,
   changeHeaderModalStatus,
@@ -31,6 +31,7 @@ function classNames(...classes) {
 
 export default function ModalForm() {
   const [open, setOpen] = useState(true);
+  const user = useSelector((state) => state.user);
 
   const [selected, setSelected] = useState(themes[0]);
 
@@ -47,6 +48,7 @@ export default function ModalForm() {
           title,
           body,
           theme,
+          authorid: user._id,
         })
       )
     );

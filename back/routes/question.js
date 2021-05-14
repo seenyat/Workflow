@@ -8,7 +8,7 @@ const router = express.Router();
 router.get("/:id", async (req, res) => {
   const { id } = req.params;
   const question = await Question.findById(id);
-  
+
   const answers = await Answer.find({ question: question._id });
   // console.log(answers);
   res.status(200).json({ question, answers });
@@ -16,10 +16,11 @@ router.get("/:id", async (req, res) => {
 
 router.post("/", async (req, res) => {
   const { title, body, authorid } = req.body;
+  console.log(authorid);
   const newPost = await Question.create({
     title,
     body,
-    author:mongoose.Types.ObjectId(authorid),
+    author: mongoose.Types.ObjectId(authorid),
     date: new Date(),
   });
   res.json(newPost);
