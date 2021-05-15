@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import OneCardInFeed from "../Components/OneCardInFeed";
-import FormQuestion from "../Components/Question/FormQuestion";
+import Warning from "../Components/Partials/Warning";
 import {
   sagaAuthCheck,
   sagaLoadQuestions,
@@ -9,22 +8,20 @@ import {
 import { buttonList } from "../Utils/categories";
 import Feed from "./Feed";
 
-function Latest(props) {
+export default function MainFeed() {
   const dispatch = useDispatch();
   const { questions } = useSelector((state) => state);
 
+  // Sort by likes
   const [questionsList, setQuestionsList] = useState(
-    questions.sort((a, b) => new Date(b.date) - new Date(a.date))
+    questions.sort((a, b) => b.likes.length - a.likes.length)
   );
 
   // Database renew
   useEffect(() => {
     dispatch(sagaLoadQuestions("http://localhost:4000/allquestions"));
     dispatch(sagaAuthCheck("http://localhost:4000/"));
-    setQuestionsList(
-      questions.sort((a, b) => new Date(b.date) - new Date(a.date))
-    );
-  }, [dispatch, questions]);
+  }, [dispatch]);
 
   // Filtering
   const [buttonsState, setButtonsState] = useState(buttonList);
@@ -45,14 +42,13 @@ function Latest(props) {
       )
     );
   };
-
-  return (
+  return questions.length > 0 ? (
     <Feed
       filters={buttonsState}
-      questions={questionsList}
       filter={sortByTheme}
+      questions={questionsList}
     />
+  ) : (
+    <Warning />
   );
 }
-
-export default Latest;
