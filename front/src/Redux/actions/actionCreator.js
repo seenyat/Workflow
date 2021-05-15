@@ -4,12 +4,14 @@ import {
   CHANGE_HEADER_MODAL_STATUS,
   LIKE_ANSWER,
   LIKE_QUESTION,
+  LOAD_ANSWERS,
   LOAD_QUESTIONS,
   LOGOUT,
   POST_QUESTION,
   SAGA_AUTH,
   SAGA_LIKE_ANSWER,
   SAGA_LIKE_QUESTION,
+  SAGA_LOAD_ANSWERS,
   SAGA_LOAD_QUESTIONS,
   SAGA_LOGOUT,
   SAGA_POST_QUESTION,
@@ -32,6 +34,16 @@ export const sagaLoadQuestions = (payload) => ({
 
 export const loadQuestions = (payload) => ({
   type: LOAD_QUESTIONS,
+  payload,
+});
+
+export const sagaLoadAnswers = (payload) => ({
+  type: SAGA_LOAD_ANSWERS,
+  payload,
+});
+
+export const loadAnswers = (payload) => ({
+  type: LOAD_ANSWERS,
   payload,
 });
 
@@ -76,9 +88,9 @@ export const likeAnswerAC = (payload) => ({
 export const sagaLikeQuestionAC = (payload) => ({
   type: SAGA_LIKE_QUESTION,
   payload,
-})
+});
 
 export const likeQuestionAC = (payload) => ({
   type: LIKE_QUESTION,
   payload,
-})
+});

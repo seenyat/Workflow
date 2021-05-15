@@ -6,6 +6,8 @@ import {
   LOGOUT,
   POST_QUESTION,
   EDIT_PROFILE,
+  TOGGLE_TODO,
+  LOAD_ANSWERS,
 } from "./actions/actionTypes";
 
 const reducer = (state, action) => {
@@ -34,6 +36,23 @@ const reducer = (state, action) => {
       return {
         ...state,
         questions: action.payload.questionsList,
+      };
+
+    case LOAD_ANSWERS:
+      console.log(action.payload);
+      return {
+        ...state,
+        questions: state.questions.map((que) =>
+          que._id === action.payload.question._id
+            ? { ...que, answers: action.payload.answers }
+            : que
+        ),
+      };
+
+    case TOGGLE_TODO:
+      return {
+        ...state,
+        user: { ...state.user, workflows: {} },
       };
 
     case CHANGE_FEED_MODAL_STATUS:

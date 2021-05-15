@@ -1,7 +1,8 @@
+import { CheckCircleIcon, CheckIcon } from "@heroicons/react/outline";
 import React from "react";
 import { useSelector } from "react-redux";
 
-export default function Workflow({ todo, id }) {
+export default function Workflow({ todo }) {
   const user = useSelector((state) => state.user);
   function addWorkflow() {
     fetch("http://localhost:4000/profile/addworkflow", {
@@ -9,23 +10,15 @@ export default function Workflow({ todo, id }) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ todo: { ...todo, id: id }, userID: user._id }),
+      body: JSON.stringify({ todo, userID: user._id }),
     });
   }
   return (
-    <div className="flex px-4 py-2 shadow rounded-md flex-col">
+    <div className="flex px-4 max-w-2xl bg-white py-2 shadow rounded-md flex-col">
       <div className="flex">
         <div className="text-gray-300 select-none ml-1 font-mono text-sm">
           План действий
         </div>
-        {user && (
-          <div
-            onClick={addWorkflow}
-            className="text-indigo-400 cursor-pointer font-bold hover:text-indigo-600 select-none ml-1 font-mono text-sm"
-          >
-            добавить себе
-          </div>
-        )}
       </div>
       {todo.map((el) => {
         return (
@@ -35,9 +28,22 @@ export default function Workflow({ todo, id }) {
               {el.title}
             </div>
             {el.todos.map((todo, i) => (
-              <div className="flex  pt-2 ml-3 items-center">
-                <div className="w-2 h-2 rounded-full bg-gray-200"></div>
-                <div className="ml-3 ">{todo.value}</div>
+              <div
+                onClick={() => {
+                  el.checked = !el.checked;
+                }}
+                className="flex transition hover:shadow pt-2 ml-3 items-center"
+              >
+                {el.checked ? (
+                  <div className="w-8 h-8">
+                    <CheckCircleIcon />
+                  </div>
+                ) : (
+                  <div className="h-8 text-gray-100 w-8">
+                    <CheckIcon />
+                  </div>
+                )}
+                <div className=" ">{todo.value}</div>
               </div>
             ))}
           </>
