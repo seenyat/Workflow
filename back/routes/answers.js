@@ -26,6 +26,7 @@ router.post("/like", async (req, res) => {
       return el === userID;
     });
     await answer.save();
+    res.status(200).json(answer);
   } else {
     answer.likes.push(userID);
     await answer.save();
