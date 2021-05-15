@@ -1,18 +1,14 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState, useRef } from "react";
 import { EDIT_PROFILE } from "../Redux/actions/actionTypes";
-import {
-  changeHeaderModalStatus,
-
-} from "../Redux/actions/actionCreator";
+import { changeHeaderModalStatus } from "../Redux/actions/actionCreator";
 
 import ProfileQuestions from "../Components/Profile/ProfileQuestions";
 import ProfileAnswers from "../Components/Profile/ProfileAnswers";
 
 export default function UserProfile() {
   const user = useSelector((state) => state.user);
-  
-  
+
   const dispatch = useDispatch();
   const [prof, setProf] = useState();
   const [edit, setEdit] = useState(false);
@@ -23,9 +19,7 @@ export default function UserProfile() {
         credentials: "include",
       }).then((data) =>
         data.json().then((profile) => {
-         console.log(profile);
           setProf(profile);
-
         })
       );
     }
@@ -136,7 +130,7 @@ export default function UserProfile() {
                       <dt className="text-sm font-medium text-gray-500">
                         Likes
                       </dt>
-                      <dd className="mt-1 text-sm text-gray-900">120,000</dd>
+                      <dd className="mt-1 text-sm text-gray-900">{prof && prof.sumLikes}</dd>
                     </div>
                   </dl>
                 </div>
