@@ -1,27 +1,38 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState, useRef } from "react";
-import { EDIT_PROFILE } from "../Redux/actions/actionTypes";
-import { changeHeaderModalStatus } from "../Redux/actions/actionCreator";
-
+import {
+  changeHeaderModalStatus,
+  sagaEditQuestion,
+} from "../Redux/actions/actionCreator";
+import {
+  addSAGAProfileAnswerQuestion,
+  sagaEditProfile,
+} from "../Redux/actions/actionCreator";
 import ProfileQuestions from "../Components/Profile/ProfileQuestions";
 import ProfileAnswers from "../Components/Profile/ProfileAnswers";
+import fetchCreator from "../Redux/fetchCreator";
 
 export default function UserProfile() {
   const user = useSelector((state) => state.user);
+  const prof = useSelector((state) => state.prof);
 
   const dispatch = useDispatch();
-  const [prof, setProf] = useState();
+  // const [prof, setProf] = useState();
   const [edit, setEdit] = useState(false);
   useEffect(() => {
     if (user) {
-      fetch(`http://localhost:4000/profile/${user._id}`, {
-        method: "GET",
-        credentials: "include",
-      }).then((data) =>
-        data.json().then((profile) => {
-          setProf(profile);
-        })
+      dispatch(
+        addSAGAProfileAnswerQuestion(
+          `http://localhost:4000/profile/${user._id}`
+        )
       );
+      // fetch(`http://localhost:4000/profile/${user._id}`, {
+      //   method: "GET",
+      //   credentials: "include",
+      // }).then((data) =>
+      //   data.json().then(profile => dispatch({ type: ADD_PROFILE_QA, payload: profile })
+      //   )
+      // );
     }
   }, [user]);
 
@@ -34,17 +45,26 @@ export default function UserProfile() {
     e.preventDefault();
     const login = nameInput.current.value;
     const info = nameInfo.current.value;
-    fetch(`http://localhost:4000/profile/${user._id}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        login,
-        info,
-      }),
-    })
-      .then((data) => data.json())
-      .then((profile) => dispatch({ type: EDIT_PROFILE, payload: profile }))
-      .then(setEdit(false));
+
+    dispatch(
+      sagaEditProfile(
+        fetchCreator(`http://localhost:4000/profile/${user._id}`, "PUT", {
+          login,
+          info,
+        })
+      )
+    );
+    // fetch(`http://localhost:4000/profile/${user._id}`, {
+    //   method: "PUT",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify({
+    //     login,
+    //     info,
+    //   }),
+    // })
+    //   .then((data) => data.json())
+    //   .then((profile) => dispatch({ type: EDIT_PROFILE, payload: profile }))
+    setEdit(false);
   };
 
   return user ? (
@@ -130,7 +150,9 @@ export default function UserProfile() {
                       <dt className="text-sm font-medium text-gray-500">
                         Likes
                       </dt>
-                      <dd className="mt-1 text-sm text-gray-900">{prof && prof.sumLikes}</dd>
+                      <dd className="mt-1 text-sm text-gray-900">
+                        {prof && prof.sumLikes}
+                      </dd>
                     </div>
                   </dl>
                 </div>

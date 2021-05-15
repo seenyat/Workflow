@@ -17,6 +17,11 @@ import {
   SAGA_LOAD_QUESTIONS,
   SAGA_LOGOUT,
   SAGA_POST_QUESTION,
+  ADD_PROFILE_QA,
+  SAGA_ADD_PROFILE_QA,
+  EDIT_PROFILE,
+  SAGA_EDIT_PROFILE
+
 } from "./actionTypes";
 
 export const sagaPostQuestion = (payload) => ({
@@ -104,5 +109,27 @@ export const sagaEditQuestion = (payload) => ({
 
 export const editQuestion = (payload) => ({
   type: EDIT_QUESTION,
+  payload,
+});
+
+export const addProfileAnswerQuestion = (payload) => ({
+  type: ADD_PROFILE_QA,
+  payload,
+});
+
+export const addSAGAProfileAnswerQuestion = (payload) => ({
+  type: SAGA_ADD_PROFILE_QA,
+  payload,
+});
+
+
+
+export const editProfile = (payload) => ({
+  type: EDIT_PROFILE,
+  payload,
+});
+
+export const sagaEditProfile = (payload) => ({
+  type: SAGA_EDIT_PROFILE,
   payload,
 });
