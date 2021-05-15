@@ -6,6 +6,7 @@ import Feed from "../../Views/Feed";
 import Latest from "../../Views/Latest";
 import Login from "../../Views/Login";
 import Logout from "../../Views/Logout";
+import MainFeed from "../../Views/MainFeed";
 import QuestionSingle from "../../Views/QuestionSingle";
 import UserProfile from "../../Views/UserProfile";
 
@@ -13,7 +14,7 @@ export default function ContentRouter() {
   return (
     <Switch>
       <Route exact path="/">
-        <Feed />
+        <MainFeed />
       </Route>
       <Route path="/profile">
         <UserProfile />
