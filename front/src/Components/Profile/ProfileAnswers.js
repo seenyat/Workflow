@@ -13,7 +13,7 @@ function ProfileAnswers({answer}) {
                             <div>
                               <div className="text-sm">
                                 <Link
-                                  to={`/question/${answer.question}`}
+                                  to={`/question/${answer.question._id}`}
                                   className="font-medium text-gray-900"
                                 >
                                   {answer.comment}
