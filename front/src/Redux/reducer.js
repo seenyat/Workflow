@@ -87,9 +87,13 @@ const reducer = (state, action) => {
         ),
       };
     case EDIT_PROFILE:
+      console.log(action.payload);
       return {
         ...state,
-        user: { ...state.user, login: action.payload.login },
+        user: { ...state.user, 
+          login: action.payload.login,
+          info: action.payload.info
+         },
       };
     default:
       return state;
