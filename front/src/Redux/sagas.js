@@ -52,13 +52,13 @@ function* authWorker(action) {
 }
 
 function* likeAnswerWorker(action) {
-  const likesArray = yield call(fetchForAll, action.payload);
-  // yield put(likeAnswerAC(likesArray));
+  const answerLikesArray = yield call(fetchForAll, action.payload);
+  yield put(likeAnswerAC(answerLikesArray));
 }
 
 function* likeQuestionWorker(action) {
-  const questionArray = yield call(fetchForAll, action.payload);
-  // yield put(likeQuestionAC(questionArray));
+  const questionLikesArray = yield call(fetchForAll, action.payload);
+  yield put(likeQuestionAC(questionLikesArray));
 }
 
 export default function* watcher() {
