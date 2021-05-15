@@ -14,7 +14,7 @@ import fetchCreator from "../../Redux/fetchCreator";
 
 const themes = [
   { id: 1, theme: "CSS" },
-  { id: 2, theme: "JAVASCRIPT" },
+  { id: 2, theme: "JavaScript" },
   { id: 3, theme: "Python" },
   { id: 4, theme: "React" },
   { id: 5, theme: "HTML" },
