@@ -1,9 +1,10 @@
 import { CheckCircleIcon, CheckIcon } from "@heroicons/react/outline";
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 
 export default function Workflow({ todo }) {
   const user = useSelector((state) => state.user);
+  useEffect(() => {}, []);
   function addWorkflow() {
     fetch("http://localhost:4000/profile/addworkflow", {
       method: "POST",
