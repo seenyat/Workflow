@@ -3,7 +3,7 @@ import { useEffect, useState, useRef } from "react";
 import { EDIT_PROFILE } from "../Redux/actions/actionTypes";
 import {
   changeHeaderModalStatus,
-  sagaAuthCheck,
+
 } from "../Redux/actions/actionCreator";
 
 import ProfileQuestions from "../Components/Profile/ProfileQuestions";
@@ -11,7 +11,8 @@ import ProfileAnswers from "../Components/Profile/ProfileAnswers";
 
 export default function UserProfile() {
   const user = useSelector((state) => state.user);
-
+  
+  
   const dispatch = useDispatch();
   const [prof, setProf] = useState();
   const [edit, setEdit] = useState(false);
@@ -22,7 +23,9 @@ export default function UserProfile() {
         credentials: "include",
       }).then((data) =>
         data.json().then((profile) => {
+         console.log(profile);
           setProf(profile);
+
         })
       );
     }
@@ -51,7 +54,7 @@ export default function UserProfile() {
   };
 
   return user ? (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-gray-100 overflow-scroll">
       <main className="py-10">
         {/* Page header */}
         <div className="max-w-3xl mx-auto px-4 sm:px-6 md:flex md:items-center md:justify-between md:space-x-5 lg:max-w-7xl lg:px-8">
