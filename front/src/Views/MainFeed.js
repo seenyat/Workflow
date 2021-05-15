@@ -30,7 +30,7 @@ export default function MainFeed() {
   // Filtering
   const [buttonsState, setButtonsState] = useState(buttonList);
   const sortByTheme = (theme) => {
-    const newList = questions.filter((que) => que.theme === theme);
+    const newList = questions.filter((que) => que.theme.includes(theme));
     setQuestionsList(newList);
     setButtonsState(
       buttonsState.map((bt) =>
