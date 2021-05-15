@@ -15,7 +15,6 @@ router.get("/:id", async (req, res) => {
 
 router.post("/", async (req, res) => {
   const { title, body, authorid, theme } = req.body;
-  console.log(authorid);
   const newQuestion = await Question.create({
     title,
     body,
