@@ -1,7 +1,6 @@
 import {
   CollectionIcon,
   LoginIcon,
-  LogoutIcon,
   PlayIcon,
   UserIcon,
   ViewGridIcon,
@@ -13,5 +12,4 @@ export const sideBarMenu = [
   { name: "Profile", href: "/profile", icon: UserIcon, current: false },
   { name: "About Us", href: "/about", icon: PlayIcon, current: false },
   { name: "Login", href: "/login", icon: LoginIcon, current: false },
-  { name: "Logout", href: "/logout", icon: LogoutIcon, current: false },
 ];

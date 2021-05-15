@@ -6,7 +6,7 @@ export const buttonList = [
   },
   {
     className: "fab text-yellow-400 fa-6x fa-js",
-    theme: "JAVASCRIPT",
+    theme: "JavaScript",
     status: false,
   },
   {

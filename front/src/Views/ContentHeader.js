@@ -2,9 +2,11 @@ import { Menu, Transition } from "@headlessui/react";
 import { MenuAlt2Icon, PlusIcon, SearchIcon } from "@heroicons/react/outline";
 import { Fragment, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import FormQuestion from "../Components/Question/FormQuestion";
 import ModalForm from "../Components/Question/ModalForm";
-import { changeHeaderModalStatus } from "../Redux/actions/actionCreator";
+import {
+  changeHeaderModalStatus,
+  logout,
+} from "../Redux/actions/actionCreator";
 import classNames from "../Utils/classNames";
 import { Link } from "react-router-dom";
 
@@ -14,7 +16,7 @@ export default function ContentHeader({ setMobileMenuOpen }) {
   const user = useSelector((state) => state.user);
   const [userNavigation] = useState([
     { name: "Profile", href: "/profile" },
-    { name: "Logout", href: "/logout" },
+    { name: "Logout", href: "" },
   ]);
   const dispatch = useDispatch();
 
@@ -90,7 +92,18 @@ export default function ContentHeader({ setMobileMenuOpen }) {
                             className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
                           >
                             {userNavigation.map((item) => (
-                              <Menu.Item key={item.name}>
+                              <Menu.Item
+                                onClick={() => {
+                                  if (item.name === "Logout") {
+                                    window.open(
+                                      "http://localhost:4000/logout",
+                                      "_self"
+                                    );
+                                    dispatch(logout());
+                                  }
+                                }}
+                                key={item.name}
+                              >
                                 {({ active }) => (
                                   <Link
                                     to={item.href}
