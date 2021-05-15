@@ -2,6 +2,7 @@ import {
   AUTH,
   CHANGE_FEED_MODAL_STATUS,
   CHANGE_HEADER_MODAL_STATUS,
+  CHANGE_REDIRECT_STATUS,
   EDIT_QUESTION,
   LIKE_ANSWER,
   LIKE_QUESTION,
@@ -106,3 +107,8 @@ export const editQuestion = (payload) => ({
   type: EDIT_QUESTION,
   payload,
 });
+
+export const changeRedirectStatus = (payload) => ({
+  type: CHANGE_REDIRECT_STATUS,
+  payload
+})

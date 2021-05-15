@@ -11,6 +11,7 @@ import {
   EDIT_QUESTION,
   LIKE_QUESTION,
   LIKE_ANSWER,
+  CHANGE_REDIRECT_STATUS,
 } from "./actions/actionTypes";
 
 const reducer = (state, action) => {
@@ -45,7 +46,7 @@ const reducer = (state, action) => {
       return {
         ...state,
         questions: state.questions.map((que) =>
-          que._id === action.payload.question._id 
+          que._id === action.payload.question._id
             ? { ...que, answers: action.payload.answers }
             : que
         ),
@@ -131,6 +132,12 @@ const reducer = (state, action) => {
               }
             : que
         ),
+      };
+
+    case CHANGE_REDIRECT_STATUS:
+      return {
+        ...state,
+        redirect: action.payload,
       };
 
     default:

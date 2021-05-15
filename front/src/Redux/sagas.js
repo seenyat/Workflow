@@ -1,6 +1,7 @@
 import { call, put, takeEvery } from "redux-saga/effects";
 import {
   AuthCheck,
+  changeRedirectStatus,
   editQuestion,
   likeAnswerAC,
   likeQuestionAC,
@@ -35,10 +36,12 @@ const fetchForGet = async (payload) => {
 function* postQuestionWorker(action) {
   const post = yield call(fetchForAll, action.payload);
   yield put(postQuestion(post));
+  yield put(changeRedirectStatus(true));
 }
 
 function* loadQuestionsWorker(action) {
   const newInfo = yield call(fetchForGet, action.payload);
+  yield console.log(newInfo );
   yield put(loadQuestions(newInfo));
 }
 
@@ -65,7 +68,7 @@ function* likeQuestionWorker(action) {
 
 function* editQuestionWorker(action) {
   const updatedQuestion = yield call(fetchForAll, action.payload);
-  yield put(editQuestion(updatedQuestion))
+  yield put(editQuestion(updatedQuestion));
 }
 
 export default function* watcher() {
