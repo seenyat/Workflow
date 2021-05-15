@@ -1,6 +1,6 @@
 import "./App.css";
 import { BrowserRouter } from "react-router-dom";
-import Navigation from "./Views/Navigation";
+import Navigation from "./Views/Navigation/Navigation";
 import Content from "./Views/Content";
 import { useEffect, useState } from "react";
 import classNames from "./Utils/classNames";

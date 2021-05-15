@@ -6,6 +6,7 @@ import fetchCreator from "../../Redux/fetchCreator";
 import AuthorCard from "../Partials/AuthorCard";
 import Like from "../Partials/Like";
 import Time from "../../Utils/Time";
+import { themeIcons } from "../../Utils/themeIcons";
 
 export default function QuestionBody({ question }) {
   const dispatch = useDispatch();
@@ -25,8 +26,9 @@ export default function QuestionBody({ question }) {
   };
 
   return (
-    <div className="bg-white relative overflow-hidden shadow rounded-lg divide-y divide-gray-200">
+    <div className="bg-white w-full relative overflow-hidden shadow rounded-lg divide-y divide-gray-200">
       <div className=" pl-4 sm:px-6 py-2 font-mono font-bold text-gray-400">
+        <i className={`fab mr-2 ${themeIcons[question.theme]}`} />
         {question.theme}
       </div>
       <div className="px-4 py-5 sm:px-6">
