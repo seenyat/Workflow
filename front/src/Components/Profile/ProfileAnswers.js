@@ -1,6 +1,6 @@
 import React from 'react';
 import Time from "../../Utils/Time";
-import { Link} from "react-router-dom"
+import { Link } from "react-router-dom"
 
 
 function ProfileAnswers({answer}) {

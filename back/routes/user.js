@@ -8,7 +8,7 @@ import mongoose from "mongoose";
 router.get("/:id", async (req, res) => {
   const { id } = req.params;
   const user = await User.findById(id);
-  const answers = await Answer.find({ author: user._id });
+  const answers = await Answer.find({ author: user._id }).populate("question");
   const questions = await Question.find({ author: user._id });
   res.status(200).json({ user, answers, questions });
 });
