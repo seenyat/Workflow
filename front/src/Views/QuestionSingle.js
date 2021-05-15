@@ -18,10 +18,8 @@ export default function QuestionSingle() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (question && question.answers.length === 0) {
-      dispatch(sagaLoadAnswers(`http://localhost:4000/question/${id}`));
-    }
-  }, [id, dispatch, question]);
+    dispatch(sagaLoadAnswers(`http://localhost:4000/question/${id}`));
+  }, [id, dispatch]);
 
   return question ? (
     <div className="overflow-scroll container py-2 mx-auto px-4 sm:px-6 lg:px-8">

@@ -30,7 +30,7 @@ export default function Feed({ filters, filter, questions }) {
 
           {questions.map((question) => (
             <Link to={`/question/${question._id}`}>
-              <QuestionBody question={question} />
+              <QuestionBody hideEdit={true} question={question} />
             </Link>
           ))}
         </div>

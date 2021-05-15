@@ -11,7 +11,7 @@ import Like from "../Partials/Like";
 import Time from "../../Utils/Time";
 import { themeIcons } from "../../Utils/themeIcons";
 
-export default function QuestionBody({ question }) {
+export default function QuestionBody({ question, hideEdit }) {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
 
@@ -90,7 +90,7 @@ export default function QuestionBody({ question }) {
         <div className="px-4 text-sm sm:p-6 w-max text-gray-400 ">
           <Time time={question.date} />
         </div>
-        {user && user._id === question.author._id ? (
+        {user && user._id === question.author._id && !hideEdit ? (
           <div className="px-4 text-sm sm:p-6 w-max text-gray-400 ">
             <i
               onClick={() => setEditStatus(!editStatus)}
