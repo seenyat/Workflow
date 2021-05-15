@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import WorkflowTodo from "../../Components/Question/WorkflowTodo";
 
 export default function Workflows() {
-  const {
-    user: { workflows },
-  } = useSelector((state) => state);
+  const { user } = useSelector((state) => state);
+  const [workflows, setWorkflows] = useState(null);
+  useEffect(() => {
+    if (user) {
+      setWorkflows(user.workflows);
+    }
+  }, [user]);
   return workflows ? (
     <div className="w-full overflow-auto  px-5 py-7 flex flex-col space-y-5">
       {workflows.map((w) => {

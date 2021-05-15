@@ -9,7 +9,7 @@ export default function Workflow({ todo, id }) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ todo, userID: user._id }),
+      body: JSON.stringify({ todo: todo[0], userID: user._id }),
     });
   }
   return (

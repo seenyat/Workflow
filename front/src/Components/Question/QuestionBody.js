@@ -48,8 +48,8 @@ export default function QuestionBody({ question }) {
   };
 
   return (
-    <div className="bg-white w-full relative overflow-hidden shadow rounded-lg divide-y divide-gray-200">
-      <div className=" pl-4 sm:px-6 py-2 font-mono font-bold text-gray-400">
+    <div className="bg-white text-xl w-full relative overflow-hidden shadow rounded-lg divide-y divide-gray-200">
+      <div className=" pl-4 sm:px-6 py-2 font-mono lowercase text-gray-400">
         <i className={`fab mr-2 ${themeIcons[question.theme]}`} />
         {question.theme}
       </div>

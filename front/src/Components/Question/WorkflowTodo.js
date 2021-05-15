@@ -20,7 +20,7 @@ export default function Workflow({ todo }) {
           План действий
         </div>
       </div>
-      {todo.map((el) => {
+      {todo.stages.map((el) => {
         return (
           <>
             <div className=" flex w-max items-center font-bold border-b mt-3 pr-5 pl-1 border-gray-100 text-2xl">
