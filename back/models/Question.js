@@ -6,7 +6,7 @@ const questionSchema = new mongoose.Schema({
   theme: String,
   author: { type: mongoose.SchemaTypes.ObjectId, ref: "User" },
   likes: [{ type: mongoose.SchemaTypes.ObjectId, ref: "User" }],
-  answers: [{ type: mongoose.SchemaTypes.ObjectId, ref: "questions" }],
+  answers: [{ type: mongoose.SchemaTypes.ObjectId, ref: "Answers" }],
   date: Date,
 });
 
