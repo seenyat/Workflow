@@ -23,7 +23,7 @@ export default function Feed({ filters, filter, questions }) {
                     button.status ? "bg-gray-200" : ""
                   } `}
                 />
-                <p>{button.theme}</p>
+                <p>{button.theme.length > 0 ? button.theme : "Все"}</p>
               </div>
             ))}
           </div>
