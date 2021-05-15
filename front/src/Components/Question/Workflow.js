@@ -27,7 +27,7 @@ export default function Workflow({ todo, id }) {
           </div>
         )}
       </div>
-      {todo[0].stages.map((el) => {
+      {todo[0].stages.map((el, i) => {
         return (
           <>
             <div className=" flex w-max items-center font-bold border-b mt-3 pr-5 pl-1 border-gray-100 text-2xl">
@@ -35,7 +35,10 @@ export default function Workflow({ todo, id }) {
               {el.title}
             </div>
             {el.todos.map((todo, i) => (
-              <div className="flex  pt-2 ml-3 items-center">
+              <div
+                key={i + Math.random()}
+                className="flex  pt-2 ml-3 items-center"
+              >
                 <div className="w-2 h-2 rounded-full bg-gray-200"></div>
                 <div className="ml-3 ">{todo.value}</div>
               </div>

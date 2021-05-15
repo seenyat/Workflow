@@ -5,7 +5,7 @@ import Content from "./Views/Content";
 import { useEffect, useState } from "react";
 import classNames from "./Utils/classNames";
 import "./App.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   sagaAuthCheck,
   sagaLoadQuestions,
@@ -19,6 +19,9 @@ function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const dispatch = useDispatch();
+
+  const questions = useSelector((state) => state.questions);
+
   useEffect(() => {
     dispatch(sagaLoadQuestions("http://localhost:4000/allquestions"));
   }, [dispatch]);
