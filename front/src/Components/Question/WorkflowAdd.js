@@ -4,17 +4,20 @@ import ToDoGroup from "./ToDoGroup";
 
 export default function WorkflowAdd({ todo, setTodo }) {
   function addToDoGroup(e) {
-    setTodo([
+    setTodo({
       ...todo,
-      {
-        title: `Этап ${todo.length + 1}`,
-        todos: [{ value: ``, checked: false }],
-      },
-    ]);
+      stages: [
+        ...todo.stages,
+        {
+          title: `Этап ${todo.stages.length + 1}`,
+          todos: [{ value: ``, checked: false }],
+        },
+      ],
+    });
   }
   return (
     <div className="bg-gray-400 pt-5 mt-1 px-5 container flex flex-col items-center justify-center shadow overflow-hidden sm:rounded-lg">
-      {todo.map((el, index) => (
+      {todo.stages.map((el, index) => (
         <ToDoGroup
           key={index}
           ind={index}

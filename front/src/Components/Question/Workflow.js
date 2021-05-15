@@ -9,7 +9,7 @@ export default function Workflow({ todo, id }) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ todo: { ...todo, id: id }, userID: user._id }),
+      body: JSON.stringify({ todo, userID: user._id }),
     });
   }
   return (
@@ -27,7 +27,7 @@ export default function Workflow({ todo, id }) {
           </div>
         )}
       </div>
-      {todo.map((el) => {
+      {todo[0].stages.map((el) => {
         return (
           <>
             <div className=" flex w-max items-center font-bold border-b mt-3 pr-5 pl-1 border-gray-100 text-2xl">

@@ -3,8 +3,9 @@ import React from "react";
 export default function ToDoGroup({ Header, setTodo, todo, todoList, ind }) {
   function expandTodoGroup(e) {
     if (e.key === "Enter") {
-      setTodo(
-        todo.map((el, i) => {
+      setTodo({
+        ...todo,
+        stages: todo.stages.map((el, i) => {
           if (i !== ind) {
             return el;
           }
@@ -12,8 +13,8 @@ export default function ToDoGroup({ Header, setTodo, todo, todoList, ind }) {
           return el.title === Header
             ? { ...el, todos: [...el.todos, { value: "", checked: false }] }
             : el;
-        })
-      );
+        }),
+      });
     }
   }
   return (
@@ -21,14 +22,15 @@ export default function ToDoGroup({ Header, setTodo, todo, todoList, ind }) {
       <input
         value={Header}
         onChange={(e) => {
-          setTodo(
-            todo.map((el, i) => {
+          setTodo({
+            ...todo,
+            stages: todo.stages.map((el, i) => {
               if (i !== ind) {
                 return el;
               }
               return { ...el, title: e.target.value };
-            })
-          );
+            }),
+          });
         }}
         onKeyPress={expandTodoGroup}
         className="px-3 focus:bg-gray-50 focus:ring-indigo-500 font-bold text-2xl border-gray-300  w-full  py-2"
@@ -39,8 +41,9 @@ export default function ToDoGroup({ Header, setTodo, todo, todoList, ind }) {
           autoFocus
           value={el.value}
           onChange={(e) => {
-            setTodo(
-              todo.map((todoGroup, i) => {
+            setTodo({
+              ...todo,
+              stages: todo.stages.map((todoGroup, i) => {
                 if (i !== ind) {
                   return todoGroup;
                 }
@@ -53,8 +56,8 @@ export default function ToDoGroup({ Header, setTodo, todo, todoList, ind }) {
                     return { ...todoItem, value: e.target.value };
                   }),
                 };
-              })
-            );
+              }),
+            });
           }}
           onKeyPress={expandTodoGroup}
           className="outline-none focus:bg-gray-50 px-3 border-t border-gray-100 w-full  py-2"

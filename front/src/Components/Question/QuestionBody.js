@@ -12,7 +12,7 @@ export default function QuestionBody({ question }) {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
 
-  const likeQuestion = () => {
+  const likeQuestion = (e) => {
     if (user) {
       dispatch(
         sagaLikeQuestionAC(
