@@ -1,11 +1,8 @@
-import React from "react";
 import { Route } from "react-router";
 import { Switch } from "react-router-dom/cjs/react-router-dom.min";
 import About from "../../Views/About";
-import Feed from "../../Views/Feed";
 import Latest from "../../Views/Latest";
 import Login from "../../Views/Login";
-import Logout from "../../Views/Logout";
 import MainFeed from "../../Views/MainFeed";
 import QuestionSingle from "../../Views/QuestionSingle";
 import UserProfile from "../../Views/UserProfile";
@@ -30,9 +27,6 @@ export default function ContentRouter() {
       </Route>
       <Route path="/login">
         <Login />
-      </Route>
-      <Route path="/logout">
-        <Logout />
       </Route>
     </Switch>
   );
