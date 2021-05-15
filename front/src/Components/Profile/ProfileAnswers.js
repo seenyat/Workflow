@@ -19,9 +19,7 @@ function ProfileAnswers({answer}) {
                                   {answer.comment}
                                 </Link>
                               </div>
-                              <div className="mt-1 text-sm text-gray-700">
-                                <p>{answer.comment}</p>
-                              </div>
+                             
                               <div className="mt-2 text-sm space-x-2">
                                 <span className="text-gray-500 font-medium">
                                   <Time time={answer.date} />
