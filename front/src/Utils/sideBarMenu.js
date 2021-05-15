@@ -2,13 +2,13 @@ import {
   BadgeCheckIcon,
   CollectionIcon,
   LoginIcon,
-  LogoutIcon,
   PlayIcon,
   UserIcon,
   ViewGridIcon,
 } from "@heroicons/react/outline";
 
 export const sideBarMenu = [
+
   {
     name: "Feed",
     href: "/",
@@ -51,11 +51,6 @@ export const sideBarMenu = [
     current: false,
     private: "invert",
   },
-  {
-    name: "Logout",
-    href: "/logout",
-    icon: LogoutIcon,
-    current: false,
-    private: true,
-  },
+
+
 ];
