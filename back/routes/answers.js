@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import Answer from "../models/Answer.js";
+import Question from "../models/Question.js";
 
 const router = express.Router();
 
@@ -13,8 +14,10 @@ router.post("/", async (req, res) => {
     author: mongoose.Types.ObjectId(authorId),
     date: new Date(),
   });
-
-  res.json(answer);
+  const question = await Question.findById(id);
+  question.answers.push(answer._id);
+  await question.save();
+  res.status(200).json(answer);
 });
 
 router.post("/like", async (req, res) => {
