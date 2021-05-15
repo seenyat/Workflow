@@ -1,6 +1,4 @@
 import useTimeAgo from "@dh-react-hooks/use-timeago";
-
-import React from "react";
 import ru from "./ruTime.ts";
 
 export default function Time({ time }) {

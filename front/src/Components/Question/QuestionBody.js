@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   sagaEditQuestion,
@@ -90,6 +90,7 @@ export default function QuestionBody({ question, hideEdit }) {
         <div className="px-4 text-sm sm:p-6 w-max text-gray-400 ">
           <Time time={question.date} />
         </div>
+        <div className="px-4 text-sm sm:p-6 w-max text-gray-400 ">Ответов: {question.answers.length}</div>
         {user && user._id === question.author._id && !hideEdit ? (
           <div className="px-4 text-sm sm:p-6 w-max text-gray-400 ">
             <i
