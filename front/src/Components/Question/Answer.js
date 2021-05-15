@@ -5,6 +5,7 @@ import { sagaLikeAnswerAC } from "../../Redux/actions/actionCreator";
 import fetchCreator from "../../Redux/fetchCreator";
 import Workflow from "./Workflow";
 import Time from "../../Utils/Time";
+import Like from "../Partials/Like";
 
 export default function Answer({ item }) {
   const [author, setAuthor] = useState({});
@@ -49,11 +50,10 @@ export default function Answer({ item }) {
           <div className="text-gray-600">{author.user.name}</div>
         </div>
       )}
-      <HeartIcon
-        onClick={likeAnswer}
-        className="hover:text-red-500 cursor-pointer absolute w-6 text-gray-300 h-6 right-2 top-2"
-      />
-      <div>{item.likes.length > 0 && item.likes.length}</div>
+
+      <div className="absolute text-gray-300 right-2 top-2 flex space-x-1">
+        <Like like={likeAnswer} likeCount={item.likes.length} />
+      </div>
       <h1 className="font-bold text-2xl">{item.comment}</h1>
       <Workflow todo={item.workflows} id={item._id} />
       <div className="px-4 relative text-sm sm:p-6 w-max text-gray-400 right-2 top-2">
