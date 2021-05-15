@@ -6,7 +6,7 @@ import QuestionBody from "../Components/Question/QuestionBody";
 export default function Feed({ filters, filter, questions }) {
   return (
     <>
-      <div className=" overflow-scroll flex flex-col m-3 items-center ">
+      <div className=" overflow-auto flex flex-col m-3 items-center ">
         <div className="flex justify-evenly w-full space-x-10">
           <FormQuestion />
         </div>

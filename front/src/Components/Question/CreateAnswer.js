@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { sagaLoadAnswers } from "../../Redux/actions/actionCreator";
 import WorkflowAdd from "./WorkflowAdd";
+import { nanoid } from "nanoid";
 
 export default function CreateAnswer({ id, edit, count }) {
   const comment = useRef("");
@@ -9,7 +10,7 @@ export default function CreateAnswer({ id, edit, count }) {
   const [todo, setTodo] = useState({
     comment: comment.value,
     stages: [{ title: "Этап 1", todos: [{ value: "", checked: false }] }],
-    id: id,
+    id: nanoid(),
   });
   const dispatch = useDispatch();
   function addAnswer(e) {
