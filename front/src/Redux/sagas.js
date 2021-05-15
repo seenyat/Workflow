@@ -3,6 +3,7 @@ import {
   AuthCheck,
   likeAnswerAC,
   likeQuestionAC,
+  loadAnswers,
   loadQuestions,
   postQuestion,
 } from "./actions/actionCreator";
@@ -10,6 +11,7 @@ import {
   SAGA_AUTH,
   SAGA_LIKE_ANSWER,
   SAGA_LIKE_QUESTION,
+  SAGA_LOAD_ANSWERS,
   SAGA_LOAD_QUESTIONS,
   SAGA_POST_QUESTION,
 } from "./actions/actionTypes";
@@ -38,6 +40,12 @@ function* loadQuestionsWorker(action) {
   yield put(loadQuestions(newInfo));
 }
 
+//ANSWERS
+function* loadAnswersWorker(action) {
+  const answers = yield call(fetchForGet, action.payload);
+  yield put(loadAnswers(answers));
+}
+
 function* authWorker(action) {
   const result = yield call(fetchForGet, action.payload);
   yield put(AuthCheck(result));
@@ -59,4 +67,5 @@ export default function* watcher() {
   yield takeEvery(SAGA_AUTH, authWorker);
   yield takeEvery(SAGA_LIKE_ANSWER, likeAnswerWorker);
   yield takeEvery(SAGA_LIKE_QUESTION, likeQuestionWorker);
+  yield takeEvery(SAGA_LOAD_ANSWERS, loadAnswersWorker);
 }

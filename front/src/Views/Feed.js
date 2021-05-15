@@ -1,13 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
 import { Link } from "react-router-dom";
-import { buttonList } from "../Utils/categories";
 import FormQuestion from "../Components/Question/FormQuestion";
 import QuestionBody from "../Components/Question/QuestionBody";
-import {
-  sagaAuthCheck,
-  sagaLoadQuestions,
-} from "../Redux/actions/actionCreator";
 
 export default function Feed({ filters, filter, questions }) {
   return (

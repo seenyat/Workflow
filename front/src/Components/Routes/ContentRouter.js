@@ -6,6 +6,7 @@ import Login from "../../Views/Login";
 import MainFeed from "../../Views/MainFeed";
 import QuestionSingle from "../../Views/QuestionSingle";
 import UserProfile from "../../Views/UserProfile";
+import Workflows from "../../Views/Workflows/Workflows";
 
 export default function ContentRouter() {
   return (
@@ -13,11 +14,14 @@ export default function ContentRouter() {
       <Route exact path="/">
         <MainFeed />
       </Route>
-      <Route path="/profile">
-        <UserProfile />
-      </Route>
       <Route path="/latest">
         <Latest />
+      </Route>
+      <Route path="/workflows">
+        <Workflows />
+      </Route>
+      <Route path="/profile">
+        <UserProfile />
       </Route>
       <Route path="/about">
         <About />

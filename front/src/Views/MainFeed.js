@@ -23,6 +23,10 @@ export default function MainFeed() {
     dispatch(sagaAuthCheck("http://localhost:4000/"));
   }, [dispatch]);
 
+  useEffect(() => {
+    setQuestionsList(questions.sort((a, b) => b.likes.length - a.likes.length));
+  }, [questions]);
+
   // Filtering
   const [buttonsState, setButtonsState] = useState(buttonList);
   const sortByTheme = (theme) => {
@@ -49,6 +53,6 @@ export default function MainFeed() {
       questions={questionsList}
     />
   ) : (
-    <Warning />
+    <div className="border-8 mt-24 mx-auto rounded-full w-24 h-24 border-gray-500 border-dashed animate-spin"></div>
   );
 }

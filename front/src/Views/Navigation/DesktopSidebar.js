@@ -9,8 +9,8 @@ export default function DesktopSidebar({ nav, setNav, auth }) {
         <Logo />
         <div className="flex-1 mt-6 w-full px-2 space-y-1">
           {nav.map((item) => {
-            if (item.name !== "Login" || !auth) {
-              if (item.name !== "Profile" || auth) {
+            if (item.private !== "invert" || !auth) {
+              if (item.private !== true || auth) {
                 return <MenuItem item={item} nav={nav} setNav={setNav} />;
               }
             }

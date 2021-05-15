@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { sagaLoadAnswers } from "../../Redux/actions/actionCreator";
 import WorkflowAdd from "./WorkflowAdd";
 
 export default function CreateAnswer({ id, edit, count }) {
@@ -7,6 +8,7 @@ export default function CreateAnswer({ id, edit, count }) {
   const [todo, setTodo] = useState([
     { title: "Этап 1", todos: [{ value: "", checked: false }] },
   ]);
+  const dispatch = useDispatch();
   function addAnswer(e) {
     e.preventDefault();
     fetch("http://localhost:4000/answer", {
@@ -20,6 +22,8 @@ export default function CreateAnswer({ id, edit, count }) {
         id: id,
         authorId: state._id,
       }),
+    }).then((e) => {
+      dispatch(sagaLoadAnswers(`http://localhost:4000/question/${id}`));
     });
   }
   return (
