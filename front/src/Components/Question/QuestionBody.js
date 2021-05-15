@@ -16,7 +16,11 @@ export default function QuestionBody({ question }) {
   const user = useSelector((state) => state.user);
 
   const [editStatus, setEditStatus] = useState(false);
+  
   const likeQuestion = () => {
+  const likeQuestion = (event) => {
+    event.stopPropagation();
+    event.preventDefault();
     if (user) {
       dispatch(
         sagaLikeQuestionAC(

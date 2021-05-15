@@ -1,39 +1,53 @@
-/* This example requires Tailwind CSS v2.0+ */
-const people = [
-  {
-    name: 'Lindsay Walton',
-    imageUrl:
-      'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80',
-  },
-  // More people...
-]
-const activityItems = [
-  { id: 1, person: people[0], project: 'Workcation', commit: '2d89f0c8', environment: 'production', time: '1h' },
-  // More items...
-]
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import Time from "../Utils/Time";
+import { Link } from "react-router-dom";
+
+
 
 export default function RightColumn() {
+  const user = useSelector((state) => state.user);
+  const [prof, setProf] = useState();
+  useEffect(() => {
+    if (user) {
+      fetch(`http://localhost:4000/profile/${user._id}`, {
+        method: "GET",
+        credentials: "include",
+      }).then((data) =>
+        data.json().then((profile) => {
+          setProf(profile);
+        })
+      );
+    }
+  }, [user]);
+
   return (
     <div>
       <ul className="divide-y divide-gray-200">
-        {activityItems.map((activityItem) => (
-          <li key={activityItem.id} className="py-4">
+          {prof?.questions.map((question)=>
+          <div>{question.title}</div>)}
+        {prof?.answers.map((answer) => (
+          <li key={answer._id} className="py-4">
             <div className="flex space-x-3">
-              <img className="h-6 w-6 rounded-full" src={activityItem.person.imageUrl} alt="" />
+          <img className="h-6 w-6 rounded-full" src={user.avatar_url} alt="" />
               <div className="flex-1 space-y-1">
                 <div className="flex items-center justify-between">
-                  <h3 className="text-sm font-medium">{activityItem.person.name}</h3>
-                  <p className="text-sm text-gray-500">{activityItem.time}</p>
+                  <Link to={`/question/${answer.question}`}>
+                    <h3 className="text-sm font-medium">Ответ: {answer.comment}</h3>
+                  </Link>
+                  <p className="text-sm text-gray-500">
+                    {" "}
+                    <Time time={answer.date} />
+                  </p>
                 </div>
-                <p className="text-sm text-gray-500">
-                  Deployed {activityItem.project} ({activityItem.commit} in master) to {activityItem.environment}
-                </p>
+                {/* <p className="text-sm text-gray-500">
+                  Deployed {answer.project} ({answer.commit} in master) to {answer.environment}
+                </p> */}
               </div>
             </div>
           </li>
         ))}
       </ul>
     </div>
-  )
+  );
 }
-

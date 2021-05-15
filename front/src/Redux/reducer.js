@@ -9,6 +9,8 @@ import {
   TOGGLE_TODO,
   LOAD_ANSWERS,
   EDIT_QUESTION,
+  LIKE_QUESTION,
+  LIKE_ANSWER,
 } from "./actions/actionTypes";
 
 const reducer = (state, action) => {
@@ -102,6 +104,35 @@ const reducer = (state, action) => {
         ...state,
         questions: state.questions.map((que) =>
           que._id !== action.payload._id ? que : action.payload
+        ),
+      };
+
+      };
+
+    case LIKE_QUESTION:
+      return {
+        ...state,
+        questions: state.questions.map((que) =>
+          que._id === action.payload._id
+            ? { ...que, likes: action.payload.likes }
+            : que
+        ),
+      };
+
+    case LIKE_ANSWER:
+      return {
+        ...state,
+        questions: state.questions.map((que) =>
+          que._id === action.payload.question
+            ? {
+                ...que,
+                answers: que.answers.map((answ) =>
+                  answ._id === action.payload._id
+                    ? { ...answ, likes: action.payload.likes }
+                    : answ
+                ),
+              }
+            : que
         ),
       };
 
