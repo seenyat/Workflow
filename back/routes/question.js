@@ -30,7 +30,7 @@ router.post("/", async (req, res) => {
 });
 
 router.put("/:id", async (req, res) => {
-  let x = await Question.findOneAndUpdate(
+  await Question.findOneAndUpdate(
     { _id: req.params.id },
     {
       $set: {
@@ -39,8 +39,8 @@ router.put("/:id", async (req, res) => {
       },
     }
   );
-
-  res.json(x);
+  let question = await Question.findById(req.params.id).populate("author");
+  res.json(question);
 });
 
 router.delete("/:id", async (req, res) => {

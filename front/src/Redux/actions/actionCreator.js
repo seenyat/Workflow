@@ -2,6 +2,7 @@ import {
   AUTH,
   CHANGE_FEED_MODAL_STATUS,
   CHANGE_HEADER_MODAL_STATUS,
+  EDIT_QUESTION,
   LIKE_ANSWER,
   LIKE_QUESTION,
   LOAD_ANSWERS,
@@ -9,6 +10,7 @@ import {
   LOGOUT,
   POST_QUESTION,
   SAGA_AUTH,
+  SAGA_EDIT_QUESTION,
   SAGA_LIKE_ANSWER,
   SAGA_LIKE_QUESTION,
   SAGA_LOAD_ANSWERS,
@@ -92,5 +94,15 @@ export const sagaLikeQuestionAC = (payload) => ({
 
 export const likeQuestionAC = (payload) => ({
   type: LIKE_QUESTION,
+  payload,
+});
+
+export const sagaEditQuestion = (payload) => ({
+  type: SAGA_EDIT_QUESTION,
+  payload,
+});
+
+export const editQuestion = (payload) => ({
+  type: EDIT_QUESTION,
   payload,
 });

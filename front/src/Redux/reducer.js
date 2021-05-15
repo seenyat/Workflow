@@ -8,6 +8,7 @@ import {
   EDIT_PROFILE,
   TOGGLE_TODO,
   LOAD_ANSWERS,
+  EDIT_QUESTION,
   LIKE_QUESTION,
   LIKE_ANSWER,
 } from "./actions/actionTypes";
@@ -95,6 +96,17 @@ const reducer = (state, action) => {
           login: action.payload.login,
           info: action.payload.info,
         },
+      };
+
+    case EDIT_QUESTION:
+      console.log(action.payload);
+      return {
+        ...state,
+        questions: state.questions.map((que) =>
+          que._id !== action.payload._id ? que : action.payload
+        ),
+      };
+
       };
 
     case LIKE_QUESTION:
