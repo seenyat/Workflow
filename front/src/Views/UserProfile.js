@@ -1,37 +1,49 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState, useRef } from "react";
 import { EDIT_PROFILE } from "../Redux/actions/actionTypes";
-import { changeHeaderModalStatus } from "../Redux/actions/actionCreator";
-import Time from "../Utils/Time";
-import { Link } from "react-router-dom"
+import {
+  changeHeaderModalStatus,
+  sagaAuthCheck,
+} from "../Redux/actions/actionCreator";
+
+import ProfileQuestions from "../Components/Profile/ProfileQuestions";
+import ProfileAnswers from "../Components/Profile/ProfileAnswers";
+
 export default function UserProfile() {
   const user = useSelector((state) => state.user);
-  const state = useSelector((state) => state.questions);
+
   const dispatch = useDispatch();
   const [prof, setProf] = useState();
   const [edit, setEdit] = useState(false);
   useEffect(() => {
-    fetch(`http://localhost:4000/profile/${user._id}`, {
-      method: "GET",
-      credentials: "include",
-    }).then((data) =>
-      data.json().then((profile) => {
-        setProf(profile);
-      })
-    );
-  }, [state, user._id]);
+    if (user) {
+      fetch(`http://localhost:4000/profile/${user._id}`, {
+        method: "GET",
+        credentials: "include",
+      }).then((data) =>
+        data.json().then((profile) => {
+          setProf(profile);
+        })
+      );
+    }
+  }, [user]);
 
   const handleEdit = (e) => {
     setEdit(true);
   };
   const nameInput = useRef();
+  const nameInfo = useRef();
   const handle = (e) => {
+    e.preventDefault();
     const login = nameInput.current.value;
-
+    const info = nameInfo.current.value;
     fetch(`http://localhost:4000/profile/${user._id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ login }),
+      body: JSON.stringify({
+        login,
+        info,
+      }),
     })
       .then((data) => data.json())
       .then((profile) => dispatch({ type: EDIT_PROFILE, payload: profile }))
@@ -61,10 +73,12 @@ export default function UserProfile() {
               {edit ? (
                 <>
                   {" "}
-                  <h1 className="text-2xl font-bold text-gray-900">
-                    {user.login}
-                  </h1>
-                  <input ref={nameInput} placeholder="введите имя" />
+                  <input
+                    className="text-2xl font-bold text-gray-900"
+                    ref={nameInput}
+                    placeholder="введите имя"
+                    defaultValue={user.login}
+                  />
                   <button onClick={handle}> отправить</button>
                 </>
               ) : (
@@ -123,6 +137,31 @@ export default function UserProfile() {
                     </div>
                   </dl>
                 </div>
+                <div className="border-t border-gray-200 px-4 py-5 sm:px-6">
+                  <dl className="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
+                    <div className="sm:col-span-1">
+                      <dt className="text-sm font-medium text-gray-500">
+                        О себе:
+                      </dt>
+                      {edit ? (
+                        <>
+                          {" "}
+                          <input
+                            className="mt-1 text-sm text-gray-900"
+                            ref={nameInfo}
+                            placeholder="введите информацию"
+                            defaultValue={user.info}
+                          />
+                        </>
+                      ) : (
+                        <dd className="mt-1 text-sm text-gray-900">
+                          {" "}
+                          {user.info}
+                        </dd>
+                      )}
+                    </div>
+                  </dl>
+                </div>
               </div>
             </section>
 
@@ -140,33 +179,8 @@ export default function UserProfile() {
                   </div>
                   <div className="px-4 py-6 sm:px-6">
                     <ul className="space-y-8">
-                      {prof?.answers.map((answer) => (
-                        <li key={answer._id}>
-                          <div className="flex space-x-3">
-                            <div className="flex-shrink-0"></div>
-                            <div>
-                              <div className="text-sm">
-                                <Link
-                                  to={`/question/${answer.question}`}
-                                  className="font-medium text-gray-900"
-                                >
-                                  {answer.comment}
-                                </Link>
-                              </div>
-                              <div className="mt-1 text-sm text-gray-700">
-                                <p>{answer.comment}</p>
-                              </div>
-                              <div className="mt-2 text-sm space-x-2">
-                                <span className="text-gray-500 font-medium">
-                                  <Time time={answer.date} />
-                                </span>{" "}
-                                <span className="text-gray-500 font-medium">
-                                  &middot;
-                                </span>{" "}
-                              </div>
-                            </div>
-                          </div>
-                        </li>
+                      {prof?.answers.map((el) => (
+                        <ProfileAnswers answer={el} key={el._id} />
                       ))}
                     </ul>
                   </div>
@@ -190,29 +204,8 @@ export default function UserProfile() {
               {/* Questions */}
               <div className="mt-6 flow-root">
                 <ul className="-mb-8">
-                  {prof?.questions.map((item) => (
-                    <li key={item._id}>
-                      <div className="relative pb-8">
-                        <div className="relative flex space-x-3">
-                          <div className="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4">
-                            <div>
-                              <p className="text-sm text-gray-500">
-                                {item.title}:{" "}
-                                <a
-                                  href="#"
-                                  className="font-medium text-gray-900"
-                                >
-                                  {item.body}
-                                </a>
-                              </p>
-                            </div>
-                            <div className="text-right text-sm whitespace-nowrap text-gray-500">
-                              <Time time={item.date} />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
+                  {prof?.questions.map((el) => (
+                    <ProfileQuestions item={el} key={el._id} />
                   ))}
                 </ul>
               </div>

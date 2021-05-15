@@ -25,9 +25,9 @@ router.post("/addworkflow", async (req, res) => {
 });
 
 router.put("/:id", async (req, res) => {
-  const { login } = req.body;
+  const { login, info } = req.body;
   const { id } = req.params;
-  await User.findOneAndUpdate({ _id: id }, { $set: { login } });
+  await User.findOneAndUpdate({ _id: id }, { $set: { login, info } });
   let newUser = await User.findById(id);
   res.json(newUser);
 });
