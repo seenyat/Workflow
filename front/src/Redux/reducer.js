@@ -99,14 +99,11 @@ const reducer = (state, action) => {
       };
 
     case EDIT_QUESTION:
-      console.log(action.payload);
       return {
         ...state,
         questions: state.questions.map((que) =>
           que._id !== action.payload._id ? que : action.payload
         ),
-      };
-
       };
 
     case LIKE_QUESTION:

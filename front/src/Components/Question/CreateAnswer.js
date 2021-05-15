@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { sagaLoadAnswers } from "../../Redux/actions/actionCreator";
 import WorkflowAdd from "./WorkflowAdd";
 
 export default function CreateAnswer({ id, edit, count }) {
+  const comment = useRef("");
   const state = useSelector((state) => state.user);
-  const [todo, setTodo] = useState([
-    { title: "Этап 1", todos: [{ value: "", checked: false }] },
-  ]);
+  const [todo, setTodo] = useState({
+    comment: comment.value,
+    stages: [{ title: "Этап 1", todos: [{ value: "", checked: false }] }],
+    id: id,
+  });
   const dispatch = useDispatch();
   function addAnswer(e) {
     e.preventDefault();
@@ -61,6 +64,7 @@ export default function CreateAnswer({ id, edit, count }) {
                   <textarea
                     id="about"
                     name="title"
+                    ref={comment}
                     rows={3}
                     className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-md border-gray-300 rounded-md"
                     placeholder="Краткий комментарий по теме"
