@@ -6,9 +6,7 @@ import { all } from "redux-saga/effects";
 import Sagas from "./sagas";
 
 const preloadedState =
-
   '{"auth": false, "modals": [{"page": "feedmodal", "status": false }, {"page": "headermodal", "status": false }], "user": null, "loading": false, "questions": [] }';
-
 
 const sagaMiddleware = createSagaMiddleware();
 

@@ -1,7 +1,10 @@
 import { HeartIcon } from "@heroicons/react/outline";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { sagaLikeAnswerAC } from "../../Redux/actions/actionCreator";
+import {
+  changeRedirectStatus,
+  sagaLikeAnswerAC,
+} from "../../Redux/actions/actionCreator";
 import fetchCreator from "../../Redux/fetchCreator";
 import Workflow from "./Workflow";
 import Time from "../../Utils/Time";
@@ -15,6 +18,7 @@ export default function Answer({ item }) {
   const user = useSelector((state) => state.user);
 
   useEffect(() => {
+
     fetch(`http://localhost:4000/profile/${item.author}`).then((data) => {
       data.json().then((user) => {
         setAuthor(user);

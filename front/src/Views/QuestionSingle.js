@@ -6,7 +6,10 @@ import CreateAnswer from "../Components/Question/CreateAnswer";
 import AnswerList from "../Components/Question/AnswerList";
 import Warning from "../Components/Partials/Warning";
 import Error404 from "../Components/Partials/Error404";
-import { sagaLoadAnswers } from "../Redux/actions/actionCreator";
+import {
+  changeRedirectStatus,
+  sagaLoadAnswers,
+} from "../Redux/actions/actionCreator";
 
 export default function QuestionSingle() {
   const { id } = useParams();
@@ -18,6 +21,8 @@ export default function QuestionSingle() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(changeRedirectStatus(false));
+
     dispatch(sagaLoadAnswers(`http://localhost:4000/question/${id}`));
   }, [id, dispatch]);
 

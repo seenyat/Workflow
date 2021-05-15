@@ -46,7 +46,7 @@ export default function MainFeed() {
       )
     );
   };
-  return questions.length > 0 ? (
+  return questions ? (
     <Feed
       filters={buttonsState}
       filter={sortByTheme}
