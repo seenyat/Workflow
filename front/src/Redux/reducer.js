@@ -12,6 +12,7 @@ import {
   LIKE_QUESTION,
   LIKE_ANSWER,
   CHANGE_REDIRECT_STATUS,
+  ADD_PROFILE_QA
 } from "./actions/actionTypes";
 
 const reducer = (state, action) => {
@@ -140,6 +141,12 @@ const reducer = (state, action) => {
         redirect: action.payload,
       };
 
+    case ADD_PROFILE_QA:
+    
+    return {
+      ...state,
+      prof:action.payload
+    }
     default:
       return state;
   }
