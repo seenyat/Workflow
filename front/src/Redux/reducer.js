@@ -45,7 +45,7 @@ const reducer = (state, action) => {
       return {
         ...state,
         questions: state.questions.map((que) =>
-          que._id === action.payload.question._id
+          que._id === action.payload.question._id 
             ? { ...que, answers: action.payload.answers }
             : que
         ),
