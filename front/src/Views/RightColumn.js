@@ -15,7 +15,6 @@ export default function RightColumn() {
         credentials: "include",
       }).then((data) =>
         data.json().then((profile) => {
-          console.log(profile);
           setProf(profile);
         })
       );
