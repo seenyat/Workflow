@@ -10,6 +10,7 @@ import {
   postQuestion,
   addProfileAnswerQuestion,
   editProfile,
+  toggleTodo,
 } from "./actions/actionCreator";
 import {
   SAGA_AUTH,
@@ -21,6 +22,7 @@ import {
   SAGA_POST_QUESTION,
   SAGA_ADD_PROFILE_QA,
   SAGA_EDIT_PROFILE,
+  SAGA_TOGGLE_TODO,
 } from "./actions/actionTypes";
 
 const fetchForAll = async (payload) => {
@@ -85,6 +87,11 @@ function* editProfileWorker(action) {
   yield put(editProfile(editProfilelog));
 }
 
+function* toggleTodoWorker(action) {
+  const toggledTodo = yield call(fetchForAll, action.payload);
+  yield put(toggleTodo(toggledTodo));
+}
+
 export default function* watcher() {
   yield takeEvery(SAGA_POST_QUESTION, postQuestionWorker);
   yield takeEvery(SAGA_LOAD_QUESTIONS, loadQuestionsWorker);
@@ -95,4 +102,5 @@ export default function* watcher() {
   yield takeEvery(SAGA_EDIT_QUESTION, editQuestionWorker);
   yield takeEvery(SAGA_ADD_PROFILE_QA, addProfileAnswerQuestionWorker);
   yield takeEvery(SAGA_EDIT_PROFILE, editProfileWorker);
+  yield takeEvery(SAGA_TOGGLE_TODO, toggleTodoWorker);
 }

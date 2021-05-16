@@ -25,6 +25,33 @@ router.post("/addworkflow", async (req, res) => {
   res.json(user);
 });
 
+router.put("/updateworkflow", async (req, res) => {
+  const { id, stage, index, userId } = req.body;
+  console.log(id, stage, index);
+  const user = await User.findById(userId);
+  user.workflows = user.workflows.map((el) => {
+    return el.id === id
+      ? {
+          ...el,
+          stages: el.stages.map((s, i) => {
+            return i === stage
+              ? {
+                  ...s,
+                  todos: s.todos.map((todo, todoI) => {
+                    return todoI === index
+                      ? { ...todo, checked: !todo.checked }
+                      : todo;
+                  }),
+                }
+              : s;
+          }),
+        }
+      : el;
+  });
+  await user.save();
+  res.json(user.workflows);
+});
+
 router.put("/:id", async (req, res) => {
   const { login, info } = req.body;
   const { id } = req.params;
@@ -32,4 +59,5 @@ router.put("/:id", async (req, res) => {
   let newUser = await User.findById(id);
   res.json(newUser);
 });
+
 export default router;
