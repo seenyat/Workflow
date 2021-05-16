@@ -11,6 +11,8 @@ import {
   addProfileAnswerQuestion,
   editProfile,
   toggleTodo,
+  deleteQuestion,
+  deleteAnswer,
 } from "./actions/actionCreator";
 import {
   SAGA_AUTH,
@@ -24,6 +26,7 @@ import {
   SAGA_EDIT_PROFILE,
   SAGA_DELETE_QUESTION,
   SAGA_TOGGLE_TODO,
+  SAGA_DELETE_ANSWER,
 } from "./actions/actionTypes";
 
 const fetchForAll = async (payload) => {
@@ -89,11 +92,18 @@ function* editProfileWorker(action) {
 }
 
 function* deleteQuestionWorker(action) {
-  const deleteQuestion = yield call(fetchForAll, action.payload);
-  yield put(deleteQuestion)
+  const deletedQuestion = yield call(fetchForAll, action.payload);
+  yield put(deleteQuestion(deletedQuestion));
+  yield put(changeRedirectStatus(true));
+}
 function* toggleTodoWorker(action) {
   const toggledTodo = yield call(fetchForAll, action.payload);
   yield put(toggleTodo(toggledTodo));
+}
+
+function* deleteAnswerWorker(action) {
+  const informationAfterDelete = yield call(fetchForAll, action.payload);
+  yield put(deleteAnswer(informationAfterDelete));
 }
 
 export default function* watcher() {
@@ -108,4 +118,5 @@ export default function* watcher() {
   yield takeEvery(SAGA_EDIT_PROFILE, editProfileWorker);
   yield takeEvery(SAGA_DELETE_QUESTION, deleteQuestionWorker);
   yield takeEvery(SAGA_TOGGLE_TODO, toggleTodoWorker);
+  yield takeEvery(SAGA_DELETE_ANSWER, deleteAnswerWorker);
 }
