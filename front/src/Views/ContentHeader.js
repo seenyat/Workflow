@@ -96,7 +96,7 @@ export default function ContentHeader({ setMobileMenuOpen }) {
                                 onClick={() => {
                                   if (item.name === "Logout") {
                                     window.open(
-                                      "http://localhost:4000/logout",
+                                      process.env.REACT_APP_PROFILE_LOGOUT,
                                       "_self"
                                     );
                                     dispatch(logout());
