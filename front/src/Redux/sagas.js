@@ -51,7 +51,6 @@ function* postQuestionWorker(action) {
 
 function* loadQuestionsWorker(action) {
   const newInfo = yield call(fetchForGet, action.payload);
-  yield console.log(newInfo);
   yield put(loadQuestions(newInfo));
 }
 

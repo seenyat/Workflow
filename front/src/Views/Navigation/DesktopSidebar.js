@@ -11,7 +11,14 @@ export default function DesktopSidebar({ nav, setNav, auth }) {
           {nav.map((item) => {
             if (item.private !== "invert" || !auth) {
               if (item.private !== true || auth) {
-                return <MenuItem item={item} nav={nav} setNav={setNav} />;
+                return (
+                  <MenuItem
+                    key={item.name}
+                    item={item}
+                    nav={nav}
+                    setNav={setNav}
+                  />
+                );
               }
             }
           })}
