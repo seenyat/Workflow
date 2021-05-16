@@ -10,14 +10,14 @@ import {
 export const sideBarMenu = [
 
   {
-    name: "Feed",
+    name: "Лента",
     href: "/",
     icon: CollectionIcon,
     current: true,
     private: false,
   },
   {
-    name: "Latest",
+    name: "Новое",
     href: "/latest",
     icon: ViewGridIcon,
     current: false,
@@ -31,21 +31,21 @@ export const sideBarMenu = [
     private: false,
   },
   {
-    name: "Profile",
+    name: "Профиль",
     href: "/profile",
     icon: UserIcon,
     current: false,
     private: true,
   },
   {
-    name: "About Us",
+    name: "О нас",
     href: "/about",
     icon: PlayIcon,
     current: false,
     private: false,
   },
   {
-    name: "Login",
+    name: "Войти",
     href: "/login",
     icon: LoginIcon,
     current: false,

@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { sagaLoadAnswers } from "../../Redux/actions/actionCreator";
+import { sagaLoadAnswers,addSAGAProfileAnswerQuestion } from "../../Redux/actions/actionCreator";
 import WorkflowAdd from "./WorkflowAdd";
 import { nanoid } from "nanoid";
 
@@ -28,6 +28,9 @@ export default function CreateAnswer({ id, edit, count }) {
       }),
     }).then((e) => {
       dispatch(sagaLoadAnswers(process.env.REACT_APP_QUESTION + id));
+      dispatch(
+        addSAGAProfileAnswerQuestion(process.env.REACT_APP_PROFILE + state._id)
+      )
     });
   }
   return (
