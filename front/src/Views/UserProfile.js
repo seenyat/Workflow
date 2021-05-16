@@ -41,11 +41,11 @@ export default function UserProfile() {
     console.log(123);
     const login = nameInput.current.value;
     const info = nameInfo.current.value;
-    console.log(process.env.REACT_APP_PROFILE + user._id);
+    // console.log(process.env.REACT_APP_PROFILE + user._id);
 
     dispatch(
       sagaEditProfile(
-        fetchCreator(`http://localhost:4000/profile/${user._id}`, "PUT", {
+        fetchCreator(process.env.REACT_APP_PROFILE + user._id, "PUT", {
           login,
           info,
         })
