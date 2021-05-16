@@ -4,10 +4,7 @@ import { useSelector } from "react-redux";
 import DesktopSidebar from "./DesktopSidebar";
 import MobileMenu from "./MobileMenu";
 
-export default function Example({
-  mobileMenuOpen,
-  setMobileMenuOpen,
-}) {
+export default function Example({ mobileMenuOpen, setMobileMenuOpen }) {
   const [sidebarNavigation, setSidebarNavigation] = useState(sideBarMenu);
   const auth = useSelector((state) => state.auth);
 
