@@ -3,7 +3,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { sagaLoadAnswers } from "../../Redux/actions/actionCreator";
 
-export default function Workflow({ todo, id }) {
+export default function Workflow({ todo, id, qId }) {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   function addWorkflow() {
@@ -14,7 +14,7 @@ export default function Workflow({ todo, id }) {
       },
       body: JSON.stringify({ todo: todo[0], userID: user._id }),
     });
-    dispatch(sagaLoadAnswers(process.env.REACT_APP_QUESTION + id));
+    dispatch(sagaLoadAnswers(process.env.REACT_APP_QUESTION + qId));
   }
   function checkIfTodoAdded(user, id) {
     let exists = false;

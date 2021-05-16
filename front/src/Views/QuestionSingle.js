@@ -31,6 +31,7 @@ export default function QuestionSingle() {
       <QuestionBody question={question} />
       {user ? <CreateAnswer id={id} /> : <Warning />}
       <AnswerList
+        qId={id}
         answers={question.answers.sort(
           (a, b) => b.likes.length - a.likes.length
         )}

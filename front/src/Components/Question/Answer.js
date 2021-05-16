@@ -6,7 +6,7 @@ import Workflow from "./Workflow";
 import Time from "../../Utils/Time";
 import Like from "../Partials/Like";
 
-export default function Answer({ item }) {
+export default function Answer({ item, qId }) {
   const [author, setAuthor] = useState({});
 
   const dispatch = useDispatch();
@@ -54,7 +54,7 @@ export default function Answer({ item }) {
         <Like like={likeAnswer} likeCount={item.likes.length} />
       </div>
       <h1 className="font-bold text-2xl">{item.comment}</h1>
-      <Workflow todo={item.workflows} id={item._id} />
+      <Workflow qId={qId} todo={item.workflows} id={item._id} />
       <div className="px-4 relative text-sm sm:p-6 w-max text-gray-400 right-2 top-2">
         <Time time={item.date} />
       </div>
