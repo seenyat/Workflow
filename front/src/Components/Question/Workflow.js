@@ -7,14 +7,14 @@ export default function Workflow({ todo, id }) {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   function addWorkflow() {
-    fetch("http://localhost:4000/profile/addworkflow", {
+    fetch(process.env.REACT_APP_PROFILE_ADD_WORKFLOW, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ todo: todo[0], userID: user._id }),
     });
-    dispatch(sagaLoadAnswers(`http://localhost:4000/question/${id}`));
+    dispatch(sagaLoadAnswers(process.env.REACT_APP_QUESTION + id));
   }
   function checkIfTodoAdded(user, id) {
     let exists = false;

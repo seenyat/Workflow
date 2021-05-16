@@ -2,7 +2,6 @@ import { Listbox, Transition } from "@headlessui/react";
 import { useState, Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  changeRedirectStatus,
   sagaPostQuestion,
 } from "../../Redux/actions/actionCreator";
 import fetchCreator from "../../Redux/fetchCreator";
@@ -41,7 +40,7 @@ export default function FormQuestion() {
     const theme = selected.theme;
     dispatch(
       sagaPostQuestion(
-        fetchCreator("http://localhost:4000/question", "POST", {
+        fetchCreator(process.env.REACT_APP_QUESTION, "POST", {
           title,
           body,
           theme,

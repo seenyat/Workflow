@@ -1,5 +1,4 @@
 import express from "express";
-import mongoose from "mongoose";
 import passport from "passport";
 import GitHubStrategy from "passport-github";
 import dotenv from "dotenv";
@@ -29,7 +28,7 @@ passport.use(
     {
       clientID: process.env.GITHUB_CLIENT_ID,
       clientSecret: process.env.GITHUB_CLIENT_SECRET,
-      callbackURL: "http://localhost:4000/login/auth/github/callback",
+      callbackURL: process.env.GITHUB_CLIENT_CALLBACK_URL,
     },
     async function (accessToken, refreshToken, profile, cb) {
       const { name, avatar_url, login, email, id } = profile._json;
@@ -73,14 +72,14 @@ router.get(
   "/login/auth/github/callback",
   passport.authenticate("github", {
     failureRedirect: "/",
-    successRedirect: "http://localhost:3000/",
+    successRedirect: process.env.MAIN_BACK,
   })
 );
 
 router.get("/logout", (req, res) => {
   res.clearCookie("Workflow");
   req.session.destroy(function (err) {
-    res.redirect("http://localhost:3000/");
+    res.redirect(process.env.MAIN_BACK);
   });
 });
 

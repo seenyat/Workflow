@@ -12,12 +12,10 @@ export default function RightColumn() {
   useEffect(() => {
     if (user) {
       dispatch(
-        addSAGAProfileAnswerQuestion(
-          `http://localhost:4000/profile/${user._id}`
-        )
+        addSAGAProfileAnswerQuestion(process.env.REACT_APP_PROFILE + user._id)
       );
     }
-  }, [user]);
+  }, [dispatch, user]);
 
   return (
     <div>

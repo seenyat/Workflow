@@ -1,9 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState, useRef } from "react";
-import {
-  changeHeaderModalStatus,
-  sagaEditQuestion,
-} from "../Redux/actions/actionCreator";
+import { changeHeaderModalStatus } from "../Redux/actions/actionCreator";
 import {
   addSAGAProfileAnswerQuestion,
   sagaEditProfile,
@@ -22,9 +19,7 @@ export default function UserProfile() {
   useEffect(() => {
     if (user) {
       dispatch(
-        addSAGAProfileAnswerQuestion(
-          `http://localhost:4000/profile/${user._id}`
-        )
+        addSAGAProfileAnswerQuestion(process.env.REACT_APP_PROFILE + user._id)
       );
       // fetch(`http://localhost:4000/profile/${user._id}`, {
       //   method: "GET",
@@ -34,7 +29,7 @@ export default function UserProfile() {
       //   )
       // );
     }
-  }, [user]);
+  }, [dispatch, user]);
 
   const handleEdit = (e) => {
     setEdit(true);
@@ -48,7 +43,7 @@ export default function UserProfile() {
 
     dispatch(
       sagaEditProfile(
-        fetchCreator(`http://localhost:4000/profile/${user._id}`, "PUT", {
+        fetchCreator(process.env.REACT_APP_PROFILE + user._id, "PUT", {
           login,
           info,
         })

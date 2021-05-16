@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Member from "../Components/Member";
 
 export default function About() {

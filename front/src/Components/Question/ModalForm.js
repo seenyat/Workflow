@@ -40,7 +40,7 @@ export default function ModalForm() {
 
     dispatch(
       sagaPostQuestion(
-        fetchCreator("http://localhost:4000/question", "POST", {
+        fetchCreator(process.env.REACT_APP_QUESTION, "POST", {
           title,
           body,
           theme,

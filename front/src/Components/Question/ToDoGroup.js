@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function ToDoGroup({ Header, setTodo, todo, todoList, ind }) {
   function expandTodoGroup(e) {
     if (e.key === "Enter") {
