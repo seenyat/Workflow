@@ -74,6 +74,7 @@ export default function MobileMenu({
                           return (
                             <MobileMenuItem
                               nav={nav}
+                              key={item.name}
                               setNav={setNav}
                               item={item}
                             />

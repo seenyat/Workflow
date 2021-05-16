@@ -76,7 +76,7 @@ export default function Answer({ item, qId }) {
           // <div className="px-4 text-sm sm:p-6 w-max text-gray-400 ">
           <i
             onClick={() => deleteAnswer()}
-            className="fas pl-3 pt-1 fa-trash-alt text-black "
+            className="fas transition hover:text-red-300 cursor-pointer pl-3 pt-1 fa-trash-alt text-black "
             aria-hidden="true"
           ></i>
         ) : // </div>
