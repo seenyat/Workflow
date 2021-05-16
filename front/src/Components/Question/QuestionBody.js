@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  sagaDeleteQuestion,
   sagaEditQuestion,
   sagaLikeQuestionAC,
 } from "../../Redux/actions/actionCreator";
@@ -45,6 +46,18 @@ export default function QuestionBody({ question, hideEdit }) {
       )
     );
     setEditStatus(false);
+  };
+
+  const deleteQuestion = () => {
+    dispatch(
+      sagaDeleteQuestion(
+        fetchCreator(
+          process.env.REACT_APP_QUESTION + question._id,
+          "DELETE",
+          {}
+        )
+      )
+    );
   };
 
   return (
@@ -98,6 +111,15 @@ export default function QuestionBody({ question, hideEdit }) {
             <i
               onClick={() => setEditStatus(!editStatus)}
               className="fa fa-pencil text-black "
+              aria-hidden="true"
+            ></i>
+          </div>
+        ) : null}
+        {user && user._id === question.author._id && !hideEdit ? (
+          <div className="px-4 text-sm sm:p-6 w-max text-gray-400 ">
+            <i
+              onClick={() => deleteQuestion()}
+              className="fas  fa-trash-alt text-black "
               aria-hidden="true"
             ></i>
           </div>

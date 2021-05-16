@@ -44,15 +44,27 @@ router.put("/:id", async (req, res) => {
 
 router.delete("/:id", async (req, res) => {
   const { id } = req.params;
-  await Question.findByIdAndDelete(id, (error, questionToDelete) => {
-    if (error) {
-      res.status(400).json({ delete: false, error });
-    } else if (!questionToDelete) {
-      res.status(404).json({ delete: false });
-    } else {
-      res.status(200).json({ delete: true, id });
-    }
+
+  const question = await Question.findById(id);
+
+  await question.answers.map(async (ans) => {
+    await Answer.findByIdAndDelete(ans);
   });
+
+  await Question.findByIdAndDelete(id);
+
+  // console.log(question);
+
+  // await Question.findByIdAndDelete(id, (error, questionToDelete) => {
+  //   if (error) {
+  //     res.status(400).json({ delete: false, error });
+  //   } else if (!questionToDelete) {
+  //     res.status(404).json({ delete: false });
+  //   } else {
+  //     res.status(200).json({ delete: true, id });
+  //   }
+  // });
+  res.json(id);
 });
 
 router.post("/like", async (req, res) => {

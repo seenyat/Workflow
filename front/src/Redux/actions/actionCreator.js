@@ -22,6 +22,8 @@ import {
   SAGA_ADD_PROFILE_QA,
   EDIT_PROFILE,
   SAGA_EDIT_PROFILE,
+  SAGA_DELETE_QUESTION,
+  DELETE_QUESTION,
   SAGA_TOGGLE_TODO,
   TOGGLE_TODO,
 } from "./actionTypes";
@@ -139,6 +141,13 @@ export const sagaEditProfile = (payload) => ({
   payload,
 });
 
+export const sagaDeleteQuestion = (payload) => ({
+  type: SAGA_DELETE_QUESTION,
+  payload,
+});
+
+export const deleteQuestion = (payload) => ({
+  type: DELETE_QUESTION,
 export const sagaToggleTodo = (payload) => ({
   type: SAGA_TOGGLE_TODO,
   payload,

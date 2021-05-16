@@ -22,6 +22,7 @@ import {
   SAGA_POST_QUESTION,
   SAGA_ADD_PROFILE_QA,
   SAGA_EDIT_PROFILE,
+  SAGA_DELETE_QUESTION,
   SAGA_TOGGLE_TODO,
 } from "./actions/actionTypes";
 
@@ -87,6 +88,9 @@ function* editProfileWorker(action) {
   yield put(editProfile(editProfilelog));
 }
 
+function* deleteQuestionWorker(action) {
+  const deleteQuestion = yield call(fetchForAll, action.payload);
+  yield put(deleteQuestion)
 function* toggleTodoWorker(action) {
   const toggledTodo = yield call(fetchForAll, action.payload);
   yield put(toggleTodo(toggledTodo));
@@ -102,5 +106,6 @@ export default function* watcher() {
   yield takeEvery(SAGA_EDIT_QUESTION, editQuestionWorker);
   yield takeEvery(SAGA_ADD_PROFILE_QA, addProfileAnswerQuestionWorker);
   yield takeEvery(SAGA_EDIT_PROFILE, editProfileWorker);
+  yield takeEvery(SAGA_DELETE_QUESTION, deleteQuestionWorker);
   yield takeEvery(SAGA_TOGGLE_TODO, toggleTodoWorker);
 }
