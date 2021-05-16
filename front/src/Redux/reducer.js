@@ -13,7 +13,8 @@ import {
   LIKE_ANSWER,
   CHANGE_REDIRECT_STATUS,
   ADD_PROFILE_QA,
-  DELETE_QUESTION
+  DELETE_QUESTION,
+  DELETE_ANSWER,
 } from "./actions/actionTypes";
 
 const reducer = (state, action) => {
@@ -143,21 +144,33 @@ const reducer = (state, action) => {
       };
 
     case ADD_PROFILE_QA:
-    return {
-      ...state,
-      prof:action.payload
-    }
-
-  case DELETE_QUESTION:
-    return {
-      ...state,
-
-    }
-
       return {
         ...state,
         prof: action.payload,
       };
+
+    case DELETE_QUESTION:
+      return {
+        ...state,
+        questions: state.questions.filter((que) => que._id !== action.payload),
+      };
+
+    case DELETE_ANSWER:
+      console.log(action.payload);
+      return {
+        ...state,
+        questions: state.questions.map((que) =>
+          que._id !== action.payload.questionID
+            ? que
+            : {
+                ...que,
+                answers: que.answers.filter(
+                  (ans) => String(ans._id) !== String(action.payload.answerID)
+                ),
+              }
+        ),
+      };
+
     default:
       return state;
   }

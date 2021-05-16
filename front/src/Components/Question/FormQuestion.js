@@ -1,9 +1,7 @@
 import { Listbox, Transition } from "@headlessui/react";
 import { useState, Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  sagaPostQuestion,
-} from "../../Redux/actions/actionCreator";
+import { sagaPostQuestion } from "../../Redux/actions/actionCreator";
 import fetchCreator from "../../Redux/fetchCreator";
 import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
 import { Redirect } from "react-router-dom";
@@ -28,6 +26,11 @@ export default function FormQuestion() {
   const user = useSelector((state) => state.user);
 
   const redirect = useSelector((state) => state.redirect);
+  const [redirectStatus, setRedirectStatus] = useState();
+
+  useEffect(() => {
+    setRedirectStatus(redirect);
+  }, [redirect]);
 
   const questions = useSelector((state) => state.questions);
 
@@ -55,7 +58,7 @@ export default function FormQuestion() {
 
   useEffect(() => {
     setLastQue(questions[questions.length - 1]);
-  }, [questions, dispatch]);
+  }, [questions, dispatch, redirect]);
 
   return (
     <>
@@ -191,7 +194,7 @@ export default function FormQuestion() {
           </button>
         </form>
       )}
-      {redirect ? <Redirect to={`/question/${lastQue._id}`} /> : null}
+      {redirectStatus ? <Redirect to={`/question/${lastQue._id}`} /> : null}
     </>
   );
 }

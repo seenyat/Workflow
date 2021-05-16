@@ -11,10 +11,13 @@ import AuthorCard from "../Partials/AuthorCard";
 import Like from "../Partials/Like";
 import Time from "../../Utils/Time";
 import { themeIcons } from "../../Utils/themeIcons";
+import { Redirect } from "react-router-dom";
 
 export default function QuestionBody({ question, hideEdit }) {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
+
+  const redirectStatus = useSelector((state) => state.redirect);
 
   const [editStatus, setEditStatus] = useState(false);
 
@@ -124,6 +127,7 @@ export default function QuestionBody({ question, hideEdit }) {
             ></i>
           </div>
         ) : null}
+        {redirectStatus && <Redirect to="/" />}
       </div>
     </div>
   );
