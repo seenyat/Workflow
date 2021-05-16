@@ -38,25 +38,32 @@ export default function UserProfile() {
   const nameInfo = useRef();
   const handle = (e) => {
     e.preventDefault();
+    console.log(123);
     const login = nameInput.current.value;
     const info = nameInfo.current.value;
+    console.log(process.env.REACT_APP_PROFILE + user._id);
 
     dispatch(
       sagaEditProfile(
-        fetchCreator(process.env.REACT_APP_PROFILE + user._id, "PUT", {
+        fetchCreator(`http://localhost:4000/profile/${user._id}`, "PUT", {
           login,
           info,
         })
       )
     );
-    // fetch(`http://localhost:4000/profile/${user._id}`, {
-    //   method: "PUT",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify({
-    //     login,
+
+    // dispatch(
+    //   sagaEditProfile(
+    //     fetchCreator(``, "PUT", {
+    //       login,
+    //       info,
+    //     })
+    //   )
+
     //     info,
     //   }),
     // })
+
     //   .then((data) => data.json())
     //   .then((profile) => dispatch({ type: EDIT_PROFILE, payload: profile }))
     setEdit(false);
