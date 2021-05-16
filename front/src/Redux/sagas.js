@@ -9,7 +9,7 @@ import {
   loadQuestions,
   postQuestion,
   addProfileAnswerQuestion,
-  editProfile
+  editProfile,
 } from "./actions/actionCreator";
 import {
   SAGA_AUTH,
@@ -20,7 +20,7 @@ import {
   SAGA_LOAD_QUESTIONS,
   SAGA_POST_QUESTION,
   SAGA_ADD_PROFILE_QA,
-  SAGA_EDIT_PROFILE
+  SAGA_EDIT_PROFILE,
 } from "./actions/actionTypes";
 
 const fetchForAll = async (payload) => {
@@ -45,7 +45,7 @@ function* postQuestionWorker(action) {
 
 function* loadQuestionsWorker(action) {
   const newInfo = yield call(fetchForGet, action.payload);
-  yield console.log(newInfo );
+  yield console.log(newInfo);
   yield put(loadQuestions(newInfo));
 }
 
@@ -75,15 +75,14 @@ function* editQuestionWorker(action) {
   yield put(editQuestion(updatedQuestion));
 }
 
-function* addProfileAnswerQuestionWorker(action){
-  const profileAnswerQuestion = yield call(fetchForGet,action.payload)
-  yield put(addProfileAnswerQuestion(profileAnswerQuestion))
+function* addProfileAnswerQuestionWorker(action) {
+  const profileAnswerQuestion = yield call(fetchForGet, action.payload);
+  yield put(addProfileAnswerQuestion(profileAnswerQuestion));
 }
 
-function* editProfileWorker(action){
-  const editProfilelog = yield call(fetchForGet,action.payload)
-  yield put(editProfile(editProfilelog))
-
+function* editProfileWorker(action) {
+  const editProfilelog = yield call(fetchForAll, action.payload);
+  yield put(editProfile(editProfilelog));
 }
 
 export default function* watcher() {
@@ -94,6 +93,6 @@ export default function* watcher() {
   yield takeEvery(SAGA_LIKE_QUESTION, likeQuestionWorker);
   yield takeEvery(SAGA_LOAD_ANSWERS, loadAnswersWorker);
   yield takeEvery(SAGA_EDIT_QUESTION, editQuestionWorker);
-  yield takeEvery(SAGA_ADD_PROFILE_QA,addProfileAnswerQuestionWorker);
-  yield takeEvery(SAGA_EDIT_PROFILE,editProfileWorker)
+  yield takeEvery(SAGA_ADD_PROFILE_QA, addProfileAnswerQuestionWorker);
+  yield takeEvery(SAGA_EDIT_PROFILE, editProfileWorker);
 }
