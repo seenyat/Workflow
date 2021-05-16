@@ -15,8 +15,8 @@ export default function ContentHeader({ setMobileMenuOpen }) {
   const auth = useSelector((state) => state.auth);
   const user = useSelector((state) => state.user);
   const [userNavigation] = useState([
-    { name: "Profile", href: "/profile" },
-    { name: "Logout", href: "" },
+    { name: "Профиль", href: "/profile" },
+    { name: "Выйти", href: "" },
   ]);
   const dispatch = useDispatch();
 

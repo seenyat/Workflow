@@ -41,11 +41,11 @@ export default function UserProfile() {
     console.log(123);
     const login = nameInput.current.value;
     const info = nameInfo.current.value;
-    console.log(process.env.REACT_APP_PROFILE + user._id);
+    // console.log(process.env.REACT_APP_PROFILE + user._id);
 
     dispatch(
       sagaEditProfile(
-        fetchCreator(`http://localhost:4000/profile/${user._id}`, "PUT", {
+        fetchCreator(process.env.REACT_APP_PROFILE + user._id, "PUT", {
           login,
           info,
         })
@@ -105,13 +105,6 @@ export default function UserProfile() {
                   {user.login}
                 </h1>
               )}
-
-              <p className="text-sm font-medium text-gray-500">
-                Status:{" "}
-                <a href="#" className="text-gray-900">
-                  {user.role}
-                </a>{" "}
-              </p>
             </div>
           </div>
         </div>
@@ -126,7 +119,7 @@ export default function UserProfile() {
                     id="applicant-information-title"
                     className="text-lg leading-6 font-medium text-gray-900"
                   >
-                    Profile
+                    Профиль
                   </h2>
                   <button
                     onClick={handleEdit}
@@ -195,7 +188,7 @@ export default function UserProfile() {
                       id="notes-title"
                       className="text-lg font-medium text-gray-900"
                     >
-                      Answers
+                      Ответы
                     </h2>
                   </div>
                   <div className="px-4 py-6 sm:px-6">
@@ -219,7 +212,7 @@ export default function UserProfile() {
                 id="timeline-title"
                 className="text-lg font-medium text-gray-900"
               >
-                Questions
+                Вопросы
               </h2>
 
               {/* Questions */}
@@ -236,7 +229,7 @@ export default function UserProfile() {
                   onClick={() => dispatch(changeHeaderModalStatus(true))}
                   className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                 >
-                  Add Question
+                  Добавить вопрос
                 </button>
               </div>
             </div>
