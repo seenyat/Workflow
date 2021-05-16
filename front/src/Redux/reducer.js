@@ -12,7 +12,8 @@ import {
   LIKE_QUESTION,
   LIKE_ANSWER,
   CHANGE_REDIRECT_STATUS,
-  ADD_PROFILE_QA
+  ADD_PROFILE_QA,
+  DELETE_QUESTION
 } from "./actions/actionTypes";
 
 const reducer = (state, action) => {
@@ -142,11 +143,17 @@ const reducer = (state, action) => {
       };
 
     case ADD_PROFILE_QA:
-    
     return {
       ...state,
       prof:action.payload
     }
+
+  case DELETE_QUESTION:
+    return {
+      ...state,
+
+    }
+
     default:
       return state;
   }

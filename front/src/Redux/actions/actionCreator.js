@@ -21,8 +21,9 @@ import {
   ADD_PROFILE_QA,
   SAGA_ADD_PROFILE_QA,
   EDIT_PROFILE,
-  SAGA_EDIT_PROFILE
-
+  SAGA_EDIT_PROFILE,
+  SAGA_DELETE_QUESTION,
+  DELETE_QUESTION,
 } from "./actionTypes";
 
 export const sagaPostQuestion = (payload) => ({
@@ -115,8 +116,8 @@ export const editQuestion = (payload) => ({
 
 export const changeRedirectStatus = (payload) => ({
   type: CHANGE_REDIRECT_STATUS,
-  payload
-})
+  payload,
+});
 export const addProfileAnswerQuestion = (payload) => ({
   type: ADD_PROFILE_QA,
   payload,
@@ -127,8 +128,6 @@ export const addSAGAProfileAnswerQuestion = (payload) => ({
   payload,
 });
 
-
-
 export const editProfile = (payload) => ({
   type: EDIT_PROFILE,
   payload,
@@ -136,5 +135,15 @@ export const editProfile = (payload) => ({
 
 export const sagaEditProfile = (payload) => ({
   type: SAGA_EDIT_PROFILE,
+  payload,
+});
+
+export const sagaDeleteQuestion = (payload) => ({
+  type: SAGA_DELETE_QUESTION,
+  payload,
+});
+
+export const deleteQuestion = (payload) => ({
+  type: DELETE_QUESTION,
   payload,
 });
