@@ -12,7 +12,7 @@ import {
   LIKE_QUESTION,
   LIKE_ANSWER,
   CHANGE_REDIRECT_STATUS,
-  ADD_PROFILE_QA
+  ADD_PROFILE_QA,
 } from "./actions/actionTypes";
 
 const reducer = (state, action) => {
@@ -56,7 +56,7 @@ const reducer = (state, action) => {
     case TOGGLE_TODO:
       return {
         ...state,
-        user: { ...state.user, workflows: {} },
+        user: { ...state.user, workflows: action.payload },
       };
 
     case CHANGE_FEED_MODAL_STATUS:
@@ -142,11 +142,10 @@ const reducer = (state, action) => {
       };
 
     case ADD_PROFILE_QA:
-    
-    return {
-      ...state,
-      prof:action.payload
-    }
+      return {
+        ...state,
+        prof: action.payload,
+      };
     default:
       return state;
   }
