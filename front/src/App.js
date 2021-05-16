@@ -5,7 +5,7 @@ import Content from "./Views/Content";
 import { useEffect, useState } from "react";
 import classNames from "./Utils/classNames";
 import "./App.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   sagaAuthCheck,
   sagaLoadQuestions,
@@ -20,14 +20,12 @@ function App() {
 
   const dispatch = useDispatch();
 
-  const questions = useSelector((state) => state.questions);
-
   useEffect(() => {
-    dispatch(sagaLoadQuestions("http://localhost:4000/allquestions"));
+    dispatch(sagaLoadQuestions(process.env.REACT_APP_ALL_QUESTION));
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch(sagaAuthCheck("http://localhost:4000/"));
+    dispatch(sagaAuthCheck(process.env.REACT_APP_MAIN));
   }, [dispatch]);
 
   return (

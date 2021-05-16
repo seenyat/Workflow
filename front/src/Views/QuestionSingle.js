@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import QuestionBody from "../Components/Question/QuestionBody";
@@ -23,7 +23,7 @@ export default function QuestionSingle() {
   useEffect(() => {
     dispatch(changeRedirectStatus(false));
 
-    dispatch(sagaLoadAnswers(`http://localhost:4000/question/${id}`));
+    dispatch(sagaLoadAnswers(process.env.REACT_APP_QUESTION + id));
   }, [id, dispatch]);
 
   return question ? (

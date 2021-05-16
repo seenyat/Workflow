@@ -15,7 +15,7 @@ export default function CreateAnswer({ id, edit, count }) {
   const dispatch = useDispatch();
   function addAnswer(e) {
     e.preventDefault();
-    fetch("http://localhost:4000/answer", {
+    fetch(process.env.REACT_APP_ANSWER, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -27,7 +27,7 @@ export default function CreateAnswer({ id, edit, count }) {
         authorId: state._id,
       }),
     }).then((e) => {
-      dispatch(sagaLoadAnswers(`http://localhost:4000/question/${id}`));
+      dispatch(sagaLoadAnswers(process.env.REACT_APP_QUESTION + id));
     });
   }
   return (

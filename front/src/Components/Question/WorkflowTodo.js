@@ -6,7 +6,7 @@ export default function Workflow({ todo }) {
   const user = useSelector((state) => state.user);
   useEffect(() => {}, []);
   function addWorkflow() {
-    fetch("http://localhost:4000/profile/addworkflow", {
+    fetch(process.env.REACT_APP_PROFILE_ADD_WORKFLOW, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

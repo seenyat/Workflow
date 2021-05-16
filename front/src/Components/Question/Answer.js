@@ -1,10 +1,6 @@
-import { HeartIcon } from "@heroicons/react/outline";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  changeRedirectStatus,
-  sagaLikeAnswerAC,
-} from "../../Redux/actions/actionCreator";
+import { sagaLikeAnswerAC } from "../../Redux/actions/actionCreator";
 import fetchCreator from "../../Redux/fetchCreator";
 import Workflow from "./Workflow";
 import Time from "../../Utils/Time";
@@ -18,8 +14,7 @@ export default function Answer({ item }) {
   const user = useSelector((state) => state.user);
 
   useEffect(() => {
-
-    fetch(`http://localhost:4000/profile/${item.author}`).then((data) => {
+    fetch(process.env.REACT_APP_PROFILE + item.author).then((data) => {
       data.json().then((user) => {
         setAuthor(user);
       });
@@ -30,7 +25,7 @@ export default function Answer({ item }) {
     if (user) {
       dispatch(
         sagaLikeAnswerAC(
-          fetchCreator("http://localhost:4000/answer/like", "POST", {
+          fetchCreator(process.env.REACT_APP_ANSWER_LIKE, "POST", {
             userID: user._id,
             answerID: item._id,
           })

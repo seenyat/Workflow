@@ -23,7 +23,7 @@ export default function QuestionBody({ question, hideEdit }) {
     if (user) {
       dispatch(
         sagaLikeQuestionAC(
-          fetchCreator("http://localhost:4000/question/like", "POST", {
+          fetchCreator(process.env.REACT_APP_QUESTION_LIKE, "POST", {
             userID: user._id,
             questionID: question._id,
           })
@@ -38,7 +38,7 @@ export default function QuestionBody({ question, hideEdit }) {
     const body = e.target.body.value;
     dispatch(
       sagaEditQuestion(
-        fetchCreator(`http://localhost:4000/question/${question._id}`, "PUT", {
+        fetchCreator(process.env.REACT_APP_QUESTION + question._id, "PUT", {
           title,
           body,
         })
@@ -90,7 +90,9 @@ export default function QuestionBody({ question, hideEdit }) {
         <div className="px-4 text-sm sm:p-6 w-max text-gray-400 ">
           <Time time={question.date} />
         </div>
-        <div className="px-4 text-sm sm:p-6 w-max text-gray-400 ">Ответов: {question.answers.length}</div>
+        <div className="px-4 text-sm sm:p-6 w-max text-gray-400 ">
+          Ответов: {question.answers.length}
+        </div>
         {user && user._id === question.author._id && !hideEdit ? (
           <div className="px-4 text-sm sm:p-6 w-max text-gray-400 ">
             <i

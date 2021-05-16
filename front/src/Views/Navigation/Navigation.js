@@ -7,8 +7,6 @@ import MobileMenu from "./MobileMenu";
 export default function Example({
   mobileMenuOpen,
   setMobileMenuOpen,
-  userNavigation,
-  classNames,
 }) {
   const [sidebarNavigation, setSidebarNavigation] = useState(sideBarMenu);
   const auth = useSelector((state) => state.auth);

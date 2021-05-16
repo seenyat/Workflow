@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Warning from "../Components/Partials/Warning";
 import {
   sagaAuthCheck,
   sagaLoadQuestions,
@@ -19,8 +18,8 @@ export default function MainFeed() {
 
   // Database renew
   useEffect(() => {
-    dispatch(sagaLoadQuestions("http://localhost:4000/allquestions"));
-    dispatch(sagaAuthCheck("http://localhost:4000/"));
+    dispatch(sagaLoadQuestions(process.env.REACT_APP_ALL_QUESTION));
+    dispatch(sagaAuthCheck(process.env.REACT_APP_MAIN));
   }, [dispatch]);
 
   useEffect(() => {
