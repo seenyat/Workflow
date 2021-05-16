@@ -57,7 +57,7 @@ const reducer = (state, action) => {
     case TOGGLE_TODO:
       return {
         ...state,
-        user: { ...state.user, workflows: {} },
+        user: { ...state.user, workflows: action.payload },
       };
 
     case CHANGE_FEED_MODAL_STATUS:
@@ -154,6 +154,10 @@ const reducer = (state, action) => {
 
     }
 
+      return {
+        ...state,
+        prof: action.payload,
+      };
     default:
       return state;
   }

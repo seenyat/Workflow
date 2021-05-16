@@ -73,7 +73,7 @@ router.post("/like", async (req, res) => {
   let question = await Question.findById(questionID);
   if (question.likes.includes(userID)) {
     question.likes = question.likes.filter((el) => {
-      return el === userID;
+      return String(el) !== String(userID);
     });
     await question.save();
     res.status(200).json(question);

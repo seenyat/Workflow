@@ -24,6 +24,8 @@ import {
   SAGA_EDIT_PROFILE,
   SAGA_DELETE_QUESTION,
   DELETE_QUESTION,
+  SAGA_TOGGLE_TODO,
+  TOGGLE_TODO,
 } from "./actionTypes";
 
 export const sagaPostQuestion = (payload) => ({
@@ -118,6 +120,7 @@ export const changeRedirectStatus = (payload) => ({
   type: CHANGE_REDIRECT_STATUS,
   payload,
 });
+
 export const addProfileAnswerQuestion = (payload) => ({
   type: ADD_PROFILE_QA,
   payload,
@@ -145,5 +148,12 @@ export const sagaDeleteQuestion = (payload) => ({
 
 export const deleteQuestion = (payload) => ({
   type: DELETE_QUESTION,
+export const sagaToggleTodo = (payload) => ({
+  type: SAGA_TOGGLE_TODO,
+  payload,
+});
+
+export const toggleTodo = (payload) => ({
+  type: TOGGLE_TODO,
   payload,
 });

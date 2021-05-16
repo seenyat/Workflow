@@ -26,7 +26,7 @@ router.post("/like", async (req, res) => {
   let answer = await Answer.findById(answerID);
   if (answer.likes.includes(userID)) {
     answer.likes = answer.likes.filter((el) => {
-      return el === userID;
+      return String(el) !== String(userID);
     });
     await answer.save();
     res.status(200).json(answer);
