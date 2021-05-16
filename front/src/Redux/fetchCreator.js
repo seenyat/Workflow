@@ -4,11 +4,11 @@ const fetchCreator = (url, method, body) => {
     constructor: {
       method,
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(body)
-    }
-  }
-}
+      body: JSON.stringify(body),
+    },
+  };
+};
 
-export default fetchCreator
+export default fetchCreator;
