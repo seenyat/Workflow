@@ -39,12 +39,12 @@ export default function Workflow({ todo, id, qId }) {
               <div className="text-gray-300 select-none ml-1 font-mono text-sm">
                 План действий
               </div>
-              <div>добавить себе</div>
+              <div>Добавить себе</div>
             </>
           ) : (
             <div className="text-green-400 opacity-50 text-md flex items-center">
               <MailOpenIcon className="relative  w-5 h-5 mr-0.5" />
-              <div>cохранено</div>
+              <div>Сохранено</div>
             </div>
           )}
         </div>
