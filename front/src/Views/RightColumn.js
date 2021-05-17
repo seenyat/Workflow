@@ -17,7 +17,7 @@ export default function RightColumn() {
   //   }
   // }, [dispatch, user]);
 
-  return (
+  return user ? (
     <div>
       <ul className="divide-y divide-gray-200">
         {answers?.map((answer) => (
@@ -32,8 +32,7 @@ export default function RightColumn() {
                 <div className="flex items-center justify-between">
                   <Link to={`/question/${answer.question._id}`}>
                     <h3 className="text-sm font-medium">
-                      {" "}
-                      Вопрос: {answer.question.title}{" "}
+                      Вопрос: {answer.question.title}
                     </h3>
                   </Link>
                   <div className="text-sm text-gray-500">
@@ -48,5 +47,5 @@ export default function RightColumn() {
         ))}
       </ul>
     </div>
-  );
+  ) : null;
 }
