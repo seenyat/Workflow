@@ -6,8 +6,9 @@ import { addSAGAProfileAnswerQuestion } from "../Redux/actions/actionCreator";
 
 export default function RightColumn() {
   const user = useSelector((state) => state.user);
-  const prof = useSelector((state) => state.prof);
- 
+  // const prof = useSelector((state) => state.prof);
+  const state = useSelector((state) => state);
+  console.log(state); 
   const dispatch = useDispatch();
   useEffect(() => {
     if (user) {
@@ -20,7 +21,7 @@ export default function RightColumn() {
   return (
     <div>
       <ul className="divide-y divide-gray-200">
-        {prof?.answers.map((answer) => (
+        {state.answers?.map((answer) => (
           <li key={answer._id} className="py-4">
             <div className="flex space-x-3">
               <img
