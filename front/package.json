@@ -21,11 +21,9 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "craco": "^0.0.3",
-    "lodash": "^4.17.21",
-    "lodash-es": "^4.17.21",
-
     "editorjs-blocks-react-renderer": "^1.1.1",
     "editorjs-react-renderer": "^2.7.3",
+    "lodash-es": "^4.17.21",
     "nanoid": "^3.1.23",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
