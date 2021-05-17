@@ -19,10 +19,8 @@ export default function Workflow({ todo, id, qId }) {
   function checkIfTodoAdded(user, id) {
     let exists = false;
     user.workflows.forEach((w, i) => {
-      console.log(i, w.id, id);
       if (w.id === id) {
         exists = true;
-        console.log("found");
       }
     });
     return exists;
