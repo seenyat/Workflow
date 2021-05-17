@@ -8,7 +8,7 @@ export default function Feed({ filters, filter, questions }) {
 
   return (
     <>
-      <div className=" overflow-auto flex flex-col m-3 items-center ">
+      <div className=" overflow-auto h-full flex flex-col m-3 items-center ">
         <div className="flex justify-evenly w-full space-x-10">
           {user && <FormQuestion />}
         </div>

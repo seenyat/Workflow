@@ -6,21 +6,21 @@ import { addSAGAProfileAnswerQuestion } from "../Redux/actions/actionCreator";
 
 export default function RightColumn() {
   const user = useSelector((state) => state.user);
-  const prof = useSelector((state) => state.prof);
-
+  // const prof = useSelector((state) => state.prof);
+  const answers = useSelector((state) => state.answers);
   const dispatch = useDispatch();
-  useEffect(() => {
-    if (user) {
-      dispatch(
-        addSAGAProfileAnswerQuestion(process.env.REACT_APP_PROFILE + user._id)
-      );
-    }
-  }, [dispatch, user]);
+  // useEffect(() => {
+  //   if (user) {
+  //     dispatch(
+  //       addSAGAProfileAnswerQuestion(process.env.REACT_APP_PROFILE + user._id)
+  //     );
+  //   }
+  // }, [dispatch, user]);
 
-  return (
+  return user ? (
     <div>
       <ul className="divide-y divide-gray-200">
-        {prof?.answers.map((answer) => (
+        {answers?.map((answer) => (
           <li key={answer._id} className="py-4">
             <div className="flex space-x-3">
               <img
@@ -32,8 +32,7 @@ export default function RightColumn() {
                 <div className="flex items-center justify-between">
                   <Link to={`/question/${answer.question._id}`}>
                     <h3 className="text-sm font-medium">
-                      {" "}
-                      Вопрос: {answer.question.title}{" "}
+                      Вопрос: {answer.question.title}
                     </h3>
                   </Link>
                   <div className="text-sm text-gray-500">
@@ -48,5 +47,5 @@ export default function RightColumn() {
         ))}
       </ul>
     </div>
-  );
+  ) : null;
 }

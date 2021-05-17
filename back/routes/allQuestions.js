@@ -10,7 +10,7 @@ router.get("/", async (req, res) => {
     .populate("answers");
   const answersList = await Answer.find({})
     .populate("author")
-    .populate("answers");
+    .populate("question");
   res.json({ answersList, questionsList, cookies: req.cookies });
 });
 
