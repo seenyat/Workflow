@@ -80,7 +80,7 @@ const reducer = (state, action) => {
       };
 
     case CHANGE_HEADER_MODAL_STATUS:
-      return {
+      return { 
         ...state,
         modals: state.modals.map((modal) =>
           modal.page !== "headermodal"
