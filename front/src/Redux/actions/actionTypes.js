@@ -44,3 +44,5 @@ export const SAGA_TOGGLE_TODO = "SAGA_TOGGLE_TODO";
 
 export const SAGA_DELETE_ANSWER = 'SAGA_DELETE_ANSWER'
 export const DELETE_ANSWER = 'DELETE_ANSWER'
+
+export const ADD_ANSWER = "ADD_ANSWER"

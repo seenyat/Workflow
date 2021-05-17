@@ -28,6 +28,7 @@ import {
   TOGGLE_TODO,
   SAGA_DELETE_ANSWER,
   DELETE_ANSWER,
+  ADD_ANSWER,
 } from "./actionTypes";
 
 export const sagaPostQuestion = (payload) => ({
@@ -171,3 +172,8 @@ export const deleteAnswer = (payload) => ({
   type: DELETE_ANSWER,
   payload,
 });
+
+export const addAnswer = (payload) => ({
+  type: ADD_ANSWER,
+  payload
+})
