@@ -188,10 +188,22 @@ const reducer = (state, action) => {
       return {
         ...state,
         answers: state.answers.map((answ) =>
-          answ._id === action.payload.answer
-            ? { ...answ, comments: action.payload._id }
+          answ._id === action.payload.comment.answer
+            ? { ...answ, comments: action.payload.comment }
             : answ
         ),
+        questions: state.questions.map((que) => {
+          return que._id === action.payload.questionId
+            ? {
+                ...que,
+                answers: que.answers.map((answ) => {
+                  return answ._id === action.payload.comment.answer
+                    ? { ...answ, comments: action.payload.comment }
+                    : answ;
+                }),
+              }
+            : que;
+        }),
       };
 
     default:

@@ -7,7 +7,11 @@ const router = express.Router();
 router.get("/", async (req, res) => {
   const questionsList = await Question.find({})
     .populate("author")
-    .populate("answers");
+    .populate("answers")
+    .populate({
+      path: "answers",
+      populate: { path: "comments", model: "Comment" },
+    });
   const answersList = await Answer.find({})
     .populate("author")
     .populate("question");

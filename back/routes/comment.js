@@ -16,7 +16,7 @@ router.post("/", async (req, res) => {
   const answer = await Answer.findById(answerId);
   answer.comments.push(comment._id);
   await answer.save();
-  res.status(200).json(comment);
+  res.status(200).json({ comment, questionId: answer.question });
 });
 
 export default router;
