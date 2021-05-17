@@ -2,6 +2,17 @@ import express from "express";
 import mongoose from "mongoose";
 import Answer from "../models/Answer.js";
 import Question from "../models/Question.js";
+import nodemailer from "nodemailer";
+
+const workflowEmailAccount = await nodemailer.createTestAccount();
+
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: "workflowelbrus@gmail.com",
+    pass: "WorkflowElbrus2021",
+  },
+});
 
 const router = express.Router();
 
@@ -17,6 +28,12 @@ router.post("/", async (req, res) => {
   const question = await Question.findById(id);
   question.answers.push(answer._id);
   await question.save();
+  await transporter.sendMail({
+    from: 'workflowelbrus@gmail.com"',
+    to: "ershovilya97@gmail.com",
+    subject: "Новый ответ на Ваш вопрос",
+    html: "Перейдите по ссылке для просмотра новго ответа на Ваш вопрос",
+  });
   res.status(200).json(answer);
 });
 
@@ -27,7 +44,7 @@ router.delete("/", async (req, res) => {
   );
   await questionForUpdate.save();
   await Answer.findByIdAndDelete(req.body.answerID);
-  res.json({questionID: req.body.questionID, answerID: req.body.answerID});
+  res.json({ questionID: req.body.questionID, answerID: req.body.answerID });
 });
 
 router.post("/like", async (req, res) => {
