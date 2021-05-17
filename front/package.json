@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@bomdi/codebox": "^1.0.12",
     "@dh-react-hooks/use-timeago": "^0.4.1",
     "@fortawesome/fontawesome-free": "^5.15.3",
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
@@ -19,6 +20,8 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "craco": "^0.0.3",
+    "editorjs-blocks-react-renderer": "^1.1.1",
+    "editorjs-react-renderer": "^2.7.3",
     "nanoid": "^3.1.23",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
