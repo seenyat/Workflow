@@ -8,16 +8,18 @@ export default function Feed({ filters, filter, questions }) {
 
   return (
     <>
-      <div className=" overflow-auto flex flex-col m-3 items-center ">
+      <div className=" overflow-auto h-full flex flex-col m-3 items-center ">
         <div className="flex justify-evenly w-full space-x-10">
           {user && <FormQuestion />}
         </div>
         <div className="w-full md:max-w-4xl flex flex-col space-y-5">
           <div className="w-full space-x-10 flex flex-row justify-center h-min">
             {filters.map((button) => (
-              <div className="flex flex-col justify-center text-center ">
+              <div
+                key={button.className}
+                className="flex flex-col justify-center text-center "
+              >
                 <i
-                  key={button.className}
                   onClick={() => filter(button.theme)}
                   className={`${
                     button.className
@@ -31,7 +33,7 @@ export default function Feed({ filters, filter, questions }) {
           </div>
 
           {questions.map((question) => (
-            <Link to={`/question/${question._id}`}>
+            <Link key={question._id} to={`/question/${question._id}`}>
               <QuestionBody hideEdit={true} question={question} />
             </Link>
           ))}

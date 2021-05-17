@@ -1,7 +1,7 @@
 import { MailOpenIcon } from "@heroicons/react/solid";
-import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { sagaLoadAnswers } from "../../Redux/actions/actionCreator";
+import { nanoid } from "nanoid";
 
 export default function Workflow({ todo, id, qId }) {
   const user = useSelector((state) => state.user);
@@ -19,10 +19,8 @@ export default function Workflow({ todo, id, qId }) {
   function checkIfTodoAdded(user, id) {
     let exists = false;
     user.workflows.forEach((w, i) => {
-      console.log(i, w.id, id);
       if (w.id === id) {
         exists = true;
-        console.log("found");
       }
     });
     return exists;
@@ -51,20 +49,22 @@ export default function Workflow({ todo, id, qId }) {
       </div>
       {todo[0].stages.map((el, i) => {
         return (
-          <>
-            <div className=" flex w-max items-center font-bold border-b mt-3 pr-5 pl-1 border-gray-100 text-2xl">
+          < >
+          {/* <div> */}
+            <div
+              key={nanoid()}
+              className=" flex w-max items-center font-bold border-b mt-3 pr-5 pl-1 border-gray-100 text-2xl"
+            >
               <div className="w-4 h-4 rounded-full border-4 mr-2 items-center text-gray-400"></div>
               {el.title}
             </div>
             {el.todos.map((todo, i) => (
-              <div
-                key={i + Math.random()}
-                className="flex  pt-2 ml-3 items-center"
-              >
+              <div key={nanoid()} className="flex  pt-2 ml-3 items-center">
                 <div className="w-2 h-2 rounded-full bg-gray-200"></div>
                 <div className="ml-3 ">{todo.value}</div>
               </div>
             ))}
+            {/* </div> */}
           </>
         );
       })}

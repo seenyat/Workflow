@@ -17,7 +17,18 @@ router.post("/", async (req, res) => {
   const question = await Question.findById(id);
   question.answers.push(answer._id);
   await question.save();
+  console.log(answer);
   res.status(200).json(answer);
+});
+
+router.delete("/", async (req, res) => {
+  let questionForUpdate = await Question.findById(req.body.questionID);
+  questionForUpdate.answers = questionForUpdate.answers.filter(
+    (ans) => String(ans) !== String(req.body.answerID)
+  );
+  await questionForUpdate.save();
+  await Answer.findByIdAndDelete(req.body.answerID);
+  res.json({ questionID: req.body.questionID, answerID: req.body.answerID });
 });
 
 router.post("/like", async (req, res) => {
@@ -26,7 +37,7 @@ router.post("/like", async (req, res) => {
   let answer = await Answer.findById(answerID);
   if (answer.likes.includes(userID)) {
     answer.likes = answer.likes.filter((el) => {
-      return el === userID;
+      return String(el) !== String(userID);
     });
     await answer.save();
     res.status(200).json(answer);

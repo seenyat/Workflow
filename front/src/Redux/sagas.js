@@ -11,6 +11,9 @@ import {
   addProfileAnswerQuestion,
   editProfile,
   toggleTodo,
+  deleteQuestion,
+  deleteAnswer,
+  addAnswer,
 } from "./actions/actionCreator";
 import {
   SAGA_AUTH,
@@ -22,7 +25,9 @@ import {
   SAGA_POST_QUESTION,
   SAGA_ADD_PROFILE_QA,
   SAGA_EDIT_PROFILE,
+  SAGA_DELETE_QUESTION,
   SAGA_TOGGLE_TODO,
+  SAGA_DELETE_ANSWER,
 } from "./actions/actionTypes";
 
 const fetchForAll = async (payload) => {
@@ -47,7 +52,6 @@ function* postQuestionWorker(action) {
 
 function* loadQuestionsWorker(action) {
   const newInfo = yield call(fetchForGet, action.payload);
-  yield console.log(newInfo);
   yield put(loadQuestions(newInfo));
 }
 
@@ -80,6 +84,7 @@ function* editQuestionWorker(action) {
 function* addProfileAnswerQuestionWorker(action) {
   const profileAnswerQuestion = yield call(fetchForGet, action.payload);
   yield put(addProfileAnswerQuestion(profileAnswerQuestion));
+  yield put(addAnswer(profileAnswerQuestion.answers));
 }
 
 function* editProfileWorker(action) {
@@ -87,9 +92,19 @@ function* editProfileWorker(action) {
   yield put(editProfile(editProfilelog));
 }
 
+function* deleteQuestionWorker(action) {
+  const deletedQuestion = yield call(fetchForAll, action.payload);
+  yield put(deleteQuestion(deletedQuestion));
+  yield put(changeRedirectStatus(true));
+}
 function* toggleTodoWorker(action) {
   const toggledTodo = yield call(fetchForAll, action.payload);
   yield put(toggleTodo(toggledTodo));
+}
+
+function* deleteAnswerWorker(action) {
+  const informationAfterDelete = yield call(fetchForAll, action.payload);
+  yield put(deleteAnswer(informationAfterDelete));
 }
 
 export default function* watcher() {
@@ -102,5 +117,7 @@ export default function* watcher() {
   yield takeEvery(SAGA_EDIT_QUESTION, editQuestionWorker);
   yield takeEvery(SAGA_ADD_PROFILE_QA, addProfileAnswerQuestionWorker);
   yield takeEvery(SAGA_EDIT_PROFILE, editProfileWorker);
+  yield takeEvery(SAGA_DELETE_QUESTION, deleteQuestionWorker);
   yield takeEvery(SAGA_TOGGLE_TODO, toggleTodoWorker);
+  yield takeEvery(SAGA_DELETE_ANSWER, deleteAnswerWorker);
 }

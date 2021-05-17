@@ -15,8 +15,8 @@ export default function ContentHeader({ setMobileMenuOpen }) {
   const auth = useSelector((state) => state.auth);
   const user = useSelector((state) => state.user);
   const [userNavigation] = useState([
-    { name: "Профиль", href: "/profile" },
-    { name: "Выйти", href: "" },
+    { id: 1, name: "Профиль", href: "/profile" },
+    { id: 2, name: "Выйти", href: "" },
   ]);
   const dispatch = useDispatch();
 
@@ -92,21 +92,20 @@ export default function ContentHeader({ setMobileMenuOpen }) {
                             className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
                           >
                             {userNavigation.map((item) => (
-                              <Menu.Item
-                                onClick={() => {
-                                  if (item.name === "Logout") {
-                                    window.open(
-                                      "http://localhost:4000/logout",
-                                      "_self"
-                                    );
-                                    dispatch(logout());
-                                  }
-                                }}
-                                key={item.name}
-                              >
+                              <Menu.Item key={item.name}>
                                 {({ active }) => (
                                   <Link
-                                    to={item.href}
+                                    onClick={() => {
+                                      console.log(item);
+                                      if (item.id === 2) {
+                                        window.open(
+                                          process.env.REACT_APP_PROFILE_LOGOUT,
+                                          "_self"
+                                        );
+                                        dispatch(logout());
+                                      }
+                                    }}
+                                    to={item.id !== 2 && item.href}
                                     className={classNames(
                                       active ? "bg-gray-100" : "",
                                       "block px-4 py-2 text-sm text-gray-700"

@@ -13,6 +13,9 @@ import {
   LIKE_ANSWER,
   CHANGE_REDIRECT_STATUS,
   ADD_PROFILE_QA,
+  DELETE_QUESTION,
+  DELETE_ANSWER,
+  ADD_ANSWER,
 } from "./actions/actionTypes";
 
 const reducer = (state, action) => {
@@ -41,6 +44,7 @@ const reducer = (state, action) => {
       return {
         ...state,
         questions: action.payload.questionsList,
+        answers: action.payload.answersList,
       };
 
     case LOAD_ANSWERS:
@@ -104,7 +108,9 @@ const reducer = (state, action) => {
       return {
         ...state,
         questions: state.questions.map((que) =>
-          que._id !== action.payload._id ? que : action.payload
+          que._id !== action.payload._id
+            ? que
+            : { ...que, body: action.payload.body, title: action.payload.title }
         ),
       };
 
@@ -146,6 +152,37 @@ const reducer = (state, action) => {
         ...state,
         prof: action.payload,
       };
+
+    case DELETE_QUESTION:
+      return {
+        ...state,
+        questions: state.questions.filter((que) => que._id !== action.payload),
+      };
+
+    case DELETE_ANSWER:
+      return {
+        ...state,
+        questions: state.questions.map((que) =>
+          que._id !== action.payload.questionID
+            ? que
+            : {
+                ...que,
+                answers: que.answers.filter(
+                  (ans) => String(ans._id) !== String(action.payload.answerID)
+                ),
+              }
+        ),
+        answers: state.answers.filter(
+          (ans) => String(ans._id) !== String(action.payload.answerID)
+        ),
+      };
+
+    case ADD_ANSWER:
+      return {
+        ...state,
+        answers: action.payload,
+      };
+
     default:
       return state;
   }

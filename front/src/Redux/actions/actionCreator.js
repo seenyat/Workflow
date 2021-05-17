@@ -22,8 +22,13 @@ import {
   SAGA_ADD_PROFILE_QA,
   EDIT_PROFILE,
   SAGA_EDIT_PROFILE,
+  SAGA_DELETE_QUESTION,
+  DELETE_QUESTION,
   SAGA_TOGGLE_TODO,
   TOGGLE_TODO,
+  SAGA_DELETE_ANSWER,
+  DELETE_ANSWER,
+  ADD_ANSWER,
 } from "./actionTypes";
 
 export const sagaPostQuestion = (payload) => ({
@@ -139,6 +144,15 @@ export const sagaEditProfile = (payload) => ({
   payload,
 });
 
+export const sagaDeleteQuestion = (payload) => ({
+  type: SAGA_DELETE_QUESTION,
+  payload,
+});
+
+export const deleteQuestion = (payload) => ({
+  type: DELETE_QUESTION,
+});
+
 export const sagaToggleTodo = (payload) => ({
   type: SAGA_TOGGLE_TODO,
   payload,
@@ -148,3 +162,18 @@ export const toggleTodo = (payload) => ({
   type: TOGGLE_TODO,
   payload,
 });
+
+export const sagaDeleteAnswer = (payload) => ({
+  type: SAGA_DELETE_ANSWER,
+  payload,
+});
+
+export const deleteAnswer = (payload) => ({
+  type: DELETE_ANSWER,
+  payload,
+});
+
+export const addAnswer = (payload) => ({
+  type: ADD_ANSWER,
+  payload
+})

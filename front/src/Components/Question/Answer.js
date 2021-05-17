@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { sagaLikeAnswerAC } from "../../Redux/actions/actionCreator";
+import {
+  sagaDeleteAnswer,
+  sagaLikeAnswerAC,
+} from "../../Redux/actions/actionCreator";
 import fetchCreator from "../../Redux/fetchCreator";
 import Workflow from "./Workflow";
 import Time from "../../Utils/Time";
@@ -34,6 +37,18 @@ export default function Answer({ item, qId }) {
     }
   };
 
+  const deleteAnswer = () => {
+    dispatch(
+      sagaDeleteAnswer(
+        fetchCreator(process.env.REACT_APP_ANSWER, "DELETE", {
+          userID: item.author,
+          answerID: item._id,
+          questionID: item.question,
+        })
+      )
+    );
+  };
+
   return (
     <li
       key={item._id}
@@ -55,8 +70,17 @@ export default function Answer({ item, qId }) {
       </div>
       <h1 className="font-bold text-2xl">{item.comment}</h1>
       <Workflow qId={qId} todo={item.workflows} id={item._id} />
-      <div className="px-4 relative text-sm sm:p-6 w-max text-gray-400 right-2 top-2">
+      <div className="px-4 relative flex flex-row text-sm sm:p-6 w-max text-gray-400 right-2 top-2">
         <Time time={item.date} />
+        {author.user && user._id === author.user._id ? (
+          // <div className="px-4 text-sm sm:p-6 w-max text-gray-400 ">
+          <i
+            onClick={() => deleteAnswer()}
+            className="fas transition hover:text-red-300 cursor-pointer pl-3 pt-1 fa-trash-alt text-black "
+            aria-hidden="true"
+          ></i>
+        ) : // </div>
+        null}
       </div>
     </li>
   );
