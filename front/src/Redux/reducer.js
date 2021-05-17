@@ -43,6 +43,7 @@ const reducer = (state, action) => {
       return {
         ...state,
         questions: action.payload.questionsList,
+        answers: action.payload.answersList,
       };
 
     case LOAD_ANSWERS:
