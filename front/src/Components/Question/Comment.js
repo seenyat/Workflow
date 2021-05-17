@@ -3,12 +3,13 @@ import { useDispatch } from "react-redux";
 import { sagaAddCommentAC } from "../../Redux/actions/actionCreator";
 import fetchCreator from "../../Redux/fetchCreator";
 
-function Comment({ answer }) {
+function Comment({ answer, statusTextArea }) {
   const commentText = useRef();
   const dispatch = useDispatch();
 
   const addComment = (event) => {
     event.preventDefault();
+    statusTextArea.setTextArea(false);
     dispatch(
       sagaAddCommentAC(
         fetchCreator(process.env.REACT_APP_ADD_COMMENT, "POST", {

@@ -185,12 +185,11 @@ const reducer = (state, action) => {
       };
 
     case COMMENT_ANSWER:
-      console.log(action.payload);
       return {
         ...state,
         answers: state.answers.map((answ) =>
-          answ._id === action.payload._id
-            ? { ...answ, comments: action.payload.content }
+          answ._id === action.payload.answer
+            ? { ...answ, comments: action.payload._id }
             : answ
         ),
       };

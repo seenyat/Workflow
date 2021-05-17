@@ -95,7 +95,9 @@ export default function Answer({ item, qId }) {
         ) : // </div>
         null}
       </div>
-      {textArea ? <Comment answer={item}/> : null}
+      {textArea ? (
+        <Comment statusTextArea={{ setTextArea }} answer={item} />
+      ) : null}
     </li>
   );
 }
