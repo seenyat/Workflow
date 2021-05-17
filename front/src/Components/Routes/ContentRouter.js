@@ -8,7 +8,7 @@ import MainFeed from "../../Views/MainFeed";
 import QuestionSingle from "../../Views/QuestionSingle";
 import UserProfile from "../../Views/UserProfile";
 import Workflows from "../../Views/Workflows/Workflows";
-
+import UsersProfile from "../../Components/UsersProfile"
 export default function ContentRouter() {
   return (
     <Switch>
@@ -21,8 +21,11 @@ export default function ContentRouter() {
       <Route path="/workflows">
         <Workflows />
       </Route>
-      <Route path="/profile">
+      <Route path="/profile" exact>
         <UserProfile />
+      </Route>
+      <Route path="/profile/:id" >
+        <UsersProfile />
       </Route>
       <Route path="/about">
         <About />

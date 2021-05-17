@@ -13,8 +13,12 @@ export default function Workflow({ todo, id, qId }) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ todo: todo[0], userID: user._id }),
+    }).then((data) => {
+      data.json().then((user) => {
+        console.log(user);
+        dispatch({ type: "TOGGLE_TODO", payload: user.workflows });
+      });
     });
-    dispatch(sagaLoadAnswers(process.env.REACT_APP_QUESTION + qId));
   }
   function checkIfTodoAdded(user, id) {
     let exists = false;
@@ -49,8 +53,8 @@ export default function Workflow({ todo, id, qId }) {
       </div>
       {todo[0].stages.map((el, i) => {
         return (
-          < >
-          {/* <div> */}
+          <>
+            {/* <div> */}
             <div
               key={nanoid()}
               className=" flex w-max items-center font-bold border-b mt-3 pr-5 pl-1 border-gray-100 text-2xl"

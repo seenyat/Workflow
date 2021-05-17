@@ -6,6 +6,7 @@ import questionRouter from "../routes/question.js";
 import allQuestionsRouter from "../routes/allQuestions.js";
 import answerRouter from "../routes/answers.js";
 import authRouter from "../routes/auth.js";
+import commentRouter from "../routes/comment.js"
 import passport from "passport";
 import session from "express-session";
 import profileRouter from "../routes/user.js";
@@ -51,6 +52,7 @@ const config = (app) => {
   app.use("/allquestions", allQuestionsRouter);
   app.use("/answer", answerRouter);
   app.use("/profile", profileRouter);
+  app.use("/comment", commentRouter);
 };
 
 export default config;

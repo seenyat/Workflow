@@ -7,7 +7,13 @@ import { addSAGAProfileAnswerQuestion } from "../Redux/actions/actionCreator";
 export default function RightColumn() {
   const user = useSelector((state) => state.user);
   // const prof = useSelector((state) => state.prof);
-  const answers = useSelector((state) => state.answers);
+  let answers = useSelector((state) => state.answers);
+
+  if (user && answers) {
+    answers = answers.filter((el) => {
+      return el.author._id === user._id;
+    });
+  }
   const dispatch = useDispatch();
   // useEffect(() => {
   //   if (user) {
@@ -19,7 +25,7 @@ export default function RightColumn() {
 
   return user ? (
     <div>
-      <ul className="divide-y divide-gray-200">
+      <ul className="divide-y px-5 divide-gray-200">
         {answers?.map((answer) => (
           <li key={answer._id} className="py-4">
             <div className="flex space-x-3">
@@ -40,7 +46,7 @@ export default function RightColumn() {
                     <Time time={answer.date} />
                   </div>
                 </div>
-                <p className="text-sm text-gray-500">Ответ: {answer.comment}</p>
+                <p className="text-sm text-gray-500">Ответ:</p>
               </div>
             </div>
           </li>

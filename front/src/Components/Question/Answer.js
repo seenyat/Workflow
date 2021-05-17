@@ -5,12 +5,17 @@ import {
   sagaLikeAnswerAC,
 } from "../../Redux/actions/actionCreator";
 import fetchCreator from "../../Redux/fetchCreator";
+import Output from "editorjs-react-renderer";
 import Workflow from "./Workflow";
 import Time from "../../Utils/Time";
 import Like from "../Partials/Like";
+import { AnnotationIcon } from "@heroicons/react/solid";
+import CommentForm from "./CommentForm";
+import Comments from "./Comments";
 
 export default function Answer({ item, qId }) {
   const [author, setAuthor] = useState({});
+  const [textArea, setTextArea] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -64,24 +69,35 @@ export default function Answer({ item, qId }) {
           <div className="text-gray-600">{author.user.name}</div>
         </div>
       )}
-
       <div className="absolute text-gray-300 right-2 top-2 flex space-x-1">
         <Like like={likeAnswer} likeCount={item.likes.length} />
       </div>
-      <h1 className="font-bold text-2xl">{item.comment}</h1>
+      <div className="prose lg:prose-xl">
+        <Output data={item.comment} />;
+      </div>
       <Workflow qId={qId} todo={item.workflows} id={item._id} />
       <div className="px-4 relative flex flex-row text-sm sm:p-6 w-max text-gray-400 right-2 top-2">
         <Time time={item.date} />
         {author.user && user._id === author.user._id ? (
-          // <div className="px-4 text-sm sm:p-6 w-max text-gray-400 ">
-          <i
-            onClick={() => deleteAnswer()}
-            className="fas transition hover:text-red-300 cursor-pointer pl-3 pt-1 fa-trash-alt text-black "
-            aria-hidden="true"
-          ></i>
-        ) : // </div>
-        null}
+          <>
+            <i
+              onClick={() => deleteAnswer()}
+              className="fas transition hover:text-red-300 cursor-pointer pl-3 pt-1 fa-trash-alt text-gray-400 "
+              aria-hidden="true"
+            ></i>
+            <AnnotationIcon
+              onClick={() => {
+                setTextArea(!textArea);
+              }}
+              className="h-5 w-5 ml-3 cursor-pointer hover:text-indigo-300"
+            />
+          </>
+        ) : null}
       </div>
+      {textArea ? (
+        <CommentForm statusTextArea={{ setTextArea }} answer={item} />
+      ) : null}
+      <Comments answer={item} />
     </li>
   );
 }

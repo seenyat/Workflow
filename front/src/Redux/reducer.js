@@ -16,6 +16,7 @@ import {
   DELETE_QUESTION,
   DELETE_ANSWER,
   ADD_ANSWER,
+  COMMENT_ANSWER,
 } from "./actions/actionTypes";
 
 const reducer = (state, action) => {
@@ -181,6 +182,31 @@ const reducer = (state, action) => {
       return {
         ...state,
         answers: action.payload,
+      };
+
+    case COMMENT_ANSWER:
+      return {
+        ...state,
+        answers: state.answers.map((answ) =>
+          answ._id === action.payload.comment.answer
+            ? { ...answ, comments: [...answ.comments, action.payload.comment] }
+            : answ
+        ),
+        questions: state.questions.map((que) => {
+          return que._id === action.payload.questionId
+            ? {
+                ...que,
+                answers: que.answers.map((answ) => {
+                  return answ._id === action.payload.comment.answer
+                    ? {
+                        ...answ,
+                        comments: [...answ.comments, action.payload.comment],
+                      }
+                    : answ;
+                }),
+              }
+            : que;
+        }),
       };
 
     default:

@@ -6,16 +6,16 @@ import {
 } from "../Redux/actions/actionCreator";
 import { buttonList } from "../Utils/categories";
 import Feed from "./Feed";
-
+import Pagination from "../Components/Pagination/Pagination";
 export default function MainFeed() {
   const dispatch = useDispatch();
   const { questions } = useSelector((state) => state);
-
+  const [page, setPage] = useState(0);
   // Sort by likes
   const [questionsList, setQuestionsList] = useState(
     questions.sort((a, b) => b.likes.length - a.likes.length)
   );
-
+  console.log(questionsList);
   // Database renew
   useEffect(() => {
     dispatch(sagaLoadQuestions(process.env.REACT_APP_ALL_QUESTION));
@@ -23,14 +23,21 @@ export default function MainFeed() {
   }, [dispatch]);
 
   useEffect(() => {
-    setQuestionsList(questions.sort((a, b) => b.likes.length - a.likes.length));
-  }, [questions]);
+    setQuestionsList(
+      questions
+        .sort((a, b) => b.likes.length - a.likes.length)
+        .slice(page * 5, page * 5 + 5)
+    );
+    setCount(questions.length)
+  }, [questions, page]);
+  const [count, setCount] =useState(0)
 
   // Filtering
   const [buttonsState, setButtonsState] = useState(buttonList);
   const sortByTheme = (theme) => {
     const newList = questions.filter((que) => que.theme.includes(theme));
-    setQuestionsList(newList);
+    setQuestionsList(newList.slice(page * 5, page * 5 + 5));
+    setCount(newList.length)
     setButtonsState(
       buttonsState.map((bt) =>
         bt.theme !== theme
@@ -45,12 +52,21 @@ export default function MainFeed() {
       )
     );
   };
+
   return questions ? (
-    <Feed
-      filters={buttonsState}
-      filter={sortByTheme}
-      questions={questionsList}
-    />
+    <>
+      <Feed
+        filters={buttonsState}
+        filter={sortByTheme}
+        questions={questionsList}
+      />
+      <Pagination
+        pageCount={count}
+        page={setPage}
+        pageNumber={page}
+        questions={questionsList}
+      />
+    </>
   ) : (
     <div className="border-8 mt-24 mx-auto rounded-full border-gray-500 border-dashed animate-spin"></div>
   );
