@@ -10,7 +10,8 @@ import Workflow from "./Workflow";
 import Time from "../../Utils/Time";
 import Like from "../Partials/Like";
 import { AnnotationIcon } from "@heroicons/react/solid";
-import Comment from "./Comment";
+import CommentForm from "./CommentForm";
+import Comments from "./Comments";
 
 export default function Answer({ item, qId }) {
   const [author, setAuthor] = useState({});
@@ -78,7 +79,6 @@ export default function Answer({ item, qId }) {
       <div className="px-4 relative flex flex-row text-sm sm:p-6 w-max text-gray-400 right-2 top-2">
         <Time time={item.date} />
         {author.user && user._id === author.user._id ? (
-          // <div className="px-4 text-sm sm:p-6 w-max text-gray-400 ">
           <>
             <i
               onClick={() => deleteAnswer()}
@@ -92,12 +92,12 @@ export default function Answer({ item, qId }) {
               className="h-5 w-5 ml-3 cursor-pointer hover:text-indigo-300"
             />
           </>
-        ) : // </div>
-        null}
+        ) : null}
       </div>
       {textArea ? (
-        <Comment statusTextArea={{ setTextArea }} answer={item} />
+        <CommentForm statusTextArea={{ setTextArea }} answer={item} />
       ) : null}
+      <Comments answer={item} />
     </li>
   );
 }

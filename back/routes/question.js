@@ -12,7 +12,9 @@ router.get("/:id", async (req, res) => {
     res.status(404).json({ error: "no such question" });
     return;
   }
-  const answers = await Answer.find({ question: question._id });
+  const answers = await Answer.find({ question: question._id }).populate(
+    "answers"
+  );
   res.status(200).json({ question, answers });
 });
 

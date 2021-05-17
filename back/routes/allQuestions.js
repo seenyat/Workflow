@@ -10,7 +10,11 @@ router.get("/", async (req, res) => {
     .populate("answers")
     .populate({
       path: "answers",
-      populate: { path: "comments", model: "Comment" },
+      populate: {
+        path: "comments",
+        model: "Comment",
+        populate: { path: "author", model: "User" },
+      },
     });
   const answersList = await Answer.find({})
     .populate("author")

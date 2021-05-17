@@ -13,6 +13,7 @@ router.post("/", async (req, res) => {
     content,
     date: new Date(),
   });
+  await comment.populate("author");
   const answer = await Answer.findById(answerId);
   answer.comments.push(comment._id);
   await answer.save();
