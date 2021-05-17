@@ -16,6 +16,7 @@ import {
   DELETE_QUESTION,
   DELETE_ANSWER,
   ADD_ANSWER,
+  COMMENT_ANSWER,
 } from "./actions/actionTypes";
 
 const reducer = (state, action) => {
@@ -181,6 +182,17 @@ const reducer = (state, action) => {
       return {
         ...state,
         answers: action.payload,
+      };
+
+    case COMMENT_ANSWER:
+      console.log(action.payload);
+      return {
+        ...state,
+        answers: state.answers.map((answ) =>
+          answ._id === action.payload._id
+            ? { ...answ, comments: action.payload.content }
+            : answ
+        ),
       };
 
     default:
