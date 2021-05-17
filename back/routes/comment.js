@@ -7,13 +7,14 @@ const router = express.Router();
 
 router.post("/", async (req, res) => {
   const { authorId, answerId, content } = req.body;
-  const comment = await Comment.create({
+  let comment = await Comment.create({
     author: mongoose.Types.ObjectId(authorId),
     answer: mongoose.Types.ObjectId(answerId),
     content,
     date: new Date(),
   });
-  await comment.populate("author");
+  comment = await comment.populate("author").execPopulate();
+  console.log(comment);
   const answer = await Answer.findById(answerId);
   answer.comments.push(comment._id);
   await answer.save();
