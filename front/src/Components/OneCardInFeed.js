@@ -8,7 +8,6 @@ export default function OneCardInFeed({ question }) {
   // const timeAgo = useTimeAgo(localDate, {
   //   interval: 60000,
   // });
-
   return (
     <Link
       to={`/question/${question._id}`}
