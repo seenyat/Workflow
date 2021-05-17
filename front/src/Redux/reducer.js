@@ -108,7 +108,9 @@ const reducer = (state, action) => {
       return {
         ...state,
         questions: state.questions.map((que) =>
-          que._id !== action.payload._id ? que : action.payload
+          que._id !== action.payload._id
+            ? que
+            : { ...que, body: action.payload.body, title: action.payload.title }
         ),
       };
 
