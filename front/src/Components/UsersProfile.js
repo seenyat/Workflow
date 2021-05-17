@@ -1,76 +1,20 @@
-import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState, useRef } from "react";
-import { changeHeaderModalStatus } from "../Redux/actions/actionCreator";
-import {
-  addSAGAProfileAnswerQuestion,
-  sagaEditProfile,
-} from "../Redux/actions/actionCreator";
-import ProfileQuestions from "../Components/Profile/ProfileQuestions";
+import { useParams } from "react-router";
 import ProfileAnswers from "../Components/Profile/ProfileAnswers";
-import fetchCreator from "../Redux/fetchCreator";
+import ProfileQuestions from "../Components/Profile/ProfileQuestions";
+function UsersProfile() {
+  const { id } = useParams();
 
-export default function UserProfile() {
-  const user = useSelector((state) => state.user);
-  const prof = useSelector((state) => state.prof);
-  const state = useSelector((state) => state);
-console.log(state);
-  const dispatch = useDispatch();
-  // const [prof, setProf] = useState();
-  const [edit, setEdit] = useState(false);
+  const [prof, setProf] = useState();
   useEffect(() => {
-    if (user) {
-      dispatch(
-        addSAGAProfileAnswerQuestion(process.env.REACT_APP_PROFILE + user._id)
-      );
-      // fetch(`http://localhost:4000/profile/${user._id}`, {
-      //   method: "GET",
-      //   credentials: "include",
-      // }).then((data) =>
-      //   data.json().then(profile => dispatch({ type: ADD_PROFILE_QA, payload: profile })
-      //   )
-      // );
-    }
-  }, [dispatch, user]);
+    fetch(`http://localhost:4000/profile/${id}`, {
+      method: "GET",
+      credentials: "include",
+    }).then((data) => data.json().then((profile) => setProf(profile)));
+  }, []);
 
-  const handleEdit = (e) => {
-    setEdit(true);
-  };
-  const nameInput = useRef();
-  const nameInfo = useRef();
-  const handle = (e) => {
-    e.preventDefault();
-    
-    const login = nameInput.current.value;
-    const info = nameInfo.current.value;
-    // console.log(process.env.REACT_APP_PROFILE + user._id);
-
-    dispatch(
-      sagaEditProfile(
-        fetchCreator(process.env.REACT_APP_PROFILE + user._id, "PUT", {
-          login,
-          info,
-        })
-      )
-    );
-
-    // dispatch(
-    //   sagaEditProfile(
-    //     fetchCreator(``, "PUT", {
-    //       login,
-    //       info,
-    //     })
-    //   )
-
-    //     info,
-    //   }),
-    // })
-
-    //   .then((data) => data.json())
-    //   .then((profile) => dispatch({ type: EDIT_PROFILE, payload: profile }))
-    setEdit(false);
-  };
-
-  return user ? (
+  console.log(prof);
+  return prof ? (
     <div className="min-h-screen bg-gray-100 overflow-scroll">
       <main className="py-10">
         {/* Page header */}
@@ -80,7 +24,7 @@ console.log(state);
               <div className="relative">
                 <img
                   className="h-16 w-16 rounded-full"
-                  src={user?.avatar_url}
+                  src={prof?.user.avatar_url}
                   alt=""
                 />
                 <span
@@ -90,22 +34,9 @@ console.log(state);
               </div>
             </div>
             <div>
-              {edit ? (
-                <>
-                  {" "}
-                  <input
-                    className="text-2xl font-bold text-gray-900"
-                    ref={nameInput}
-                    placeholder="введите имя"
-                    defaultValue={user.login}
-                  />
-                  <button onClick={handle}> отправить</button>
-                </>
-              ) : (
-                <h1 className="text-2xl font-bold text-gray-900">
-                  {user.login}
-                </h1>
-              )}
+              <h1 className="text-2xl font-bold text-gray-900">
+                {prof?.user.login}
+              </h1>
             </div>
           </div>
         </div>
@@ -122,22 +53,16 @@ console.log(state);
                   >
                     Профиль
                   </h2>
-                  <button
-                    onClick={handleEdit}
-                    className="text-sm font-medium text-gray-500"
-                  >
-                    Редактировать
-                  </button>
                 </div>
                 <div className="border-t border-gray-200 px-4 py-5 sm:px-6">
                   <dl className="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
-                    {user.email !== null && (
+                    {prof.user.email !== null && (
                       <div className="sm:col-span-1">
                         <dt className="text-sm font-medium text-gray-500">
                           Email address
                         </dt>
                         <dd className="mt-1 text-sm text-gray-900">
-                          {user.email}
+                          {prof.user.email}
                         </dd>
                       </div>
                     )}
@@ -158,22 +83,11 @@ console.log(state);
                       <dt className="text-sm font-medium text-gray-500">
                         О себе:
                       </dt>
-                      {edit ? (
-                        <>
-                          {" "}
-                          <input
-                            className="mt-1 text-sm text-gray-900"
-                            ref={nameInfo}
-                            placeholder="введите информацию"
-                            defaultValue={user.info}
-                          />
-                        </>
-                      ) : (
-                        <dd className="mt-1 text-sm text-gray-900">
-                          {" "}
-                          {user.info}
-                        </dd>
-                      )}
+
+                      <dd className="mt-1 text-sm text-gray-900">
+                        {" "}
+                        {prof.user.info}
+                      </dd>
                     </div>
                   </dl>
                 </div>
@@ -224,15 +138,6 @@ console.log(state);
                   ))}
                 </ul>
               </div>
-              <div className="mt-6 flex flex-col justify-stretch">
-                <button
-                  type="button"
-                  onClick={() => dispatch(changeHeaderModalStatus(true))}
-                  className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-                >
-                  Добавить вопрос
-                </button>
-              </div>
             </div>
           </section>
         </div>
@@ -240,3 +145,5 @@ console.log(state);
     </div>
   ) : null;
 }
+
+export default UsersProfile;
