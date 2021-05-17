@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import Answer from "../models/Answer.js";
 import Question from "../models/Question.js";
+import User from "../models/User.js";
 import nodemailer from "nodemailer";
 
 const workflowEmailAccount = await nodemailer.createTestAccount();
@@ -28,12 +29,17 @@ router.post("/", async (req, res) => {
   const question = await Question.findById(id);
   question.answers.push(answer._id);
   await question.save();
-  await transporter.sendMail({
-    from: 'workflowelbrus@gmail.com"',
-    to: "ershovilya97@gmail.com",
-    subject: "Новый ответ на Ваш вопрос",
-    html: "Перейдите по ссылке для просмотра новго ответа на Ваш вопрос",
-  });
+  const user = await User.findById(authorId);
+  if (user.email !== null) {
+    await transporter.sendMail({
+      from: 'workflowelbrus@gmail.com"',
+      to: user.email,
+      subject: "Получен новый ответ",
+      html: `Перейдите по <a href=${
+        process.env.MAIN_BACK + "question/" + question._id
+      }>ссылке </a>для просмотра нового ответа на Ваш вопрос`,
+    });
+  }
   res.status(200).json(answer);
 });
 
