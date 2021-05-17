@@ -9,7 +9,6 @@ import authRouter from "../routes/auth.js";
 import passport from "passport";
 import session from "express-session";
 import profileRouter from "../routes/user.js";
-
 import fileStore from "session-file-store";
 
 const FileStore = fileStore(session);

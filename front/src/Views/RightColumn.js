@@ -7,7 +7,7 @@ import { addSAGAProfileAnswerQuestion } from "../Redux/actions/actionCreator";
 export default function RightColumn() {
   const user = useSelector((state) => state.user);
   const prof = useSelector((state) => state.prof);
-
+ 
   const dispatch = useDispatch();
   useEffect(() => {
     if (user) {
