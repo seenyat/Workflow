@@ -17,6 +17,7 @@ router.post("/", async (req, res) => {
   const question = await Question.findById(id);
   question.answers.push(answer._id);
   await question.save();
+  console.log(answer);
   res.status(200).json(answer);
 });
 
@@ -27,7 +28,7 @@ router.delete("/", async (req, res) => {
   );
   await questionForUpdate.save();
   await Answer.findByIdAndDelete(req.body.answerID);
-  res.json({questionID: req.body.questionID, answerID: req.body.answerID});
+  res.json({ questionID: req.body.questionID, answerID: req.body.answerID });
 });
 
 router.post("/like", async (req, res) => {

@@ -1,3 +1,5 @@
+import { nanoid } from "nanoid";
+
 export default function ToDoGroup({ Header, setTodo, todo, todoList, ind }) {
   function expandTodoGroup(e) {
     if (e.key === "Enter") {
@@ -35,6 +37,7 @@ export default function ToDoGroup({ Header, setTodo, todo, todoList, ind }) {
       />
       {todoList.map((el, todoInd) => (
         <input
+          key={nanoid()}
           placeholder={todoInd + 1 + "."}
           autoFocus
           value={el.value}

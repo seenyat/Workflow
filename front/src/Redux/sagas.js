@@ -13,6 +13,7 @@ import {
   toggleTodo,
   deleteQuestion,
   deleteAnswer,
+  addAnswer,
 } from "./actions/actionCreator";
 import {
   SAGA_AUTH,
@@ -83,6 +84,7 @@ function* editQuestionWorker(action) {
 function* addProfileAnswerQuestionWorker(action) {
   const profileAnswerQuestion = yield call(fetchForGet, action.payload);
   yield put(addProfileAnswerQuestion(profileAnswerQuestion));
+  yield put(addAnswer(profileAnswerQuestion.answers));
 }
 
 function* editProfileWorker(action) {

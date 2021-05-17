@@ -15,6 +15,7 @@ import {
   ADD_PROFILE_QA,
   DELETE_QUESTION,
   DELETE_ANSWER,
+  ADD_ANSWER,
 } from "./actions/actionTypes";
 
 const reducer = (state, action) => {
@@ -157,7 +158,6 @@ const reducer = (state, action) => {
       };
 
     case DELETE_ANSWER:
-      console.log(action.payload);
       return {
         ...state,
         questions: state.questions.map((que) =>
@@ -170,6 +170,13 @@ const reducer = (state, action) => {
                 ),
               }
         ),
+      };
+
+    case ADD_ANSWER:
+      console.log(action.payload);
+      return {
+        ...state,
+        answers: action.payload,
       };
 
     default:
