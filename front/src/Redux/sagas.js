@@ -14,6 +14,7 @@ import {
   deleteQuestion,
   deleteAnswer,
   addAnswer,
+  addCommentAC,
 } from "./actions/actionCreator";
 import {
   SAGA_AUTH,
@@ -28,11 +29,11 @@ import {
   SAGA_DELETE_QUESTION,
   SAGA_TOGGLE_TODO,
   SAGA_DELETE_ANSWER,
+  SAGA_COMMENT_ANSWER,
 } from "./actions/actionTypes";
 
 const fetchForAll = async (payload) => {
   const feedBack = await fetch(payload.url, payload.constructor);
-
   return feedBack.json();
 };
 
@@ -107,6 +108,11 @@ function* deleteAnswerWorker(action) {
   yield put(deleteAnswer(informationAfterDelete));
 }
 
+function* addCommentWorker(action) {
+  const commentsArray = yield call(fetchForAll, action.payload);
+  yield put(addCommentAC(commentsArray));
+}
+
 export default function* watcher() {
   yield takeEvery(SAGA_POST_QUESTION, postQuestionWorker);
   yield takeEvery(SAGA_LOAD_QUESTIONS, loadQuestionsWorker);
@@ -120,4 +126,5 @@ export default function* watcher() {
   yield takeEvery(SAGA_DELETE_QUESTION, deleteQuestionWorker);
   yield takeEvery(SAGA_TOGGLE_TODO, toggleTodoWorker);
   yield takeEvery(SAGA_DELETE_ANSWER, deleteAnswerWorker);
+  yield takeEvery(SAGA_COMMENT_ANSWER, addCommentWorker);
 }
