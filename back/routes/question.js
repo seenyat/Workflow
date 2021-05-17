@@ -8,7 +8,10 @@ const router = express.Router();
 router.get("/:id", async (req, res) => {
   const { id } = req.params;
   const question = await Question.findById(id).populate("author");
-
+  if (!question) {
+    res.status(404).json({ error: "no such question" });
+    return;
+  }
   const answers = await Answer.find({ question: question._id });
   res.status(200).json({ question, answers });
 });
