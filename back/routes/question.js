@@ -43,7 +43,9 @@ router.put("/:id", async (req, res) => {
       },
     }
   );
-  let question = await Question.findById(req.params.id).populate("author");
+  let question = await Question.findById(req.params.id)
+    .populate("author")
+    .populate("answers");
   res.json(question);
 });
 

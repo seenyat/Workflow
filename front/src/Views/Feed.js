@@ -17,17 +17,17 @@ export default function Feed({ filters, filter, questions }) {
           )}
         </div>
         <div className="w-full md:max-w-4xl flex flex-col space-y-5">
-          <div className="w-full space-x-10 flex flex-row justify-center h-min">
+          <div className="w-full flex-wrap sm:space-x-3 flex flex-row justify-center h-min">
             {filters.map((button) => (
               <div
                 key={button.className}
-                className="flex flex-col justify-center text-center "
+                className="flex flex-col justify-center text-center items-center  mb-4 h-max w-1/3 sm:w-max text-xs "
               >
                 <i
                   onClick={() => filter(button.theme)}
                   className={`${
                     button.className
-                  } hover:bg-gray-200 transition p-2 rounded-md cursor-pointer ${
+                  } hover:bg-gray-200 transition flex p-2 rounded-md cursor-pointer sm:text-6xl text-4xl ${
                     button.status ? "bg-gray-200" : ""
                   } `}
                 />

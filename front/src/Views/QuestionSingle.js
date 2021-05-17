@@ -28,9 +28,21 @@ export default function QuestionSingle() {
     // dispatch(sagaLoadAnswers(process.env.REACT_APP_QUESTION + id));
   }, [id, dispatch]);
 
+  console.log(question);
+
   return question ? (
     <div className="overflow-scroll container py-2 mx-auto px-4 sm:px-6 lg:px-8">
       <QuestionBody question={question} />
+      {user ? <CreateAnswer id={id} /> : <Warning />}
+
+      {question.answers.length > 0 && (
+        <AnswerList
+          qId={id}
+          answers={question.answers.sort(
+            (a, b) => b.likes.length - a.likes.length
+          )}
+        />
+      )}
       {user ? (
         <Transition
           enter="transition-opacity duration-75"

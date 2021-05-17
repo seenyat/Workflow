@@ -4,7 +4,6 @@ import Navigation from "./Views/Navigation/Navigation";
 import Content from "./Views/Content";
 import { useEffect, useState } from "react";
 import classNames from "./Utils/classNames";
-import "./App.css";
 import { useDispatch } from "react-redux";
 import {
   sagaAuthCheck,

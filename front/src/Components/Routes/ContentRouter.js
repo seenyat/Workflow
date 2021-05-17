@@ -1,5 +1,6 @@
 import { Route } from "react-router";
 import { Switch } from "react-router-dom/cjs/react-router-dom.min";
+import Viewpager from "../../Views/About";
 import About from "../../Views/About";
 import Latest from "../../Views/Latest";
 import Login from "../../Views/Login";
