@@ -8,7 +8,6 @@ export default function RightColumn() {
   const user = useSelector((state) => state.user);
   // const prof = useSelector((state) => state.prof);
   const answers = useSelector((state) => state.answers);
-  console.log(state); 
   const dispatch = useDispatch();
   // useEffect(() => {
   //   if (user) {
