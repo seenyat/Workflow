@@ -170,10 +170,12 @@ const reducer = (state, action) => {
                 ),
               }
         ),
+        answers: state.answers.filter(
+          (ans) => String(ans._id) !== String(action.payload.answerID)
+        ),
       };
 
     case ADD_ANSWER:
-      console.log(action.payload);
       return {
         ...state,
         answers: action.payload,
