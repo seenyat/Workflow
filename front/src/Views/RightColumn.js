@@ -36,10 +36,10 @@ export default function RightColumn() {
                       Вопрос: {answer.question.title}{" "}
                     </h3>
                   </Link>
-                  <p className="text-sm text-gray-500">
+                  <div className="text-sm text-gray-500">
                     {" "}
                     <Time time={answer.date} />
-                  </p>
+                  </div>
                 </div>
                 <p className="text-sm text-gray-500">Ответ: {answer.comment}</p>
               </div>

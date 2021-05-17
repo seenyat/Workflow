@@ -20,6 +20,16 @@ router.post("/", async (req, res) => {
   res.status(200).json(answer);
 });
 
+router.delete("/", async (req, res) => {
+  let questionForUpdate = await Question.findById(req.body.questionID);
+  questionForUpdate.answers = questionForUpdate.answers.filter(
+    (ans) => String(ans) !== String(req.body.answerID)
+  );
+  await questionForUpdate.save();
+  await Answer.findByIdAndDelete(req.body.answerID);
+  res.json({questionID: req.body.questionID, answerID: req.body.answerID});
+});
+
 router.post("/like", async (req, res) => {
   let { userID, answerID } = req.body;
   userID = mongoose.Types.ObjectId(userID);

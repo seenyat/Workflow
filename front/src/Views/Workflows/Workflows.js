@@ -13,7 +13,7 @@ export default function Workflows() {
   return workflows ? (
     <div className="w-full overflow-auto  px-5 py-7 flex flex-col space-y-5">
       {workflows.map((w) => {
-        return <WorkflowTodo todo={w} />;
+        return <WorkflowTodo key={w.id} todo={w} />;
       })}
     </div>
   ) : (

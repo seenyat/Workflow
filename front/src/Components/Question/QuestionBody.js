@@ -11,10 +11,13 @@ import AuthorCard from "../Partials/AuthorCard";
 import Like from "../Partials/Like";
 import Time from "../../Utils/Time";
 import { themeIcons } from "../../Utils/themeIcons";
+import { Redirect } from "react-router-dom";
 
 export default function QuestionBody({ question, hideEdit }) {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
+
+  const redirectStatus = useSelector((state) => state.redirect);
 
   const [editStatus, setEditStatus] = useState(false);
 
@@ -69,8 +72,8 @@ export default function QuestionBody({ question, hideEdit }) {
 
       {!editStatus && (
         <div className="px-4 py-5 sm:px-6">
-          <p className="font-bold my-4 text-3xl">{question.title}</p>
-          <p>{question.body}</p>
+          <div className="font-bold my-4 text-3xl">{question.title}</div>
+          <div>{question.body}</div>
         </div>
       )}
 
@@ -110,7 +113,7 @@ export default function QuestionBody({ question, hideEdit }) {
           <div className="px-4 text-sm sm:p-6 w-max text-gray-400 ">
             <i
               onClick={() => setEditStatus(!editStatus)}
-              className="fa fa-pencil text-black "
+              className="fa transition cursor-pointer hover:text-indigo-700 fa-pencil text-black "
               aria-hidden="true"
             ></i>
           </div>
@@ -119,11 +122,12 @@ export default function QuestionBody({ question, hideEdit }) {
           <div className="px-4 text-sm sm:p-6 w-max text-gray-400 ">
             <i
               onClick={() => deleteQuestion()}
-              className="fas  fa-trash-alt text-black "
+              className="fas transition cursor-pointer hover:text-red-300  fa-trash-alt text-black "
               aria-hidden="true"
             ></i>
           </div>
         ) : null}
+        {redirectStatus && <Redirect to="/" />}
       </div>
     </div>
   );
