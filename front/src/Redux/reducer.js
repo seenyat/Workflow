@@ -185,14 +185,28 @@ const reducer = (state, action) => {
       };
 
     case COMMENT_ANSWER:
-      console.log(action.payload);
       return {
         ...state,
         answers: state.answers.map((answ) =>
-          answ._id === action.payload._id
-            ? { ...answ, comments: action.payload.content }
+          answ._id === action.payload.comment.answer
+            ? { ...answ, comments: [...answ.comments, action.payload.comment] }
             : answ
         ),
+        questions: state.questions.map((que) => {
+          return que._id === action.payload.questionId
+            ? {
+                ...que,
+                answers: que.answers.map((answ) => {
+                  return answ._id === action.payload.comment.answer
+                    ? {
+                        ...answ,
+                        comments: [...answ.comments, action.payload.comment],
+                      }
+                    : answ;
+                }),
+              }
+            : que;
+        }),
       };
 
     default:

@@ -6,16 +6,6 @@ export default function AuthorCard({ author }) {
   
   
 const user = useSelector(state=>state.user)  
-  // useEffect(() => {
-  //   effect
-  //   return () => {
-  //     cleanup
-  //   }
-  // }, )
-  
-  
-  
-  
   return (user?
     <div className="flex items-center space-x-2">
     <Link to={`/profile/${author._id == user._id? "":author._id}`} > <img

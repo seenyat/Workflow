@@ -5,7 +5,6 @@ import QuestionBody from "../Components/Question/QuestionBody";
 import CreateAnswer from "../Components/Question/CreateAnswer";
 import AnswerList from "../Components/Question/AnswerList";
 import Warning from "../Components/Partials/Warning";
-import Error404 from "../Components/Partials/Error404";
 import {
   changeRedirectStatus,
   sagaLoadAnswers,
@@ -26,7 +25,7 @@ export default function QuestionSingle() {
   useEffect(() => {
     dispatch(changeRedirectStatus(false));
 
-    dispatch(sagaLoadAnswers(process.env.REACT_APP_QUESTION + id));
+    // dispatch(sagaLoadAnswers(process.env.REACT_APP_QUESTION + id));
   }, [id, dispatch]);
 
   return question ? (
