@@ -5,8 +5,6 @@ import Question from "../models/Question.js";
 import User from "../models/User.js";
 import nodemailer from "nodemailer";
 
-const workflowEmailAccount = await nodemailer.createTestAccount();
-
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
