@@ -24,7 +24,7 @@ export default React.memo(function QuestionSingle() {
     (el) => el._id === id
   )[0];
   const [createAnswer, setCreateAnswer] = useState(false);
-  
+
   const [modalAccept, setModalAccept] = useState(false);
 
   const [answer, setAnswer] = useState();
@@ -34,10 +34,6 @@ export default React.memo(function QuestionSingle() {
   // console.log("sdfhiwiwfij");
   // dispatch(sagaLoadAnswers(process.env.REACT_APP_QUESTION + id));
   // }, [id, dispatch]);
-
-
-  const [createAnswer, setCreateAnswer] = useState(false);
-
 
   return question ? (
     <div className="overflow-auto container py-2 mx-auto px-4 sm:px-6 lg:px-8">
