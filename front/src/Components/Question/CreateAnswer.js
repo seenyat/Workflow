@@ -6,9 +6,14 @@ import {
   addSAGAProfileAnswerQuestion,
   sagaLoadQuestions,
 } from "../../Redux/actions/actionCreator";
-import WorkflowAdd from "./WorkflowAdd";
+import WorkflowAdd from "../Routes/WorkflowAdd";
+
 import { nanoid } from "nanoid";
-import { EDIT_PROFILE, LOAD_ANSWERS } from "../../Redux/actions/actionTypes";
+import {
+  EDIT_PROFILE,
+  LOAD_ANSWERS,
+  ADD_ANSWER,
+} from "../../Redux/actions/actionTypes";
 import { EDITOR_JS_TOOLS } from "../../Utils/editorTools";
 import { XIcon } from "@heroicons/react/solid";
 import { Transition } from "@headlessui/react";
@@ -38,8 +43,7 @@ export default function CreateAnswer({ id, edit, count, setCreateAnswer }) {
         authorId: state._id,
       }),
     }).then((e) => {
-      dispatch(sagaLoadAnswers(process.env.REACT_APP_QUESTION + id));
-      dispatch(sagaLoadQuestions(process.env.REACT_APP_ALL_QUESTION));
+      e.json().then((answ) => dispatch({ type: ADD_ANSWER, payload: answ }));
     });
     setCreateAnswer(false);
   }

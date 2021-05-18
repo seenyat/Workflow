@@ -1,6 +1,6 @@
 import { PlusIcon } from "@heroicons/react/outline";
 import React from "react";
-import ToDoGroup from "./ToDoGroup";
+import ToDoGroup from "../Question/ToDoGroup";
 
 export default function WorkflowAdd({ todo, setTodo }) {
   function addToDoGroup(e) {

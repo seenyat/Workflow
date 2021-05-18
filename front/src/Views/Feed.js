@@ -1,3 +1,4 @@
+import { ExclamationCircleIcon } from "@heroicons/react/outline";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import FormQuestion from "../Components/Question/FormQuestion";
@@ -10,7 +11,17 @@ export default function Feed({ filters, filter, questions, setPage }) {
     <>
       <div className=" overflow-auto pb-10 h-full flex flex-col m-3 items-center ">
         <div className="flex justify-evenly w-full space-x-10">
-          {user ? <FormQuestion /> : null}
+          {user ? (
+            <FormQuestion />
+          ) : (
+            <div className="flex flex-col items-center ">
+              <div className="flex items-center bg-red-100 w-fill text-gray-700 justify-center rounded-md p-5 text-xl my-5">
+                <ExclamationCircleIcon className="h-8 w-8 text-gray-500 opacity-50 mr-3" />
+                Авторизуйтесь, чтобы задать вопрос
+              </div>
+              <FormQuestion />
+            </div>
+          )}
         </div>
         <div className="w-full md:max-w-4xl flex flex-col space-y-5">
           <div className="w-full flex-wrap sm:space-x-3 flex flex-row justify-center h-min">

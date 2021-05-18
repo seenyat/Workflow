@@ -18,7 +18,12 @@ router.get("/", async (req, res) => {
     });
   const answersList = await Answer.find({})
     .populate("author")
-    .populate("question");
+    .populate("question")
+    .populate({
+      path: "comments",
+      model: "Comment",
+      populate: { path: "author", model: "User" },
+    });
   res.json({ answersList, questionsList, cookies: req.cookies });
 });
 

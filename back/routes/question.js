@@ -62,7 +62,8 @@ router.delete("/:id", async (req, res) => {
 });
 
 router.post("/like", async (req, res) => {
-  let { userID, questionID } = req.body;
+  let { userID, contentID } = req.body;
+  let questionID = contentID;
   questionID = mongoose.Types.ObjectId(questionID);
   let question = await Question.findById(questionID);
   if (question.likes.includes(userID)) {

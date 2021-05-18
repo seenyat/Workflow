@@ -1,9 +1,34 @@
 import { HeartIcon } from "@heroicons/react/outline";
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 
-export default function Like({ like, likeCount }) {
+export default function Like({ likeURL, content }) {
   const user = useSelector((state) => state.user);
+  const [likes, setLikes] = useState([...content.likes]);
+  const like = () => {
+    if (user) {
+      fetch(likeURL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userID: user._id,
+          contentID: content._id,
+        }),
+      });
+    }
+    if (likes.includes(user._id)) {
+      setLikes(
+        likes.filter((el) => {
+          return String(el) !== String(user._id);
+        })
+      );
+    } else {
+      setLikes([...likes, user._id]);
+    }
+  };
+
   return (
     <div
       onClick={like}
@@ -14,10 +39,10 @@ export default function Like({ like, likeCount }) {
       <HeartIcon className="w-5 h-5" />
       <div
         className={`pl-1 ${
-          likeCount > 0 ? "" : "hidden"
+          likes.length > 0 ? "" : "hidden"
         } select-none font-mono`}
       >
-        {likeCount}
+        {likes.length}
       </div>
     </div>
   );

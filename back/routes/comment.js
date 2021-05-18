@@ -20,21 +20,29 @@ router.post("/", async (req, res) => {
   res.status(200).json({ comment, questionId: answer.question });
 });
 
+router.delete("/", async (req, res) => {
+  const { content } = req.body;
+  await Comment.findByIdAndDelete(content._id);
+  const answer = await Answer.findById(content.answer);
+  answer.comments = answer.comments.filter((comm) => comm._id !== content._id);
+  await answer.save();
+  res.json({ content, question: answer.question });
+});
+
 router.post("/like", async (req, res) => {
-  let { userId, commentId } = req.body;
-  userId = mongoose.Types.ObjectId(userId);
-  let comment = await Comment.findById(commentId);
-  if (comment.likes.includes(userId)) {
+  let { userID, contentID } = req.body;
+  userID = mongoose.Types.ObjectId(userID);
+  let comment = await Comment.findById(contentID);
+  if (comment.likes.includes(userID)) {
     comment.likes = comment.likes.filter((el) => {
-      return String(el) !== String(userId);
+      return String(el) !== String(userID);
     });
-    await comment.save();
-    res.status(200).json(comment);
   } else {
-    comment.likes.push(userId);
-    await comment.save();
-    res.status(200).json(comment);
+    comment.likes.push(userID);
   }
+  await comment.save();
+  await comment.populate("author").execPopulate();
+  res.status(200).json(comment);
 });
 
 export default router;
