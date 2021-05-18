@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { sagaLikeCommentAC } from "../../Redux/actions/actionCreator";
 import fetchCreator from "../../Redux/fetchCreator";
@@ -9,19 +10,6 @@ function CommentContent({ content }) {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
-  const likeComment = () => {
-    if (user) {
-      dispatch(
-        sagaLikeCommentAC(
-          fetchCreator(process.env.REACT_APP_LIKE_COMMENT, "POST", {
-            userId: user._id,
-            commentId: content._id,
-          })
-        )
-      );
-    }
-  };
-
   return (
     <div className="mb-4 bg-gray-50 relative w-max max-w-full px-3 py-2 rounded">
       <div className="mr-16">
@@ -31,7 +19,10 @@ function CommentContent({ content }) {
       <div className="text-xs text-gray-400">
         <Time time={content.date} />
         <div className="absolute text-xs top-1 right-1">
-          <Like like={likeComment} likeCount={content.likes.length} />
+          <Like
+            likeURL={process.env.REACT_APP_LIKE_COMMENT}
+            content={content}
+          />
         </div>
       </div>
     </div>

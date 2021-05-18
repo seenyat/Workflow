@@ -19,6 +19,7 @@ import {
   COMMENT_ANSWER,
   LIKE_COMMENT,
 } from "./actions/actionTypes";
+import merge from "lodash/merge";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -50,13 +51,10 @@ const reducer = (state, action) => {
       };
 
     case LOAD_ANSWERS:
+      console.log(action.payload);
       return {
         ...state,
-        questions: state.questions.map((que) =>
-          que._id === action.payload.question._id
-            ? { ...que, answers: action.payload.answers }
-            : que
-        ),
+        answers: merge(state.answers, action.payload.answers),
       };
 
     case TOGGLE_TODO:
@@ -82,7 +80,7 @@ const reducer = (state, action) => {
       };
 
     case CHANGE_HEADER_MODAL_STATUS:
-      return { 
+      return {
         ...state,
         modals: state.modals.map((modal) =>
           modal.page !== "headermodal"
@@ -182,7 +180,7 @@ const reducer = (state, action) => {
     case ADD_ANSWER:
       return {
         ...state,
-        answers: action.payload,
+        answers: [...state.answers, action.payload],
       };
 
     case COMMENT_ANSWER:
@@ -210,17 +208,10 @@ const reducer = (state, action) => {
         }),
       };
 
-    case LIKE_COMMENT:
-      console.log(action.payload);
-      return {
-        ...state, questions: state.questions.map((que) => {
-          return {...que, answers: que.answers.map((answ) => {
-            return answ._id === action.payload.answer ? {...answ, comments: answ.comments.map((com) => {
-              return com._id === action.payload._id ? action.payload : com
-            })} : answ
-          })}
-        })
-      }
+    // case LIKE_COMMENT:
+    //   return {
+    //     ...state,
+    //   };
 
     default:
       return state;

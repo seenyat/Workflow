@@ -4,27 +4,26 @@ import { PlusIcon } from "@heroicons/react/solid";
 import { nanoid } from "nanoid";
 import { useState } from "react";
 import CommentContent from "./CommentContent";
+import CommentExpanded from "./CommentExpanded";
 import CommentForm from "./CommentForm";
 
 function Comments({ answer, setTextArea, textArea, user }) {
-  const [expanded, setExpanded] = useState(false);
   return (
     <>
       {answer.comments.length > 0 && (
-        <div className="py-5 pl-3 font-bold text-3xl w-max">Комментарии</div>
+        <>
+          <div className="py-5 pl-3 font-bold text-3xl w-max">Комментарии</div>
+          <div className="pl-3">
+            {answer?.comments.slice(0, 2).map((el) => (
+              <CommentContent key={nanoid()} content={el} />
+            ))}
+          </div>
+        </>
       )}
-      {expanded ? (
-        <div className="pl-3">
-          {answer?.comments.map((el) => (
-            <CommentContent key={nanoid()} content={el} />
-          ))}
-        </div>
+      {answer.comments.length > 2 ? (
+        <CommentExpanded comments={answer.comments} />
       ) : (
-        <div className="pl-3">
-          {answer?.comments.slice(0, 2).map((el) => (
-            <CommentContent key={nanoid()} content={el} />
-          ))}
-        </div>
+        ""
       )}
       {!textArea && user && (
         <div
@@ -35,17 +34,6 @@ function Comments({ answer, setTextArea, textArea, user }) {
         >
           <PlusIcon className="h-5 w-5 mr-2 cursor-pointer  hover:text-indigo-300" />
           Добавить комментарий
-        </div>
-      )}
-      {answer.comments.length > 0 && (
-        <div
-          onClick={() => {
-            setExpanded(!expanded);
-          }}
-          className="text-sm   rounded w-max px-3 py-2 mt-4 text-gray-400 hover:text-indigo-600 cursor-pointer"
-        >
-          {expanded ? "↑ Скрыть" : "↓ Раскрыть"} комментарии
-          {!expanded && " (" + (answer?.comments.length - 2) + ")"}
         </div>
       )}
       {textArea ? (

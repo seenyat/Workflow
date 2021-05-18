@@ -16,7 +16,7 @@ const userNavigation = [
 ];
 function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
+  console.log("app");
   const dispatch = useDispatch();
 
   useEffect(() => {

@@ -3,7 +3,11 @@ import ContentHeader from "./ContentHeader";
 import ContentRouter from "../Components/Routes/ContentRouter";
 import RightColumn from "./RightColumn";
 
-export default function Content({ setMobileMenuOpen, userNavigation }) {
+export default React.memo(function Content({
+  setMobileMenuOpen,
+  userNavigation,
+}) {
+  console.log("content", setMobileMenuOpen, userNavigation);
   return (
     <div className="flex-1 flex flex-col overflow-hidden">
       <ContentHeader
@@ -32,4 +36,4 @@ export default function Content({ setMobileMenuOpen, userNavigation }) {
       </div>
     </div>
   );
-}
+});

@@ -23,21 +23,6 @@ export default function QuestionBody({ question, hideEdit, link }) {
 
   const [secondRedirect, setSecondRedirect] = useState(false);
 
-  const likeQuestion = (event) => {
-    event.stopPropagation();
-    event.preventDefault();
-    if (user) {
-      dispatch(
-        sagaLikeQuestionAC(
-          fetchCreator(process.env.REACT_APP_QUESTION_LIKE, "POST", {
-            userID: user._id,
-            questionID: question._id,
-          })
-        )
-      );
-    }
-  };
-
   const changeQuestion = (e) => {
     e.preventDefault();
     const title = e.target.title.value;
@@ -125,7 +110,10 @@ export default function QuestionBody({ question, hideEdit, link }) {
       )}
 
       <div className="px-4 py-3 relative flex items-center space-x-2  text-gray-600 text-sm sm:px-6">
-        <Like like={likeQuestion} likeCount={question.likes.length} />
+        <Like
+          likeURL={process.env.REACT_APP_QUESTION_LIKE}
+          content={question}
+        />
 
         <div className=" flex space-x-1 text-sm  w-max text-gray-300 ">
           <ChatIcon className="h-5 w-5" /> <div>{question.answers.length}</div>
