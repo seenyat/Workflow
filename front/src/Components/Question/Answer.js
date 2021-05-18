@@ -12,6 +12,7 @@ import Like from "../Partials/Like";
 import { AnnotationIcon } from "@heroicons/react/solid";
 import CommentForm from "./CommentForm";
 import Comments from "./Comments";
+import AuthorCard from "../Partials/AuthorCard";
 
 export default function Answer({ item, qId }) {
   const [author, setAuthor] = useState({});
@@ -61,12 +62,10 @@ export default function Answer({ item, qId }) {
     >
       {author.user && (
         <div className="flex items-center mb-3 space-x-3">
-          <img
-            src={author.user.avatar_url}
-            alt="avatar"
-            className="w-8 h-8 shadow rounded-md text-gray-600"
-          />
-          <div className="text-gray-600">{author.user.name}</div>
+          <AuthorCard author={author.user} />
+          <div className="relative    w-max text-gray-400 ">
+            <Time time={item.date} />
+          </div>
         </div>
       )}
       <div className="absolute text-gray-300 items-center right-2 top-2 flex space-x-1">
@@ -74,7 +73,7 @@ export default function Answer({ item, qId }) {
           <>
             <i
               onClick={() => deleteAnswer()}
-              className="fas transition hover:text-red-300 cursor-pointer pl-3 pt-1 fa-trash-alt text-gray-300 "
+              className="fas p-1.5 rounded-md transition hover:bg-red-50 hover:text-red-300 cursor-pointer   fa-trash-alt text-gray-300 "
               aria-hidden="true"
             ></i>
           </>
@@ -85,13 +84,13 @@ export default function Answer({ item, qId }) {
         <Output data={item.comment} />
       </div>
       <Workflow qId={qId} todo={item.workflows} id={item._id} />
-      <div className="px-4 py-2 relative flex flex-row text-sm  w-max text-gray-400 right-2 top-2">
-        <Time time={item.date} />
-      </div>
-      {textArea ? (
-        <CommentForm statusTextArea={{ setTextArea }} answer={item} />
-      ) : null}
-      <Comments answer={item} textArea={textArea} setTextArea={setTextArea} />
+      <hr />
+      <Comments
+        user={user}
+        answer={item}
+        textArea={textArea}
+        setTextArea={setTextArea}
+      />
     </li>
   );
 }

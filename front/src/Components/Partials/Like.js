@@ -8,7 +8,7 @@ export default function Like({ like, likeCount }) {
     <div
       onClick={like}
       className={`flex  ${
-        user && "hover:text-red-500 hover:bg-red-100 cursor-pointer"
+        user && "hover:text-pink-500 hover:bg-pink-100 cursor-pointer"
       } text-gray-300 p-1 rounded-md    items-center `}
     >
       <HeartIcon className="w-5 h-5" />
