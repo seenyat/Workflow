@@ -14,7 +14,7 @@ function ProfileAnswers({ answer }) {
                 to={`/question/${answer.question._id}`}
                 className="font-medium text-gray-900"
               >
-                {answer.comment}
+                {/* {answer.comment} */}
               </Link>
             </div>
 
