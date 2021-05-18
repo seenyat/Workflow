@@ -11,7 +11,8 @@ export default function MainFeed() {
   const dispatch = useDispatch();
   const { questions } = useSelector((state) => state);
   const [page, setPage] = useState(0);
-  const loading = useSelector((state) => state.loading);
+
+  const { user } = useSelector((state) => state);
   // Sort by likes
   const [questionsList, setQuestionsList] = useState(
     questions.sort((a, b) => b.likes.length - a.likes.length)
@@ -67,5 +68,7 @@ export default function MainFeed() {
         questions={questionsList}
       />
     </>
-  ) : loading ? null : null; // <div className="border-8 mt-24 mx-auto rounded-full border-gray-500 border-dashed animate-spin"></div>
+  ) : (
+    <div className="border-8 mt-24 mx-auto rounded-full w-24 h-24 border-gray-500 border-dashed animate-spin"></div>
+  );
 }
