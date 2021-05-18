@@ -114,7 +114,7 @@ export default function QuestionBody({ question, hideEdit }) {
           <div className="px-4 text-sm sm:p-6 w-max text-gray-400 ">
             <i
               onClick={() => setEditStatus(!editStatus)}
-              className="fa transition cursor-pointer hover:text-indigo-700 fa-pencil text-black "
+              className="fa transition cursor-pointer hover:text-indigo-700 fa-pencil pl-3 pt-1 text-gray-400"
               aria-hidden="true"
             ></i>
           </div>
@@ -123,7 +123,7 @@ export default function QuestionBody({ question, hideEdit }) {
           <div className="px-4 text-sm sm:p-6 w-max text-gray-400 ">
             <i
               onClick={() => deleteQuestion()}
-              className="fas transition cursor-pointer hover:text-red-300  fa-trash-alt text-black "
+              className="fas transition hover:text-red-300 cursor-pointer pl-3 pt-1 fa-trash-alt text-gray-400  "
               aria-hidden="true"
             ></i>
           </div>
