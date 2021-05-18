@@ -8,8 +8,12 @@ const router = express.Router();
 router.get("/:id", async (req, res) => {
   const { id } = req.params;
   const user = await User.findById(id);
-  const answers = await Answer.find({ author: user._id }).populate("question");
-  const questions = await Question.find({ author: user._id });
+  const answers = await Answer.find({ author: user._id })
+    .populate("question")
+    .populate("author");
+  const questions = await Question.find({ author: user._id }).populate(
+    "author"
+  );
   const sumLikes = answers
     .map((el) => el.likes)
     .flat(Infinity)
@@ -61,9 +65,9 @@ router.put("/updateworkflow", async (req, res) => {
 });
 
 router.put("/:id", async (req, res) => {
-  const { login, info } = req.body;
+  const { name, info } = req.body;
   const { id } = req.params;
-  await User.findOneAndUpdate({ _id: id }, { $set: { login, info } });
+  await User.findOneAndUpdate({ _id: id }, { $set: { name, info } });
   let newUser = await User.findById(id);
   res.json(newUser);
 });

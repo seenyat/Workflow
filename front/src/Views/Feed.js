@@ -9,7 +9,7 @@ export default function Feed({ filters, filter, questions, setPage }) {
 
   return (
     <>
-      <div className=" overflow-auto pb-10 h-full flex flex-col m-3 items-center ">
+      <div className=" overflow-auto pb-10 h-full flex flex-col  items-center ">
         <div className="flex justify-evenly w-full space-x-10">
           {user ? (
             <FormQuestion />
