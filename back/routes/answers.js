@@ -38,6 +38,8 @@ router.post("/", async (req, res) => {
       }>ссылке </a>для просмотра нового ответа на Ваш вопрос`,
     });
   }
+  await answer.populate("question").execPopulate();
+  await answer.populate("author").execPopulate();
   res.status(200).json(answer);
 });
 
@@ -52,9 +54,10 @@ router.delete("/", async (req, res) => {
 });
 
 router.post("/like", async (req, res) => {
-  let { userID, answerID } = req.body;
+  let { userID, contentID } = req.body;
+  console.log(userID);
   userID = mongoose.Types.ObjectId(userID);
-  let answer = await Answer.findById(answerID);
+  let answer = await Answer.findById(contentID);
   if (answer.likes.includes(userID)) {
     answer.likes = answer.likes.filter((el) => {
       return String(el) !== String(userID);
@@ -64,6 +67,7 @@ router.post("/like", async (req, res) => {
   } else {
     answer.likes.push(userID);
     await answer.save();
+
     res.status(200).json(answer);
   }
 });

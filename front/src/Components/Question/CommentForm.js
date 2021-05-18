@@ -14,7 +14,7 @@ function CommentForm({ answer, statusTextArea }) {
     dispatch(
       sagaAddCommentAC(
         fetchCreator(process.env.REACT_APP_ADD_COMMENT, "POST", {
-          authorId: answer.author,
+          authorId: answer.author._id,
           answerId: answer._id,
           content: commentText.current.value,
         })

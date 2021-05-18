@@ -14,34 +14,14 @@ import CommentForm from "./CommentForm";
 import Comments from "./Comments";
 import AuthorCard from "../Partials/AuthorCard";
 
-export default function Answer({ item, qId }) {
-  const [author, setAuthor] = useState({});
+export default React.memo(function Answer({ item, qId }) {
   const [textArea, setTextArea] = useState(false);
-
   const dispatch = useDispatch();
 
   const user = useSelector((state) => state.user);
-
-  useEffect(() => {
-    fetch(process.env.REACT_APP_PROFILE + item.author).then((data) => {
-      data.json().then((user) => {
-        setAuthor(user);
-      });
-    });
-  }, [item.author]);
-
-  const likeAnswer = () => {
-    if (user) {
-      dispatch(
-        sagaLikeAnswerAC(
-          fetchCreator(process.env.REACT_APP_ANSWER_LIKE, "POST", {
-            userID: user._id,
-            answerID: item._id,
-          })
-        )
-      );
-    }
-  };
+  item = useSelector(
+    (state) => state.answers.filter((answ) => answ._id === item)[0]
+  );
 
   const deleteAnswer = () => {
     dispatch(
@@ -55,21 +35,21 @@ export default function Answer({ item, qId }) {
     );
   };
 
-  return (
+  return item ? (
     <li
       key={item._id}
       className="bg-white relative shadow overflow-hidden rounded-md px-6 py-4"
     >
-      {author.user && (
+      {
         <div className="flex items-center mb-3 space-x-3">
-          <AuthorCard author={author.user} />
+          <AuthorCard author={item.author} />
           <div className="relative    w-max text-gray-400 ">
             <Time time={item.date} />
           </div>
         </div>
-      )}
+      }
       <div className="absolute text-gray-300 items-center right-2 top-2 flex space-x-1">
-        {author.user && user && user._id === author.user._id ? (
+        {user && user._id === item.author._id ? (
           <>
             <i
               onClick={() => deleteAnswer()}
@@ -78,7 +58,7 @@ export default function Answer({ item, qId }) {
             ></i>
           </>
         ) : null}
-        <Like like={likeAnswer} likeCount={item.likes.length} />
+        <Like likeURL={process.env.REACT_APP_ANSWER_LIKE} content={item} />
       </div>
       <div className="prose lg:prose-xl">
         <Output data={item.comment} />
@@ -92,5 +72,7 @@ export default function Answer({ item, qId }) {
         setTextArea={setTextArea}
       />
     </li>
+  ) : (
+    ""
   );
-}
+});

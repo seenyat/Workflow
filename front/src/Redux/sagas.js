@@ -16,6 +16,7 @@ import {
   addAnswer,
   addCommentAC,
   likeCommentAC,
+  changeHeaderModalStatus,
 } from "./actions/actionCreator";
 import {
   SAGA_AUTH,
@@ -50,6 +51,7 @@ const fetchForGet = async (payload) => {
 function* postQuestionWorker(action) {
   const post = yield call(fetchForAll, action.payload.pay);
   yield put(postQuestion(post));
+  yield console.log(post);
   yield action.payload.setAdress(post._id);
   yield action.payload.setRedirectStatus(true);
 }

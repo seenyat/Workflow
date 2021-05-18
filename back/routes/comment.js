@@ -21,15 +21,15 @@ router.post("/", async (req, res) => {
 });
 
 router.post("/like", async (req, res) => {
-  let { userId, commentId } = req.body;
-  userId = mongoose.Types.ObjectId(userId);
-  let comment = await Comment.findById(commentId);
-  if (comment.likes.includes(userId)) {
+  let { userID, contentID } = req.body;
+  userID = mongoose.Types.ObjectId(userID);
+  let comment = await Comment.findById(contentID);
+  if (comment.likes.includes(userID)) {
     comment.likes = comment.likes.filter((el) => {
-      return String(el) !== String(userId);
+      return String(el) !== String(userID);
     });
   } else {
-    comment.likes.push(userId);
+    comment.likes.push(userID);
   }
   await comment.save();
   await comment.populate("author").execPopulate();
