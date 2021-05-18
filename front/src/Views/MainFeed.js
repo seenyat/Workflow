@@ -38,7 +38,7 @@ export default function MainFeed() {
     const newList = questions.filter((que) => que.theme.includes(theme));
     setQuestionsList(newList.slice(page * 5, page * 5 + 5));
     setCount(newList.length);
-    setPage(0)
+    // setPage(0)
     setButtonsState(
       buttonsState.map((bt) =>
         bt.theme !== theme
@@ -62,12 +62,7 @@ export default function MainFeed() {
         filter={sortByTheme}
         questions={questionsList}
       />
-      <Pagination
-        pageCount={count}
-        setPage={setPage}
-        page={page}
-        questions={questionsList}
-      />
+      <Pagination pageCount={count} setPage={setPage} page={page} />
     </>
   ) : loading ? null : null; // <div className="border-8 mt-24 mx-auto rounded-full border-gray-500 border-dashed animate-spin"></div>
 }

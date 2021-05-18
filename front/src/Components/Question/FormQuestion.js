@@ -48,13 +48,10 @@ export default function FormQuestion() {
         setAdress,
       })
     );
-<<<<<<< HEAD
     editFormStatus(false);
     setTimeout(() => {
       setRedirectStatus(true);
     }, 150);
-=======
->>>>>>> 3f87594f67076face59a3b48f4825f3f4ed21ced
   };
 
   return (
