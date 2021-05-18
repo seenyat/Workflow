@@ -31,7 +31,7 @@ export default function FormQuestion() {
 
   const [selected, setSelected] = useState(themes[0]);
 
-  const postNewQuestion = (e) => {
+  const postNewQuestion = async (e) => {
     e.preventDefault();
     const title = e.target.questionTitle.value;
     const body = e.target.questionBody.value;
@@ -47,7 +47,9 @@ export default function FormQuestion() {
       )
     );
     editFormStatus(false);
-    setRedirectStatus(true);
+    setTimeout(() => {
+      setRedirectStatus(true);
+    }, 50);
   };
 
   const [lastQue, setLastQue] = useState();

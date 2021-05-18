@@ -32,7 +32,6 @@ export default function QuestionSingle() {
   return question ? (
     <div className="overflow-scroll container py-2 mx-auto px-4 sm:px-6 lg:px-8">
       <QuestionBody question={question} />
-      {/* {user && <CreateAnswer id={id} />} */}
 
       {user ? (
         <>

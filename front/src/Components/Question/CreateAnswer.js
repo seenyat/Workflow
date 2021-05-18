@@ -42,6 +42,7 @@ export default function CreateAnswer({ id, edit, count, setCreateAnswer }) {
         addSAGAProfileAnswerQuestion(process.env.REACT_APP_PROFILE + state._id)
       );
     });
+    setCreateAnswer(false);
   }
   return (
     <div className="my-3 relative w-max">
