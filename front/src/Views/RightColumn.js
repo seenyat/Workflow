@@ -14,7 +14,7 @@ export default function RightColumn() {
         return el.author._id === user._id;
       });
     }
-  }, []);
+  }, [answers]);
 
   const dispatch = useDispatch();
   // useEffect(() => {

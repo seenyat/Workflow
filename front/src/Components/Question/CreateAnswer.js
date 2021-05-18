@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   sagaLoadAnswers,
   addSAGAProfileAnswerQuestion,
+  sagaLoadQuestions,
 } from "../../Redux/actions/actionCreator";
 import WorkflowAdd from "./WorkflowAdd";
 import { nanoid } from "nanoid";
@@ -24,7 +25,7 @@ export default function CreateAnswer({ id, edit, count, setCreateAnswer }) {
   async function addAnswer(e) {
     e.preventDefault();
     const savedComment = await comment.current.save();
-    
+
     fetch(process.env.REACT_APP_ANSWER, {
       method: "POST",
       headers: {
@@ -38,10 +39,7 @@ export default function CreateAnswer({ id, edit, count, setCreateAnswer }) {
       }),
     }).then((e) => {
       dispatch(sagaLoadAnswers(process.env.REACT_APP_QUESTION + id));
-      dispatch(
-        addSAGAProfileAnswerQuestion(process.env.REACT_APP_PROFILE + state._id)
-      );
-     
+      dispatch(sagaLoadQuestions(process.env.REACT_APP_ALL_QUESTION));
     });
     setCreateAnswer(false);
   }
