@@ -49,3 +49,6 @@ export const ADD_ANSWER = "ADD_ANSWER";
 
 export const SAGA_COMMENT_ANSWER = "SAGA_COMMENT_ANSWER";
 export const COMMENT_ANSWER = "COMMENT_ANSWER";
+
+export const SAGA_DELETE_TODO = "SAGA_DELETE_TODO";
+export const DELETE_TODO = "DELETE_TODO";

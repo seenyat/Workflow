@@ -10,10 +10,7 @@ export default function Feed({ filters, filter, questions, setPage }) {
     <>
       <div className=" overflow-auto pb-10 h-full flex flex-col m-3 items-center ">
         <div className="flex justify-evenly w-full space-x-10">
-          {user ? (
-            <FormQuestion />
-          ) : // <div className="border-8 mt-24 mx-auto rounded-full w-12 h-12 border-gray-500 border-dashed animate-spin"></div>
-          null}
+          {user ? <FormQuestion /> : null}
         </div>
         <div className="w-full md:max-w-4xl flex flex-col space-y-5">
           <div className="w-full flex-wrap sm:space-x-3 flex flex-row justify-center h-min">
@@ -43,8 +40,7 @@ export default function Feed({ filters, filter, questions, setPage }) {
                   <QuestionBody hideEdit={true} question={question} />
                 </Link>
               ))
-            : // <div className="border-8 mt-24 mx-auto rounded-full w-24 h-24 border-gray-500 border-dashed animate-spin"></div>
-              null}
+            : null}
         </div>
       </div>
     </>

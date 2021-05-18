@@ -27,7 +27,7 @@ export const sideBarMenu = [
     href: "/workflows",
     icon: BadgeCheckIcon,
     current: false,
-    private: false,
+    private: true,
   },
   {
     name: "Профиль",
