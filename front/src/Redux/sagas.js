@@ -46,9 +46,10 @@ const fetchForGet = async (payload) => {
 };
 
 function* postQuestionWorker(action) {
-  const post = yield call(fetchForAll, action.payload);
+  const post = yield call(fetchForAll, action.payload.pay);
   yield put(postQuestion(post));
-  yield put(changeRedirectStatus(true));
+  yield action.payload.setAdress(post._id);
+  yield action.payload.setRedirectStatus(true);
 }
 
 function* loadQuestionsWorker(action) {
