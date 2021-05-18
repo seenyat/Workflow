@@ -11,11 +11,11 @@ export default function MainFeed() {
   const dispatch = useDispatch();
   const { questions } = useSelector((state) => state);
   const [page, setPage] = useState(0);
+  const loading = useSelector((state) => state.loading);
   // Sort by likes
   const [questionsList, setQuestionsList] = useState(
     questions.sort((a, b) => b.likes.length - a.likes.length)
   );
-  console.log(questionsList);
   // Database renew
   useEffect(() => {
     dispatch(sagaLoadQuestions(process.env.REACT_APP_ALL_QUESTION));
@@ -28,16 +28,16 @@ export default function MainFeed() {
         .sort((a, b) => b.likes.length - a.likes.length)
         .slice(page * 5, page * 5 + 5)
     );
-    setCount(questions.length)
+    setCount(questions.length);
   }, [questions, page]);
-  const [count, setCount] =useState(0)
+  const [count, setCount] = useState(0);
 
   // Filtering
   const [buttonsState, setButtonsState] = useState(buttonList);
   const sortByTheme = (theme) => {
     const newList = questions.filter((que) => que.theme.includes(theme));
     setQuestionsList(newList.slice(page * 5, page * 5 + 5));
-    setCount(newList.length)
+    setCount(newList.length);
     setButtonsState(
       buttonsState.map((bt) =>
         bt.theme !== theme
@@ -67,7 +67,5 @@ export default function MainFeed() {
         questions={questionsList}
       />
     </>
-  ) : (
-    <div className="border-8 mt-24 mx-auto rounded-full border-gray-500 border-dashed animate-spin"></div>
-  );
+  ) : loading ? null : null; // <div className="border-8 mt-24 mx-auto rounded-full border-gray-500 border-dashed animate-spin"></div>
 }
