@@ -25,6 +25,14 @@ router.post("/addworkflow", async (req, res) => {
   res.json(user);
 });
 
+router.delete("/addworkflow", async (req, res) => {
+  const { id, userId } = req.body;
+  const user = await User.findById(userId);
+  user.workflows = user.workflows.filter((wf) => wf.id !== id);
+  await user.save();
+  res.json(id);
+});
+
 router.put("/updateworkflow", async (req, res) => {
   const { id, stage, index, userId } = req.body;
   console.log(id, stage, index);

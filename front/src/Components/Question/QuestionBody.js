@@ -22,6 +22,7 @@ export default function QuestionBody({ question, hideEdit, link }) {
 
   const [secondRedirect, setSecondRedirect] = useState(false);
 
+
   const likeQuestion = (event) => {
     event.stopPropagation();
     event.preventDefault();

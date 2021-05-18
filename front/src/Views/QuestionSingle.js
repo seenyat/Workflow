@@ -21,13 +21,17 @@ export default function QuestionSingle() {
   )[0];
   const dispatch = useDispatch();
   const [createAnswer, setCreateAnswer] = useState(false);
+  
+  const [modalAccept, setModalAccept] = useState(false);
 
+  const [answer, setAnswer] = useState();
   // useEffect(() => {
   // dispatch(changeRedirectStatus(false));
 
   // console.log("sdfhiwiwfij");
   // dispatch(sagaLoadAnswers(process.env.REACT_APP_QUESTION + id));
   // }, [id, dispatch]);
+
 
   return question ? (
     <div className="overflow-auto container py-2 mx-auto px-4 sm:px-6 lg:px-8">

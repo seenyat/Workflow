@@ -15,6 +15,8 @@ import {
   deleteAnswer,
   addAnswer,
   addCommentAC,
+  deleteToDo,
+  deleteComment,
 } from "./actions/actionCreator";
 import {
   SAGA_AUTH,
@@ -30,6 +32,8 @@ import {
   SAGA_TOGGLE_TODO,
   SAGA_DELETE_ANSWER,
   SAGA_COMMENT_ANSWER,
+  SAGA_DELETE_TODO,
+  SAGA_DELETE_COMMENT,
 } from "./actions/actionTypes";
 
 const fetchForAll = async (payload) => {
@@ -114,6 +118,16 @@ function* addCommentWorker(action) {
   yield put(addCommentAC(commentsArray));
 }
 
+function* deleteToDoWorker(action) {
+  const id = yield call(fetchForAll, action.payload);
+  yield put(deleteToDo(id));
+}
+
+function* deleteCommentWorker(action) {
+  const content = yield call(fetchForAll, action.payload);
+  yield put(deleteComment(content));
+}
+
 export default function* watcher() {
   yield takeEvery(SAGA_POST_QUESTION, postQuestionWorker);
   yield takeEvery(SAGA_LOAD_QUESTIONS, loadQuestionsWorker);
@@ -128,4 +142,6 @@ export default function* watcher() {
   yield takeEvery(SAGA_TOGGLE_TODO, toggleTodoWorker);
   yield takeEvery(SAGA_DELETE_ANSWER, deleteAnswerWorker);
   yield takeEvery(SAGA_COMMENT_ANSWER, addCommentWorker);
+  yield takeEvery(SAGA_DELETE_TODO, deleteToDoWorker);
+  yield takeEvery(SAGA_DELETE_COMMENT, deleteCommentWorker);
 }

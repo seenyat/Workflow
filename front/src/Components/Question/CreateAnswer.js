@@ -5,7 +5,7 @@ import {
   sagaLoadAnswers,
   addSAGAProfileAnswerQuestion,
 } from "../../Redux/actions/actionCreator";
-import WorkflowAdd from "./WorkflowAdd";
+import WorkflowAdd from "../Routes/WorkflowAdd";
 import { nanoid } from "nanoid";
 import { EDIT_PROFILE } from "../../Redux/actions/actionTypes";
 import { EDITOR_JS_TOOLS } from "../../Utils/editorTools";
