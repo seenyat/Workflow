@@ -30,7 +30,7 @@ export default function QuestionSingle() {
   // }, [id, dispatch]);
 
   return question ? (
-    <div className="overflow-scroll container py-2 mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="overflow-auto container py-2 mx-auto px-4 sm:px-6 lg:px-8">
       <QuestionBody question={question} />
 
       {user ? (

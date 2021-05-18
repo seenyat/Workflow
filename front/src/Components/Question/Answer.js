@@ -69,35 +69,29 @@ export default function Answer({ item, qId }) {
           <div className="text-gray-600">{author.user.name}</div>
         </div>
       )}
-      <div className="absolute text-gray-300 right-2 top-2 flex space-x-1">
+      <div className="absolute text-gray-300 items-center right-2 top-2 flex space-x-1">
+        {author.user && user && user._id === author.user._id ? (
+          <>
+            <i
+              onClick={() => deleteAnswer()}
+              className="fas transition hover:text-red-300 cursor-pointer pl-3 pt-1 fa-trash-alt text-gray-300 "
+              aria-hidden="true"
+            ></i>
+          </>
+        ) : null}
         <Like like={likeAnswer} likeCount={item.likes.length} />
       </div>
       <div className="prose lg:prose-xl">
         <Output data={item.comment} />
       </div>
       <Workflow qId={qId} todo={item.workflows} id={item._id} />
-      <div className="px-4 relative flex flex-row text-sm sm:p-6 w-max text-gray-400 right-2 top-2">
+      <div className="px-4 py-2 relative flex flex-row text-sm  w-max text-gray-400 right-2 top-2">
         <Time time={item.date} />
-        {author.user && user && user._id === author.user._id ? (
-          <>
-            <i
-              onClick={() => deleteAnswer()}
-              className="fas transition hover:text-red-300 cursor-pointer pl-3 pt-1 fa-trash-alt text-gray-400 "
-              aria-hidden="true"
-            ></i>
-            <AnnotationIcon
-              onClick={() => {
-                setTextArea(!textArea);
-              }}
-              className="h-5 w-5 ml-3 cursor-pointer hover:text-indigo-300"
-            />
-          </>
-        ) : null}
       </div>
       {textArea ? (
         <CommentForm statusTextArea={{ setTextArea }} answer={item} />
       ) : null}
-      <Comments answer={item} />
+      <Comments answer={item} textArea={textArea} setTextArea={setTextArea} />
     </li>
   );
 }
