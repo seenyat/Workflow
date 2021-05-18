@@ -78,7 +78,7 @@ export default function Answer({ item, qId }) {
       <Workflow qId={qId} todo={item.workflows} id={item._id} />
       <div className="px-4 relative flex flex-row text-sm sm:p-6 w-max text-gray-400 right-2 top-2">
         <Time time={item.date} />
-        {author.user && user._id === author.user._id ? (
+        {author.user && user && user._id === author.user._id ? (
           <>
             <i
               onClick={() => deleteAnswer()}
