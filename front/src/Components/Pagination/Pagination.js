@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-export default function Pagination({ setPage, questions, pageCount, page }) {
+export default function Pagination({ setPage, pageCount, page }) {
   let arr = [];
   let count = Math.ceil(pageCount / 5);
   for (let i = 0; i < count; i++) {
