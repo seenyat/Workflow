@@ -7,7 +7,7 @@ import {
 } from "../../Redux/actions/actionCreator";
 import WorkflowAdd from "./WorkflowAdd";
 import { nanoid } from "nanoid";
-import { EDIT_PROFILE } from "../../Redux/actions/actionTypes";
+import { EDIT_PROFILE, LOAD_ANSWERS } from "../../Redux/actions/actionTypes";
 import { EDITOR_JS_TOOLS } from "../../Utils/editorTools";
 import { XIcon } from "@heroicons/react/solid";
 import { Transition } from "@headlessui/react";
@@ -24,7 +24,7 @@ export default function CreateAnswer({ id, edit, count, setCreateAnswer }) {
   async function addAnswer(e) {
     e.preventDefault();
     const savedComment = await comment.current.save();
-    console.log(savedComment);
+    
     fetch(process.env.REACT_APP_ANSWER, {
       method: "POST",
       headers: {
@@ -41,6 +41,7 @@ export default function CreateAnswer({ id, edit, count, setCreateAnswer }) {
       dispatch(
         addSAGAProfileAnswerQuestion(process.env.REACT_APP_PROFILE + state._id)
       );
+     
     });
     setCreateAnswer(false);
   }

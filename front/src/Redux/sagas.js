@@ -86,7 +86,7 @@ function* editQuestionWorker(action) {
 function* addProfileAnswerQuestionWorker(action) {
   const profileAnswerQuestion = yield call(fetchForGet, action.payload);
   yield put(addProfileAnswerQuestion(profileAnswerQuestion));
-  yield put(addAnswer(profileAnswerQuestion.answers));
+  // yield put(addAnswer(profileAnswerQuestion.answers));
 }
 
 function* editProfileWorker(action) {
