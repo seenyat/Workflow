@@ -10,7 +10,13 @@ function UsersProfile() {
     fetch(`http://localhost:4000/profile/${id}`, {
       method: "GET",
       credentials: "include",
-    }).then((data) => data.json().then((profile) => setProf(profile)));
+    }).then((data) =>
+      data.json().then((profile) => {
+        profile.questions.length > 8
+          ? setProf({ ...profile, questions: profile.questions.slice(0, 8) })
+          : setProf(profile);
+      })
+    );
   }, []);
 
   console.log(prof);
@@ -132,7 +138,7 @@ function UsersProfile() {
 
               {/* Questions */}
               <div className="mt-6 flow-root">
-                <ul className="-mb-8">
+                <ul className="-mb-8 max-h-screen">
                   {prof?.questions.map((el) => (
                     <ProfileQuestions item={el} key={el._id} />
                   ))}
