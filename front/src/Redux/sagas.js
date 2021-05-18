@@ -15,6 +15,7 @@ import {
   deleteAnswer,
   addAnswer,
   addCommentAC,
+  likeCommentAC,
 } from "./actions/actionCreator";
 import {
   SAGA_AUTH,
@@ -117,7 +118,7 @@ function* addCommentWorker(action) {
 
 function* likeCommentWorker(action) {
   const commentsLikesArray = yield call(fetchForAll, action.payload);
-  yield console.log(commentsLikesArray);
+  yield put(likeCommentAC(commentsLikesArray));
 }
 
 export default function* watcher() {

@@ -31,7 +31,7 @@ function CommentContent({ content }) {
       <div className="text-xs text-gray-400">
         <Time time={content.date} />
         <div className="absolute text-xs top-1 right-1">
-          <Like like={likeComment} />
+          <Like like={likeComment} likeCount={content.likes.length} />
         </div>
       </div>
     </div>
