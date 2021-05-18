@@ -17,8 +17,8 @@ export default function Pagination({ page, questions, pageCount, pageNumber }) {
           <p className="text-sm text-gray-700">
             Showing <span className="font-medium">{pageNumber * 5 + 1}</span> to{" "}
             <span className="font-medium">
-              {pageNumber * 5 + 5 > questions.length
-                ? questions.length
+              {pageNumber * 5 + 5 > pageCount
+                ? pageCount
                 : pageNumber * 5 + 5}
             </span>{" "}
             of <span className="font-medium">{pageCount}</span> results
