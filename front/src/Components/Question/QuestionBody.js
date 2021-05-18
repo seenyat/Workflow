@@ -11,9 +11,10 @@ import AuthorCard from "../Partials/AuthorCard";
 import Like from "../Partials/Like";
 import Time from "../../Utils/Time";
 import { themeIcons } from "../../Utils/themeIcons";
-import { Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
+import EditAndDelete from "../Partials/editAndDelete";
 
-export default function QuestionBody({ question, hideEdit }) {
+export default function QuestionBody({ question, hideEdit, link }) {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
 
@@ -66,15 +67,32 @@ export default function QuestionBody({ question, hideEdit }) {
 
   return (
     <div className="bg-white text-xl w-full relative overflow-hidden shadow rounded-lg divide-y divide-gray-200">
-      <div className=" pl-4 sm:px-6 py-2 font-mono lowercase text-gray-400">
+      <div className=" pl-4 flex sm:px-6 py-2 font-mono lowercase text-gray-400">
         <i className={`fab mr-2 ${themeIcons[question.theme]}`} />
         {question.theme}
+        <EditAndDelete
+          question={question}
+          user={user}
+          hideEdit={hideEdit}
+          deleteQuestion={deleteQuestion}
+          editStatus={editStatus}
+          setEditStatus={setEditStatus}
+        />
       </div>
 
       {!editStatus && (
-        <div className="px-4 py-5 sm:px-6">
-          <div className="font-bold my-4 text-3xl">{question.title}</div>
-          <div>{question.body}</div>
+        <div className="px-4 text-base py-5 sm:px-6">
+          {link ? (
+            <Link
+              to={link}
+              className="font-bold hover:text-indigo-600 transition my-4 text-3xl"
+            >
+              {question.title}
+            </Link>
+          ) : (
+            <div className="font-bold my-4 text-3xl">{question.title}</div>
+          )}
+          <div className="py-2">{question.body}</div>
         </div>
       )}
 
@@ -101,33 +119,16 @@ export default function QuestionBody({ question, hideEdit }) {
         </div>
       )}
 
-      <div className="px-4 relative flex items-center space-x-3  text-gray-600 text-sm sm:px-6">
+      <div className="px-4 py-3 relative flex items-center space-x-1  text-gray-600 text-sm sm:px-6">
         <Like like={likeQuestion} likeCount={question.likes.length} />
         <AuthorCard author={question.author} />
-        <div className="px-4 text-sm sm:p-6 w-max text-gray-400 ">
+        <div className="px-2 text-sm  w-max text-gray-400 ">
           <Time time={question.date} />
         </div>
-        <div className="px-4 text-sm sm:p-6 w-max text-gray-400 ">
+        <div className="px-2 text-sm  w-max text-gray-400 ">
           Ответов: {question.answers.length}
         </div>
-        {user && user._id === question.author._id && !hideEdit ? (
-          <div className="px-4 text-sm sm:p-6 w-max text-gray-400 ">
-            <i
-              onClick={() => setEditStatus(!editStatus)}
-              className="fa transition cursor-pointer hover:text-indigo-700 fa-pencil text-black "
-              aria-hidden="true"
-            ></i>
-          </div>
-        ) : null}
-        {user && user._id === question.author._id && !hideEdit ? (
-          <div className="px-4 text-sm sm:p-6 w-max text-gray-400 ">
-            <i
-              onClick={() => deleteQuestion()}
-              className="fas transition cursor-pointer hover:text-red-300  fa-trash-alt text-black "
-              aria-hidden="true"
-            ></i>
-          </div>
-        ) : null}
+
         {secondRedirect && <Redirect to="/" />}
       </div>
     </div>

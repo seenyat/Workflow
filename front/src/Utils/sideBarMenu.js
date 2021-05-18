@@ -8,7 +8,6 @@ import {
 } from "@heroicons/react/outline";
 
 export const sideBarMenu = [
-
   {
     name: "Лента",
     href: "/",
@@ -28,7 +27,7 @@ export const sideBarMenu = [
     href: "/workflows",
     icon: BadgeCheckIcon,
     current: false,
-    private: false,
+    private: true,
   },
   {
     name: "Профиль",
@@ -51,6 +50,4 @@ export const sideBarMenu = [
     current: false,
     private: "invert",
   },
-
-
 ];

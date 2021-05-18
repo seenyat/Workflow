@@ -45,7 +45,7 @@ export default function CreateAnswer({ id, edit, count, setCreateAnswer }) {
     setCreateAnswer(false);
   }
   return (
-    <div className="my-3 relative w-max">
+    <div className="my-3 relative max-w-full w-max">
       <form
         onKeyPress={(e) => {
           if (e.key === "Enter") {
@@ -61,7 +61,7 @@ export default function CreateAnswer({ id, edit, count, setCreateAnswer }) {
             onClick={() => setCreateAnswer(false)}
             className="absolute w-10 h-10 right-2 top-2 text-gray-400 cursor-pointer hover:text-gray-700"
           />
-          <div className="bg-white  py-1 px-4 space-y-6 sm:p-6">
+          <div className="bg-white  p-6 space-y-6 sm:p-6">
             <div>
               <h3 className="text-2xl mb-2 font-bold leading-6  text-gray-900">
                 Добавить ответ

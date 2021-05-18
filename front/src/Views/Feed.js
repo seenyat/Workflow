@@ -39,9 +39,11 @@ export default function Feed({ filters, filter, questions, setPage }) {
           </div>
           {questions.length > 0
             ? questions.map((question) => (
-                <Link key={question._id} to={`/question/${question._id}`}>
-                  <QuestionBody hideEdit={true} question={question} />
-                </Link>
+                <QuestionBody
+                  link={`/question/${question._id}`}
+                  hideEdit={true}
+                  question={question}
+                />
               ))
             : // <div className="border-8 mt-24 mx-auto rounded-full w-24 h-24 border-gray-500 border-dashed animate-spin"></div>
               null}
