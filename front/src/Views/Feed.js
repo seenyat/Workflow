@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import FormQuestion from "../Components/Question/FormQuestion";
 import QuestionBody from "../Components/Question/QuestionBody";
 
-export default function Feed({ filters, filter, questions }) {
+export default function Feed({ filters, filter, questions, setPage }) {
   const user = useSelector((state) => state.user);
 
   return (
@@ -23,7 +23,10 @@ export default function Feed({ filters, filter, questions }) {
                 className="flex flex-col justify-center text-center items-center  mb-4 h-max w-1/3 sm:w-max text-xs "
               >
                 <i
-                  onClick={() => filter(button.theme)}
+                  onClick={() => {
+                    setPage(0);
+                    filter(button.theme);
+                  }}
                   className={`${
                     button.className
                   } hover:bg-gray-200 transition flex p-2 rounded-md cursor-pointer sm:text-6xl text-4xl ${
