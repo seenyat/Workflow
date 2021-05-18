@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 export default function Pagination({ setPage, pageCount, page }) {
   let arr = [];
@@ -13,7 +12,7 @@ export default function Pagination({ setPage, pageCount, page }) {
       <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
         <div>
           <p className="text-sm text-gray-700">
-            Showing <span className="font-medium">{page * 5 + 1}</span> to{" "}
+            Showing <span className="font-medium">{page * 5 + 1}</span> to {" "}
             <span className="font-medium">
               {page * 5 + 5 > pageCount
                 ? pageCount
