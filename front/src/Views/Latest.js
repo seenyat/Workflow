@@ -33,7 +33,8 @@ function Latest(props) {
   // Filtering
   const [buttonsState, setButtonsState] = useState(buttonList);
   const sortByTheme = (theme) => {
-    const newList = questions.filter((que) => que.theme === theme);
+    const newList = questions.filter((que) => que.theme.includes(theme));
+
     setQuestionsList(newList.slice(page * 5, page * 5 + 5));
     setCount(newList.length);
     setButtonsState(
