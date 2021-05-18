@@ -52,3 +52,6 @@ export const COMMENT_ANSWER = "COMMENT_ANSWER";
 
 export const SAGA_DELETE_TODO = "SAGA_DELETE_TODO";
 export const DELETE_TODO = "DELETE_TODO";
+
+export const SAGA_LIKE_COMMENT = "SAGA_LIKE_COMMENT";
+export const LIKE_COMMENT = "LIKE_COMMENT";

@@ -17,6 +17,7 @@ import {
   DELETE_ANSWER,
   ADD_ANSWER,
   COMMENT_ANSWER,
+  LIKE_COMMENT,
 } from "./actions/actionTypes";
 
 const reducer = (state, action) => {
@@ -208,6 +209,18 @@ const reducer = (state, action) => {
             : que;
         }),
       };
+
+    case LIKE_COMMENT:
+      console.log(action.payload);
+      return {
+        ...state, questions: state.questions.map((que) => {
+          return {...que, answers: que.answers.map((answ) => {
+            return answ._id === action.payload.answer ? {...answ, comments: answ.comments.map((com) => {
+              return com._id === action.payload._id ? action.payload : com
+            })} : answ
+          })}
+        })
+      }
 
     default:
       return state;

@@ -28,13 +28,12 @@ router.post("/like", async (req, res) => {
     comment.likes = comment.likes.filter((el) => {
       return String(el) !== String(userId);
     });
-    await comment.save();
-    res.status(200).json(comment);
   } else {
     comment.likes.push(userId);
-    await comment.save();
-    res.status(200).json(comment);
   }
+  await comment.save();
+  await comment.populate("author").execPopulate();
+  res.status(200).json(comment);
 });
 
 export default router;

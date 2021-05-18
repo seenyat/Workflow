@@ -15,6 +15,7 @@ import {
   deleteAnswer,
   addAnswer,
   addCommentAC,
+  likeCommentAC,
 } from "./actions/actionCreator";
 import {
   SAGA_AUTH,
@@ -30,6 +31,7 @@ import {
   SAGA_TOGGLE_TODO,
   SAGA_DELETE_ANSWER,
   SAGA_COMMENT_ANSWER,
+  SAGA_LIKE_COMMENT,
 } from "./actions/actionTypes";
 
 const fetchForAll = async (payload) => {
@@ -114,6 +116,11 @@ function* addCommentWorker(action) {
   yield put(addCommentAC(commentsArray));
 }
 
+function* likeCommentWorker(action) {
+  const commentsLikesArray = yield call(fetchForAll, action.payload);
+  yield put(likeCommentAC(commentsLikesArray));
+}
+
 export default function* watcher() {
   yield takeEvery(SAGA_POST_QUESTION, postQuestionWorker);
   yield takeEvery(SAGA_LOAD_QUESTIONS, loadQuestionsWorker);
@@ -128,4 +135,5 @@ export default function* watcher() {
   yield takeEvery(SAGA_TOGGLE_TODO, toggleTodoWorker);
   yield takeEvery(SAGA_DELETE_ANSWER, deleteAnswerWorker);
   yield takeEvery(SAGA_COMMENT_ANSWER, addCommentWorker);
+  yield takeEvery(SAGA_LIKE_COMMENT, likeCommentWorker);
 }
