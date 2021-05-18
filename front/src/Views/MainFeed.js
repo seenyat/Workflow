@@ -38,6 +38,7 @@ export default function MainFeed() {
     const newList = questions.filter((que) => que.theme.includes(theme));
     setQuestionsList(newList.slice(page * 5, page * 5 + 5));
     setCount(newList.length);
+    setPage(0);
     setButtonsState(
       buttonsState.map((bt) =>
         bt.theme !== theme
