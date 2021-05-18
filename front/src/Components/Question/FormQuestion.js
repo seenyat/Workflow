@@ -49,7 +49,7 @@ export default function FormQuestion() {
     editFormStatus(false);
     setTimeout(() => {
       setRedirectStatus(true);
-    }, 50);
+    }, 150);
   };
 
   const [lastQue, setLastQue] = useState();
