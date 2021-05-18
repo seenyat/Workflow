@@ -1,6 +1,5 @@
 import { MailOpenIcon } from "@heroicons/react/solid";
 import { useDispatch, useSelector } from "react-redux";
-import { sagaLoadAnswers } from "../../Redux/actions/actionCreator";
 import { nanoid } from "nanoid";
 
 export default function Workflow({ todo, id, qId }) {
@@ -51,7 +50,6 @@ export default function Workflow({ todo, id, qId }) {
       {todo[0].stages.map((el, i) => {
         return (
           <>
-            {/* <div> */}
             <div
               key={nanoid()}
               className=" flex w-max items-center font-bold border-b mt-3 pr-5 pl-1 border-gray-100 text-2xl"
@@ -65,7 +63,6 @@ export default function Workflow({ todo, id, qId }) {
                 <div className="ml-3 ">{todo.value}</div>
               </div>
             ))}
-            {/* </div> */}
           </>
         );
       })}

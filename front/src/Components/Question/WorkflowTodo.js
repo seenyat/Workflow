@@ -1,7 +1,7 @@
-import { CheckCircleIcon, CheckIcon } from "@heroicons/react/outline";
-import React, { useEffect } from "react";
+import { CheckIcon } from "@heroicons/react/outline";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { sagaToggleTodo } from "../../Redux/actions/actionCreator";
+import { sagaDeleteToDo, sagaToggleTodo } from "../../Redux/actions/actionCreator";
 import fetchCreator from "../../Redux/fetchCreator";
 
 export default function Workflow({ todo }) {
@@ -17,12 +17,22 @@ export default function Workflow({ todo }) {
       body: JSON.stringify({ todo, userID: user._id }),
     });
   }
+
+  const deleteThisToDo = () => {
+    dispatch(sagaDeleteToDo())
+  };
+
   return (
     <div className="flex px-4 max-w-2xl bg-white py-2 shadow rounded-md flex-col">
-      <div className="flex">
+      <div className="flex justify-between">
         <div className="text-gray-300 select-none ml-1 font-mono text-sm">
           План действий
         </div>
+        <i
+          onClick={() => deleteThisToDo()}
+          className="fa transition cursor-pointer hover:text-red-300  fa-times text-black "
+          aria-hidden="true"
+        ></i>
       </div>
       {todo.stages.map((el, stageI) => {
         return (
