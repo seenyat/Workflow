@@ -27,7 +27,7 @@ export default function FormQuestion() {
 
   const [redirectStatus, setRedirectStatus] = useState(false);
 
-  const questions = useSelector((state) => state.questions);
+  const [adress, setAdress] = useState("");
 
   const [selected, setSelected] = useState(themes[0]);
 
@@ -37,26 +37,25 @@ export default function FormQuestion() {
     const body = e.target.questionBody.value;
     const theme = selected.theme;
     dispatch(
-      sagaPostQuestion(
-        fetchCreator(process.env.REACT_APP_QUESTION, "POST", {
+      sagaPostQuestion({
+        pay: fetchCreator(process.env.REACT_APP_QUESTION, "POST", {
           title,
           body,
           theme,
           authorid: user._id,
-        })
-      )
+        }),
+        setRedirectStatus,
+        setAdress,
+      })
     );
+<<<<<<< HEAD
     editFormStatus(false);
     setTimeout(() => {
       setRedirectStatus(true);
     }, 150);
+=======
+>>>>>>> 3f87594f67076face59a3b48f4825f3f4ed21ced
   };
-
-  const [lastQue, setLastQue] = useState();
-
-  useEffect(() => {
-    setLastQue(questions[questions.length - 1]);
-  }, [questions, dispatch]);
 
   return (
     <>
@@ -192,7 +191,7 @@ export default function FormQuestion() {
           </button>
         </form>
       )}
-      {redirectStatus ? <Redirect to={`/question/${lastQue._id}`} /> : null}
+      {redirectStatus ? <Redirect to={`/question/${adress}`} /> : null}
     </>
   );
 }

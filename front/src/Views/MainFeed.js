@@ -28,7 +28,7 @@ export default function MainFeed() {
         .sort((a, b) => b.likes.length - a.likes.length)
         .slice(page * 5, page * 5 + 5)
     );
-    setCount(questions.length);
+    sortByTheme(buttonsState.filter((el) => el.status)[0].theme);
   }, [questions, page]);
   const [count, setCount] = useState(0);
 
@@ -57,6 +57,7 @@ export default function MainFeed() {
   return questions ? (
     <>
       <Feed
+        setPage={setPage}
         filters={buttonsState}
         filter={sortByTheme}
         questions={questionsList}
