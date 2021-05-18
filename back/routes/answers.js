@@ -29,7 +29,7 @@ router.post("/", async (req, res) => {
   await question.save();
   const user = await User.findById(authorId);
   if (user.email !== null) {
-    await transporter.sendMail({
+    transporter.sendMail({
       from: 'workflowelbrus@gmail.com"',
       to: user.email,
       subject: "Получен новый ответ",
