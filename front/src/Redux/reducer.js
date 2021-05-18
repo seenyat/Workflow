@@ -19,7 +19,9 @@ import {
   COMMENT_ANSWER,
   DELETE_TODO,
   DELETE_COMMENT,
+  LIKE_COMMENT,
 } from "./actions/actionTypes";
+import merge from "lodash/merge";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -51,13 +53,10 @@ const reducer = (state, action) => {
       };
 
     case LOAD_ANSWERS:
+      console.log(action.payload);
       return {
         ...state,
-        questions: state.questions.map((que) =>
-          que._id === action.payload.question._id
-            ? { ...que, answers: action.payload.answers }
-            : que
-        ),
+        answers: merge(state.answers, action.payload.answers),
       };
 
     case TOGGLE_TODO:
@@ -183,7 +182,7 @@ const reducer = (state, action) => {
     case ADD_ANSWER:
       return {
         ...state,
-        answers: action.payload,
+        answers: [...state.answers, action.payload],
       };
 
     case COMMENT_ANSWER:
@@ -253,6 +252,10 @@ const reducer = (state, action) => {
               }
         ),
       };
+    // case LIKE_COMMENT:
+    //   return {
+    //     ...state,
+    //   };
 
     default:
       return state;

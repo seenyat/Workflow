@@ -8,12 +8,14 @@ export default function RightColumn() {
   const user = useSelector((state) => state.user);
   // const prof = useSelector((state) => state.prof);
   let answers = useSelector((state) => state.answers);
+  useEffect(() => {
+    if (user && answers) {
+      answers = answers.filter((el) => {
+        return el.author._id === user._id;
+      });
+    }
+  }, [answers]);
 
-  if (user && answers) {
-    answers = answers.filter((el) => {
-      return el.author._id === user._id;
-    });
-  }
   const dispatch = useDispatch();
   // useEffect(() => {
   //   if (user) {

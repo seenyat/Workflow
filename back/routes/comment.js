@@ -27,6 +27,21 @@ router.delete("/", async (req, res) => {
   answer.comments = answer.comments.filter((comm) => comm._id !== content._id);
   await answer.save();
   res.json({ content, question: answer.question });
+
+  router.post("/like", async (req, res) => {
+  let { userID, contentID } = req.body;
+  userID = mongoose.Types.ObjectId(userID);
+  let comment = await Comment.findById(contentID);
+  if (comment.likes.includes(userID)) {
+    comment.likes = comment.likes.filter((el) => {
+      return String(el) !== String(userID);
+    });
+  } else {
+    comment.likes.push(userID);
+  }
+  await comment.save();
+  await comment.populate("author").execPopulate();
+  res.status(200).json(comment);
 });
 
 export default router;

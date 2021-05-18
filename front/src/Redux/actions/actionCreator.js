@@ -35,6 +35,8 @@ import {
   DELETE_TODO,
   SAGA_DELETE_COMMENT,
   DELETE_COMMENT,
+  SAGA_LIKE_COMMENT,
+  LIKE_COMMENT,
 } from "./actionTypes";
 
 export const sagaPostQuestion = (payload) => ({
@@ -211,5 +213,15 @@ export const sagaDeleteComment = (payload) => ({
 
 export const deleteComment = (payload) => ({
   type: DELETE_COMMENT,
+  payload,
+});
+
+export const sagaLikeCommentAC = (payload) => ({
+  type: SAGA_LIKE_COMMENT,
+  payload,
+});
+
+export const likeCommentAC = (payload) => ({
+  type: LIKE_COMMENT,
   payload,
 });

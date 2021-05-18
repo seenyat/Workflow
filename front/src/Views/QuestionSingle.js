@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import QuestionBody from "../Components/Question/QuestionBody";
@@ -6,20 +6,23 @@ import CreateAnswer from "../Components/Question/CreateAnswer";
 import AnswerList from "../Components/Question/AnswerList";
 import Warning from "../Components/Partials/Warning";
 import {
+  changeHeaderModalStatus,
   changeRedirectStatus,
   sagaLoadAnswers,
 } from "../Redux/actions/actionCreator";
 import { PlusIcon } from "@heroicons/react/solid";
 import { Transition } from "@headlessui/react";
 
-export default function QuestionSingle() {
+export default React.memo(function QuestionSingle() {
   const { id } = useParams();
-
+  const dispatch = useDispatch();
+  setTimeout(() => {
+    dispatch(changeHeaderModalStatus(false));
+  }, 100);
   const user = useSelector((state) => state.user);
   const question = useSelector((state) => state.questions).filter(
     (el) => el._id === id
   )[0];
-  const dispatch = useDispatch();
   const [createAnswer, setCreateAnswer] = useState(false);
   
   const [modalAccept, setModalAccept] = useState(false);
@@ -31,6 +34,9 @@ export default function QuestionSingle() {
   // console.log("sdfhiwiwfij");
   // dispatch(sagaLoadAnswers(process.env.REACT_APP_QUESTION + id));
   // }, [id, dispatch]);
+
+
+  const [createAnswer, setCreateAnswer] = useState(false);
 
 
   return question ? (
@@ -57,7 +63,7 @@ export default function QuestionSingle() {
             {!createAnswer && (
               <div
                 onClick={() => setCreateAnswer(true)}
-                className="font-normal flex items-center rounded-md bg-blue-400 text-white px-3 py-2 text-xl"
+                className="font-normal cursor-pointer flex items-center transiton rounded-md hover:bg-blue-800 bg-blue-400 text-white px-3 py-2 text-xl"
               >
                 <PlusIcon className="w-8 h-8" />
                 <div>Добавить ответ</div>
@@ -68,15 +74,7 @@ export default function QuestionSingle() {
       ) : (
         <Warning />
       )}
-
-      {question.answers.length > 0 && (
-        <AnswerList
-          qId={id}
-          answers={question.answers.sort(
-            (a, b) => b.likes.length - a.likes.length
-          )}
-        />
-      )}
+      {<AnswerList qId={id} />}
 
       {/* <AnswerList
         qId={id}
@@ -88,4 +86,4 @@ export default function QuestionSingle() {
   ) : (
     <div className="border-8 mt-24 mx-auto rounded-full w-24 h-24 border-gray-500 border-dashed animate-spin"></div>
   );
-}
+});

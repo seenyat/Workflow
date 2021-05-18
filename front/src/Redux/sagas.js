@@ -17,6 +17,8 @@ import {
   addCommentAC,
   deleteToDo,
   deleteComment,
+  likeCommentAC,
+  changeHeaderModalStatus,
 } from "./actions/actionCreator";
 import {
   SAGA_AUTH,
@@ -34,6 +36,7 @@ import {
   SAGA_COMMENT_ANSWER,
   SAGA_DELETE_TODO,
   SAGA_DELETE_COMMENT,
+  SAGA_LIKE_COMMENT,
 } from "./actions/actionTypes";
 
 const fetchForAll = async (payload) => {
@@ -52,6 +55,7 @@ const fetchForGet = async (payload) => {
 function* postQuestionWorker(action) {
   const post = yield call(fetchForAll, action.payload.pay);
   yield put(postQuestion(post));
+  yield console.log(post);
   yield action.payload.setAdress(post._id);
   yield action.payload.setRedirectStatus(true);
 }
@@ -90,7 +94,7 @@ function* editQuestionWorker(action) {
 function* addProfileAnswerQuestionWorker(action) {
   const profileAnswerQuestion = yield call(fetchForGet, action.payload);
   yield put(addProfileAnswerQuestion(profileAnswerQuestion));
-  yield put(addAnswer(profileAnswerQuestion.answers));
+  // yield put(addAnswer(profileAnswerQuestion.answers));
 }
 
 function* editProfileWorker(action) {
@@ -127,6 +131,10 @@ function* deleteCommentWorker(action) {
   const content = yield call(fetchForAll, action.payload);
   yield put(deleteComment(content));
 }
+function* likeCommentWorker(action) {
+  const commentsLikesArray = yield call(fetchForAll, action.payload);
+  yield put(likeCommentAC(commentsLikesArray));
+}
 
 export default function* watcher() {
   yield takeEvery(SAGA_POST_QUESTION, postQuestionWorker);
@@ -144,4 +152,5 @@ export default function* watcher() {
   yield takeEvery(SAGA_COMMENT_ANSWER, addCommentWorker);
   yield takeEvery(SAGA_DELETE_TODO, deleteToDoWorker);
   yield takeEvery(SAGA_DELETE_COMMENT, deleteCommentWorker);
+  yield takeEvery(SAGA_LIKE_COMMENT, likeCommentWorker);
 }

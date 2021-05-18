@@ -13,6 +13,7 @@ import Time from "../../Utils/Time";
 import { themeIcons } from "../../Utils/themeIcons";
 import { Link, Redirect } from "react-router-dom";
 import EditAndDelete from "../Partials/editAndDelete";
+import { ChatIcon } from "@heroicons/react/solid";
 
 export default function QuestionBody({ question, hideEdit, link }) {
   const dispatch = useDispatch();
@@ -22,21 +23,6 @@ export default function QuestionBody({ question, hideEdit, link }) {
 
   const [secondRedirect, setSecondRedirect] = useState(false);
 
-
-  const likeQuestion = (event) => {
-    event.stopPropagation();
-    event.preventDefault();
-    if (user) {
-      dispatch(
-        sagaLikeQuestionAC(
-          fetchCreator(process.env.REACT_APP_QUESTION_LIKE, "POST", {
-            userID: user._id,
-            questionID: question._id,
-          })
-        )
-      );
-    }
-  };
 
   const changeQuestion = (e) => {
     e.preventDefault();
@@ -83,6 +69,10 @@ export default function QuestionBody({ question, hideEdit, link }) {
 
       {!editStatus && (
         <div className="px-4 text-base py-5 sm:px-6">
+          <div className=" pb-1 space-y-2 text-sm  w-max text-gray-400 ">
+            <AuthorCard author={question.author} />
+            <Time time={question.date} />
+          </div>
           {link ? (
             <Link
               to={link}
@@ -120,14 +110,14 @@ export default function QuestionBody({ question, hideEdit, link }) {
         </div>
       )}
 
-      <div className="px-4 py-3 relative flex items-center space-x-1  text-gray-600 text-sm sm:px-6">
-        <Like like={likeQuestion} likeCount={question.likes.length} />
-        <AuthorCard author={question.author} />
-        <div className="px-2 text-sm  w-max text-gray-400 ">
-          <Time time={question.date} />
-        </div>
-        <div className="px-2 text-sm  w-max text-gray-400 ">
-          Ответов: {question.answers.length}
+      <div className="px-4 py-3 relative flex items-center space-x-2  text-gray-600 text-sm sm:px-6">
+        <Like
+          likeURL={process.env.REACT_APP_QUESTION_LIKE}
+          content={question}
+        />
+
+        <div className=" flex space-x-1 text-sm  w-max text-gray-300 ">
+          <ChatIcon className="h-5 w-5" /> <div>{question.answers.length}</div>
         </div>
 
         {secondRedirect && <Redirect to="/" />}
