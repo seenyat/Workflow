@@ -27,6 +27,6 @@ export const buttonList = [
   {
     className: "fas text-indigo-500 fa-6x fa-list-alt",
     theme: "",
-    status: false,
+    status: true,
   },
 ];
