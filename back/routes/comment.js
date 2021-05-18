@@ -20,7 +20,15 @@ router.post("/", async (req, res) => {
   res.status(200).json({ comment, questionId: answer.question });
 });
 
-router.post("/like", async (req, res) => {
+router.delete("/", async (req, res) => {
+  const { content } = req.body;
+  await Comment.findByIdAndDelete(content._id);
+  const answer = await Answer.findById(content.answer);
+  answer.comments = answer.comments.filter((comm) => comm._id !== content._id);
+  await answer.save();
+  res.json({ content, question: answer.question });
+
+  router.post("/like", async (req, res) => {
   let { userID, contentID } = req.body;
   userID = mongoose.Types.ObjectId(userID);
   let comment = await Comment.findById(contentID);

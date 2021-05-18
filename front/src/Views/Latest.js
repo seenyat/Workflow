@@ -7,6 +7,8 @@ import {
 import { buttonList } from "../Utils/categories";
 import Feed from "./Feed";
 import Pagination from "../Components/Pagination/Pagination";
+import { ExclamationCircleIcon } from "@heroicons/react/outline";
+import FormQuestion from "../Components/Question/FormQuestion";
 function Latest(props) {
   const dispatch = useDispatch();
   const { questions } = useSelector((state) => state);
@@ -14,6 +16,7 @@ function Latest(props) {
   const [questionsList, setQuestionsList] = useState(
     questions.sort((a, b) => new Date(b.date) - new Date(a.date))
   );
+  const { user } = useSelector((state) => state);
 
   // Database renew
   useEffect(() => {
@@ -52,7 +55,35 @@ function Latest(props) {
     );
   };
 
-  return questions.length > 0 ? (
+  return !user ? (
+    <>
+      {/* <div className="flex flex-col items-center ">
+        <div className="flex items-center bg-red-100 w-fill text-gray-700 justify-center rounded-md p-5 text-xl my-5">
+          <ExclamationCircleIcon className="h-8 w-8 text-gray-500 opacity-50 mr-3" />
+          Авторизуйтесь, чтобы задать вопрос
+        </div>
+        <FormQuestion />
+      </div> */}
+      {questions.length > 0 ? (
+        <>
+          <Feed
+            setPage={setPage}
+            filters={buttonsState}
+            questions={questionsList}
+            filter={sortByTheme}
+          />
+          <Pagination pageCount={count} setPage={setPage} page={page} />
+        </>
+      ) : (
+        <div className="flex flex-col items-center ">
+          <div className="flex items-center bg-red-100 w-full text-gray-700 justify-center rounded-md p-5 text-xl my-5">
+            <ExclamationCircleIcon className="h-8 w-8 text-gray-500 opacity-50 mr-3" />{" "}
+            На текущий момент вопросов нет!
+          </div>
+        </div>
+      )}
+    </>
+  ) : questions.length > 0 ? (
     <>
       <Feed
         setPage={setPage}
@@ -63,7 +94,13 @@ function Latest(props) {
       <Pagination pageCount={count} setPage={setPage} page={page} />
     </>
   ) : (
-    <div className="border-8 mt-24 mx-auto rounded-full w-24 h-24 border-gray-500 border-dashed animate-spin"></div>
+    <div className="flex flex-col items-center ">
+      <div className="flex items-center bg-red-100 w-full text-gray-700 justify-center rounded-md p-5 text-xl my-5">
+        <ExclamationCircleIcon className="h-8 w-8 text-gray-500 opacity-50 mr-3" />{" "}
+        На текущий момент вопросов нет!
+      </div>
+      <FormQuestion />
+    </div>
   );
 }
 

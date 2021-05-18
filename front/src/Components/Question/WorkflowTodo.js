@@ -1,7 +1,10 @@
 import { CheckIcon } from "@heroicons/react/outline";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { sagaDeleteToDo, sagaToggleTodo } from "../../Redux/actions/actionCreator";
+import {
+  sagaDeleteToDo,
+  sagaToggleTodo,
+} from "../../Redux/actions/actionCreator";
 import fetchCreator from "../../Redux/fetchCreator";
 
 export default function Workflow({ todo }) {
@@ -19,7 +22,7 @@ export default function Workflow({ todo }) {
   }
 
   const deleteThisToDo = () => {
-    dispatch(sagaDeleteToDo())
+    dispatch(sagaDeleteToDo(fetchCreator(process.env.REACT_APP_PROFILE_ADD_WORKFLOW, "DELETE", {id: todo.id, userId: user._id})));
   };
 
   return (

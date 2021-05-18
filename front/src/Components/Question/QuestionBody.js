@@ -23,6 +23,7 @@ export default function QuestionBody({ question, hideEdit, link }) {
 
   const [secondRedirect, setSecondRedirect] = useState(false);
 
+
   const changeQuestion = (e) => {
     e.preventDefault();
     const title = e.target.title.value;

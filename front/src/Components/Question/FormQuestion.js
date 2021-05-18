@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { sagaPostQuestion } from "../../Redux/actions/actionCreator";
 import fetchCreator from "../../Redux/fetchCreator";
 import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
-import { Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 export default function FormQuestion() {
   const themes = [
@@ -51,7 +51,17 @@ export default function FormQuestion() {
     editFormStatus(false);
   };
 
-  return (
+  return !user ? (
+    <Link to="/login">
+      <button
+        type="button"
+        onClick={() => editFormStatus(true)}
+        className="inline-flex w-72 m-6 mb-20 justify-center px-6 py-3 border border-transparent font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+      >
+        Авторизоваться
+      </button>
+    </Link>
+  ) : (
     <>
       {!formStatus ? (
         <button

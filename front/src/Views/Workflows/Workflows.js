@@ -1,4 +1,4 @@
-import { UserIcon } from "@heroicons/react/outline";
+import { ExclamationCircleIcon, UserIcon } from "@heroicons/react/outline";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -26,6 +26,14 @@ export default function Workflows() {
           {workflows.map((w) => {
             return <WorkflowTodo key={w.id} todo={w} />;
           })}
+        </div>
+      )}
+      {user && workflows && workflows.length < 1 && (
+        <div className="flex flex-col items-center ">
+          <div className="flex items-center bg-red-100 w-full text-gray-700 justify-center rounded-md p-5 text-xl my-5">
+            <ExclamationCircleIcon className="h-8 w-8 text-gray-500 opacity-50 mr-3" />{" "}
+            На текущий момент ничего не добавлено
+          </div>
         </div>
       )}
     </>

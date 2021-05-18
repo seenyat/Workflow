@@ -17,6 +17,8 @@ import {
   DELETE_ANSWER,
   ADD_ANSWER,
   COMMENT_ANSWER,
+  DELETE_TODO,
+  DELETE_COMMENT,
   LIKE_COMMENT,
 } from "./actions/actionTypes";
 import merge from "lodash/merge";
@@ -208,6 +210,48 @@ const reducer = (state, action) => {
         }),
       };
 
+    case DELETE_TODO:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          workflows: state.user.workflows.filter(
+            (wf) => wf.id !== action.payload
+          ),
+        },
+      };
+
+    case DELETE_COMMENT:
+      return {
+        ...state,
+        answers: state.answers.map((ans) =>
+          ans._id !== action.payload.content.answer
+            ? ans
+            : {
+                ...ans,
+                comments: ans.comments.filter(
+                  (cm) => cm._id !== action.payload.content._id
+                ),
+              }
+        ),
+        questions: state.questions.map((que) =>
+          que._id !== action.payload.question
+            ? que
+            : {
+                ...que,
+                answers: que.answers.map((ans) =>
+                  ans._id !== action.payload.content.answer
+                    ? ans
+                    : {
+                        ...ans,
+                        comments: ans.comments.filter(
+                          (cm) => cm._id !== action.payload.content._id
+                        ),
+                      }
+                ),
+              }
+        ),
+      };
     // case LIKE_COMMENT:
     //   return {
     //     ...state,
