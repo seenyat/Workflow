@@ -8,7 +8,6 @@ import {
 } from "@heroicons/react/outline";
 
 export const sideBarMenu = [
-
   {
     name: "Лента",
     href: "/",
@@ -51,6 +50,4 @@ export const sideBarMenu = [
     current: false,
     private: "invert",
   },
-
-
 ];
