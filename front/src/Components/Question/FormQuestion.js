@@ -49,9 +49,6 @@ export default function FormQuestion() {
       })
     );
     editFormStatus(false);
-    setTimeout(() => {
-      setRedirectStatus(true);
-    }, 150);
   };
 
   return (
