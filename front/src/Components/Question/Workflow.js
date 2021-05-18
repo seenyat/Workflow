@@ -37,12 +37,12 @@ export default function Workflow({ todo, id, qId }) {
               <div className="text-gray-300 select-none ml-1 font-mono text-sm">
                 План действий
               </div>
-              <div onClick={addWorkflow}>Добавить в Workflow</div>
+              <div onClick={addWorkflow}>Добавить в workflows</div>
             </>
           ) : (
             <div className="text-green-400 opacity-50 text-md flex items-center">
               <MailOpenIcon className="relative  w-5 h-5 mr-0.5" />
-              <div>Сохранено в Workflows</div>
+              <div>Сохранено в workflows</div>
             </div>
           )}
         </div>

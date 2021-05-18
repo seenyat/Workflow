@@ -20,4 +20,21 @@ router.post("/", async (req, res) => {
   res.status(200).json({ comment, questionId: answer.question });
 });
 
+router.post("/like", async (req, res) => {
+  let { userId, commentId } = req.body;
+  userId = mongoose.Types.ObjectId(userId);
+  let comment = await Comment.findById(commentId);
+  if (comment.likes.includes(userId)) {
+    comment.likes = comment.likes.filter((el) => {
+      return String(el) !== String(userId);
+    });
+    await comment.save();
+    res.status(200).json(comment);
+  } else {
+    comment.likes.push(userId);
+    await comment.save();
+    res.status(200).json(comment);
+  }
+});
+
 export default router;
