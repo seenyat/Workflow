@@ -14,7 +14,6 @@ router.post("/", async (req, res) => {
     date: new Date(),
   });
   comment = await comment.populate("author").execPopulate();
-  console.log(comment);
   const answer = await Answer.findById(answerId);
   answer.comments.push(comment._id);
   await answer.save();
