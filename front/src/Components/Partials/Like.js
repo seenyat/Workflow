@@ -9,10 +9,14 @@ export default function Like({ like, likeCount }) {
       onClick={like}
       className={`flex  ${
         user && "hover:text-pink-500 hover:bg-pink-100 cursor-pointer"
-      } text-gray-300 p-1 rounded-md    items-center `}
+      } text-gray-300  p-1 rounded-md    items-center `}
     >
       <HeartIcon className="w-5 h-5" />
-      <div className={`pl-1 ${likeCount > 0 ? "" : "hidden"} font-mono`}>
+      <div
+        className={`pl-1 ${
+          likeCount > 0 ? "" : "hidden"
+        } select-none font-mono`}
+      >
         {likeCount}
       </div>
     </div>
