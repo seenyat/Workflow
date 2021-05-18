@@ -10,12 +10,12 @@ export default function Login() {
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <img
-          className="mx-auto h-12 w-auto"
-          src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
+          className="mx-auto h-max w-max py-6"
+          src="/workflow_logo.png"
           alt="Workflow"
         />
         <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-          Sign in to your account
+          Войдите в Ваш аккаунт
         </h2>
       </div>
 
@@ -27,11 +27,11 @@ export default function Login() {
                 <a
                   href={process.env.REACT_APP_PROFILE_LOGIN}
                   onClick={logIn}
-                  className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+                  className="w-full flex items-center justify-center py-3 px-5 border border-gray-300 rounded-md shadow-sm bg-white text-xl font-medium text-gray-500 hover:bg-gray-50"
                 >
-                  <span className="pr-2">Sign in with GitHub </span>
+                  <span className="pr-4">Sign in with GitHub </span>
                   <svg
-                    className="w-5 h-5"
+                    className="w-7 h-7"
                     aria-hidden="true"
                     fill="currentColor"
                     viewBox="0 0 20 20"

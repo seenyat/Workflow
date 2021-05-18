@@ -29,7 +29,7 @@ export default function MainFeed() {
         .sort((a, b) => b.likes.length - a.likes.length)
         .slice(page * 5, page * 5 + 5)
     );
-    setCount(questions.length);
+    sortByTheme(buttonsState.filter((el) => el.status)[0].theme);
   }, [questions, page]);
   const [count, setCount] = useState(0);
 
@@ -39,6 +39,7 @@ export default function MainFeed() {
     const newList = questions.filter((que) => que.theme.includes(theme));
     setQuestionsList(newList.slice(page * 5, page * 5 + 5));
     setCount(newList.length);
+    // setPage(0)
     setButtonsState(
       buttonsState.map((bt) =>
         bt.theme !== theme
@@ -57,16 +58,12 @@ export default function MainFeed() {
   return questions ? (
     <>
       <Feed
+        setPage={setPage}
         filters={buttonsState}
         filter={sortByTheme}
         questions={questionsList}
       />
-      <Pagination
-        pageCount={count}
-        page={setPage}
-        pageNumber={page}
-        questions={questionsList}
-      />
+      <Pagination pageCount={count} setPage={setPage} page={page} />
     </>
   ) : (
     <div className="border-8 mt-24 mx-auto rounded-full w-24 h-24 border-gray-500 border-dashed animate-spin"></div>

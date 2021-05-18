@@ -73,7 +73,7 @@ export default function Answer({ item, qId }) {
         <Like like={likeAnswer} likeCount={item.likes.length} />
       </div>
       <div className="prose lg:prose-xl">
-        <Output data={item.comment} />;
+        <Output data={item.comment} />
       </div>
       <Workflow qId={qId} todo={item.workflows} id={item._id} />
       <div className="px-4 relative flex flex-row text-sm sm:p-6 w-max text-gray-400 right-2 top-2">

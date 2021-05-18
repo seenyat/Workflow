@@ -1,8 +1,6 @@
-/* This example requires Tailwind CSS v2.0+ */
-import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/solid";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-export default function Pagination({ page, questions, pageCount, pageNumber }) {
+export default function Pagination({ setPage, pageCount, page }) {
   let arr = [];
   let count = Math.ceil(pageCount / 5);
   for (let i = 0; i < count; i++) {
@@ -15,11 +13,11 @@ export default function Pagination({ page, questions, pageCount, pageNumber }) {
       <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
         <div>
           <p className="text-sm text-gray-700">
-            Showing <span className="font-medium">{pageNumber * 5 + 1}</span> to{" "}
+            Showing <span className="font-medium">{page * 5 + 1}</span> to{" "}
             <span className="font-medium">
-              {pageNumber * 5 + 5 > questions.length
-                ? questions.length
-                : pageNumber * 5 + 5}
+              {page * 5 + 5 > pageCount
+                ? pageCount
+                : page * 5 + 5}
             </span>{" "}
             of <span className="font-medium">{pageCount}</span> results
           </p>
@@ -34,7 +32,7 @@ export default function Pagination({ page, questions, pageCount, pageNumber }) {
               <Link
                 key={el}
                 onClick={() => {
-                  page(el);
+                  setPage(el);
                 }}
                 aria-current="page"
                 className="z-10 bg-indigo-50 border-indigo-500 text-indigo-600 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
