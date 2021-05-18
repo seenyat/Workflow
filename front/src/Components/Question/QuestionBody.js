@@ -17,9 +17,9 @@ export default function QuestionBody({ question, hideEdit }) {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
 
-  const redirectStatus = useSelector((state) => state.redirect);
-
   const [editStatus, setEditStatus] = useState(false);
+
+  const [secondRedirect, setSecondRedirect] = useState(false);
 
   const likeQuestion = (event) => {
     event.stopPropagation();
@@ -61,6 +61,7 @@ export default function QuestionBody({ question, hideEdit }) {
         )
       )
     );
+    setSecondRedirect(true);
   };
 
   return (
@@ -127,7 +128,7 @@ export default function QuestionBody({ question, hideEdit }) {
             ></i>
           </div>
         ) : null}
-        {redirectStatus && <Redirect to="/" />}
+        {secondRedirect && <Redirect to="/" />}
       </div>
     </div>
   );

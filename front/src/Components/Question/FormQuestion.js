@@ -25,12 +25,7 @@ export default function FormQuestion() {
 
   const user = useSelector((state) => state.user);
 
-  const redirect = useSelector((state) => state.redirect);
-  const [redirectStatus, setRedirectStatus] = useState();
-
-  useEffect(() => {
-    setRedirectStatus(redirect);
-  }, [redirect]);
+  const [redirectStatus, setRedirectStatus] = useState(false);
 
   const questions = useSelector((state) => state.questions);
 
@@ -52,13 +47,14 @@ export default function FormQuestion() {
       )
     );
     editFormStatus(false);
+    setRedirectStatus(true);
   };
 
   const [lastQue, setLastQue] = useState();
 
   useEffect(() => {
     setLastQue(questions[questions.length - 1]);
-  }, [questions, dispatch, redirect]);
+  }, [questions, dispatch]);
 
   return (
     <>
