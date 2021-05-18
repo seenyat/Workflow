@@ -62,8 +62,8 @@ export default function MainFeed() {
       />
       <Pagination
         pageCount={count}
-        page={setPage}
-        pageNumber={page}
+        setPage={setPage}
+        page={page}
         questions={questionsList}
       />
     </>
