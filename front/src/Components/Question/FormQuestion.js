@@ -48,6 +48,7 @@ export default function FormQuestion() {
         setAdress,
       })
     );
+    editFormStatus(false);
   };
 
   return (

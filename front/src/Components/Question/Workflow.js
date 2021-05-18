@@ -43,7 +43,7 @@ export default function Workflow({ todo, id, qId }) {
           ) : (
             <div className="text-green-400 opacity-50 text-md flex items-center">
               <MailOpenIcon className="relative  w-5 h-5 mr-0.5" />
-              <div>Сохранено</div>
+              <div>Сохранено в workflows</div>
             </div>
           )}
         </div>
