@@ -53,7 +53,7 @@ export default function QuestionSingle() {
             {!createAnswer && (
               <div
                 onClick={() => setCreateAnswer(true)}
-                className="font-normal flex items-center rounded-md bg-blue-400 text-white px-3 py-2 text-xl"
+                className="font-normal cursor-pointer flex items-center transiton rounded-md hover:bg-blue-800 bg-blue-400 text-white px-3 py-2 text-xl"
               >
                 <PlusIcon className="w-8 h-8" />
                 <div>Добавить ответ</div>
