@@ -30,7 +30,7 @@ export default React.memo(function Content({
         </main>
 
         {/* Secondary column (hidden on smaller screens) */}
-        <aside className="hidden w-96 bg-white border-l border-gray-200 overflow-y-auto lg:block">
+        <aside className="hidden w-96  bg-white dark:bg-gray-900 dark:text-gray-300 border-l border-gray-200 dark:border-gray-700 overflow-y-auto lg:block">
           <RightColumn />
         </aside>
       </div>

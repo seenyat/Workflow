@@ -30,7 +30,7 @@ function Comments({ answer, setTextArea, textArea, user }) {
           onClick={() => {
             setTextArea(!textArea);
           }}
-          className="my-2 pr-2 text-gray-400 hover:bg-indigo-100 cursor-pointer bg-gray-100 px-0 pl-1 py-1 rounded w-max flex items-center text-xs"
+          className="my-2 ml-3 pr-2 dark:bg-gray-800 dark:text-gray-500 text-gray-400 transition hover:bg-indigo-100 cursor-pointer bg-gray-100 px-0 pl-1 py-1 rounded w-max flex items-center text-xs"
         >
           <PlusIcon className="h-5 w-5 mr-2 cursor-pointer  hover:text-indigo-300" />
           Добавить комментарий

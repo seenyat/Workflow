@@ -1,6 +1,6 @@
 import { PlusIcon } from "@heroicons/react/outline";
 import React from "react";
-import ToDoGroup from "../Question/ToDoGroup";
+import ToDoGroup from "./ToDoGroup";
 
 export default function WorkflowAdd({ todo, setTodo }) {
   function addToDoGroup(e) {
@@ -16,10 +16,10 @@ export default function WorkflowAdd({ todo, setTodo }) {
     });
   }
   return (
-    <div className="bg-gray-50 dark:bg-gray-800 dark:text-white text-left pt-5 mt-1 px-5 container flex flex-col items-center justify-center shadow overflow-hidden sm:rounded-lg">
+    <div className="bg-gray-50 text-left pt-5 mt-1 px-5 container flex flex-col items-center justify-center shadow overflow-hidden sm:rounded-lg">
       <label
         htmlFor="about"
-        className="block text-xl text-left self-start font-medium dark:text-white text-gray-700"
+        className="block text-xl text-left self-start font-medium text-gray-700"
       >
         Workflow
       </label>
@@ -37,7 +37,7 @@ export default function WorkflowAdd({ todo, setTodo }) {
       <button
         type="button"
         onClick={addToDoGroup}
-        className="mx-auto mb-2 shadow p-1 text-white hover:text-gray-200 flex border-2 border-white border-opacity-30 transition bg-green-400 hover:bg-green-600 items-center justify-center w-24 h-10 rounded-full"
+        className="mx-auto mb-2 shadow p-1 dark:bg-green-900 dark:bg-opacity-30 text-white hover:text-gray-200 flex border-2 border-white border-opacity-30 transition bg-green-400 hover:bg-green-600 items-center justify-center w-24 h-10 rounded-full"
       >
         <PlusIcon className="w-10" />
       </button>

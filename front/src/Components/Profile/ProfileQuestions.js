@@ -8,7 +8,7 @@ function ProfileQuestions({ item }) {
       <div className="flex">
         <div className="flex-1 px-5 w-full ">
           <Link
-            className="flex px-2 py-2 my-1 hover:bg-gray-200  rounded flex-col overflow-hidden w-full max-w-full"
+            className="flex px-2 py-2 my-1 transition hover:bg-gray-200 dark:hover:bg-gray-600  rounded flex-col overflow-hidden w-full max-w-full"
             to={`/question/${item._id}`}
           >
             <div className="flex py-1 items-center space-x-2 text-xs text-gray-400">

@@ -24,7 +24,7 @@ function CommentForm({ answer, statusTextArea }) {
 
   return (
     <form
-      className="flex flex-col py-3  px-5 space-y-3 relative w-full rounded max-w-3xl shadow my-5"
+      className="flex dark:bg-gray-600 flex-col py-3  px-5 space-y-3 relative w-full rounded max-w-3xl shadow my-5"
       onSubmit={addComment}
     >
       <div className="font-bold">
@@ -35,7 +35,7 @@ function CommentForm({ answer, statusTextArea }) {
         Добавить комментарий
       </div>
       <textarea
-        className="rounded-md sm:mr-32 h-24 placeholder-gray-300 border-gray-200 resize-none text-sm"
+        className="rounded-md sm:mr-32 h-24 dark:bg-gray-400  dark:border-gray-400 dark:text-white dark:placeholder-white placeholder-gray-300 border-gray-200 resize-none text-sm"
         ref={commentText}
         placeholder="Ваш комментарий..."
       ></textarea>

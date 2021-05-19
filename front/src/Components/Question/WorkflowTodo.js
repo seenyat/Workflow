@@ -1,4 +1,5 @@
 import { CheckIcon } from "@heroicons/react/outline";
+import { TrashIcon } from "@heroicons/react/solid";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -22,25 +23,33 @@ export default function Workflow({ todo }) {
   }
 
   const deleteThisToDo = () => {
-    dispatch(sagaDeleteToDo(fetchCreator(process.env.REACT_APP_PROFILE_ADD_WORKFLOW, "DELETE", {id: todo.id, userId: user._id})));
+    dispatch(
+      sagaDeleteToDo(
+        fetchCreator(process.env.REACT_APP_PROFILE_ADD_WORKFLOW, "DELETE", {
+          id: todo.id,
+          userId: user._id,
+        })
+      )
+    );
   };
 
   return (
-    <div className="flex px-4 max-w-2xl bg-white py-2 shadow rounded-md flex-col">
+    <div className="flex px-4 max-w-2xl bg-white dark:bg-gray-800 dark:text-white py-2 shadow rounded-md flex-col">
       <div className="flex justify-between">
         <div className="text-gray-300 select-none ml-1 font-mono text-sm">
           План действий
         </div>
-        <i
+        <div
           onClick={() => deleteThisToDo()}
-          className="fa transition cursor-pointer hover:text-red-300  fa-times text-black "
-          aria-hidden="true"
-        ></i>
+          className="p-1 cursor-pointer transition mr-1 hover:bg-opacity-50 dark:hover:bg-opacity-30 hover:bg-red-100 hover:text-red-300 text-gray-300  flex overflow-hidden rounded"
+        >
+          <TrashIcon className=" w-5 h-5      fa-trash-alt " />
+        </div>
       </div>
       {todo.stages.map((el, stageI) => {
         return (
           <>
-            <div className=" flex w-max items-center font-bold border-b mt-3 pr-5 pl-1 border-gray-100 text-2xl">
+            <div className=" flex w-max items-center font-bold border-b mt-3 pr-5 pl-1 dark:border-gray-700 border-gray-100 text-2xl">
               <div className="w-4 h-4 rounded-full border-4 mr-2 items-center text-gray-400"></div>
               {el.title} {}
             </div>
@@ -58,14 +67,14 @@ export default function Workflow({ todo }) {
                     )
                   );
                 }}
-                className="flex transition hover:shadow select-none cursor-pointer rounded mt-2 py-1 ml-1 items-center"
+                className="flex transition hover:shadow hover:bg-gray-300 hover:bg-opacity-50 dark:hover:bg-gray-900 select-none cursor-pointer rounded mt-2 py-1 ml-1 items-center"
               >
                 <div className={`w-9  h-9 mx-2`}>
                   <CheckIcon
                     className={`transition ${
                       todoItem.checked
-                        ? " text-black font-bold"
-                        : "text-gray-100"
+                        ? " text-black  dark:text-white font-bold"
+                        : "text-gray-300 dark:text-gray-700"
                     }`}
                   />
                 </div>
