@@ -37,7 +37,11 @@ export default React.memo(function QuestionSingle() {
             show={createAnswer}
           >
             {createAnswer && (
-              <CreateAnswer setCreateAnswer={setCreateAnswer} id={id} />
+              <CreateAnswer
+                setCreateAnswer={setCreateAnswer}
+                id={id}
+                authorId={question.author._id}
+              />
             )}
           </Transition>
           <div className="text-3xl flex items-center justify-between dark:text-gray-200 text-gray-700 font-bold my-5 px-2">
