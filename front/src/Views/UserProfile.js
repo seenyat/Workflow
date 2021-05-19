@@ -48,7 +48,7 @@ export default function UserProfile() {
   };
 
   return user ? (
-    <div className="min-h-screen  bg-gray-100 overflow-scroll">
+    <div className="min-h-screen  bg-gray-100 dark:bg-gray-900 overflow-scroll">
       <main className="py-10">
         {/* Page header */}
         <div className="max-w-3xl mx-auto px-4 sm:px-6 md:flex md:items-center md:justify-between md:space-x-5 lg:max-w-7xl lg:px-8"></div>
@@ -57,11 +57,11 @@ export default function UserProfile() {
           <div className="space-y-6 lg:col-start-1 lg:col-span-2">
             {/* Description list*/}
             <section aria-labelledby="applicant-information-title">
-              <div className="bg-white relative shadow sm:rounded-lg">
+              <div className="bg-white dark:bg-gray-700 dark:text-white relative shadow sm:rounded-lg">
                 <div className="px-4 py-5 sm:px-6">
                   <h2
                     id="applicant-information-title"
-                    className="text-lg leading-6 font-medium text-gray-900"
+                    className="text-lg leading-6 font-medium dark:text-gray-200 text-gray-900"
                   >
                     <div className="flex items-center space-x-5">
                       <div className="flex-shrink-0">
@@ -80,7 +80,6 @@ export default function UserProfile() {
                       <div>
                         {edit ? (
                           <>
-                            {" "}
                             <input
                               className="text-2xl shadow  px-3 py-2 rounded-md font-bold text-gray-900"
                               ref={nameInput}
@@ -89,14 +88,14 @@ export default function UserProfile() {
                             />
                           </>
                         ) : (
-                          <h1 className="text-2xl font-bold text-gray-900">
+                          <div className="text-2xl dark:text-gray-100 font-bold text-gray-900">
                             {user.name}
-                          </h1>
+                          </div>
                         )}
                       </div>
                     </div>
                   </h2>
-                  <dt className="text-sm font-medium text-gray-500"></dt>
+                  <dt className="text-sm font-medium dark:text-gray-200 text-gray-500"></dt>
                   {edit ? (
                     <>
                       <input
@@ -128,7 +127,7 @@ export default function UserProfile() {
                     </button>
                   )}
                 </div>
-                <div className="border-t border-gray-200 px-4 py-5 sm:px-6">
+                <div className="border-t border-gray-200 dark:border-gray-600 px-4 py-5 sm:px-6">
                   <dl className="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
                     {user.email !== null && (
                       <div className="sm:col-span-1">
@@ -141,10 +140,10 @@ export default function UserProfile() {
                       </div>
                     )}
                     <div className="sm:col-span-1">
-                      <dt className="text-sm font-medium text-gray-500">
+                      <dt className="text-sm font-medium dark:text-white text-gray-500">
                         Likes
                       </dt>
-                      <dd className="mt-1 text-sm text-gray-900">
+                      <dd className="mt-1 text-sm dark:text-gray-200  text-gray-900">
                         {prof && prof.sumLikes}
                       </dd>
                     </div>
@@ -163,18 +162,18 @@ export default function UserProfile() {
 
             {/* Answers*/}
             <section aria-labelledby="notes-title">
-              <div className="bg-white shadow sm:rounded-lg sm:overflow-hidden">
-                <div className="divide-y divide-gray-200">
+              <div className="bg-white dark:bg-gray-700 dark:text-white shadow sm:rounded-lg sm:overflow-hidden">
+                <div className="divide-y divide-gray-200 dark:divide-gray-600">
                   <div className="px-4 py-5 sm:px-6">
                     <h2
                       id="notes-title"
-                      className="text-lg pl-2 font-medium text-gray-900"
+                      className="text-lg pl-2 font-medium dark:text-gray-200 text-gray-900"
                     >
                       Ответы
                     </h2>
                   </div>
                   <div className="px-2 ">
-                    <ul className="divide-y">
+                    <ul className="divide-y dark:divide-gray-600">
                       {prof?.answers.map((el) => (
                         <ProfileAnswers answer={el} key={el._id} />
                       ))}
@@ -189,17 +188,17 @@ export default function UserProfile() {
             aria-labelledby="timeline-title"
             className="lg:col-start-3 lg:col-span-1"
           >
-            <div className="bg-white py-5 shadow sm:rounded-lg ">
+            <div className="bg-white dark:bg-gray-700 dark:text-white py-5 shadow sm:rounded-lg ">
               <div
                 id="timeline-title"
-                className="text-lg flex pl-5 font-medium text-gray-900"
+                className="text-lg flex pl-5 font-medium dark:text-gray-200 text-gray-900"
               >
                 Вопросы
               </div>
 
               {/* Questions */}
               <div className="flow-root">
-                <ul className="divide-y space-y-2">
+                <ul className="divide-y dark:divide-gray-600 space-y-2">
                   {prof?.questions.length > 8
                     ? prof?.questions
                         .slice(0, 8)

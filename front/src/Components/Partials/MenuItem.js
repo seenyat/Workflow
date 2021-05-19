@@ -10,7 +10,7 @@ export default function MenuItem({ item, nav, setNav }) {
       className={classNames(
         item.current
           ? "bg-gray-800 text-white"
-          : "text-indigo-100 hover:bg-gray-800 hover:text-white",
+          : "text-indigo-100 hover:bg-gray-800 dark:hover:bg-black hover:text-white",
         "group w-full p-3 rounded-md flex flex-col items-center text-xs font-medium"
       )}
       onClick={(e) => {

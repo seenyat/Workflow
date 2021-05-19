@@ -40,12 +40,12 @@ export default React.memo(function QuestionSingle() {
               <CreateAnswer setCreateAnswer={setCreateAnswer} id={id} />
             )}
           </Transition>
-          <div className="text-3xl flex items-center justify-between text-gray-700 font-bold my-5 px-2">
+          <div className="text-3xl flex items-center justify-between dark:text-gray-200 text-gray-700 font-bold my-5 px-2">
             <div>Ответы:</div>
             {!createAnswer && (
               <div
                 onClick={() => setCreateAnswer(true)}
-                className="font-normal cursor-pointer flex items-center transiton rounded-md hover:bg-blue-800 bg-blue-400 text-white px-3 py-2 text-xl"
+                className="font-normal transition dark:bg-blue-900 dark:hover:bg-opacity-50 cursor-pointer flex items-center transiton rounded-md hover:bg-blue-800 bg-blue-400 text-white px-3 py-2 text-xl"
               >
                 <PlusIcon className="w-8 h-8" />
                 <div>Добавить ответ</div>

@@ -29,7 +29,7 @@ export default function Workflow({ todo, id, qId }) {
     return exists;
   }
   return (
-    <div className="flex bg-gray-50 my-5 px-4 py-2 shadow rounded-md flex-col">
+    <div className="flex bg-gray-50 dark:bg-gray-800 my-5 px-4 py-2 shadow rounded-md flex-col">
       <div className="flex">
         <div className="text-indigo-400 flex space-x-1 items-center cursor-pointer font-bold hover:text-indigo-600 select-none ml-1 font-mono text-sm">
           {user && !checkIfTodoAdded(user, todo[0].id) ? (
@@ -52,14 +52,13 @@ export default function Workflow({ todo, id, qId }) {
           <>
             <div
               key={nanoid()}
-              className=" flex w-max items-center font-bold border-b mt-3 pr-5 pl-1 border-gray-100 text-2xl"
+              className=" flex w-max items-center font-bold border-b mt-3 pr-5 pl-1 dark:border-gray-600 border-gray-100 text-2xl"
             >
               <div className="w-4 h-4 rounded-full border-4 mr-2 items-center text-gray-400"></div>
               {el.title}
             </div>
             {el.todos.map((todo, i) => (
               <div key={nanoid()} className="flex  pt-2 ml-3 items-center">
-                <div className="w-2 h-2 rounded-full bg-gray-200"></div>
                 <div className="ml-3 ">{todo.value}</div>
               </div>
             ))}

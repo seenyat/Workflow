@@ -33,7 +33,7 @@ export default function ToDoGroup({ Header, setTodo, todo, todoList, ind }) {
           });
         }}
         onKeyPress={expandTodoGroup}
-        className="px-3 focus:bg-gray-50 focus:ring-indigo-500 font-bold text-2xl border-gray-300  w-full  py-2"
+        className="px-3 focus:bg-gray-50 transition dark:bg-gray-700 dark:focus:bg-gray-900 focus:ring-indigo-500 font-bold text-2xl border-gray-300  w-full  py-2"
       />
       {todoList.map((el, todoInd) => (
         <input
@@ -61,7 +61,7 @@ export default function ToDoGroup({ Header, setTodo, todo, todoList, ind }) {
             });
           }}
           onKeyPress={expandTodoGroup}
-          className="outline-none focus:bg-gray-50 px-3 border-t border-gray-100 w-full  py-2"
+          className="outline-none focus:bg-gray-50 dark:bg-gray-700 transition dark:focus:bg-gray-900 px-3 border-t dark:border-gray-600 border-gray-100 w-full  py-2"
         />
       ))}
     </div>
