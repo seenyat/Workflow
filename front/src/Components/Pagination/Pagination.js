@@ -6,7 +6,7 @@ export default function Pagination({ setPage, pageCount, page }) {
     arr.push(i);
   }
 
-  return count > 2 && arr ? (
+  return count > 1 && arr ? (
     <div className="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
       <div className="flex-1 flex flex-col justify-between sm:hidden"></div>
       <div className="hidden sm:flex-1 sm:flex flex-col space-y-2 sm:items-center sm:justify-between">
