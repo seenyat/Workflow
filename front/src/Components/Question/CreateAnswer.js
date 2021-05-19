@@ -5,9 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import WorkflowAdd from "../Routes/WorkflowAdd";
 
 import { nanoid } from "nanoid";
-import {
-  ADD_ANSWER,
-} from "../../Redux/actions/actionTypes";
+import { ADD_ANSWER } from "../../Redux/actions/actionTypes";
 import { EDITOR_JS_TOOLS } from "../../Utils/editorTools";
 import { XIcon } from "@heroicons/react/solid";
 
@@ -69,12 +67,6 @@ export default function CreateAnswer({ id, edit, count, setCreateAnswer }) {
 
             <div className="grid grid-cols-3 gap-6">
               <div className="col-span-3">
-                <label
-                  htmlFor="about"
-                  className="block text-xl mb-2 font-medium dark:text-white text-gray-700"
-                >
-                  Описание
-                </label>
                 <div className="mt-1 prose lg:prose-xl shadow-md max-w-4xl text-left dark:text-white dark:bg-gray-800 rounded-md bg-gray-50 border-gray-300">
                   <EditorJs
                     tools={EDITOR_JS_TOOLS}

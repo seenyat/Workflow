@@ -38,15 +38,11 @@ export default function Feed({ filters, filter, questions, setPage }) {
                 </p>
               </div>
             ))}
-            <div className="flex w-full mt-14 h-12 py-3 right-1 items-center justify-evenly  ">
+            <div className="flex h-full w-full   py-3 right-1 items-center justify-evenly  ">
               {user ? (
                 <FormQuestion />
               ) : (
                 <div className="flex flex-col ">
-                  <div className="flex items-center bg-red-100 w-fill text-gray-700 justify-center rounded-md p-5 text-xl my-5">
-                    <ExclamationCircleIcon className="h-8 w-8 text-gray-500 opacity-50 mr-3" />
-                    Авторизуйтесь, чтобы задать вопрос
-                  </div>
                   <FormQuestion />
                 </div>
               )}

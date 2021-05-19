@@ -52,22 +52,14 @@ export default function FormQuestion() {
   };
 
   return !user ? (
-    <Link to="/login">
-      <button
-        type="button"
-        onClick={() => editFormStatus(true)}
-        className="inline-flex w-72 m-6 mb-20 justify-center px-6 py-3 border border-transparent font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-      >
-        Авторизоваться
-      </button>
-    </Link>
+    ""
   ) : (
     <>
       {!formStatus ? (
         <button
           type="button"
           onClick={() => editFormStatus(true)}
-          className="flex h-16 w-full mb-16 justify-between items-center px-6 py-3 border border-transparent font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          className="flex h-16 -mt-20 sm:-mt-12 w-full mb-28 sm:mb-16 justify-between items-center px-6 py-3 border border-transparent font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
         >
           <PlusIcon className="h-10 w-10" />
           <div className="text-xl">Задать вопрос</div>
@@ -75,7 +67,7 @@ export default function FormQuestion() {
         </button>
       ) : (
         <form
-          className=" bg-white  dark:bg-gray-600 dark:border-gray-600 dark:text-white border rounded-md flex flex-col mx-auto my-2 mb-16 p-6 w-full"
+          className=" bg-white  dark:bg-gray-600 dark:border-gray-600 dark:text-white border rounded-md flex flex-col mx-auto -mt-10 mb-16 p-6 w-full"
           onSubmit={postNewQuestion}
         >
           <label className="mt-1 w-full dark:text-white text-2xl block font-medium text-gray-700">
@@ -85,7 +77,7 @@ export default function FormQuestion() {
           <Listbox value={selected} onChange={setSelected}>
             {({ open }) => (
               <>
-                <Listbox.Label className="block font-medium text-gray-700">
+                <Listbox.Label className="block font-medium dark:text-gray-200 my-2 text-gray-700">
                   Выберите тему:
                 </Listbox.Label>
                 <div className="mt-1 relative">
