@@ -133,7 +133,7 @@ export default function UserProfile() {
                     {user.email !== null && (
                       <div className="sm:col-span-1">
                         <dt className="text-sm font-medium text-gray-500">
-                          E-mail
+                          Email
                         </dt>
                         <dd className="mt-1 text-sm text-gray-900">
                           {user.email}
@@ -146,6 +146,14 @@ export default function UserProfile() {
                       </dt>
                       <dd className="mt-1 text-sm text-gray-900">
                         {prof && prof.sumLikes}
+                      </dd>
+                    </div>
+                    <div className="sm:col-span-1">
+                      <dt className="text-sm font-medium text-gray-500">
+                        Login github
+                      </dt>
+                      <dd className="mt-1 text-sm text-gray-900">
+                        @{user.login}
                       </dd>
                     </div>
                   </dl>
