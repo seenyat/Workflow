@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import EditorJs from "react-editor-js";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import WorkflowAdd from "../Routes/WorkflowAdd";
 import { nanoid } from "nanoid";
 import { ADD_ANSWER } from "../../Redux/actions/actionTypes";
@@ -14,6 +14,8 @@ export default function CreateAnswer({ id, setCreateAnswer, authorId }) {
     stages: [{ title: "Этап 1", todos: [{ value: "", checked: false }] }],
     id: nanoid(),
   });
+  const state = useSelector((state) => state.user);
+
   const dispatch = useDispatch();
   async function addAnswer(e) {
     e.preventDefault();
@@ -28,7 +30,8 @@ export default function CreateAnswer({ id, setCreateAnswer, authorId }) {
         workflows: todo,
         comment: savedComment,
         id: id,
-        authorId,
+        authorId: state._id,
+        questionAuthor: authorId,
       }),
     }).then((e) => {
       e.json().then((answ) => dispatch({ type: ADD_ANSWER, payload: answ }));

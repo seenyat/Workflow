@@ -7,7 +7,7 @@ function UsersProfile() {
 
   const [prof, setProf] = useState();
   useEffect(() => {
-    fetch(process.env.REACT_APP_MAIN  + "/profile/" + id, {
+    fetch(process.env.REACT_APP_MAIN + "profile/" + id, {
       method: "GET",
       credentials: "include",
     }).then((data) =>
