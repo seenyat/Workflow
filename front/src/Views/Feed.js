@@ -1,5 +1,3 @@
-import { ExclamationCircleIcon } from "@heroicons/react/outline";
-import { PlusIcon } from "@heroicons/react/solid";
 import { useSelector } from "react-redux";
 import FormQuestion from "../Components/Question/FormQuestion";
 import QuestionBody from "../Components/Question/QuestionBody";

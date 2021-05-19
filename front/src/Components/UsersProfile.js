@@ -17,7 +17,7 @@ function UsersProfile() {
           : setProf(profile);
       })
     );
-  }, []);
+  }, [id]);
 
   return prof ? (
     <div className="min-h-screen bg-gray-100 overflow-scroll">

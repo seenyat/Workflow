@@ -1,9 +1,7 @@
 import { useRef, useState } from "react";
 import EditorJs from "react-editor-js";
 import { useDispatch, useSelector } from "react-redux";
-
 import WorkflowAdd from "../Routes/WorkflowAdd";
-
 import { nanoid } from "nanoid";
 import { ADD_ANSWER } from "../../Redux/actions/actionTypes";
 import { EDITOR_JS_TOOLS } from "../../Utils/editorTools";
@@ -76,15 +74,6 @@ export default function CreateAnswer({ id, setCreateAnswer, authorId }) {
                     autofocus={true}
                     instanceRef={(instance) => (comment.current = instance)}
                   />
-                  {/* <textarea
-                    id="about"
-                    name="title"
-                    ref={comment}
-                    rows={3}
-                    className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-md border-gray-300 rounded-md"
-                    placeholder="Краткий комментарий по теме"
-                    defaultValue={""}
-                  /> */}
                 </div>
               </div>
             </div>

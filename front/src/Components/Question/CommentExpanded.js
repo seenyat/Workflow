@@ -1,13 +1,11 @@
 import { Transition } from "@headlessui/react";
 import { nanoid } from "nanoid";
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
 import CommentContent from "./CommentContent";
 
 export default function CommentExpanded({ comments }) {
   const [expanded, setExpanded] = useState(false);
-  const [commentsList, setComments] = useState(comments);
-  const dispatch = useDispatch();
+  const [commentsList] = useState(comments);
 
   return (
     <>
