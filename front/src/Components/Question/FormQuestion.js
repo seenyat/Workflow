@@ -3,7 +3,7 @@ import { useState, Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { sagaPostQuestion } from "../../Redux/actions/actionCreator";
 import fetchCreator from "../../Redux/fetchCreator";
-import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
+import { CheckIcon, PlusIcon, SelectorIcon } from "@heroicons/react/solid";
 import { Link, Redirect } from "react-router-dom";
 
 export default function FormQuestion() {
@@ -67,13 +67,15 @@ export default function FormQuestion() {
         <button
           type="button"
           onClick={() => editFormStatus(true)}
-          className="inline-flex w-72 m-6 mb-20 justify-center px-6 py-3 border border-transparent font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          className="flex h-16 w-full mb-16 justify-between items-center px-6 py-3 border border-transparent font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
         >
-          Задать вопрос
+          <PlusIcon className="h-10 w-10" />
+          <div className="text-xl">Задать вопрос</div>
+          <PlusIcon className="h-10 invisible w-10" />
         </button>
       ) : (
         <form
-          className=" bg-white dark:bg-gray-700 dark:text-white shadow-md rounded-md flex flex-col mx-auto my-2 mb-24 p-6 w-full md:max-w-4xl "
+          className=" bg-white  dark:bg-gray-600 dark:border-gray-600 dark:text-white border rounded-md flex flex-col mx-auto my-2 mb-16 p-6 w-full"
           onSubmit={postNewQuestion}
         >
           <label className="mt-1 w-full dark:text-white text-2xl block font-medium text-gray-700">

@@ -141,18 +141,22 @@ export default function UserProfile() {
                     )}
                     <div className="sm:col-span-1">
                       <dt className="text-sm font-medium dark:text-white text-gray-500">
+                        GitHub
+                      </dt>
+                      <a
+                        href={`https://github.com/${user.login}`}
+                        alt=""
+                        className="mt-1 hover:text-indigo-300 text-sm dark:text-gray-200 text-gray-900"
+                      >
+                        @{user.login}
+                      </a>
+                    </div>
+                    <div className="sm:col-span-1">
+                      <dt className="text-sm font-medium dark:text-white text-gray-500">
                         Likes
                       </dt>
                       <dd className="mt-1 text-sm dark:text-gray-200  text-gray-900">
                         {prof && prof.sumLikes}
-                      </dd>
-                    </div>
-                    <div className="sm:col-span-1">
-                      <dt className="text-sm font-medium text-gray-500">
-                        Login github
-                      </dt>
-                      <dd className="mt-1 text-sm text-gray-900">
-                        @{user.login}
                       </dd>
                     </div>
                   </dl>

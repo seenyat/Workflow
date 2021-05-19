@@ -1,4 +1,5 @@
 import { ExclamationCircleIcon } from "@heroicons/react/outline";
+import { PlusIcon } from "@heroicons/react/solid";
 import { useSelector } from "react-redux";
 import FormQuestion from "../Components/Question/FormQuestion";
 import QuestionBody from "../Components/Question/QuestionBody";
@@ -8,41 +9,48 @@ export default function Feed({ filters, filter, questions, setPage }) {
 
   return (
     <>
-      <div className=" overflow-auto pb-10 h-full flex flex-col  items-center ">
-        <div className="flex justify-evenly w-full space-x-10">
-          {user ? (
-            <FormQuestion />
-          ) : (
-            <div className="flex flex-col items-center ">
-              <div className="flex items-center bg-red-100 w-fill text-gray-700 justify-center rounded-md p-5 text-xl my-5">
-                <ExclamationCircleIcon className="h-8 w-8 text-gray-500 opacity-50 mr-3" />
-                Авторизуйтесь, чтобы задать вопрос
-              </div>
-              <FormQuestion />
-            </div>
-          )}
-        </div>
+      <div className=" overflow-auto relative py-10 h-full flex flex-col  items-center ">
         <div className="w-full md:max-w-4xl flex flex-col space-y-5">
-          <div className="w-full flex-wrap sm:space-x-3 flex flex-row justify-center h-min">
+          <div className="bg-white pt-16 shadow relative dark:bg-gray-700 dark:text-white w-full justify-between px-5 rounded flex-wrap sm:space-x-3 flex flex-row items-center  h-min">
+            <div className="absolute left-8  top-2 font-bold text-2xl py-3 text-center">
+              Выберите тему
+            </div>
             {filters.map((button) => (
               <div
                 key={button.className}
-                className="flex flex-col justify-center text-center items-center  mb-4 h-max w-1/3 sm:w-max text-xs "
+                className={`flex flex-col ${
+                  button.status ? "bg-gray-200" : ""
+                }  hover:bg-gray-200 py-2 px-1 transition rounded justify-center text-center items-center   h-max w-1/3 sm:w-max text-xs `}
               >
                 <i
                   onClick={() => {
                     setPage(0);
                     filter(button.theme);
                   }}
-                  className={`${
-                    button.className
-                  } hover:bg-gray-200 transition flex p-2 rounded-md cursor-pointer sm:text-6xl text-4xl ${
-                    button.status ? "bg-gray-200" : ""
-                  } `}
+                  className={` ${button.className} transition flex p-2 rounded-md cursor-pointer sm:text-6xl text-4xl `}
                 />
-                <p>{button.theme.length > 0 ? button.theme : "Все"}</p>
+                <p
+                  className={`${
+                    button.status ? "dark:text-black" : "dark:text-gray-200"
+                  }  font-mono text-sm `}
+                >
+                  {button.theme.length > 0 ? button.theme : "Все"}
+                </p>
               </div>
             ))}
+            <div className="flex w-full mt-14 h-12 py-3 right-1 items-center justify-evenly  ">
+              {user ? (
+                <FormQuestion />
+              ) : (
+                <div className="flex flex-col ">
+                  <div className="flex items-center bg-red-100 w-fill text-gray-700 justify-center rounded-md p-5 text-xl my-5">
+                    <ExclamationCircleIcon className="h-8 w-8 text-gray-500 opacity-50 mr-3" />
+                    Авторизуйтесь, чтобы задать вопрос
+                  </div>
+                  <FormQuestion />
+                </div>
+              )}
+            </div>
           </div>
           {questions.length > 0
             ? questions.map((question) => (
