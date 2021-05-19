@@ -16,7 +16,7 @@ export default function RightColumn() {
         })
       );
     }
-  }, [answers]);
+  }, [answers, user]);
 
   return user ? (
     <div>
