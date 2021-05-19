@@ -1,8 +1,3 @@
-import { render } from "react-dom";
-import React, { useRef } from "react";
-import clamp from "lodash-es/clamp";
-import { useSprings, animated } from "react-spring";
-import { useGesture } from "react-use-gesture";
 import Member from "../Components/Member";
 
 export default function About() {
@@ -40,43 +35,4 @@ export default function About() {
       ))}
     </div>
   );
-
-  //   const index = useRef(0);
-  //   const [props, set] = useSprings(pages.length, (i) => ({
-  //     x: i * window.innerWidth,
-  //     sc: 1,
-  //     display: "block",
-  //   }));
-  //   const bind = useGesture(
-  //     ({ down, delta: [xDelta], direction: [xDir], distance, cancel }) => {
-  //       console.log(123);
-  //       if (down && distance > window.innerWidth / 2)
-  //         cancel(
-  //           (index.current = clamp(
-  //             index.current + (xDir > 0 ? -1 : 1),
-  //             0,
-  //             pages.length - 1
-  //           ))
-  //         );
-  //       set((i) => {
-  //         if (i < index.current - 1 || i > index.current + 1)
-  //           return { display: "none" };
-  //         const x = (i - index.current) * window.innerWidth + (down ? xDelta : 0);
-  //         const sc = down ? 1 - distance / window.innerWidth / 2 : 1;
-  //         return { x, sc, display: "block" };
-  //       });
-  //     }
-  //   );
-  //   return props.map(({ x, display, sc }, i) => (
-  //     <div className="divForAnimation">
-  //       <animated.div {...bind()} key={i} style={{ display, x }}>
-  //         <animated.div
-  //           style={{
-  //             transform: sc.interpolate((s) => `scale(${s})`),
-  //             backgroundImage: `url(${pages[i]})`,
-  //           }}
-  //         />
-  //       </animated.div>
-  //     </div>
-  //   ));
 }

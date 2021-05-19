@@ -1,6 +1,5 @@
 import { ExclamationCircleIcon } from "@heroicons/react/outline";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import FormQuestion from "../Components/Question/FormQuestion";
 import QuestionBody from "../Components/Question/QuestionBody";
 

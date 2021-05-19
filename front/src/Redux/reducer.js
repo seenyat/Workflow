@@ -19,7 +19,6 @@ import {
   COMMENT_ANSWER,
   DELETE_TODO,
   DELETE_COMMENT,
-  LIKE_COMMENT,
 } from "./actions/actionTypes";
 import merge from "lodash/merge";
 
@@ -252,10 +251,6 @@ const reducer = (state, action) => {
               }
         ),
       };
-    // case LIKE_COMMENT:
-    //   return {
-    //     ...state,
-    //   };
 
     default:
       return state;

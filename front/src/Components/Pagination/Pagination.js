@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 export default function Pagination({ setPage, pageCount, page }) {
   let arr = [];

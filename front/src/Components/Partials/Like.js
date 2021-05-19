@@ -1,5 +1,5 @@
 import { HeartIcon } from "@heroicons/react/outline";
-import React, { useState } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 
 export default function Like({ likeURL, content }) {
