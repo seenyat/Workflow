@@ -12,7 +12,6 @@ export default function MainFeed() {
   const { questions } = useSelector((state) => state);
   const [page, setPage] = useState(0);
 
-  const { user } = useSelector((state) => state);
   // Sort by likes
   const [questionsList, setQuestionsList] = useState(
     questions.sort((a, b) => b.likes.length - a.likes.length)

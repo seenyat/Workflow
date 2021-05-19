@@ -1,5 +1,5 @@
 import { HeartIcon } from "@heroicons/react/outline";
-import React, { useState } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 
 export default function Like({ likeURL, content }) {
@@ -33,7 +33,8 @@ export default function Like({ likeURL, content }) {
     <div
       onClick={like}
       className={`flex  ${
-        user && "hover:text-pink-500 hover:bg-pink-100 cursor-pointer"
+        user &&
+        "hover:text-pink-300 dark:hover:bg-opacity-30 hover:bg-opacity-50 hover:bg-pink-100 cursor-pointer"
       } text-gray-300  p-1 rounded-md    items-center `}
     >
       <HeartIcon className="w-5 h-5" />

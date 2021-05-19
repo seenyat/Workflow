@@ -1,5 +1,4 @@
 import { ExclamationCircleIcon } from "@heroicons/react/outline";
-import React from "react";
 
 export default function Error404() {
   return (

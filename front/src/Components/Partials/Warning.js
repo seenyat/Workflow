@@ -1,5 +1,4 @@
 import { UserIcon } from "@heroicons/react/outline";
-import React from "react";
 
 export default function Warning() {
   return (

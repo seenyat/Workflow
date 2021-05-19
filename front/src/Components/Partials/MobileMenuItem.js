@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import classNames from "../../Utils/classNames";
 

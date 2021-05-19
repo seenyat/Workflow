@@ -4,7 +4,7 @@ import MenuItem from "../../Components/Partials/MenuItem";
 
 export default function DesktopSidebar({ nav, setNav, auth }) {
   return (
-    <div className="hidden w-28 bg-gray-700 overflow-y-auto md:block">
+    <div className="hidden w-28 bg-gray-700 dark:bg-gray-800 overflow-y-auto md:block">
       <div className="w-full py-6 flex flex-col items-center">
         <Logo />
         <div className="flex-1 mt-6 w-full px-2 space-y-1">

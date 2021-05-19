@@ -1,12 +1,15 @@
 export default function Member({ author }) {
-  return (
-    <div className="min-h-screen w-full flex flex-row items-center border-black border-b ">
-      <div className=" h-full w-4/6 flex justify-center items-center ">
-        <img className=" " src={`${author.img}`} alt="" />
+  console.log(author);
+  return author ? (
+    <div className="h-full w-full flex flex-row items-center">
+      <div className=" h-max min-w-max flex justify-center items-center ">
+        <img src={`${author.img}`} alt="" />
       </div>
-      <div className="bg-gray-600 h-full w-2/6 font-extrabold text-3xl text-white flex justify-center items-center">
-        {author.name}
+      <div className="bg-gray-200 p-16 h-full w-full font-extrabold text-3xl text-black items-center flex flex-col">
+        <span className="text-8xl mb-14 ">{author.name}</span>
+        <span> {author.position} </span>
+        <span>{author.status}</span>
       </div>
     </div>
-  );
+  ) : null;
 }

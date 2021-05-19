@@ -1,13 +1,7 @@
 import { Link } from "react-router-dom";
-
 import AuthorCard from "./Partials/AuthorCard";
 
-// import useTimeAgo from "@dh-react-hooks/use-timeago";
-
 export default function OneCardInFeed({ question }) {
-  // const timeAgo = useTimeAgo(localDate, {
-  //   interval: 60000,
-  // });
   return (
     <Link
       to={`/question/${question._id}`}

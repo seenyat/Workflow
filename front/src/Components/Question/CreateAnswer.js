@@ -1,22 +1,13 @@
 import { useRef, useState } from "react";
 import EditorJs from "react-editor-js";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  sagaLoadAnswers,
-  addSAGAProfileAnswerQuestion,
-  sagaLoadQuestions,
-} from "../../Redux/actions/actionCreator";
+
 import WorkflowAdd from "../Routes/WorkflowAdd";
 
 import { nanoid } from "nanoid";
-import {
-  EDIT_PROFILE,
-  LOAD_ANSWERS,
-  ADD_ANSWER,
-} from "../../Redux/actions/actionTypes";
+import { ADD_ANSWER } from "../../Redux/actions/actionTypes";
 import { EDITOR_JS_TOOLS } from "../../Utils/editorTools";
 import { XIcon } from "@heroicons/react/solid";
-import { Transition } from "@headlessui/react";
 
 export default function CreateAnswer({ id, edit, count, setCreateAnswer }) {
   const comment = useRef(null);
@@ -64,9 +55,9 @@ export default function CreateAnswer({ id, edit, count, setCreateAnswer }) {
             onClick={() => setCreateAnswer(false)}
             className="absolute w-10 h-10 right-2 top-2 text-gray-400 cursor-pointer hover:text-gray-700"
           />
-          <div className="bg-white  p-6 space-y-6 sm:p-6">
+          <div className="bg-white dark:bg-gray-700 dark:text-white  p-6 space-y-6 sm:p-6">
             <div>
-              <h3 className="text-2xl mb-2 font-bold leading-6  text-gray-900">
+              <h3 className="text-2xl mb-2 font-bold leading-6  dark:text-white text-gray-900">
                 Добавить ответ
               </h3>
               <p className="mt-1 text-sm text-gray-400">
@@ -76,13 +67,7 @@ export default function CreateAnswer({ id, edit, count, setCreateAnswer }) {
 
             <div className="grid grid-cols-3 gap-6">
               <div className="col-span-3">
-                <label
-                  htmlFor="about"
-                  className="block text-xl mb-2 font-medium text-gray-700"
-                >
-                  Описание
-                </label>
-                <div className="mt-1 prose lg:prose-xl shadow-md max-w-3xl text-left  rounded-md bg-gray-50 border-gray-300">
+                <div className="mt-1 prose lg:prose-xl shadow-md max-w-4xl text-left dark:text-white dark:bg-gray-800 rounded-md bg-gray-50 border-gray-300">
                   <EditorJs
                     tools={EDITOR_JS_TOOLS}
                     placeholder="Описание"
@@ -110,10 +95,10 @@ export default function CreateAnswer({ id, edit, count, setCreateAnswer }) {
               </div>
             </div>
           </div>
-          <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
+          <div className="px-4 py-3 bg-gray-50 dark:bg-gray-800 text-right sm:px-6">
             <button
               type="submit"
-              className="bg-indigo-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-md font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              className="bg-indigo-600 dark:bg-opacity-50 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-md font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
               Отправить
             </button>

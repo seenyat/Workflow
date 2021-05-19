@@ -9,7 +9,7 @@ function ProfileAnswers({ answer }) {
       <div className="flex space-x-3">
         <div className="flex-1 w-full ">
           <Link
-            className="flex mx-1 py-2 my-1 hover:bg-gray-200 px-5 rounded flex-col overflow-hidden w-full max-w-full"
+            className="flex mx-1 py-2 my-1 transition dark:hover:bg-gray-600 hover:bg-gray-200 px-5 rounded flex-col overflow-hidden w-full max-w-full"
             to={`/question/${answer.question._id}`}
           >
             <div className="flex py-1 items-center space-x-2 text-xs text-gray-400">

@@ -24,7 +24,7 @@ export default function ContentHeader({ setMobileMenuOpen }) {
     <>
       {modalStatus && <ModalForm />}
       <header className="w-full">
-        <div className="relative z-10 flex-shrink-0 h-16 bg-white border-b border-gray-200 shadow-sm flex">
+        <div className="relative z-10 flex-shrink-0 h-16 bg-white dark:bg-gray-700 border-b dark:border-gray-600 border-gray-200 shadow-sm flex">
           <button
             type="button"
             className="border-r border-gray-200 px-4 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 md:hidden"
@@ -49,22 +49,22 @@ export default function ContentHeader({ setMobileMenuOpen }) {
                   <input
                     name="search_field"
                     id="search_field"
-                    className="h-full w-full border-transparent py-2 pl-8 pr-3 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-0 focus:border-transparent focus:placeholder-gray-400"
+                    className="h-full w-full dark:bg-gray-700 dark:text-white border-transparent py-2 pl-8 pr-3 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-0 focus:border-transparent focus:placeholder-gray-400"
                     placeholder="Search"
                     type="search"
                   />
                 </div>
               </form>
             </div>
-            <div className="ml-2 flex items-center space-x-4 sm:ml-6 sm:space-x-6">
+            <div className="ml-2 flex items-center  space-x-4 sm:ml-6 sm:space-x-6">
               {/* Profile dropdown */}
               {auth && (
                 <>
-                  <Menu as="div" className="relative flex-shrink-0">
+                  <Menu as="div" className="relative  flex-shrink-0">
                     {({ open }) => (
                       <>
                         <div>
-                          <Menu.Button className="bg-white rounded-full flex text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                          <Menu.Button className="bg-white dark:bg-gray-600 dark:text-white rounded-full flex text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                             <span className="sr-only">Open user menu</span>
                             <img
                               className="h-8 w-8 rounded-full"
@@ -89,7 +89,7 @@ export default function ContentHeader({ setMobileMenuOpen }) {
                         >
                           <Menu.Items
                             static
-                            className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+                            className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white dark:bg-gray-700 ring-1 ring-black ring-opacity-5 focus:outline-none"
                           >
                             {userNavigation.map((item) => (
                               <Menu.Item key={item.name}>
@@ -107,8 +107,10 @@ export default function ContentHeader({ setMobileMenuOpen }) {
                                     }}
                                     to={item.id !== 2 && item.href}
                                     className={classNames(
-                                      active ? "bg-gray-100" : "",
-                                      "block px-4 py-2 text-sm text-gray-700"
+                                      active
+                                        ? "bg-gray-100 dark:bg-gray-900"
+                                        : "",
+                                      "block  dark:text-white px-4 py-2 text-sm text-gray-700"
                                     )}
                                   >
                                     {item.name}
