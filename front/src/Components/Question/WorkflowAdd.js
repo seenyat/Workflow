@@ -16,7 +16,13 @@ export default function WorkflowAdd({ todo, setTodo }) {
     });
   }
   return (
-    <div className="bg-gray-400 pt-5 mt-1 px-5 container flex flex-col items-center justify-center shadow overflow-hidden sm:rounded-lg">
+    <div className="bg-gray-50 text-left pt-5 mt-1 px-5 container flex flex-col items-center justify-center shadow overflow-hidden sm:rounded-lg">
+      <label
+        htmlFor="about"
+        className="block text-xl text-left self-start font-medium text-gray-700"
+      >
+        Workflow
+      </label>
       {todo.stages.map((el, index) => (
         <ToDoGroup
           key={index}
@@ -31,7 +37,7 @@ export default function WorkflowAdd({ todo, setTodo }) {
       <button
         type="button"
         onClick={addToDoGroup}
-        className="mx-auto mb-2 shadow p-1 text-white hover:text-gray-200 flex border-2 border-white border-opacity-30 transition bg-green-4→→00 hover:bg-green-600 items-center justify-center w-24 h-10 rounded-full"
+        className="mx-auto mb-2 shadow p-1 dark:bg-green-900 dark:bg-opacity-30 text-white hover:text-gray-200 flex border-2 border-white border-opacity-30 transition bg-green-400 hover:bg-green-600 items-center justify-center w-24 h-10 rounded-full"
       >
         <PlusIcon className="w-10" />
       </button>

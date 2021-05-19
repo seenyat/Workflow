@@ -3,7 +3,11 @@ import ContentHeader from "./ContentHeader";
 import ContentRouter from "../Components/Routes/ContentRouter";
 import RightColumn from "./RightColumn";
 
-export default function Content({ setMobileMenuOpen, userNavigation }) {
+export default React.memo(function Content({
+  setMobileMenuOpen,
+  userNavigation,
+}) {
+  console.log("content", setMobileMenuOpen, userNavigation);
   return (
     <div className="flex-1 flex flex-col overflow-hidden">
       <ContentHeader
@@ -26,10 +30,10 @@ export default function Content({ setMobileMenuOpen, userNavigation }) {
         </main>
 
         {/* Secondary column (hidden on smaller screens) */}
-        <aside className="hidden w-96 bg-white border-l border-gray-200 overflow-y-auto lg:block">
+        <aside className="hidden w-96  bg-white dark:bg-gray-900 dark:text-gray-300 border-l border-gray-200 dark:border-gray-700 overflow-y-auto lg:block">
           <RightColumn />
         </aside>
       </div>
     </div>
   );
-}
+});

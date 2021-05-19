@@ -11,11 +11,11 @@ export default function MainFeed() {
   const dispatch = useDispatch();
   const { questions } = useSelector((state) => state);
   const [page, setPage] = useState(0);
+
   // Sort by likes
   const [questionsList, setQuestionsList] = useState(
     questions.sort((a, b) => b.likes.length - a.likes.length)
   );
-
   // Database renew
   useEffect(() => {
     dispatch(sagaLoadQuestions(process.env.REACT_APP_ALL_QUESTION));
@@ -24,15 +24,21 @@ export default function MainFeed() {
 
   useEffect(() => {
     setQuestionsList(
-      questions.sort((a, b) => b.likes.length - a.likes.length).slice(page*5,page*5+5 )
+      questions
+        .sort((a, b) => b.likes.length - a.likes.length)
+        .slice(page * 5, page * 5 + 5)
     );
-  }, [questions,page]);
+    sortByTheme(buttonsState.filter((el) => el.status)[0].theme);
+  }, [questions, page]);
+  const [count, setCount] = useState(0);
 
   // Filtering
   const [buttonsState, setButtonsState] = useState(buttonList);
   const sortByTheme = (theme) => {
     const newList = questions.filter((que) => que.theme.includes(theme));
-    setQuestionsList(newList);
+    setQuestionsList(newList.slice(page * 5, page * 5 + 5));
+    setCount(newList.length);
+    // setPage(0)
     setButtonsState(
       buttonsState.map((bt) =>
         bt.theme !== theme
@@ -51,11 +57,12 @@ export default function MainFeed() {
   return questions ? (
     <>
       <Feed
+        setPage={setPage}
         filters={buttonsState}
         filter={sortByTheme}
         questions={questionsList}
       />
-      <Pagination pageCount={questions.length} page={setPage}  pageNumber={page} questions={questions} />
+      <Pagination pageCount={count} setPage={setPage} page={page} />
     </>
   ) : (
     <div className="border-8 mt-24 mx-auto rounded-full w-24 h-24 border-gray-500 border-dashed animate-spin"></div>

@@ -29,6 +29,14 @@ import {
   SAGA_DELETE_ANSWER,
   DELETE_ANSWER,
   ADD_ANSWER,
+  SAGA_COMMENT_ANSWER,
+  COMMENT_ANSWER,
+  SAGA_DELETE_TODO,
+  DELETE_TODO,
+  SAGA_DELETE_COMMENT,
+  DELETE_COMMENT,
+  SAGA_LIKE_COMMENT,
+  LIKE_COMMENT,
 } from "./actionTypes";
 
 export const sagaPostQuestion = (payload) => ({
@@ -175,5 +183,45 @@ export const deleteAnswer = (payload) => ({
 
 export const addAnswer = (payload) => ({
   type: ADD_ANSWER,
-  payload
-})
+  payload,
+});
+
+export const sagaAddCommentAC = (payload) => ({
+  type: SAGA_COMMENT_ANSWER,
+  payload,
+});
+
+export const addCommentAC = (payload) => ({
+  type: COMMENT_ANSWER,
+  payload,
+});
+
+export const sagaDeleteToDo = (payload) => ({
+  type: SAGA_DELETE_TODO,
+  payload,
+});
+
+export const deleteToDo = (payload) => ({
+  type: DELETE_TODO,
+  payload,
+});
+
+export const sagaDeleteComment = (payload) => ({
+  type: SAGA_DELETE_COMMENT,
+  payload,
+});
+
+export const deleteComment = (payload) => ({
+  type: DELETE_COMMENT,
+  payload,
+});
+
+export const sagaLikeCommentAC = (payload) => ({
+  type: SAGA_LIKE_COMMENT,
+  payload,
+});
+
+export const likeCommentAC = (payload) => ({
+  type: LIKE_COMMENT,
+  payload,
+});

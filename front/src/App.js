@@ -4,7 +4,6 @@ import Navigation from "./Views/Navigation/Navigation";
 import Content from "./Views/Content";
 import { useEffect, useState } from "react";
 import classNames from "./Utils/classNames";
-import "./App.css";
 import { useDispatch } from "react-redux";
 import {
   sagaAuthCheck,
@@ -17,7 +16,7 @@ const userNavigation = [
 ];
 function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
+  console.log("app");
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -30,7 +29,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className="h-screen bg-gray-50 flex overflow-hidden">
+      <div className="h-screen bg-gray-50 dark:bg-gray-900 flex overflow-hidden">
         <Navigation
           mobileMenuOpen={mobileMenuOpen}
           setMobileMenuOpen={setMobileMenuOpen}

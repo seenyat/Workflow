@@ -12,7 +12,9 @@ router.get("/:id", async (req, res) => {
     res.status(404).json({ error: "no such question" });
     return;
   }
-  const answers = await Answer.find({ question: question._id });
+  const answers = await Answer.find({ question: question._id }).populate(
+    "answers"
+  );
   res.status(200).json({ question, answers });
 });
 
@@ -41,7 +43,9 @@ router.put("/:id", async (req, res) => {
       },
     }
   );
-  let question = await Question.findById(req.params.id).populate("author");
+  let question = await Question.findById(req.params.id)
+    .populate("author")
+    .populate("answers");
   res.json(question);
 });
 
@@ -53,25 +57,13 @@ router.delete("/:id", async (req, res) => {
   await question.answers.map(async (ans) => {
     await Answer.findByIdAndDelete(ans);
   });
-
   await Question.findByIdAndDelete(id);
-
-  // console.log(question);
-
-  // await Question.findByIdAndDelete(id, (error, questionToDelete) => {
-  //   if (error) {
-  //     res.status(400).json({ delete: false, error });
-  //   } else if (!questionToDelete) {
-  //     res.status(404).json({ delete: false });
-  //   } else {
-  //     res.status(200).json({ delete: true, id });
-  //   }
-  // });
   res.json(id);
 });
 
 router.post("/like", async (req, res) => {
-  let { userID, questionID } = req.body;
+  let { userID, contentID } = req.body;
+  let questionID = contentID;
   questionID = mongoose.Types.ObjectId(questionID);
   let question = await Question.findById(questionID);
   if (question.likes.includes(userID)) {

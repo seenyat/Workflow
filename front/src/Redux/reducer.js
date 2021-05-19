@@ -16,7 +16,11 @@ import {
   DELETE_QUESTION,
   DELETE_ANSWER,
   ADD_ANSWER,
+  COMMENT_ANSWER,
+  DELETE_TODO,
+  DELETE_COMMENT,
 } from "./actions/actionTypes";
+import merge from "lodash/merge";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -48,13 +52,10 @@ const reducer = (state, action) => {
       };
 
     case LOAD_ANSWERS:
+      console.log(action.payload);
       return {
         ...state,
-        questions: state.questions.map((que) =>
-          que._id === action.payload.question._id
-            ? { ...que, answers: action.payload.answers }
-            : que
-        ),
+        answers: merge(state.answers, action.payload.answers),
       };
 
     case TOGGLE_TODO:
@@ -99,7 +100,7 @@ const reducer = (state, action) => {
         ...state,
         user: {
           ...state.user,
-          login: action.payload.login,
+          name: action.payload.name,
           info: action.payload.info,
         },
       };
@@ -180,7 +181,75 @@ const reducer = (state, action) => {
     case ADD_ANSWER:
       return {
         ...state,
-        answers: action.payload,
+        answers: [...state.answers, action.payload],
+      };
+
+    case COMMENT_ANSWER:
+      return {
+        ...state,
+        answers: state.answers.map((answ) =>
+          answ._id === action.payload.comment.answer
+            ? { ...answ, comments: [...answ.comments, action.payload.comment] }
+            : answ
+        ),
+        questions: state.questions.map((que) => {
+          return que._id === action.payload.questionId
+            ? {
+                ...que,
+                answers: que.answers.map((answ) => {
+                  return answ._id === action.payload.comment.answer
+                    ? {
+                        ...answ,
+                        comments: [...answ.comments, action.payload.comment],
+                      }
+                    : answ;
+                }),
+              }
+            : que;
+        }),
+      };
+
+    case DELETE_TODO:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          workflows: state.user.workflows.filter(
+            (wf) => wf.id !== action.payload
+          ),
+        },
+      };
+
+    case DELETE_COMMENT:
+      return {
+        ...state,
+        answers: state.answers.map((ans) =>
+          ans._id !== action.payload.content.answer
+            ? ans
+            : {
+                ...ans,
+                comments: ans.comments.filter(
+                  (cm) => cm._id !== action.payload.content._id
+                ),
+              }
+        ),
+        questions: state.questions.map((que) =>
+          que._id !== action.payload.question
+            ? que
+            : {
+                ...que,
+                answers: que.answers.map((ans) =>
+                  ans._id !== action.payload.content.answer
+                    ? ans
+                    : {
+                        ...ans,
+                        comments: ans.comments.filter(
+                          (cm) => cm._id !== action.payload.content._id
+                        ),
+                      }
+                ),
+              }
+        ),
       };
 
     default:
