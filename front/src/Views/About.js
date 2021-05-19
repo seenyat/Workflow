@@ -8,24 +8,31 @@ const authors = [
   {
     name: "Роман",
     img: "/Roman.jpg",
-    status: "FullStack - разработчик",
-
-    position: "Team-Lead",
+    role: "FullStack - разработчик",
+    favoriteLibrary:"Tailwind",
+    cause:"Потому что это красиво",
+    position: "Team - Lead",
   },
   {
     name: "Антон",
     img: "/Anton.jpg",
-    status: "FullStack-разработчик",
+    role: "FullStack - разработчик",
+    favoriteLibrary:"React - Spring",
+    cause:"Люблю когда все дрыгается и светится",
   },
   {
     name: "Илья",
     img: "/Ilya.jpg",
-    status: "FullStack-разработчик",
+    role: "FullStack - разработчик",
+    favoriteLibrary:"Passport JS",
+    cause:"Авторизация без головной боли",
   },
   {
     name: "Андрей",
     img: "/Andrey.jpg",
-    status: "FullStack-разработчик",
+    role: "FullStack - разработчик",
+    favoriteLibrary:"Express",
+    cause:"Кто-то должен был это сделать",
   },
 ];
 
