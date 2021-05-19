@@ -9,7 +9,7 @@ const authors = [
   {
     name: "Роман",
     img: "/Roman.jpg",
-    status: "FullStack-разработчик",
+    status: "FullStack - разработчик",
 
     position: "Team-Lead",
   },
