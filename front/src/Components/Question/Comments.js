@@ -1,8 +1,6 @@
-import { Transition } from "@headlessui/react";
-import { AnnotationIcon } from "@heroicons/react/outline";
+
 import { PlusIcon } from "@heroicons/react/solid";
 import { nanoid } from "nanoid";
-import { useState } from "react";
 import CommentContent from "./CommentContent";
 import CommentExpanded from "./CommentExpanded";
 import CommentForm from "./CommentForm";

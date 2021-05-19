@@ -16,20 +16,12 @@ export default function UserProfile() {
   const state = useSelector((state) => state);
   console.log(state);
   const dispatch = useDispatch();
-  // const [prof, setProf] = useState();
   const [edit, setEdit] = useState(false);
   useEffect(() => {
     if (user) {
       dispatch(
         addSAGAProfileAnswerQuestion(process.env.REACT_APP_PROFILE + user._id)
       );
-      // fetch(`http://localhost:4000/profile/${user._id}`, {
-      //   method: "GET",
-      //   credentials: "include",
-      // }).then((data) =>
-      //   data.json().then(profile => dispatch({ type: ADD_PROFILE_QA, payload: profile })
-      //   )
-      // );
     }
   }, [dispatch, user]);
 
@@ -43,7 +35,6 @@ export default function UserProfile() {
 
     const name = nameInput.current.value;
     const info = nameInfo.current.value;
-    // console.log(process.env.REACT_APP_PROFILE + user._id);
 
     dispatch(
       sagaEditProfile(
@@ -53,21 +44,6 @@ export default function UserProfile() {
         })
       )
     );
-
-    // dispatch(
-    //   sagaEditProfile(
-    //     fetchCreator(``, "PUT", {
-    //       login,
-    //       info,
-    //     })
-    //   )
-
-    //     info,
-    //   }),
-    // })
-
-    //   .then((data) => data.json())
-    //   .then((profile) => dispatch({ type: EDIT_PROFILE, payload: profile }))
     setEdit(false);
   };
 
@@ -156,7 +132,7 @@ export default function UserProfile() {
                     {user.email !== null && (
                       <div className="sm:col-span-1">
                         <dt className="text-sm font-medium text-gray-500">
-                          E-mail
+                          Email
                         </dt>
                         <dd className="mt-1 text-sm text-gray-900">
                           {user.email}
@@ -169,6 +145,14 @@ export default function UserProfile() {
                       </dt>
                       <dd className="mt-1 text-sm dark:text-gray-200  text-gray-900">
                         {prof && prof.sumLikes}
+                      </dd>
+                    </div>
+                    <div className="sm:col-span-1">
+                      <dt className="text-sm font-medium text-gray-500">
+                        Login github
+                      </dt>
+                      <dd className="mt-1 text-sm text-gray-900">
+                        @{user.login}
                       </dd>
                     </div>
                   </dl>

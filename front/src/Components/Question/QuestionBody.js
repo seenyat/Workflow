@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   sagaDeleteQuestion,
   sagaEditQuestion,
-  sagaLikeQuestionAC,
 } from "../../Redux/actions/actionCreator";
 import fetchCreator from "../../Redux/fetchCreator";
 

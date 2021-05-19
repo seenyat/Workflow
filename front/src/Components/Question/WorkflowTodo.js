@@ -1,26 +1,24 @@
 import { CheckIcon } from "@heroicons/react/outline";
+
 import { TrashIcon } from "@heroicons/react/solid";
-import { useEffect } from "react";
+
+
+import { useEffect, useState } from "react";
+
 import { useDispatch, useSelector } from "react-redux";
 import {
   sagaDeleteToDo,
   sagaToggleTodo,
 } from "../../Redux/actions/actionCreator";
 import fetchCreator from "../../Redux/fetchCreator";
+import Modalforaccept from "../../Utils/Modalforaccept";
 
 export default function Workflow({ todo }) {
+  const [modalforaccept, setModalforaccept] = useState(false);
+
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   useEffect(() => {}, []);
-  function addWorkflow() {
-    fetch(process.env.REACT_APP_PROFILE_ADD_WORKFLOW, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ todo, userID: user._id }),
-    });
-  }
 
   const deleteThisToDo = () => {
     dispatch(
@@ -40,11 +38,17 @@ export default function Workflow({ todo }) {
           План действий
         </div>
         <div
-          onClick={() => deleteThisToDo()}
+          onClick={() => setModalforaccept(true)}
           className="p-1 cursor-pointer transition mr-1 hover:bg-opacity-50 dark:hover:bg-opacity-30 hover:bg-red-100 hover:text-red-300 text-gray-300  flex overflow-hidden rounded"
         >
           <TrashIcon className=" w-5 h-5      fa-trash-alt " />
         </div>
+{modalforaccept && (
+        <Modalforaccept
+          clear={deleteThisToDo}
+          setModalforaccept={setModalforaccept}
+        />
+      )}
       </div>
       {todo.stages.map((el, stageI) => {
         return (
@@ -79,13 +83,14 @@ export default function Workflow({ todo }) {
                   />
                 </div>
 
-                <div className=" ">{todoItem.value}</div>
-              </div>
-            ))}
-          </>
-        );
-      })}
-      <div className="actions"></div>
-    </div>
+                  <div className=" ">{todoItem.value}</div>
+                </div>
+              ))}
+            </>
+          );
+        })}
+        <div className="actions"></div>
+      </div>
+    </>
   );
 }

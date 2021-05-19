@@ -2,7 +2,6 @@ import { Transition } from "@headlessui/react";
 import { nanoid } from "nanoid";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { sagaLoadAnswers } from "../../Redux/actions/actionCreator";
 import CommentContent from "./CommentContent";
 
 export default function CommentExpanded({ comments }) {

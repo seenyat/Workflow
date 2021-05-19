@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import ProfileAnswers from "../Components/Profile/ProfileAnswers";
 import ProfileQuestions from "../Components/Profile/ProfileQuestions";
@@ -19,7 +19,6 @@ function UsersProfile() {
     );
   }, []);
 
-  console.log(prof);
   return prof ? (
     <div className="min-h-screen bg-gray-100 overflow-scroll">
       <main className="py-10">

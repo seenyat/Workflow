@@ -1,5 +1,10 @@
+
 import { PencilAltIcon, TrashIcon } from "@heroicons/react/solid";
 import React from "react";
+
+import { useState } from "react";
+import Modalforaccept from "../../Utils/Modalforaccept";
+
 
 export default function EditAndDelete({
   user,
@@ -9,12 +14,20 @@ export default function EditAndDelete({
   deleteQuestion,
   editStatus,
 }) {
+  const [modalforaccept, setModalforaccept] = useState(false);
+
   return (
     <div className="flex items-center ml-auto text-gray-400">
+    {modalforaccept && (
+        <Modalforaccept
+          clear={deleteQuestion}
+          setModalforaccept={setModalforaccept}
+        />
+      )}
       {user && user._id === question.author._id && !hideEdit ? (
         <div className="px-2 text-sm  w-max text-gray-400 ">
           <div
-            onClick={() => deleteQuestion()}
+              onClick={() => setModalforaccept(true)}
             className="p-1 cursor-pointer transition mr-1 hover:bg-opacity-50 dark:hover:bg-opacity-30 hover:bg-red-100 hover:text-red-300 text-gray-300  flex overflow-hidden rounded"
           >
             <TrashIcon className=" w-5 h-5      fa-trash-alt " />
@@ -30,5 +43,6 @@ export default function EditAndDelete({
         </div>
       ) : null}
     </div>
+
   );
 }

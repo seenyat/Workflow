@@ -1,14 +1,12 @@
 import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import Time from "../Utils/Time";
 import Output from "editorjs-react-renderer";
 
 import { Link } from "react-router-dom";
-import { addSAGAProfileAnswerQuestion } from "../Redux/actions/actionCreator";
 
 export default function RightColumn() {
   const user = useSelector((state) => state.user);
-  // const prof = useSelector((state) => state.prof);
   let answers = useSelector((state) => state.answers);
   useEffect(() => {
     if (user && answers) {
@@ -17,15 +15,6 @@ export default function RightColumn() {
       });
     }
   }, [answers]);
-
-  const dispatch = useDispatch();
-  // useEffect(() => {
-  //   if (user) {
-  //     dispatch(
-  //       addSAGAProfileAnswerQuestion(process.env.REACT_APP_PROFILE + user._id)
-  //     );
-  //   }
-  // }, [dispatch, user]);
 
   return user ? (
     <div>

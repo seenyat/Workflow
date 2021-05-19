@@ -1,6 +1,5 @@
 import Time from "../../Utils/Time";
 import { Link } from "react-router-dom";
-import Output from "editorjs-react-renderer";
 
 function ProfileQuestions({ item }) {
   return (
