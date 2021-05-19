@@ -36,7 +36,7 @@ passport.use(
       if (!user) {
         user = await User.create({
           githubID: id,
-          name,
+          name: name || "Клоун без имени на GitHub",
           avatar_url,
           login,
           email,

@@ -101,7 +101,7 @@ const reducer = (state, action) => {
         ...state,
         user: {
           ...state.user,
-          login: action.payload.login,
+          name: action.payload.name,
           info: action.payload.info,
         },
       };
