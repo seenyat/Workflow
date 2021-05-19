@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import EditorJs from "react-editor-js";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import WorkflowAdd from "../Routes/WorkflowAdd";
 
@@ -9,9 +9,12 @@ import { ADD_ANSWER } from "../../Redux/actions/actionTypes";
 import { EDITOR_JS_TOOLS } from "../../Utils/editorTools";
 import { XIcon } from "@heroicons/react/solid";
 
-export default function CreateAnswer({ id, edit, count, setCreateAnswer }) {
+export default function CreateAnswer({
+  id,
+  setCreateAnswer,
+  authorId,
+}) {
   const comment = useRef(null);
-  const state = useSelector((state) => state.user);
   const [todo, setTodo] = useState({
     comment: comment.value,
     stages: [{ title: "Этап 1", todos: [{ value: "", checked: false }] }],
@@ -31,7 +34,7 @@ export default function CreateAnswer({ id, edit, count, setCreateAnswer }) {
         workflows: todo,
         comment: savedComment,
         id: id,
-        authorId: state._id,
+        authorId,
       }),
     }).then((e) => {
       e.json().then((answ) => dispatch({ type: ADD_ANSWER, payload: answ }));
