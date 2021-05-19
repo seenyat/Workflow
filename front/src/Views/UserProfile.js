@@ -16,20 +16,12 @@ export default function UserProfile() {
   const state = useSelector((state) => state);
   console.log(state);
   const dispatch = useDispatch();
-  // const [prof, setProf] = useState();
   const [edit, setEdit] = useState(false);
   useEffect(() => {
     if (user) {
       dispatch(
         addSAGAProfileAnswerQuestion(process.env.REACT_APP_PROFILE + user._id)
       );
-      // fetch(`http://localhost:4000/profile/${user._id}`, {
-      //   method: "GET",
-      //   credentials: "include",
-      // }).then((data) =>
-      //   data.json().then(profile => dispatch({ type: ADD_PROFILE_QA, payload: profile })
-      //   )
-      // );
     }
   }, [dispatch, user]);
 
@@ -43,7 +35,6 @@ export default function UserProfile() {
 
     const name = nameInput.current.value;
     const info = nameInfo.current.value;
-    // console.log(process.env.REACT_APP_PROFILE + user._id);
 
     dispatch(
       sagaEditProfile(
@@ -53,21 +44,6 @@ export default function UserProfile() {
         })
       )
     );
-
-    // dispatch(
-    //   sagaEditProfile(
-    //     fetchCreator(``, "PUT", {
-    //       login,
-    //       info,
-    //     })
-    //   )
-
-    //     info,
-    //   }),
-    // })
-
-    //   .then((data) => data.json())
-    //   .then((profile) => dispatch({ type: EDIT_PROFILE, payload: profile }))
     setEdit(false);
   };
 

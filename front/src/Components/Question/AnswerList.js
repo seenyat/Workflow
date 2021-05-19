@@ -11,7 +11,6 @@ export default function AnswerList({ qId }) {
         return answ.question._id === qId;
       })
     );
-    console.log(answerList);
   }, [answers]);
   return (
     <ul className="space-y-3">

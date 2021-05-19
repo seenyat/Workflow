@@ -57,13 +57,6 @@ function Latest(props) {
 
   return !user ? (
     <>
-      {/* <div className="flex flex-col items-center ">
-        <div className="flex items-center bg-red-100 w-fill text-gray-700 justify-center rounded-md p-5 text-xl my-5">
-          <ExclamationCircleIcon className="h-8 w-8 text-gray-500 opacity-50 mr-3" />
-          Авторизуйтесь, чтобы задать вопрос
-        </div>
-        <FormQuestion />
-      </div> */}
       {questions.length > 0 ? (
         <>
           <Feed

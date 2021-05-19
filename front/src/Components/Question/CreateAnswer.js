@@ -1,22 +1,15 @@
 import { useRef, useState } from "react";
 import EditorJs from "react-editor-js";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  sagaLoadAnswers,
-  addSAGAProfileAnswerQuestion,
-  sagaLoadQuestions,
-} from "../../Redux/actions/actionCreator";
+
 import WorkflowAdd from "../Routes/WorkflowAdd";
 
 import { nanoid } from "nanoid";
 import {
-  EDIT_PROFILE,
-  LOAD_ANSWERS,
   ADD_ANSWER,
 } from "../../Redux/actions/actionTypes";
 import { EDITOR_JS_TOOLS } from "../../Utils/editorTools";
 import { XIcon } from "@heroicons/react/solid";
-import { Transition } from "@headlessui/react";
 
 export default function CreateAnswer({ id, edit, count, setCreateAnswer }) {
   const comment = useRef(null);

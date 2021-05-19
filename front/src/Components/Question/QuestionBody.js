@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   sagaDeleteQuestion,
   sagaEditQuestion,
-  sagaLikeQuestionAC,
 } from "../../Redux/actions/actionCreator";
 import fetchCreator from "../../Redux/fetchCreator";
 
@@ -22,7 +21,6 @@ export default function QuestionBody({ question, hideEdit, link }) {
   const [editStatus, setEditStatus] = useState(false);
 
   const [secondRedirect, setSecondRedirect] = useState(false);
-
 
   const changeQuestion = (e) => {
     e.preventDefault();

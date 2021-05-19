@@ -1,5 +1,5 @@
 import { Listbox, Transition } from "@headlessui/react";
-import { useState, Fragment, useEffect } from "react";
+import { useState, Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { sagaPostQuestion } from "../../Redux/actions/actionCreator";
 import fetchCreator from "../../Redux/fetchCreator";
