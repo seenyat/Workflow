@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import Time from "../Utils/Time";
 import Output from "editorjs-react-renderer";
-
 import { Link } from "react-router-dom";
 
 export default function RightColumn() {
@@ -10,6 +9,7 @@ export default function RightColumn() {
   let answers = useSelector((state) => state.answers);
   useEffect(() => {
     if (user && answers) {
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       answers = answers.filter((el) => {
         return el.author._id === user._id;
       });

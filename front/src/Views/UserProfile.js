@@ -13,8 +13,6 @@ import { PencilAltIcon } from "@heroicons/react/solid";
 export default function UserProfile() {
   const user = useSelector((state) => state.user);
   const prof = useSelector((state) => state.prof);
-  const state = useSelector((state) => state);
-  console.log(state);
   const dispatch = useDispatch();
   const [edit, setEdit] = useState(false);
   useEffect(() => {

@@ -6,10 +6,7 @@ import Output from "editorjs-react-renderer";
 import Workflow from "./Workflow";
 import Time from "../../Utils/Time";
 import Like from "../Partials/Like";
-
-import { AnnotationIcon, TrashIcon } from "@heroicons/react/solid";
-import CommentForm from "./CommentForm";
-
+import { TrashIcon } from "@heroicons/react/solid";
 import Comments from "./Comments";
 import AuthorCard from "../Partials/AuthorCard";
 import Modalforaccept from "../../Utils/Modalforaccept";

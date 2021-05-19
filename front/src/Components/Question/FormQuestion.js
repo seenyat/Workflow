@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { sagaPostQuestion } from "../../Redux/actions/actionCreator";
 import fetchCreator from "../../Redux/fetchCreator";
 import { CheckIcon, PlusIcon, SelectorIcon } from "@heroicons/react/solid";
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 export default function FormQuestion() {
   const themes = [

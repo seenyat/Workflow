@@ -21,6 +21,7 @@ export default function DesktopSidebar({ nav, setNav, auth }) {
                 );
               }
             }
+            return "";
           })}
         </div>
       </div>
