@@ -2,7 +2,6 @@ import { CheckIcon } from "@heroicons/react/outline";
 
 import { TrashIcon } from "@heroicons/react/solid";
 
-
 import { useEffect, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -43,12 +42,12 @@ export default function Workflow({ todo }) {
         >
           <TrashIcon className=" w-5 h-5      fa-trash-alt " />
         </div>
-{modalforaccept && (
-        <Modalforaccept
-          clear={deleteThisToDo}
-          setModalforaccept={setModalforaccept}
-        />
-      )}
+        {modalforaccept && (
+          <Modalforaccept
+            clear={deleteThisToDo}
+            setModalforaccept={setModalforaccept}
+          />
+        )}
       </div>
       {todo.stages.map((el, stageI) => {
         return (
@@ -83,14 +82,13 @@ export default function Workflow({ todo }) {
                   />
                 </div>
 
-                  <div className=" ">{todoItem.value}</div>
-                </div>
-              ))}
-            </>
-          );
-        })}
-        <div className="actions"></div>
-      </div>
-    </>
+                <div className=" ">{todoItem.value}</div>
+              </div>
+            ))}
+          </>
+        );
+      })}
+      <div className="actions"></div>
+    </div>
   );
 }
