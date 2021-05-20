@@ -67,8 +67,8 @@ export default function About() {
   return (
     <>
       <Link to="/stack">
-        <div className="w-full h-20 bg-none text-3xl flex justify-center items-center  outline-none">
-          Просмотреть наш стэк
+        <div className="w-full shadow-md hover:bg-gray-100  h-20 bg-white text-3xl flex justify-center items-center  outline-none">
+          Наш стэк
         </div>
       </Link>
       {props.map(({ x, display, sc }, i) => (
