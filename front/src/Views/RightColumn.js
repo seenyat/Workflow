@@ -14,7 +14,7 @@ export default function RightColumn() {
       setAnswers(
         [...answersList]
           .filter((el) => {
-            return el.author._id === user._id;
+            return el.question.author === user._id;
           })
           .sort((a, b) => new Date(b.date) - new Date(a.date))
       );
