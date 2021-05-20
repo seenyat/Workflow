@@ -9,9 +9,6 @@ body {
   padding: 0;
   height: 100%;
   width: 100%;
-  user-select: none;
-  font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir,
-    helvetica neue, helvetica, ubuntu, roboto, noto, segoe ui, arial, sans-serif;
   position: fixed;
   overflow: hidden;
 }
@@ -26,8 +23,6 @@ body {
   background-repeat: no-repeat;
   background-position: center center;
   position: absolute;
-  /* width: 100%;
-  height: 100%; */
   will-change: transform;
   overflow: hidden;
 }
@@ -41,11 +36,12 @@ body {
 }
 
 .card {
-  background-color: white;
+  background-color: rgb(210, 225, 225);
   background-size: auto 85%;
   background-repeat: no-repeat;
   background-position: center center;
   display: flex;
+  padding: 0 20px;
 
   width: 350px;
   height: 570px;
