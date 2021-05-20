@@ -148,7 +148,7 @@ export default function Cardslist() {
     >
       <animated.div
         {...bind(i)}
-        className="card "
+        className="card"
         style={{
           transform: interpolate([rot, scale], trans),
         }}
