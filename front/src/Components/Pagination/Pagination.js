@@ -8,8 +8,7 @@ export default function Pagination({ setPage, pageCount, page }) {
 
   return count > 1 && arr ? (
     <div className="bg-white dark:bg-gray-600 px-4 py-3 flex items-center justify-between border-t dark:border-gray-500 dark:text-white text-gray-700 border-gray-200 sm:px-6">
-      <div className="flex-1 flex flex-col justify-between sm:hidden"></div>
-      <div className="hidden sm:flex-1 sm:flex flex-col space-y-2 sm:items-center sm:justify-between">
+      <div className=" flex flex-1 flex-col space-y-2 items-center justify-between">
         <div>
           <p className="text-sm ">
             <span className="font-medium">{page * 5 + 1}</span> —{" "}

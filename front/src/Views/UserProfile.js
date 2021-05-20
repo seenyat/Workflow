@@ -110,7 +110,7 @@ export default function UserProfile() {
                   {!edit ? (
                     <button
                       onClick={handleEdit}
-                      className="text-sm flex items-center absolute bg-indigo-500 hover:bg-indigo-800 transition px-5 py-3 rounded text-white top-4 right-4 font-medium "
+                      className="text-sm sm:flex items-center hidden absolute bg-indigo-500 hover:bg-indigo-800 transition px-5 py-3 rounded text-white top-4 right-4 font-medium "
                     >
                       <PencilAltIcon className="w-5 h-5 mr-3" />
                       <div>Редактировать</div>
@@ -118,7 +118,7 @@ export default function UserProfile() {
                   ) : (
                     <button
                       onClick={handle}
-                      className="text-sm flex items-center absolute bg-green-500 hover:bg-green-800 transition px-5 py-3 rounded text-white top-4 right-4 font-medium "
+                      className="text-sm sm:flex items-center  hiddenabsolute bg-green-500 hover:bg-green-800 transition px-5 py-3 rounded text-white top-4 right-4 font-medium "
                     >
                       <PencilAltIcon className="w-5 h-5 mr-3" />
                       <div>Сохранить</div>

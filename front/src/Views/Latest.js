@@ -13,7 +13,7 @@ function Latest(props) {
   const { questions } = useSelector((state) => state);
   const [page, setPage] = useState(0);
   const [questionsList, setQuestionsList] = useState(
-    questions.sort((a, b) => new Date(b.date) - new Date(a.date))
+    [...questions].sort((a, b) => new Date(b.date) - new Date(a.date))
   );
   const { user } = useSelector((state) => state);
 
