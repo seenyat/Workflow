@@ -29,34 +29,34 @@ function Latest(props) {
   const [buttonsState, setButtonsState] = useState(buttonList);
   const sortByTheme = (theme) => {
     const newList = questions.filter((que) => que.theme.includes(theme));
-    
+
     setQuestionsList(newList.slice(page * 5, page * 5 + 5));
     setCount(newList.length);
     setButtonsState(
       buttonsState.map((bt) =>
-      bt.theme !== theme
-      ? {
-        ...bt,
-        status: false,
-      }
-      : {
-        ...bt,
-        status: true,
-      }
+        bt.theme !== theme
+          ? {
+              ...bt,
+              status: false,
+            }
+          : {
+              ...bt,
+              status: true,
+            }
       )
-      );
-    };
-    useEffect(() => {
-      setQuestionsList(
-        questions
-          .sort((a, b) => new Date(b.date) - new Date(a.date))
-          .slice(page * 5, page * 5 + 5)
-      );
-      sortByTheme(buttonsState.filter((el) => el.status)[0].theme);
-    }, [questions, page, buttonsState, sortByTheme]);
-    
-    return !user ? (
-      <>
+    );
+  };
+  useEffect(() => {
+    setQuestionsList(
+      questions
+        .sort((a, b) => new Date(b.date) - new Date(a.date))
+        .slice(page * 5, page * 5 + 5)
+    );
+    sortByTheme(buttonsState.filter((el) => el.status)[0].theme);
+  }, [questions, page, buttonsState, sortByTheme]);
+
+  return !user ? (
+    <>
       {questions.length > 0 ? (
         <>
           <Feed
