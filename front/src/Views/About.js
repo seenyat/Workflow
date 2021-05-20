@@ -12,7 +12,7 @@ const authors = [
     img: "/Anton.jpg",
     role: "FullStack - разработчик",
     favoriteLibrary: "React - Spring",
-    cause: "Люблю когда все дрыгается и светится",
+    cause: "Люблю когда все дергается и светится",
   },
   {
     name: "Илья",
@@ -33,7 +33,7 @@ const authors = [
     img: "/Roman.jpg",
     role: "FullStack - разработчик",
     favoriteLibrary: "Tailwind",
-    cause: "Потому что это красиво",
+    cause: "Потому что это удобно",
     position: "Team - Lead",
   },
 ];
