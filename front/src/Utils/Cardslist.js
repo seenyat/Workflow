@@ -67,7 +67,7 @@ const cards = [
   },
   {
     name: "TailwindUI",
-    img: "/logos/tailwind.png",
+    img: "/logos/tailwindUI.png",
     categories: "Design",
   },
   {
