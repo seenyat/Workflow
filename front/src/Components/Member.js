@@ -1,6 +1,6 @@
 export default function Member({ author }) {
   return author ? (
-    <div className="h-full w-full flex flex-row justify-between items-center text-left">
+    <div className="h-full px-5 w-full flex flex-row justify-between items-center text-left">
       <div className=" z-0 h-full w-1/3  flex ">
         <img
           className="h-auto my-auto w-full rounded-md"
