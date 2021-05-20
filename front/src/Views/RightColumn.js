@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import Time from "../Utils/Time";
 import Output from "editorjs-react-renderer";
@@ -12,9 +12,9 @@ export default function RightColumn() {
   useEffect(() => {
     if (user && answers) {
       // setAnswers(
-        answers.filter((el) => {
-          return el.author._id === user._id;
-        })
+      answers.filter((el) => {
+        return el.author._id === user._id;
+      });
       // );
     }
   }, [answers, user]);
