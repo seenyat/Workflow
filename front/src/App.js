@@ -5,10 +5,14 @@ import Content from "./Views/Content";
 import { useEffect, useState } from "react";
 import classNames from "./Utils/classNames";
 import { useDispatch } from "react-redux";
+import TimeAgo from "javascript-time-ago";
+import ru from "javascript-time-ago/locale/ru";
+
 import {
   sagaAuthCheck,
   sagaLoadQuestions,
 } from "./Redux/actions/actionCreator";
+TimeAgo.addLocale(ru);
 
 const userNavigation = [
   { name: "Your Profile", href: "#" },

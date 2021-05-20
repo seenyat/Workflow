@@ -1,13 +1,12 @@
 import { useSelector } from "react-redux";
 import { useParams } from "react-router";
-import FormQuestion from "../Components/Question/FormQuestion";
+
 import QuestionBody from "../Components/Question/QuestionBody";
 
 export default function SearchFeed() {
-  const user = useSelector((state) => state.user);
   const { search } = useParams();
   const questions = useSelector((state) => state.questions).filter((el) =>
-    el.title.includes(search)
+    el.title.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
