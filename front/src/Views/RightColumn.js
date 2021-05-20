@@ -10,7 +10,7 @@ export default function RightColumn() {
 
   const [answers, setAnswers] = useState(answersList);
   useEffect(() => {
-    if (user && answers) {
+    if (user && answersList) {
       setAnswers(
         [...answersList]
           .filter((el) => {
@@ -19,6 +19,7 @@ export default function RightColumn() {
           .sort((a, b) => new Date(b.date) - new Date(a.date))
       );
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [answers, user]);
 
   return user ? (
