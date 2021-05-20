@@ -10,6 +10,7 @@ export default function RightColumn() {
 
   const [answers, setAnswers] = useState(answersList);
   useEffect(() => {
+    console.log(user, answersList);
     if (user && answersList) {
       setAnswers(
         [...answersList]
@@ -20,7 +21,7 @@ export default function RightColumn() {
       );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [answers, user]);
+  }, [answersList, user]);
 
   return user ? (
     <div>
