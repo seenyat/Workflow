@@ -60,4 +60,23 @@ body {
     width: 250px;
     height: 350px;
   }
+
+  .membername {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  .role {
+    font-size: 14px;
+    margin-bottom: 14px;
+  }
+
+  .favorite {
+    font-size: 14px;
+    margin-bottom: 14px;
+  }
+
+  .cause {
+    font-size: 14px;
+  }
 }
