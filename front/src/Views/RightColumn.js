@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Time from "../Utils/Time";
 import Output from "editorjs-react-renderer";
@@ -6,16 +6,18 @@ import { Link } from "react-router-dom";
 
 export default function RightColumn() {
   const user = useSelector((state) => state.user);
-  let answers = useSelector((state) => state.answers);
+  let answersList = useSelector((state) => state.answers);
 
-  // const [answers, setAnswers] = useState(answersState);
+  const [answers, setAnswers] = useState(answersList);
   useEffect(() => {
     if (user && answers) {
-      // setAnswers(
-      answers.filter((el) => {
-        return el.author._id === user._id;
-      });
-      // );
+      setAnswers(
+        [...answersList]
+          .filter((el) => {
+            return el.author._id === user._id;
+          })
+          .sort((a, b) => new Date(b.date) - new Date(a.date))
+      );
     }
   }, [answers, user]);
 
