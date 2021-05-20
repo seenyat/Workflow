@@ -9,6 +9,7 @@ import UserProfile from "../../Views/UserProfile";
 import Stack from "../../Views/Stack";
 import Workflows from "../../Views/Workflows/Workflows";
 import UsersProfile from "../../Components/UsersProfile";
+import SearchFeed from "../../Views/SearchFeed";
 export default function ContentRouter() {
   console.log("router");
   return (
@@ -39,6 +40,9 @@ export default function ContentRouter() {
       </Route>
       <Route path="/stack">
         <Stack />
+      </Route>
+      <Route path="/search/:search">
+        <SearchFeed />
       </Route>
     </Switch>
   );
