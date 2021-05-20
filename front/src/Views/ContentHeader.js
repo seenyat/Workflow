@@ -7,12 +7,14 @@ import {
   changeHeaderModalStatus,
   logout,
 } from "../Redux/actions/actionCreator";
+import { useHistory } from "react-router-dom";
 import classNames from "../Utils/classNames";
 import { Link } from "react-router-dom";
 
 export default function ContentHeader({ setMobileMenuOpen }) {
   const modalStatus = useSelector((state) => state.modals[1].status);
   const auth = useSelector((state) => state.auth);
+  let history = useHistory();
   const user = useSelector((state) => state.user);
   const [userNavigation] = useState([
     { id: 1, name: "Профиль", href: "/profile" },
@@ -35,7 +37,14 @@ export default function ContentHeader({ setMobileMenuOpen }) {
           </button>
           <div className="flex-1 flex justify-between px-4 sm:px-6">
             <div className="flex-1 flex">
-              <form className="w-full flex md:ml-0" action="#" method="GET">
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                }}
+                className="w-full flex md:ml-0"
+                action="#"
+                method="GET"
+              >
                 <label htmlFor="search_field" className="sr-only">
                   Search all files
                 </label>
@@ -48,6 +57,11 @@ export default function ContentHeader({ setMobileMenuOpen }) {
                   </div>
                   <input
                     name="search_field"
+                    onKeyPress={(e) => {
+                      if (e.key === "Enter") {
+                        history.push(`/search/${e.target.value}`);
+                      }
+                    }}
                     id="search_field"
                     className="h-full w-full dark:bg-gray-700 dark:text-white border-transparent py-2 pl-8 pr-3 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-0 focus:border-transparent focus:placeholder-gray-400"
                     placeholder="Search"
