@@ -29,6 +29,7 @@ export default function MainFeed() {
         .slice(page * 5, page * 5 + 5)
     );
     sortByTheme(buttonsState.filter((el) => el.status)[0].theme);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [questions, page]);
   const [count, setCount] = useState(0);
 
