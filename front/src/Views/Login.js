@@ -7,7 +7,7 @@ export default function Login() {
     window.open(e.currentTarget.href, "_self");
   }
   return (
-    <div className="min-h-screen dark:text-white dark:bg-gray-800 bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+    <div className="min-h-screen overflow-auto px-12 py-24  dark:text-white dark:bg-gray-800 bg-gray-50 flex flex-col justify-center sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <img
           className="mx-auto h-max w-max py-6"
@@ -20,7 +20,7 @@ export default function Login() {
       </div>
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="bg-white dark:bg-gray-600 dark:text-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+        <div className="bg-white rounded dark:bg-gray-600 dark:text-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
           <div className="">
             <div className=" grid  gap-3">
               <div>

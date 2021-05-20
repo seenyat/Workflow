@@ -59,7 +59,7 @@ export default function FormQuestion() {
         <button
           type="button"
           onClick={() => editFormStatus(true)}
-          className="flex h-16 -mt-20 sm:-mt-12 w-full mb-28 sm:mb-16 justify-between items-center px-6 py-3 border border-transparent font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          className="flex  h-16 -mt-20 sm:-mt-12 w-full mb-28 sm:mb-16 justify-between items-center px-6 py-3 border border-transparent font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
         >
           <PlusIcon className="h-10 w-10" />
           <div className="text-xl">Задать вопрос</div>
