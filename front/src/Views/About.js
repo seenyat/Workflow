@@ -3,6 +3,8 @@ import React, { useRef } from "react";
 import clamp from "lodash-es/clamp";
 import { useSprings, animated } from "react-spring";
 import { useGesture } from "react-with-gesture";
+import { Link } from "react-router-dom";
+import { nanoid } from "nanoid";
 
 const authors = [
   {
@@ -62,29 +64,35 @@ export default function About() {
       });
     }
   );
-  return props.map(({ x, display, sc }, i) => (
-    <div
-      className="aboutUs   overflow-hidden
-    "
-    >
-      <animated.div
-        {...bind()}
-        className="animatedBlock h-full"
-        key={i}
-        style={{
-          display,
-          transform: x.interpolate((x) => `translate3d(${x}px,0,0) `),
-        }}
-      >
-        <animated.div
-          className="animatedCard pointer-events-none"
-          style={{
-            transform: sc.interpolate((s) => `scale(${s})`),
-          }}
-        >
-          <Member author={authors[i]} />
-        </animated.div>
-      </animated.div>
-    </div>
-  ));
+  return (
+    <>
+      <Link to="/stack">
+        <div className="w-full h-20 bg-none text-3xl flex justify-center items-center  outline-none">
+          Просмотреть наш стэк
+        </div>
+      </Link>
+      {props.map(({ x, display, sc }, i) => (
+        <div key={nanoid()} className="aboutUs overflow-hidden">
+          <animated.div
+            {...bind()}
+            className="animatedBlock h-max"
+            key={i}
+            style={{
+              display,
+              transform: x.interpolate((x) => `translate3d(${x}px,0,0) `),
+            }}
+          >
+            <animated.div
+              className="animatedCard pointer-events-none"
+              style={{
+                transform: sc.interpolate((s) => `scale(${s})`),
+              }}
+            >
+              <Member author={authors[i]} />
+            </animated.div>
+          </animated.div>
+        </div>
+      ))}
+    </>
+  );
 }

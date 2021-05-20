@@ -6,6 +6,7 @@ import Login from "../../Views/Login";
 import MainFeed from "../../Views/MainFeed";
 import QuestionSingle from "../../Views/QuestionSingle";
 import UserProfile from "../../Views/UserProfile";
+import Stack from "../../Views/Stack";
 import Workflows from "../../Views/Workflows/Workflows";
 import UsersProfile from "../../Components/UsersProfile";
 export default function ContentRouter() {
@@ -35,6 +36,9 @@ export default function ContentRouter() {
       </Route>
       <Route path="/login">
         <Login />
+      </Route>
+      <Route path="/stack">
+        <Stack />
       </Route>
     </Switch>
   );

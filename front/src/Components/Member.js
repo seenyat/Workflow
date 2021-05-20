@@ -1,5 +1,6 @@
 export default function Member({ author }) {
   return author ? (
+
     <div className="h-full w-full flex flex-row items-center">
       <div className=" h-max min-w-max flex justify-center items-center ">
         <img src={`${author.img}`} alt="" />
