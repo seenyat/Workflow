@@ -67,7 +67,7 @@ export default function About() {
   return (
     <>
       <Link to="/stack">
-        <div className="w-full shadow-md hover:bg-gray-100  h-20 bg-white text-3xl flex justify-center items-center  outline-none">
+        <div className="w-full shadow-md absolute hover:bg-gray-100 z-20 h-20 bg-white text-3xl flex justify-center items-center  outline-none">
           Наш стэк
         </div>
       </Link>
