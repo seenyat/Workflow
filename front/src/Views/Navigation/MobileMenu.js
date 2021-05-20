@@ -69,8 +69,8 @@ export default function MobileMenu({
                 <nav className="h-full flex flex-col">
                   <div className="space-y-1">
                     {nav.map((item) => {
-                      if (item.name !== "Login" || !auth) {
-                        if (item.name !== "Profile" || auth) {
+                      if (item.private !== "invert" || !auth) {
+                        if (item.private !== true || auth) {
                           return (
                             <MobileMenuItem
                               nav={nav}

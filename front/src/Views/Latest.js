@@ -7,7 +7,6 @@ import {
 import { buttonList } from "../Utils/categories";
 import Feed from "./Feed";
 import Pagination from "../Components/Pagination/Pagination";
-import { ExclamationCircleIcon } from "@heroicons/react/outline";
 import FormQuestion from "../Components/Question/FormQuestion";
 function Latest(props) {
   const dispatch = useDispatch();
@@ -29,34 +28,34 @@ function Latest(props) {
   const [buttonsState, setButtonsState] = useState(buttonList);
   const sortByTheme = (theme) => {
     const newList = questions.filter((que) => que.theme.includes(theme));
-    
+
     setQuestionsList(newList.slice(page * 5, page * 5 + 5));
     setCount(newList.length);
     setButtonsState(
       buttonsState.map((bt) =>
-      bt.theme !== theme
-      ? {
-        ...bt,
-        status: false,
-      }
-      : {
-        ...bt,
-        status: true,
-      }
+        bt.theme !== theme
+          ? {
+              ...bt,
+              status: false,
+            }
+          : {
+              ...bt,
+              status: true,
+            }
       )
-      );
-    };
-    useEffect(() => {
-      setQuestionsList(
-        questions
-          .sort((a, b) => new Date(b.date) - new Date(a.date))
-          .slice(page * 5, page * 5 + 5)
-      );
-      sortByTheme(buttonsState.filter((el) => el.status)[0].theme);
-    }, [questions, page, buttonsState, sortByTheme]);
-    
-    return !user ? (
-      <>
+    );
+  };
+  useEffect(() => {
+    setQuestionsList(
+      questions
+        .sort((a, b) => new Date(b.date) - new Date(a.date))
+        .slice(page * 5, page * 5 + 5)
+    );
+    sortByTheme(buttonsState.filter((el) => el.status)[0].theme);
+  }, [questions, page, buttonsState, sortByTheme]);
+
+  return !user ? (
+    <>
       {questions.length > 0 ? (
         <>
           <Feed
@@ -69,10 +68,7 @@ function Latest(props) {
         </>
       ) : (
         <div className="flex flex-col items-center ">
-          <div className="flex items-center bg-red-100 w-full text-gray-700 justify-center rounded-md p-5 text-xl my-5">
-            <ExclamationCircleIcon className="h-8 w-8 text-gray-500 opacity-50 mr-3" />{" "}
-            На текущий момент вопросов нет!
-          </div>
+          <div className="border-8 mt-24 mx-auto rounded-full w-24 h-24 border-gray-500 border-dashed animate-spin"></div>
         </div>
       )}
     </>
@@ -88,10 +84,7 @@ function Latest(props) {
     </>
   ) : (
     <div className="flex flex-col items-center ">
-      <div className="flex items-center bg-red-100 w-full text-gray-700 justify-center rounded-md p-5 text-xl my-5">
-        <ExclamationCircleIcon className="h-8 w-8 text-gray-500 opacity-50 mr-3" />{" "}
-        На текущий момент вопросов нет!
-      </div>
+        <div className="border-8 mt-24 mx-auto rounded-full w-24 h-24 border-gray-500 border-dashed animate-spin"></div>
       <FormQuestion />
     </div>
   );

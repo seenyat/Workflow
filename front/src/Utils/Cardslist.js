@@ -7,12 +7,12 @@ const cards = [
   {
     name: "TailwindCSS.",
     img: "/logos/tailwind.png",
-    categories: "Design",
+    categories: "Frontend",
   },
   {
     name: "TailwindUI",
     img: "/logos/tailwindUI.png",
-    categories: "Design",
+    categories: "Frontend",
   },
   {
     name: "React",
@@ -148,7 +148,7 @@ export default function Cardslist() {
     >
       <animated.div
         {...bind(i)}
-        className="card "
+        className="card w-1/6 h-4/5 md:w-1/5 md:h-1/6 "
         style={{
           transform: interpolate([rot, scale], trans),
         }}

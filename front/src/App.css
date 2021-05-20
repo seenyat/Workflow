@@ -48,6 +48,7 @@ body {
   background-repeat: no-repeat;
   background-position: center center;
   display: flex;
+
   width: 350px;
   height: 570px;
   will-change: transform;
