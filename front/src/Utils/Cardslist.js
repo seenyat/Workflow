@@ -62,12 +62,12 @@ const cards = [
   {
     name: "Passport JS",
     img: "/logos/Passport_js.png",
-    categories: "Utilites",
+    categories: "Backend",
   },
   {
     name: "Nodemailer",
     img: "/logos/nodemailer.png",
-    categories: "Utilites",
+    categories: "Backend",
   },
   {
     name: "Vercel",
@@ -82,7 +82,7 @@ const cards = [
   {
     name: "GitHub",
     img: "/logos/github.png",
-    categories: "Utilites",
+    categories: "Git",
   },
 ];
 
