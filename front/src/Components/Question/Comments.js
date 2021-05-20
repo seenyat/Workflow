@@ -1,4 +1,3 @@
-
 import { PlusIcon } from "@heroicons/react/solid";
 import { nanoid } from "nanoid";
 import CommentContent from "./CommentContent";

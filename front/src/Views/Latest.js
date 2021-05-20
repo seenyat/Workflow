@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   sagaAuthCheck,
@@ -26,25 +26,27 @@ function Latest(props) {
   const [count, setCount] = useState(0);
   // Filtering
   const [buttonsState, setButtonsState] = useState(buttonList);
-  const sortByTheme = (theme) => {
-    const newList = questions.filter((que) => que.theme.includes(theme));
-
-    setQuestionsList(newList.slice(page * 5, page * 5 + 5));
-    setCount(newList.length);
-    setButtonsState(
-      buttonsState.map((bt) =>
-        bt.theme !== theme
-          ? {
-              ...bt,
-              status: false,
-            }
-          : {
-              ...bt,
-              status: true,
-            }
-      )
-    );
-  };
+  const sortByTheme = useCallback(
+    (theme) => {
+      const newList = questions.filter((que) => que.theme.includes(theme));
+      setQuestionsList(newList.slice(page * 5, page * 5 + 5));
+      setCount(newList.length);
+      setButtonsState(
+        buttonsState.map((bt) =>
+          bt.theme !== theme
+            ? {
+                ...bt,
+                status: false,
+              }
+            : {
+                ...bt,
+                status: true,
+              }
+        )
+      );
+    },
+    [buttonsState, page, questions]
+  );
   useEffect(() => {
     setQuestionsList(
       questions
@@ -84,7 +86,7 @@ function Latest(props) {
     </>
   ) : (
     <div className="flex flex-col items-center ">
-        <div className="border-8 mt-24 mx-auto rounded-full w-24 h-24 border-gray-500 border-dashed animate-spin"></div>
+      <div className="border-8 mt-24 mx-auto rounded-full w-24 h-24 border-gray-500 border-dashed animate-spin"></div>
       <FormQuestion />
     </div>
   );

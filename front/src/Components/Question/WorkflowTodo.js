@@ -69,7 +69,7 @@ export default function Workflow({ todo }) {
                 }}
                 className="flex transition hover:shadow hover:bg-gray-300 hover:bg-opacity-50 dark:hover:bg-gray-900 select-none cursor-pointer rounded mt-2 py-1 ml-1 items-center"
               >
-                <div className={`w-9  h-9 mx-2`}>
+                <div className={`w-9 flex-none h-9 mx-2`}>
                   <CheckIcon
                     className={`transition ${
                       todoItem.checked
