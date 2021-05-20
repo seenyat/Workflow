@@ -6,15 +6,16 @@ import { Link } from "react-router-dom";
 
 export default function RightColumn() {
   const user = useSelector((state) => state.user);
-  let answersState = useSelector((state) => state.answers);
-  const [answers, setAnswers] = useState(answersState);
+  let answers = useSelector((state) => state.answers);
+
+  // const [answers, setAnswers] = useState(answersState);
   useEffect(() => {
     if (user && answers) {
-      setAnswers(
+      // setAnswers(
         answers.filter((el) => {
           return el.author._id === user._id;
         })
-      );
+      // );
     }
   }, [answers, user]);
 
