@@ -84,7 +84,7 @@ export default function About() {
           }}
         >
           <animated.div
-            className="animatedCard w-full h-full pointer-events-none"
+            className="animatedCard relative w-full h-full pointer-events-none"
             style={{
               transform: sc.interpolate((s) => `scale(${s})`),
             }}

@@ -1,18 +1,22 @@
 export default function Member({ author }) {
   return author ? (
-    <div className="h-full w-full flex flex-row justify-between items-center">
-      <div className=" z-0 h-max w-max flex ">
-        <img className="h-full w-max rounded-md" src={`${author.img}`} alt="" />
+    <div className="h-full px-5 w-full flex flex-row justify-between items-center text-left">
+      <div className=" z-0 h-full w-1/3  flex ">
+        <img
+          className="h-auto my-auto w-full rounded-md"
+          src={`${author.img}`}
+          alt=""
+        />
       </div>
-      <div className="p-4  h-4/6 w-1/2  font-extrabold text-3xl text-black items-center justify-center flex flex-col">
-        <span className="text-5xl font-extrabold mb-7 text-center membername">
+      <div className="p-4  h-full w-1/2  font-medium text-3xl text-black items-start justify-center flex flex-col">
+        <span className="text-5xl font-bold mb-7  membername">
           {author.name}
         </span>
-        <span className="mb-7 text-center role">{author.role}</span>
-        <span className="mb-14 text-center favorite">
+        <span className="mb-7  role">{author.role}</span>
+        <span className="mb-7  favorite">
           Любимое на проекте: <p>{author.favoriteLibrary}</p>
         </span>
-        <span className="text-center p-2 text-3xl italic border-t-2 border-b-2 border-gray-700 cause">
+        <span className=" p-2 text-3xl italic border-t-2 border-b-2 border-gray-300 cause">
           {author.cause}
         </span>
       </div>
