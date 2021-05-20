@@ -26,35 +26,35 @@ function Latest(props) {
   const [count, setCount] = useState(0);
   // Filtering
   const [buttonsState, setButtonsState] = useState(buttonList);
-  const sortByTheme = useCallback(
-    (theme) => {
-      const newList = questions.filter((que) => que.theme.includes(theme));
-      setQuestionsList(newList.slice(page * 5, page * 5 + 5));
-      setCount(newList.length);
-      setButtonsState(
-        buttonsState.map((bt) =>
-          bt.theme !== theme
-            ? {
-                ...bt,
-                status: false,
-              }
-            : {
-                ...bt,
-                status: true,
-              }
-        )
-      );
-    },
-    [buttonsState, page, questions]
-  );
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const sortByTheme = (theme) => {
+    const newList = questions.filter((que) => que.theme.includes(theme));
+    console.log(123);
+    setQuestionsList(newList.slice(page * 5, page * 5 + 5));
+    setCount(newList.length);
+    setButtonsState(
+      buttonsState.map((bt) =>
+        bt.theme !== theme
+          ? {
+              ...bt,
+              status: false,
+            }
+          : {
+              ...bt,
+              status: true,
+            }
+      )
+    );
+  };
+
   useEffect(() => {
     setQuestionsList(
-      questions
+      [...questions]
         .sort((a, b) => new Date(b.date) - new Date(a.date))
         .slice(page * 5, page * 5 + 5)
     );
     sortByTheme(buttonsState.filter((el) => el.status)[0].theme);
-  }, [questions, page, buttonsState, sortByTheme]);
+  }, [questions, page]);
 
   return !user ? (
     <>
