@@ -71,28 +71,30 @@ export default function About() {
           Наш стэк
         </div>
       </Link>
+      {/* <div className="relative w"> */}
       {props.map(({ x, display, sc }, i) => (
-        <div key={nanoid()} className="aboutUs overflow-hidden">
+        // <div key={nanoid()}>
+        <animated.div
+          {...bind()}
+          className="animatedBlock w-full h-full"
+          key={nanoid()}
+          style={{
+            display,
+            transform: x.interpolate((x) => `translate3d(${x}px,0,0) `),
+          }}
+        >
           <animated.div
-            {...bind()}
-            className="animatedBlock h-max"
-            key={i}
+            className="animatedCard w-full h-full pointer-events-none"
             style={{
-              display,
-              transform: x.interpolate((x) => `translate3d(${x}px,0,0) `),
+              transform: sc.interpolate((s) => `scale(${s})`),
             }}
           >
-            <animated.div
-              className="animatedCard pointer-events-none"
-              style={{
-                transform: sc.interpolate((s) => `scale(${s})`),
-              }}
-            >
-              <Member author={authors[i]} />
-            </animated.div>
+            <Member author={authors[i]} />
           </animated.div>
-        </div>
+        </animated.div>
+        // </div>
       ))}
+      {/* </div> */}
     </>
   );
 }
