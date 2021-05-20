@@ -5,6 +5,16 @@ import CardWithUtil from "../Components/CardWithUtil";
 
 const cards = [
   {
+    name: "TailwindCSS.",
+    img: "/logos/tailwind.png",
+    categories: "Design",
+  },
+  {
+    name: "TailwindUI",
+    img: "/logos/tailwindUI.png",
+    categories: "Design",
+  },
+  {
     name: "React",
     img: "/logos/react.png",
     categories: "Frontend",
@@ -23,15 +33,9 @@ const cards = [
   },
 
   {
-    name: "Express",
-    img: "/logos/express.png",
-    categories: "Backend",
-  },
-
-  {
-    name: "Mongoose",
-    img: "/logos/mongoose.png",
-    categories: "Backend",
+    name: "React-Spring",
+    img: "/logos/react-spring.gif",
+    categories: "Frontend",
   },
 
   {
@@ -39,11 +43,26 @@ const cards = [
     img: "/logos/nodejs.png",
     categories: "Backend",
   },
+  {
+    name: "Express",
+    img: "/logos/express.png",
+    categories: "Backend",
+  },
 
   {
     name: "MongoDB",
     img: "/logos/mongodb-logo.png",
     categories: "Backend",
+  },
+  {
+    name: "Mongoose",
+    img: "/logos/mongoose.jpeg",
+    categories: "Backend",
+  },
+  {
+    name: "Passport JS",
+    img: "/logos/Passport_js.png",
+    categories: "Utilites",
   },
   {
     name: "Nodemailer",
@@ -61,24 +80,9 @@ const cards = [
     categories: "Deploy",
   },
   {
-    name: "TailwindCSS.",
-    img: "/logos/tailwind.png",
-    categories: "Design",
-  },
-  {
-    name: "TailwindUI",
-    img: "/logos/tailwindUI.png",
-    categories: "Design",
-  },
-  {
     name: "GitHub",
     img: "/logos/github.png",
     categories: "Utilites",
-  },
-  {
-    name: "React-Spring",
-    img: "/logos/react-spring.gif",
-    categories: "Frontend",
   },
 ];
 
