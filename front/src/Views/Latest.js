@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   sagaAuthCheck,
@@ -28,7 +28,9 @@ function Latest(props) {
   const [buttonsState, setButtonsState] = useState(buttonList);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const sortByTheme = (theme) => {
-    const newList = questions.filter((que) => que.theme.includes(theme));
+    const newList = [...questions]
+      .filter((que) => que.theme.includes(theme))
+      .sort((a, b) => new Date(b.date) - new Date(a.date));
     console.log(123);
     setQuestionsList(newList.slice(page * 5, page * 5 + 5));
     setCount(newList.length);
@@ -54,6 +56,7 @@ function Latest(props) {
         .slice(page * 5, page * 5 + 5)
     );
     sortByTheme(buttonsState.filter((el) => el.status)[0].theme);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [questions, page]);
 
   return !user ? (

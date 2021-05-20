@@ -1,13 +1,9 @@
-import useTimeAgo from "@dh-react-hooks/use-timeago";
-import ru from "./ruTime.ts";
+import ReactTimeAgo from "react-time-ago";
 
 export default function Time({ time }) {
-  const localDate = new Date(time);
-
-  const timeAgo = useTimeAgo(localDate, {
-    interval: 60000,
-    locale: "ru",
-    localeRegister: ru,
-  });
-  return <div>{timeAgo}</div>;
+  return (
+    <div>
+      <ReactTimeAgo date={time} locale="ru" />
+    </div>
+  );
 }
