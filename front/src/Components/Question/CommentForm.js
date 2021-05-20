@@ -1,12 +1,13 @@
 import { XIcon } from "@heroicons/react/outline";
 import { useRef } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { sagaAddCommentAC } from "../../Redux/actions/actionCreator";
 import fetchCreator from "../../Redux/fetchCreator";
 
 function CommentForm({ answer, statusTextArea }) {
   const commentText = useRef();
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
 
   const addComment = (event) => {
     event.preventDefault();
@@ -14,7 +15,7 @@ function CommentForm({ answer, statusTextArea }) {
     dispatch(
       sagaAddCommentAC(
         fetchCreator(process.env.REACT_APP_ADD_COMMENT, "POST", {
-          authorId: answer.author._id,
+          authorId: user._id,
           answerId: answer._id,
           content: commentText.current.value,
         })
