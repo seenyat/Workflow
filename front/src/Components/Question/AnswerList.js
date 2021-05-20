@@ -11,7 +11,7 @@ export default function AnswerList({ qId }) {
         return answ.question._id === qId;
       })
     );
-  }, [answers]);
+  }, [answers, qId]);
   return (
     <ul className="space-y-3">
       {answerList.length > 0 &&

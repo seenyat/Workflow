@@ -1,12 +1,10 @@
-import { ExclamationCircleIcon, UserIcon } from "@heroicons/react/outline";
+import { ExclamationCircleIcon } from "@heroicons/react/outline";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import WorkflowTodo from "../../Components/Question/WorkflowTodo";
 
 export default function Workflows() {
   const { user } = useSelector((state) => state);
-
-  const loading = useSelector((state) => state.loading);
 
   const [workflows, setWorkflows] = useState(null);
   useEffect(() => {

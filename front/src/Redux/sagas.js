@@ -13,12 +13,10 @@ import {
   toggleTodo,
   deleteQuestion,
   deleteAnswer,
-  addAnswer,
   addCommentAC,
   deleteToDo,
   deleteComment,
   likeCommentAC,
-  changeHeaderModalStatus,
 } from "./actions/actionCreator";
 import {
   SAGA_AUTH,
@@ -65,7 +63,6 @@ function* loadQuestionsWorker(action) {
   yield put(loadQuestions(newInfo));
 }
 
-//ANSWERS
 function* loadAnswersWorker(action) {
   const answers = yield call(fetchForGet, action.payload);
   yield put(loadAnswers(answers));
@@ -94,7 +91,6 @@ function* editQuestionWorker(action) {
 function* addProfileAnswerQuestionWorker(action) {
   const profileAnswerQuestion = yield call(fetchForGet, action.payload);
   yield put(addProfileAnswerQuestion(profileAnswerQuestion));
-  // yield put(addAnswer(profileAnswerQuestion.answers));
 }
 
 function* editProfileWorker(action) {
