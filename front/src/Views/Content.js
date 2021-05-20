@@ -20,7 +20,7 @@ export default React.memo(function Content({
           {/* Primary column */}
           <section
             aria-labelledby="primary-heading"
-            className="min-w-0 flex-1 h-full flex flex-col overflow-hidden lg:order-last"
+            className="min-w-0 flex-1 h-full relative flex flex-col overflow-hidden lg:order-last"
           >
             <h1 id="primary-heading" className="sr-only">
               Content

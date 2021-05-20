@@ -29,7 +29,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className="h-screen bg-gray-50 dark:bg-gray-900 flex overflow-hidden">
+      <div className="h-screen relative bg-gray-50 dark:bg-gray-900 flex overflow-hidden">
         <Navigation
           mobileMenuOpen={mobileMenuOpen}
           setMobileMenuOpen={setMobileMenuOpen}
