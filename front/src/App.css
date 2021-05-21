@@ -16,6 +16,7 @@ body {
 .animatedBlock {
   will-change: transform;
   position: absolute;
+  user-select: none;
 }
 
 .animatedCard {
