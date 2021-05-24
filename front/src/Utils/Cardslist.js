@@ -82,7 +82,7 @@ const cards = [
   {
     name: "GitHub",
     img: "/logos/github.png",
-    categories: "Git",
+    categories: "GitHub",
   },
 ];
 
