@@ -2,7 +2,7 @@ import {
   BadgeCheckIcon,
   CollectionIcon,
   LoginIcon,
-  PlayIcon,
+  // PlayIcon,
   UserIcon,
   ViewGridIcon,
 } from "@heroicons/react/outline";
@@ -36,13 +36,13 @@ export const sideBarMenu = [
     current: false,
     private: true,
   },
-  {
-    name: "О нас",
-    href: "/about",
-    icon: PlayIcon,
-    current: false,
-    private: false,
-  },
+  // {
+  //   name: "О нас",
+  //   href: "/about",
+  //   icon: PlayIcon,
+  //   current: false,
+  //   private: false,
+  // },
   {
     name: "Войти",
     href: "/login",
